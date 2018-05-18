@@ -1,17 +1,24 @@
-#'Compute power for an Independent Samples t-test
+#'Compute power for a One Factor ANOVA with three levels and contrasts.
 #'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 #'@param m1 Mean of first group
 #'@param m2 Mean of second group
+#'@param m3 Mean of third group
 #'@param s1 Standard deviation of first group
 #'@param s2 Standard deviation of second group
+#'@param s3 Standard deviation of third group
 #'@param n1 Sample size for first group
 #'@param n2 Sample size for second group
+#'@param n3 Sample size for third group
 #'@param alpha Type I error (default is .05)
-#'@return Power for Independent Samples t-test
+#'@param c1 Weight for Contrast 1 (default is 0)
+#'@param c2 Weight for Contrast 2 (default is 0)
+#'@param c3 Weight for Contrast 3 (default is 0)
+#'@return Power for the One Factor ANOVA
 #'@export
 #'
 #'
-indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
+anova1f_3c<-function(m1=NULL,m2=NULL,m3=NULL,s1=NULL,s2=NULL,s3=NULL,n1=NULL,n2=NULL,n3=NULL,alpha=.05, c1 =0, c2=0, c3=0)
+  {
   x<-rnorm(n1,m1,s1)
   X<-x
   MEAN<-m1
@@ -28,7 +35,15 @@ indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
   y<-MEAN + Z
   group<-rep("A2",n2)
   l2<-data.frame(y, group)
-  simdat<-rbind(l1,l2)
+  x<-rnorm(n3,m3,s3)
+  X<-x
+  MEAN<-m3
+  SD<-s3
+  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  y<-MEAN + Z
+  group<-rep("A3",n3)
+  l3<-data.frame(y, group)
+  simdat<-rbind(l1,l2,l3)
   anova<-aov(y~group, data=simdat)
   anova<-Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
@@ -39,27 +54,11 @@ indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
   eta2<-SSA/(SSA+SSwin)
   f2<-eta2/(1-eta2)
   lambda<-f2*dfwin
-  d<-round((m1-m2)/(mswin^.5),3)
   minusalpha<-1-alpha
   Ft<-qf(minusalpha, dfbg, dfwin)
-  Power<-1-pf(Ft, dfbg,dfwin,lambda)
-  sx1_un <- s1/(n1^.5)
-  sx2_un <- s2/(n2^.5)
-  sx1x2_un <- ((sx1_un^2)+(sx2_un^2))^.5
-  t_un <- (m1-m2)/sx1x2_un
-  d_un <- round(t_un * sqrt((n1+n2)/(n1*n2)),3)
-  n_harm <- ((2*n1*n2)/(n1+n2))
-  var1<-s1^2
-  var2<-s2^2
-  sat_num <- ((var1/n1)+(var2/n2))*((var1/n1)+(var2/n2))
-  sat_denom <- ((((s1^2/n1)^2))/(n1-1)) +((((s2^2/n2)^2))/(n2-1))
-  df_un <- round(sat_num/sat_denom,3)
-  delta_un <-(d_un*((n_harm/2)^.5))
-  lambda_un <-delta_un^2
-  Ft_un<-qf(minusalpha, dfbg, df_un)
-  Power_unequal<-1-pf(Ft_un, dfbg,df_un,lambda_un)
-  pe<-round(Power,3)
-  pu<-round(Power_unequal,3)
-  {print(paste("Equal Variance Power for n1 =",n1,",", "n2 =",n2, "with d =", d, "=", pe))}
-  {print(paste("Unequal Variance Power for n1 =",n1,",", "n2 =",n2, "with d =", d_un, "=", pu))}
-}
+  power<-1-pf(Ft, dfbg,dfwin,lambda)
+  delta=((c1*m1)+(c2*m2)+(c3*m3))/((mswin*((c1^2/n1)+(c2^2/n2)+(c3^2/n3))))^.5
+  lambda.c=delta^2
+  Ft.c<-qf(minusalpha, 1, dfwin)
+  power.contrast<-1-pf(Ft.c, 1,dfwin,lambda.c)
+  list(Power.for.Contrast = power.contrast)}

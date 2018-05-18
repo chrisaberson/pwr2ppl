@@ -30,11 +30,14 @@ MRC_all<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=N
 pred<-NA
 pred[is.null(r23)]<-2
 pred[!is.null(r23)]<-3
+vary<-NA
+vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
 
   if (pred=="2")
-    {pop <- mvrnorm(100000, mu = c(my, m1, m2), Sigma = matrix(c(sy, ry1, ry2,
-                                                                     ry1, s1, r12,
-                                                                     ry2, r12, s2),
+
+    {pop <- mvrnorm(100000, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
+                                                                     ry1, var1, r12,
+                                                                     ry2, r12, var2),
                                                                    ncol = 3), empirical = TRUE)
     pop2 = data.frame(pop)
     nruns = rep
@@ -101,7 +104,11 @@ pred[!is.null(r23)]<-3
 
   if (pred=="3")
     {
-  pop <- mvrnorm(100000, mu = c(my, m1, m2, m3), Sigma = matrix(c(sy, ry1, ry2, ry3, ry1, s1, r12, r13, ry2, r12,s2, r23, ry3, r13, r23, s3),
+  pop <- mvrnorm(100000, mu = c(my, m1, m2, m3),
+                 Sigma = matrix(c(vary, ry1, ry2, ry3,
+                                  ry1, var1, r12, r13,
+                                  ry2, r12, var2, r23,
+                                  ry3, r13, r23, var3),
                  ncol = 4), empirical = TRUE)
   pop2 = data.frame(pop)
   nruns = rep
