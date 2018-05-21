@@ -19,41 +19,33 @@
 #'@return Power for the One Factor Within Subjects LMM Trends
 #'@export
 
-lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL, 
+lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
                 r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
                 n, alpha=.05)
 {
-  library(MASS)
-  library(dplyr)
-  library(tidyverse)
-  library(ez)
-  library(nlme)
-  library(phia)
-  library(afex)
-  
   levels<-NA
   levels[is.na(m4) & is.na(m3)]<-2
   levels[is.na(m4) & !is.na(m3)]<-3
   levels[!is.na(m4)]<-4
-  
+
   if(levels<2|levels>4){stop("Function requires 2 to 4 levels")}
   if(levels=="2"){
     var1<-s1^2
     var2<-s2^2
     cov12<-r12*s1*s2
-    out <- mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
-                                                      cov12,var2) 
+    out <- MASS::mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
+                                                      cov12,var2)
                                                     , ncol = 2),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    base<-lme(dv~1, random = ~1|id/iv, data=out,method="ML")
-    model1<-lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
+    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
+    base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
+    model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     lm<-anova(base,model1)
     df1<-lm$df[2]-lm$df[1]
     lambdalm<-lm$L.Ratio[2]
@@ -64,7 +56,7 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     {print(paste("Tests use df =", df))}
     {print(paste("This test is useless for two levels"))}
     }
-  
+
   if(levels==3){
     var1<-s1^2
     var2<-s2^2
@@ -72,18 +64,18 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     cov12<-r12*s1*s2
     cov13<-r13*s1*s3
     cov23<-r23*s2*s3
-    out <- mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
-                                                         cov12,var2,cov23, 
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
+                                                         cov12,var2,cov23,
                                                          cov13, cov23,var3), ncol = 3),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    model1<-lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
+    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
+    model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     trends<-summary(model1)
     row<-trends$tTable[1:17]
     lambdaLML<-(row[11])^2
@@ -97,10 +89,10 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     {print(paste("Power Quadratic Trend for n =",n,"=", powerLM.Q))}
     {print(paste("Tests use df =", df))}
     }
-  
-  
-  
-  if (levels=="4"){  
+
+
+
+  if (levels=="4"){
     var1<-s1^2
     var2<-s2^2
     var3<-s3^2
@@ -111,20 +103,20 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     cov23<-r23*s2*s3
     cov24<-r24*s2*s4
     cov34<-r34*s3*s4
-    out <- mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
-                                                            cov12,var2,cov23, cov24, 
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
+                                                            cov12,var2,cov23, cov24,
                                                             cov13, cov23,var3, cov34,
                                                             cov14, cov24, cov34, var4), ncol = 4),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    base<-lme(dv~1, random = ~1|id/iv, data=out,method="ML")
-    model1<-lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
+    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
+    base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
+    model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     trends<-summary(model1)
     row<-trends$tTable[1:18]
     lambdaLML<-(row[14])^2

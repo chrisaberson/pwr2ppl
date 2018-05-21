@@ -36,22 +36,22 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     cov12<-r12*s1*s2
     cov13<-r13*s1*s3
     cov23<-r23*s2*s3
-    out <- mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
                                                          cov12,var2,cov23,
                                                          cov13, cov23,var3), ncol = 3),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
 
-    trends<-aov_car(dv~iv+Error(id/iv),out)
-    lin<-testInteractions(trends$lm, custom = list(iv=contr.poly(3,c(1,2,3))[,1]), idata=trends$data[["idata"]])
+    trends<-afex::aov_car(dv~iv+Error(id/iv),out)
+    lin<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(3,c(1,2,3))[,1]), idata=trends$data[["idata"]])
     lambdaL<-lin$`approx F`
-    quad<-testInteractions(trends$lm, custom = list(iv=contr.poly(3,c(1,2,3))[,2]), idata=trends$data[["idata"]])
+    quad<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(3,c(1,2,3))[,2]), idata=trends$data[["idata"]])
     lambdaQ<-quad$`approx F`
     minusalpha<-1-alpha
     dfh<-lin$`den Df`*(levels-1)
@@ -79,24 +79,24 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     cov23<-r23*s2*s3
     cov24<-r24*s2*s4
     cov34<-r34*s3*s4
-    out <- mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
                                                             cov12,var2,cov23, cov24,
                                                             cov13, cov23,var3, cov34,
                                                             cov14, cov24, cov34, var4), ncol = 4),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    trends<-aov_car(dv~iv+Error(id/iv),out)
-    lin<-testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,1]), idata=trends$data[["idata"]])
+    trends<-afex::aov_car(dv~iv+Error(id/iv),out)
+    lin<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,1]), idata=trends$data[["idata"]])
     lambdaL<-lin$`approx F`
-    quad<-testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,2]), idata=trends$data[["idata"]])
+    quad<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,2]), idata=trends$data[["idata"]])
     lambdaQ<-quad$`approx F`
-    cube<-testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,3]), idata=trends$data[["idata"]])
+    cube<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,3]), idata=trends$data[["idata"]])
     lambdaC<-cube$`approx F`
     minusalpha<-1-alpha
     dfh<-lin$`den Df`*(levels-1)

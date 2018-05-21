@@ -33,18 +33,18 @@ if(levels=="2"){
   var1<-s1^2
   var2<-s2^2
   cov12<-r12*s1*s2
-  out <- mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
+  out <- MASS::mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
                                                       cov12,var2)
                                                     , ncol = 2),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gathergather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
     df1<-model$ANOVA$DFn[2]
     df2<-model$ANOVA$DFd[2]
     SSB<-model$ANOVA$SSn[2]
@@ -77,18 +77,18 @@ if(levels=="2"){
     cov12<-r12*s1*s2
     cov13<-r13*s1*s3
     cov23<-r23*s2*s3
-    out <- mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
                                                          cov12,var2,cov23,
                                                          cov13, cov23,var3), ncol = 3),
                                                          empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
     df1<-model$ANOVA$DFn[2]
     df2<-model$ANOVA$DFd[2]
     SSB<-model$ANOVA$SSn[2]
@@ -125,19 +125,19 @@ if(levels=="2"){
       cov23<-r23*s2*s3
       cov24<-r24*s2*s4
       cov34<-r34*s3*s4
-      out <- mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
+      out <- MASS::mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
                                                               cov12,var2,cov23, cov24,
                                                               cov13, cov23,var3, cov34,
                                                               cov14, cov24, cov34, var4), ncol = 4),
                      empirical = TRUE)
       out<-as.data.frame(out)
-      out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
+      out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
       out$id <- rep(1:nrow(out))
       out$id<-as.factor(out$id)
-      out<-gather(out,key="iv",value="dv",-id)
+      out<-tidyr::gather(out,key="iv",value="dv",-id)
       out$iv<-as.ordered(out$iv)
       options(contrasts=c("contr.helmert", "contr.poly"))
-      model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+      model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
       df1<-model$ANOVA$DFn[2]
       df2<-model$ANOVA$DFd[2]
       SSB<-model$ANOVA$SSn[2]
