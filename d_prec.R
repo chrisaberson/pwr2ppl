@@ -12,16 +12,14 @@
 
 d_prec<-function(d,nlow, nhigh, propn1= .5, ci=.95, tails=2, by=1)
 {
-  library(MBESS)
-       
   for(n in seq(nlow,nhigh, by)){
     n1<-n * propn1
     n2<-n * (1-propn1)
-    a<-ci.smd(smd=d, n.1=n1,n.2=n2, conf.level = .95)
+    a<-MBESS::ci.smd(smd=d, n.1=n1,n.2=n2, conf.level = .95)
     ll<-a[1]
     ul<-a[3]
     ll<-round(as.numeric(ll),4)
     ul<-round(as.numeric(ul),4)
-    print(paste("n1=",n1,",n2 =",n2,"d = ",d,",LL =  ",ll,",UL =  ",ul,",precision =",ul-ll ))}  
+    print(paste("n1=",n1,",n2 =",n2,"d = ",d,",LL =  ",ll,",UL =  ",ul,",precision =",ul-ll ))}
 }
-  
+

@@ -21,14 +21,14 @@ med<-function(rxm1,rxm2=0, rxm3=0, rxm4=0,rxy,rym1, rym2=0,rym3=0, rym4=0, rm1m2
                    rm1m4=0, rm2m3=0, rm2m4=0, rm3m4=0,alpha=.05,mvars,n)
 {
   if(mvars==1){
-    out <- mvrnorm(n, mu = c(0,0,0),
+    out <- MASS::mvrnorm(n, mu = c(0,0,0),
                    Sigma = matrix(c(1.0,rxm1,rxy,
                                     rxm1,1.0,rym1,
                                     rxy,rym1,1.0),
                                     ncol = 3),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, x = V1, m1 = V2, y = V3)
+    out<-dplyr::rename(out, x = V1, m1 = V2, y = V3)
     cor(out)
     set.seed(1234)
     model <- '
@@ -42,8 +42,8 @@ med<-function(rxm1,rxm2=0, rxm3=0, rxm4=0,rxy,rym1, rym2=0,rym3=0, rym4=0, rm1m2
     # total effect (c-prime)
     total := c + (a1*b1)
     '
-fitm <- sem(model, data = out)
-est<-parameterestimates(fitm)
+fitm <- lavaan::sem(model, data = out)
+est<-lavaan::parameterestimates(fitm)
 zab1<-abs(est$z[7])
 tabled<-abs(qnorm(alpha/2))
 zpowerab1<-tabled-zab1
@@ -51,14 +51,14 @@ powerab1<-round(1-pnorm(zpowerab1),4)
 print(paste("Power for n =", n,"mediator 1", "=", powerab1))
 }
 if(mvars==2){
-  out <- mvrnorm(n, mu = c(0,0,0,0),
+  out <- MASS::mvrnorm(n, mu = c(0,0,0,0),
                Sigma = matrix(c(1.0,rxm1,rxm2, rxy,
                                 rxm1,1.0,rm1m2, rym1,
                                 rxm2,rm1m2,1.0,rym2,
                                 rxy, rym1, rym2,1.0), ncol = 4),
                                 empirical = TRUE)
 out<-as.data.frame(out)
-out<-rename(out, x = V1, m1 = V2, m2 = V3, y = V4)
+out<-dplyr::rename(out, x = V1, m1 = V2, m2 = V3, y = V4)
 cor(out)
 set.seed(1234)
 model <- '
@@ -78,8 +78,8 @@ total := c + (a1*b1)+(a2*b2)
 #Cors
 m1~~m2
 '
-fitm <- sem(model, data = out)
-est<-parameterestimates(fitm)
+fitm <- lavaan::sem(model, data = out)
+est<-lavaan::parameterestimates(fitm)
 zab1<-abs(est$z[11])
 zab2<-abs(est$z[12])
 zall<-abs(est$z[13])
@@ -95,7 +95,7 @@ print(paste("Power for n =", n,"mediator 2", "=", powerab2))
 print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
 
 else if(mvars==3){
-  out <- mvrnorm(n, mu = c(0,0,0,0,0),
+  out <- MASS::mvrnorm(n, mu = c(0,0,0,0,0),
                  Sigma = matrix(c(1.0,rxm1,rxm2, rxm3, rxy,
                                   rxm1,1.0,rm1m2,rm1m3,rym1,
                                   rxm2,rm1m2,1.0,rm2m3,rym2,
@@ -103,7 +103,7 @@ else if(mvars==3){
                                   rxy, rym1, rym2,rym3,1.0), ncol = 5),
                  empirical = TRUE)
   out<-as.data.frame(out)
-  out<-rename(out, x = V1, m1 = V2, m2 = V3, m3=V4, y = V5)
+  out<-dplyr::rename(out, x = V1, m1 = V2, m2 = V3, m3=V4, y = V5)
   cor(out)
   set.seed(1234)
   model <- '
@@ -128,8 +128,8 @@ else if(mvars==3){
   m1~~m3
   m2~~m3
   '
-  fitm <- sem(model, data = out)
-  est<-parameterestimates(fitm)
+  fitm <- lavaan::sem(model, data = out)
+  est<-lavaan::parameterestimates(fitm)
   zab1<-abs(est$z[16])
   zab2<-abs(est$z[17])
   zab3<-abs(est$z[18])
@@ -149,7 +149,7 @@ else if(mvars==3){
   print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
 
   else if(mvars==4){
-    out <- mvrnorm(n, mu = c(0,0,0,0,0,0),
+    out <- MASS::mvrnorm(n, mu = c(0,0,0,0,0,0),
                    Sigma = matrix(c(1.0,rxm1,rxm2, rxm3, rxm4, rxy,
                                     rxm1,1.0,rm1m2,rm1m3,rm1m4,rym1,
                                     rxm2,rm1m2,1.0,rm2m3,rm2m4,rym2,
@@ -158,7 +158,7 @@ else if(mvars==3){
                                     rxy, rym1, rym2,rym3,rym4,1.0), ncol = 6),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, x = V1, m1 = V2, m2 = V3, m3=V4, m4=V5,y = V6)
+    out<-dplyr::rename(out, x = V1, m1 = V2, m2 = V3, m3=V4, m4=V5,y = V6)
     set.seed(1234)
     model <- '
     # direct effect
@@ -188,8 +188,8 @@ else if(mvars==3){
     m2~~m4
     m3~~m4
     '
-    fitm <- sem(model, data = out, se="bootstrap")
-    est<-parameterestimates(fitm)
+    fitm <- lavaan::sem(model, data = out, se="bootstrap")
+    est<-lavaan::parameterestimates(fitm)
     zab1<-est$z[22]
     zab2<-est$z[23]
     zab3<-est$z[24]

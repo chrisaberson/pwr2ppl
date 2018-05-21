@@ -10,9 +10,9 @@
 #'
 
 r_prec<-function(r,nlow, nhigh, ci=.95, by=1)
-{ 
+{
   for(n in seq(nlow,nhigh, by)){
-  a<-ci.cc(r, n, ci)
+  a<-MBESS::ci.cc(r, n, ci)
   ll<-a[1]
   ul<-a[3]
   ll<-round(as.numeric(ll),4)

@@ -16,9 +16,9 @@ R2_prec<-function(R2,nlow, nhigh, pred, ci=.95, by=1)
     for(n in seq(nlow,nhigh, by)){
     df1<-pred
     df2<-n-pred-1
-    a<-ci.R2(R2=R2, df.1=df1,df.2=df2, conf.level = .95, Random.Predictors = FALSE)
+    a<-MBESS::ci.R2(R2=R2, df.1=df1,df.2=df2, conf.level = .95, Random.Predictors = FALSE)
     ll<-a[1]
     ul<-a[3]
     ll<-round(as.numeric(ll),4)
     ul<-round(as.numeric(ul),4)
-    print(paste("n=",n,"R2 = ",R2,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}}  
+    print(paste("n=",n,"R2 = ",R2,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}}

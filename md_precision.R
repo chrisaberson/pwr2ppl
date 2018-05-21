@@ -25,7 +25,7 @@ md_prec<-function(m1,m2,s1,s2,nlow, nhigh, propn1= .5, ci=.95, by=1)
     s2p<-(nxs1+nxs2)/(n1+n2-2)
     sp <- sqrt(s2p)
     d<-(m1-m2)/sp
-    a<-ci.smd(smd=d, n.1=n1,n.2=n2, conf.level = .95)
+    a<-MBESS::ci.smd(smd=d, n.1=n1,n.2=n2, conf.level = .95)
     ll<-a[1]
     ul<-a[3]
     ll<-as.numeric(ll)
