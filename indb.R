@@ -22,19 +22,18 @@
 indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
                    ry1_2, ry2_2, ry3_2=NULL, r12_2, r13_2=NULL, r23_2=NULL,n2, alpha=.05)
 {
-  require(MASS)
   pred<-NA
   pred[is.null(r23_1)]<-2
   pred[!is.null(r23_1)]<-3
 
   if (pred=="2")
-  {pop1 <- mvrnorm(n1, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1_1, ry2_1,
+  {pop1 <- MASS::mvrnorm(n1, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1_1, ry2_1,
                                                    ry1_1, 1, r12_1,
                                                    ry2_1, r12_1, 1),
                                                  ncol=3), empirical=TRUE)
   pop1<-data.frame(pop1)
 
-  pop2 <- mvrnorm(n2, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1_2, ry2_2,
+  pop2 <- MASS::mvrnorm(n2, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1_2, ry2_2,
                                                    ry1_2, 1, r12_2,
                                                    ry2_2, r12_2, 1),
                                                  ncol=3), empirical=TRUE)
@@ -69,13 +68,13 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
 
   if (pred=="3")
   {
-    pop1 <- mvrnorm(n1, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1_1, ry2_1, ry3_1,
+    pop1 <- MASS::mvrnorm(n1, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1_1, ry2_1, ry3_1,
                                                          ry1_1, 1, r12_1, r13_1,
                                                          ry2_1, r12_1,1, r23_1,
                                                          ry3_1, r13_1, r23_1, 1),
                                                        ncol=4), empirical=TRUE)
 
-    pop2 <- mvrnorm(n2, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1_2, ry2_2, ry3_2,
+    pop2 <- MASS::mvrnorm(n2, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1_2, ry2_2, ry3_2,
                                                           ry1_2, 1, r12_2, r13_2,
                                                           ry2_2, r12_2,1, r23_2,
                                                           ry3_2, r13_2, r23_2, 1),

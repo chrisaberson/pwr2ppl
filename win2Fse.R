@@ -51,8 +51,8 @@
 #'@return Power for Simple Effects for Two Factor Within Subjects ANOVA
 #'@export
 
-win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA, 
-                  s1.1=NA,s2.1=NA,s3.1=NA,s4.1=NA,s1.2=NA,s2.2=NA,s3.2=NA,s4.2=NA, 
+win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
+                  s1.1=NA,s2.1=NA,s3.1=NA,s4.1=NA,s1.2=NA,s2.2=NA,s3.2=NA,s4.2=NA,
                   r12=NULL, r13=NULL, r14=NULL, r15=NULL, r16=NULL, r17=NULL, r18=NULL,
                   r23=NULL, r24=NULL, r25=NULL, r26=NULL, r27=NULL, r28=NULL,
                   r34=NULL, r35=NULL, r36=NULL, r37=NULL, r38=NULL,
@@ -60,15 +60,15 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                   r56=NULL, r57=NULL, r58=NULL,
                   r67=NULL, r68=NULL,
                   r78=NULL, r=NULL, s = NULL, n, alpha=.05)
-  
+
 {
 
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
   levels[!is.na(m4.1)]<-4
-  
-  if (levels=="4"){  
+
+  if (levels=="4"){
     if (!is.null(s)){
       s1.1<-s; s2.1<-s;s3.1<-s;s4.1<-s;s1.2<-s;s2.2<-s;s3.2<-s;s4.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2;var7<-s^2;var8<-s^2}
@@ -82,8 +82,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     cov45<-r45*s4.1*s1.2;cov46<-r46*s4.1*s2.2;cov47<-r47*s4.1*s3.2;cov48<-r48*s4.1*s4.2
     cov56<-r56*s1.2*s2.2;cov57<-r57*s1.2*s3.2;cov58<-r58*s1.2*s4.2
     cov67<-r67*s2.2*s3.2;cov68<-r68*s2.2*s4.2
-    cov78<-r78*s3.2*s4.2 
-    out <- mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m4.1,m1.2,m2.2,m3.2,m4.2), 
+    cov78<-r78*s3.2*s4.2
+    out <- MASS::mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m4.1,m1.2,m2.2,m3.2,m4.2),
                    Sigma = matrix(c(var1,cov12,cov13, cov14, cov15, cov16, cov17, cov18,
                                     cov12,var2,cov23, cov24, cov25, cov26, cov27, cov28,
                                     cov13, cov23,var3,cov34, cov35, cov36, cov37, cov38,
@@ -93,12 +93,12 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                                     cov17, cov27, cov37, cov47, cov57, cov67, var7, cov78,
                                     cov18, cov28, cov38, cov48, cov58, cov68, cov78, var8), ncol = 8),
                    empirical = TRUE)
-    
+
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6, y7 = V7, y8 = V8)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6, y7 = V7, y8 = V8)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="time",value="dv",-id)
+    out<-tidyr::gather(out,key="time",value="dv",-id)
     out$time<-as.factor(out$time)
     out$time<-as.numeric(out$time)
     out$iv1<-NA
@@ -111,11 +111,11 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==5|out$time==6|out$time==7|out$time==8]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    
-    #split stuff here... 
+    options(contrasts=c("contr.helmert", "contr.poly"))
+
+    #split stuff here...
     data.ab1<-subset(out, iv2==1)
-    modelab1<-ezANOVA(data=data.ab1, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
+    modelab1<-ez::ezANOVA(data=data.ab1, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
     dfab1<-modelab1$ANOVA$DFn[2]
     dfWab1<-modelab1$ANOVA$DFd[2]
     SSab1<-modelab1$ANOVA$SSn[2]
@@ -139,9 +139,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     Fthfab1<-qf(minusalpha, hfdfab1, hfdfWab1)
     powerggab1<-round(1-pf(Ftggab1, ggdfab1,ggdfWab1,lambdaggab1),3)
     powerhfab1<-round(1-pf(Fthfab1, hfdfab1,hfdfWab1,lambdahfab1),3)
-    
+
     data.ab2<-subset(out, iv2==2)
-    modelab2<-ezANOVA(data=data.ab2, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
+    modelab2<-ez::ezANOVA(data=data.ab2, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
     dfab2<-modelab2$ANOVA$DFn[2]
     dfWab2<-modelab2$ANOVA$DFd[2]
     SSab2<-modelab2$ANOVA$SSn[2]
@@ -165,9 +165,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     Fthfab2<-qf(minusalpha, hfdfab2, hfdfWab2)
     powerggab2<-round(1-pf(Ftggab2, ggdfab2,ggdfWab2,lambdaggab2),3)
     powerhfab2<-round(1-pf(Fthfab2, hfdfab2,hfdfWab2,lambdahfab2),3)
-    
+
     data.ba1<-subset(out, iv1==1)
-    modelba1<-ezANOVA(data=data.ba1, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba1<-ez::ezANOVA(data=data.ba1, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
     dfba1<-modelba1$ANOVA$DFn[2]
     dfWba1<-modelba1$ANOVA$DFd[2]
     SSba1<-modelba1$ANOVA$SSn[2]
@@ -178,9 +178,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ftba1<-qf(minusalpha, dfba1, dfWba1)
     powerba1<-round(1-pf(Ftba1, dfba1,dfWba1,lambdaba1),3)
-    
+
     data.ba2<-subset(out, iv1==2)
-    modelba2<-ezANOVA(data=data.ba2, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba2<-ez::ezANOVA(data=data.ba2, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
     dfba2<-modelba2$ANOVA$DFn[2]
     dfWba2<-modelba2$ANOVA$DFd[2]
     SSba2<-modelba2$ANOVA$SSn[2]
@@ -191,9 +191,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ftba2<-qf(minusalpha, dfba2, dfWba2)
     powerba2<-round(1-pf(Ftba2, dfba2,dfWba2,lambdaba2),3)
-    
+
     data.ba3<-subset(out, iv1==3)
-    modelba3<-ezANOVA(data=data.ba3, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba3<-ez::ezANOVA(data=data.ba3, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
     dfba3<-modelba3$ANOVA$DFn[2]
     dfWba3<-modelba3$ANOVA$DFd[2]
     SSba3<-modelba3$ANOVA$SSn[2]
@@ -204,9 +204,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ftba3<-qf(minusalpha, dfba3, dfWba3)
     powerba3<-round(1-pf(Ftba3, dfba3,dfWba3,lambdaba3),3)
-    
+
     data.ba4<-subset(out, iv1==4)
-    modelba4<-ezANOVA(data=data.ba4, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba4<-ez::ezANOVA(data=data.ba4, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
     dfba4<-modelba4$ANOVA$DFn[2]
     dfWba4<-modelba4$ANOVA$DFd[2]
     SSba4<-modelba4$ANOVA$SSn[2]
@@ -217,9 +217,9 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ftba4<-qf(minusalpha, dfba4, dfWba4)
     powerba4<-round(1-pf(Ftba4, dfba4,dfWba4,lambdaba4),3)
-    
-    
-    
+
+
+
     {print(paste("Power Factor A at B1 (Unadjusted) for n =",n,"=", powerab1))}
     {print(paste("Power Factor A at B1 H-F Adjusted (Epsilon = ",hfeab1 ,") for n =",n, "=", powerhfab1))}
     {print(paste("Power Factor A at B1 G-G Adjusted (Epsilon = ", ggeab1,") for n =",n, "=", powerggab1))}
@@ -230,6 +230,6 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power Factor B at A2 for n =",n, "=", powerba2))}
     {print(paste("Power Factor B at A3 for n =",n, "=", powerba3))}
     {print(paste("Power Factor B at A4 for n =",n, "=", powerba4))}
-    
+
   }}
 

@@ -29,7 +29,7 @@ covy3<-ry3*sy*s3
 cov12<-r12*s1*s2
 cov13<-r13*s1*s3
 cov23<-r23*s2*s3
-pop <- mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(vary, covy1, covy2, covy3,
+pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(vary, covy1, covy2, covy3,
                                                            covy1, var1, cov12, cov13,
                                                            covy2, cov12,var2,cov23,
                                                            covy3, cov13, cov23, var3),

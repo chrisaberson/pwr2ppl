@@ -57,7 +57,7 @@ anova2x2<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,
   simdat<-rbind(l1.1,l1.2,l2.1,l2.2)
   options(contrasts=c("contr.sum", "contr.poly"))
   anova<-aov(y~A*B, data=simdat)
-  anova<-Anova(anova, type="III")
+  anova<-car::Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
   SSB<-anova[3,1]
   SSAB<-anova[4,1]

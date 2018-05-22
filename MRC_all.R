@@ -35,7 +35,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
 
   if (pred=="2")
 
-    {pop <- mvrnorm(100000, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
+    {pop <- MASS::mvrnorm(100000, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
                                                                      ry1, var1, r12,
                                                                      ry2, r12, var2),
                                                                    ncol = 3), empirical = TRUE)
@@ -104,7 +104,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
 
   if (pred=="3")
     {
-  pop <- mvrnorm(100000, mu = c(my, m1, m2, m3),
+  pop <- MASS::mvrnorm(100000, mu = c(my, m1, m2, m3),
                  Sigma = matrix(c(vary, ry1, ry2, ry3,
                                   ry1, var1, r12, r13,
                                   ry2, r12, var2, r23,

@@ -14,16 +14,17 @@
 #'@return Power for One or Two Factor ANCOVA with a single covariate
 #'@export
 
-anc=function(m1.1,m2.1,m1.2=NULL,m2.2=NULL, s1.1,s2.1,s1.2=NULL,s2.2=NULL,r,alpha=.05,factors,n)
+anc=function(m1.1,m2.1,m1.2,m2.2,m1.3=NULL,m2.3=NULL,m1.4=NULL,m2.4=NULL,
+             s1.1,s2.1,s1.2,s2.2,s1.3=NULL,s2.3=NULL,s1.4=NULL,s2.4=NULL,
+             r,s=NULL,alpha=.05,factors,n){
 {
-  #Just does 2x2 for now
 if (factors=="1")
 {
 var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2
 cov12<-r*s1.1*s2.1
 cov34<-r*s1.2*s2.2
 
-out1 <- mvrnorm(n, mu = c(m1.1,m2.1),
+out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1),
                 Sigma = matrix(c(var1,cov12,
                                  cov12,var2), ncol = 2),
                 empirical = TRUE)
@@ -31,7 +32,7 @@ out1<-as.data.frame(out1)
 out1$ivbg<-NA
 out1$ivbg<-1 #identifies group
 
-out2 <- mvrnorm(n, mu = c(m1.2,m2.2),
+out2 <- MASS::mvrnorm(n, mu = c(m1.2,m2.2),
                 Sigma = matrix(c(var3,cov34,
                                  cov34,var4), ncol = 2),
                 empirical = TRUE)
@@ -41,12 +42,12 @@ out2$ivbg<-2
 
 out<-rbind(out1,out2)
 out<-as.data.frame(out)
-out<-rename(out, y1 = V1, cov = V2, ivbg = ivbg)
+out<-dplyr::rename(out, y1 = V1, cov = V2, ivbg = ivbg)
 out$ivbg<-as.factor(out$ivbg)
 options(contrasts=c("contr.helmert", "contr.poly"))
 
 anc<-aov(y1~cov+ivbg, data=out)
-sum<-Anova(anc, type="III")
+sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
 SSwin<-sum[4,1]
 dfA<-sum[3,2]
@@ -59,22 +60,23 @@ minusalpha<-1-alpha
 FtA<-qf(minusalpha, dfA, dfwin)
 power.A<-round(1-pf(FtA, dfA,dfwin,lambdaA),4)
 nall<-n*2
+eta2A<-round((eta2A),3)
 print(paste("Sample size per cell = ",n))
 print(paste("Sample size overall = ",nall))
-print(paste("Power IV1 = ", power.A))
+print(paste("Power IV1 = ", power.A, "for eta-squared = ", eta2A))
 }
 
-if (factors=="2")
+if (factors==2)
 {
 
-var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2
-var5<-s1.3^2; var6<-s2.3^2;var7<-s1.4^2;var8<-s2.4^2
-cov12<-r*s1.1*s2.1
-cov34<-r*s1.2*s2.2
-cov56<-r*s1.3*s2.3
-cov78<-r*s1.4*s2.4
+  var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2
+  var5<-s1.3^2; var6<-s2.3^2;var7<-s1.4^2;var8<-s2.4^2
+  cov12<-r*s1.1*s2.1
+  cov34<-r*s1.2*s2.2
+  cov56<-r*s1.3*s2.3
+  cov78<-r*s1.4*s2.4
 
-out1 <- mvrnorm(n, mu = c(m1.1,m2.1),
+out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1),
                 Sigma = matrix(c(var1,cov12,
                                  cov12,var2), ncol = 2),
                 empirical = TRUE)
@@ -84,7 +86,7 @@ out1$iv1<-1 #identifies group
 out1$iv2<-NA
 out1$iv2<-1 #identifies group
 
-out2 <- mvrnorm(n, mu = c(m1.2,m2.2),
+out2 <- MASS::mvrnorm(n, mu = c(m1.2,m2.2),
                 Sigma = matrix(c(var3,cov34,
                                  cov34,var4), ncol = 2),
                 empirical = TRUE)
@@ -94,7 +96,7 @@ out2$iv1<-1
 out2$iv2<-NA
 out2$iv2<-2 #identifies group
 
-out3 <- mvrnorm(n, mu = c(m1.3,m2.3),
+out3 <- MASS::mvrnorm(n, mu = c(m1.3,m2.3),
                 Sigma = matrix(c(var5,cov56,
                                  cov56,var6), ncol = 2),
                 empirical = TRUE)
@@ -104,7 +106,7 @@ out3$iv1<-2 #identifies group
 out3$iv2<-NA
 out3$iv2<-1 #identifies group
 
-out4 <- mvrnorm(n, mu = c(m1.4,m2.4),
+out4 <- MASS::mvrnorm(n, mu = c(m1.4,m2.4),
                 Sigma = matrix(c(var7,cov78,
                                  cov78,var8), ncol = 2),
                 empirical = TRUE)
@@ -117,13 +119,13 @@ out4$iv2<-2 #identifies group
 
 out<-rbind(out1,out2,out3,out4)
 out<-as.data.frame(out)
-out<-rename(out, y1 = V1, cov = V2, iv1 = iv1, iv2=iv2)
+out<-dplyr::rename(out, y1 = V1, cov = V2, iv1 = iv1, iv2=iv2)
 out$iv1<-as.factor(out$iv1)
 out$iv2<-as.factor(out$iv2)
 options(contrasts=c("contr.helmert", "contr.poly"))
 
 anc<-aov(y1~cov+iv1*iv2, data=out)
-sum<-Anova(anc, type="III")
+sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
 SSB<-sum[4,1]
 SSAB<-sum[5,1]
@@ -149,11 +151,15 @@ f2AB<-eta2AB/(1-eta2AB)
 lambdaAB<-f2AB*dfwin
 FtAB<-qf(minusalpha,dfAB, dfwin)
 power.AB<-round(1-pf(FtAB,dfAB,dfwin,lambdaAB),4)
+eta2A<-round((eta2A),3)
+eta2B<-round((eta2B),3)
+eta2AB<-round((eta2AB),3)
 nall<-n*4
 print(paste("Sample size per cell = ",n))
 print(paste("Sample size overall = ",nall))
-print(paste("Power IV1 = ", power.A))
-print(paste("Power IV2 = ", power.B))
-print(paste("Power IV1*IV2 = ", power.AB))
+print(paste("Power IV1 = ", power.A, "for eta-squared = ", eta2A))
+print(paste("Power IV2 = ", power.B, "for eta-squared = ", eta2B))
+print(paste("Power IV1*IV2 = ", power.AB, "for eta-squared = ", eta2AB))
+}
 }
 }

@@ -11,7 +11,7 @@
 
 
 
-LRcat_pwr<-function(p0=NULL, p1=NULL, prop=.50, alpha=.05, power, R2=.00)
+LRcat<-function(p0=NULL, p1=NULL, prop=.50, alpha=.05, power, R2=.00)
 {
     R<-prop
     pbar<-((1-R)*p0)+(R*p1)

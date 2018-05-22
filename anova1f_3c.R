@@ -45,7 +45,7 @@ anova1f_3c<-function(m1=NULL,m2=NULL,m3=NULL,s1=NULL,s2=NULL,s3=NULL,n1=NULL,n2=
   l3<-data.frame(y, group)
   simdat<-rbind(l1,l2,l3)
   anova<-aov(y~group, data=simdat)
-  anova<-Anova(anova, type="III")
+  anova<-car::Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
   SSwin<-anova[3,1]
   dfwin<-anova[3,2]

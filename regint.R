@@ -13,7 +13,7 @@
 #'
 
 
-regint_pwr<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.05, Prop_n1=.5, by=2, Estimates=1){
+regint<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.05, Prop_n1=.5, by=2, Estimates=1){
   for(n in seq(nlow,nhigh, by)){
     n1 <- n * Prop_n1
     n2 <- n * (1-Prop_n1)
@@ -43,5 +43,5 @@ regint_pwr<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alp
     Power<-round(1-pf(Ft, df1,df2,lambda),4)
     R2<-round((f2/(1+f2)),4)
     print(paste("Power with n1 = ", n1, "n2 = ", n2, "= ", Power))}
-    print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2, f2, numer,denom))}
+    print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2))}
 

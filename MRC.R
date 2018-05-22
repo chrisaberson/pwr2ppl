@@ -39,7 +39,7 @@ vary<-NA
 vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
 
   if (pred=="2")
-  {pop <- mvrnorm(n, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
+  {pop <- MASS::mvrnorm(n, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
                                                           ry1, var1, r12,
                                                           ry2, r12, var2),
                                                           ncol = 3), empirical = TRUE)
@@ -76,7 +76,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
 
   if (pred=="3")
         {
-  pop <- mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(vary, ry1, ry2, ry3,
+  pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(vary, ry1, ry2, ry3,
                                                              ry1, var1, r12, r13,
                                                              ry2, r12, var2, r23,
                                                              ry3, r13, r23, var3),
@@ -119,7 +119,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
 
   if (pred=="4")
   {
-    pop <- mvrnorm(n, mu = c(my, m1, m2, m3,m4), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4,
+    pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3,m4), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4,
                                                                   ry1, var1, r12, r13, r14,
                                                                   ry2, r12, var2, r23, r24,
                                                                   ry3, r13, r23, var3, r34,
@@ -167,7 +167,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
     if (pred=="5")
     {
 
-      pop <- mvrnorm(n, mu = c(my, m1, m2, m3,m4,m5), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4, ry5,
+      pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3,m4,m5), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4, ry5,
                                                                     ry1, var1, r12, r13, r14,r15,
                                                                     ry2, r12, var2, r23, r24,r25,
                                                                     ry3, r13, r23, var3, r34,r35,

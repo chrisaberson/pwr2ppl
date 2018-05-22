@@ -51,8 +51,8 @@
 #'@return Power for the Two Factor Within Subjects ANOVA
 #'@export
 
-win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA, 
-                s1.1=NA,s2.1=NA,s3.1=NA,s4.1=NA,s1.2=NA,s2.2=NA,s3.2=NA,s4.2=NA, 
+win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
+                s1.1=NA,s2.1=NA,s3.1=NA,s4.1=NA,s1.2=NA,s2.2=NA,s3.2=NA,s4.2=NA,
                 r12=NULL, r13=NULL, r14=NULL, r15=NULL, r16=NULL, r17=NULL, r18=NULL,
                 r23=NULL, r24=NULL, r25=NULL, r26=NULL, r27=NULL, r28=NULL,
                 r34=NULL, r35=NULL, r36=NULL, r37=NULL, r38=NULL,
@@ -60,15 +60,15 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                 r56=NULL, r57=NULL, r58=NULL,
                 r67=NULL, r68=NULL,
                 r78=NULL, r=NULL, s = NULL, n, alpha=.05)
-  
+
 {
 
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
   levels[!is.na(m4.1)]<-4
-  
-  if (levels=="2"){  
+
+  if (levels=="2"){
     if (!is.null(s)){
       s1.1<-s; s2.1<-s;s1.2<-s;s2.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2}
@@ -79,17 +79,17 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     cov12<-r12*s1.1*s2.1;cov13<-r13*s1.1*s1.2;cov14<-r14*s1.1*s2.2;
     cov23<-r23*s2.1*s1.2;cov24<-r24*s2.1*s2.2;
     cov34<-r34*s2.1*s2.2;
-    out <- mvrnorm(n, mu = c(m1.1,m2.1,m1.2,m2.2), 
+    out <- MASS::mvrnorm(n, mu = c(m1.1,m2.1,m1.2,m2.2),
                    Sigma = matrix(c(var1,cov12,cov13, cov14,
                                     cov12,var2,cov23, cov24,
                                     cov13, cov23,var3,cov34,
                                     cov14, cov24, cov34, var4), ncol = 4),
                    empirical = TRUE)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="time",value="dv",-id)
+    out<-tidyr::gather(out,key="time",value="dv",-id)
     out$time<-as.factor(out$time)
     out$time<-as.numeric(out$time)
     out$iv1<-NA
@@ -100,9 +100,9 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==3|out$time==4]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    
-    model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+    options(contrasts=c("contr.helmert", "contr.poly"))
+
+    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]
@@ -135,10 +135,10 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power Factor B (Unadjusted) for n =",n,"=", powerB))}
     {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
     {print(paste("Both Factors Have 2 levels - There is no adjustment when levels = 2"))}
-    
+
   }
-    
-    if (levels=="3"){  
+
+    if (levels=="3"){
       if (!is.null(s)){
         s1.1<-s; s2.1<-s;s3.1<-s;s1.2<-s;s2.2<-s;s3.2<-s
         var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2}
@@ -153,7 +153,7 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       cov34<-r34*s3.1*s1.2;cov35<-r35*s3.1*s2.2;cov36<-r36*s3.1*s3.2;
       cov45<-r45*s1.2*s2.2;cov46<-r46*s1.2*s3.2;
       cov56<-r56*s2.2*s3.2
-      out <- mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m1.2,m2.2,m3.2), 
+      out <- MASS::mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m1.2,m2.2,m3.2),
                      Sigma = matrix(c(var1,cov12,cov13, cov14, cov15, cov16,
                                       cov12,var2,cov23, cov24, cov25, cov26,
                                       cov13, cov23,var3,cov34, cov35, cov36,
@@ -162,10 +162,10 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                                       cov16, cov26, cov36, cov46, cov56, var6), ncol = 6),
                      empirical = TRUE)
       out<-as.data.frame(out)
-      out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6)
+      out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6)
       out$id <- rep(1:nrow(out))
       out$id<-as.factor(out$id)
-      out<-gather(out,key="time",value="dv",-id)
+      out<-tidyr::gather(out,key="time",value="dv",-id)
       out$time<-as.factor(out$time)
       out$time<-as.numeric(out$time)
       out$iv1<-NA
@@ -177,8 +177,8 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       out$iv2[out$time==4|out$time==5|out$time==6]<-2
       out$iv1<-as.ordered(out$iv1)
       out$iv2<-as.ordered(out$iv2)
-      options(contrasts=c("contr.helmert", "contr.poly")) 
-      model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+      options(contrasts=c("contr.helmert", "contr.poly"))
+      model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
       dfA<-model$ANOVA$DFn[2]
       dfB<-model$ANOVA$DFn[3]
       dfAB<-model$ANOVA$DFn[4]
@@ -242,8 +242,8 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       {print(paste("Power Factor AB H-F Adjusted (Epsilon = ",hfeAB ,") for n =",n, "=", powerhfAB))}
       {print(paste("Power Factor AB G-G Adjusted (Epsilon = ", ggeAB,") for n =",n, "=", powerggAB))}
     }
-  
-  if (levels=="4"){  
+
+  if (levels=="4"){
     if (!is.null(s)){
       s1.1<-s; s2.1<-s;s3.1<-s;s4.1<-s;s1.2<-s;s2.2<-s;s3.2<-s;s4.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2;var7<-s^2;var8<-s^2}
@@ -257,8 +257,8 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     cov45<-r45*s4.1*s1.2;cov46<-r46*s4.1*s2.2;cov47<-r47*s4.1*s3.2;cov48<-r48*s4.1*s4.2
     cov56<-r56*s1.2*s2.2;cov57<-r57*s1.2*s3.2;cov58<-r58*s1.2*s4.2
     cov67<-r67*s2.2*s3.2;cov68<-r68*s2.2*s4.2
-    cov78<-r78*s3.2*s4.2 
-    out <- mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m4.1,m1.2,m2.2,m3.2,m4.2), 
+    cov78<-r78*s3.2*s4.2
+    out <- MASS::mvrnorm(n, mu = c(m1.1,m2.1,m3.1,m4.1,m1.2,m2.2,m3.2,m4.2),
                    Sigma = matrix(c(var1,cov12,cov13, cov14, cov15, cov16, cov17, cov18,
                                     cov12,var2,cov23, cov24, cov25, cov26, cov27, cov28,
                                     cov13, cov23,var3,cov34, cov35, cov36, cov37, cov38,
@@ -268,12 +268,12 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                                     cov17, cov27, cov37, cov47, cov57, cov67, var7, cov78,
                                     cov18, cov28, cov38, cov48, cov58, cov68, cov78, var8), ncol = 8),
                    empirical = TRUE)
-    
+
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6, y7 = V7, y8 = V8)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4, y5 = V5, y6 = V6, y7 = V7, y8 = V8)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-gather(out,key="time",value="dv",-id)
+    out<-tidyr::gather(out,key="time",value="dv",-id)
     out$time<-as.factor(out$time)
     out$time<-as.numeric(out$time)
     out$iv1<-NA
@@ -286,9 +286,8 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==5|out$time==6|out$time==7|out$time==8]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly")) 
-    
-    model<-ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+    options(contrasts=c("contr.helmert", "contr.poly"))
+    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]

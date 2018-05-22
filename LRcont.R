@@ -10,7 +10,7 @@
 #'
 #'
 
-LRCont_pwr<-function(OR = NA, r = NA, ER=NULL, alpha=.05, power=NULL, R2=.00)
+LRCont<-function(OR = NA, r = NA, ER=NULL, alpha=.05, power=NULL, R2=.00)
 {
   est<-NA
   est[is.na(OR)]<-1 #r

@@ -41,7 +41,7 @@ group<-rep("A3",n3)
 l3<-data.frame(y, group)
 simdat<-rbind(l1,l2,l3)
 anova<-aov(y~group, data=simdat)
-anova<-Anova(anova, type="III")
+anova<-car::Anova(anova, type="III")
 SSA<-anova[2,1] #column, row
 SSwin<-anova[3,1]
 dfwin<-anova[3,2]

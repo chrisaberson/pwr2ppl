@@ -63,7 +63,7 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   dataB2<-subset(simdat, B=="B2")
   options(contrasts=c("contr.sum", "contr.poly"))
   anova<-aov(y~A*B, data=simdat)
-  anova<-Anova(anova, type="III")
+  anova<-car::Anova(anova, type="III")
   SSwin<-anova[5,1] #row column
   dfwin<-anova[5,2]
   SSA<-anova[2,1] #column, row
@@ -74,17 +74,17 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
 
   options(contrasts=c("contr.sum", "contr.poly"))
   anoAatB1<-aov(y~A, data=dataB1)
-  anoAatB1<-Anova(anoAatB1, type="III")
+  anoAatB1<-car::Anova(anoAatB1, type="III")
   options(contrasts=c("contr.sum", "contr.poly"))
   anoAatB2<-aov(y~A, data=dataB2)
-  anoAatB2<-Anova(anoAatB2, type="III")
+  anoAatB2<-car::Anova(anoAatB2, type="III")
 
   options(contrasts=c("contr.sum", "contr.poly"))
   anoBatA1<-aov(y~B, data=dataA1)
-  anoBatA1<-Anova(anoBatA1,type="III")
+  anoBatA1<-car::Anova(anoBatA1,type="III")
   options(contrasts=c("contr.sum", "contr.poly"))
   anoBatA2<-aov(y~B, data=dataA2)
-  anoBatA2<-Anova(anoBatA2, type="III")
+  anoBatA2<-car::Anova(anoBatA2, type="III")
 
 
   dfwinSE<-dfwin+2

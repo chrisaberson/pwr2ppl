@@ -26,7 +26,7 @@
 R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL, alpha=.05,
                    my=0, m1=0, m2=0,m3=0,s1=1,s2=1,s3=1,sy=1)
 {
-  pop <- mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(sy, ry1, ry2, ry3,
+  pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(sy, ry1, ry2, ry3,
                                                              ry1, s1, r12, r13,
                                                              ry2, r12,s2, r23,
                                                              ry3, r13, r23, s3),

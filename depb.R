@@ -21,7 +21,7 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
   pred[!is.null(r23)]<-3
 
   if (pred=="2")
-  {pop <- mvrnorm(n, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1, ry2,
+  {pop <- MASS::mvrnorm(n, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1, ry2,
                                                     ry1, 1, r12,
                                                     ry2, r12, 1),
                                                   ncol=3), empirical=TRUE)
@@ -54,7 +54,7 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
 
   if (pred=="3")
   {
-    pop <- mvrnorm(n, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1, ry2, ry3,
+    pop <- MASS::mvrnorm(n, mu<-c(0, 0, 0, 0), Sigma<-matrix(c(1, ry1, ry2, ry3,
                                                          ry1, 1, r12, r13,
                                                          ry2, r12,1, r23,
                                                          ry3, r13, r23, 1),
