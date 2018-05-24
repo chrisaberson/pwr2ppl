@@ -42,12 +42,20 @@ R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL
   ch13<-round((full$r.squared-mod2$r.squared),4)
   ch12<-round((full$r.squared-mod3$r.squared),4)
   fullR2<-round((full$r.squared),4)
-  f2ch23<-mod1$r.squared/(1-full$r.squared)
-  f2ch13<-mod2$r.squared/(1-full$r.squared)
-  f2ch12<-mod3$r.squared/(1-full$r.squared)
-
-
+  f2ch23<-ch23/(1-full$r.squared)
+  f2ch13<-ch13/(1-full$r.squared)
+  f2ch12<-ch12/(1-full$r.squared)
+  df1<-full$fstatistic[2]-mod1$fstatistic[2]
+  df2<-full$fstatistic[3]
+  lambda1<-f2ch23*df2
+  lambda2<-f2ch13*df2
+  lambda3<-f2ch12*df2
+  minusalpha<-1-alpha
+  Ft<-qf(minusalpha, df1, df2)
+  powerch1<-round(1-pf(Ft, df1,df2,lambda1),4)
+  powerch2<-round(1-pf(Ft, df1,df2,lambda2),4)
+  powerch3<-round(1-pf(Ft, df1,df2,lambda3),4)
   print(paste("R2 Model = ", fullR2))
-  print(paste("R2 Change Vars2 and 3 over Var1 = ", ch23))
-  print(paste("R2 Change Vars1 and 3 over Var2 = ", ch13))
-  print(paste("R2 Change Vars1 and 2 over Var3 = ", ch12))}
+  print(paste("R2 Change Vars2 and 3 over Var1 = ", ch23, ", Power = ", powerch1))
+  print(paste("R2 Change Vars1 and 3 over Var2 = ", ch13, ", Power = ", powerch2))
+  print(paste("R2 Change Vars1 and 2 over Var3 = ", ch12, ", Power = ", powerch3))}
