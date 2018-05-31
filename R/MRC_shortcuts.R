@@ -20,7 +20,7 @@
 #'@return Mutliple Regression shortcuts with three predictors
 #'@export
 #'
-mrc_shortcuts<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=100, alpha=.05,
+MRC_shortcuts<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=100, alpha=.05,
                    my=0, m1=0, m2=0,m3=0,s1=1,s2=1,s3=1,sy=1){
 vary<-sy^2; var1<-s1^2;var2<-s2^2;var3<-s3^2
 covy1<-ry1*sy*s1
