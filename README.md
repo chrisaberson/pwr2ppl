@@ -13,7 +13,8 @@ These protocols accompany the book *Applied Power Analysis for the Behavioral Sc
 Getting Started
 ---------------
 
-Install the entire package (pwr2ppl\_0.1.0.tar.gz).
+Install the entire package (pwr2ppl\_0.1.0.tar.gz). At present devtools::install_github is not working. 
+In RStudio choose install - from package archive then direct to where you stored the downloaded tar.gz file
 
 ### Prerequisites
 
