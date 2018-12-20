@@ -3,11 +3,12 @@
 \name{MRC_all}
 \alias{MRC_all}
 \title{Compute power for Mutliple Regression with Three Predictors
-Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
+Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
-MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL, r13 = NULL,
-  r23 = NULL, n = NULL, alpha = 0.05, rep = 10000, my = 0, m1 = 0,
-  m2 = 0, m3 = 0, sy = 1, s1 = 1, s2 = 1, s3 = 1)
+MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
+  r13 = NULL, r23 = NULL, n = NULL, alpha = 0.05, rep = 10000,
+  my = 0, m1 = 0, m2 = 0, m3 = 0, sy = 1, s1 = 1, s2 = 1,
+  s3 = 1)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}
@@ -43,13 +44,11 @@ MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL, r13 = NULL,
 \item{s2}{Standard deviation of second predictor (default is 1)}
 
 \item{s3}{Standard deviation of third predictor (default is 1)}
-
-\item{all}{default is OFF, ON returns Power(All)}
 }
 \value{
 Power for Multiple Regression (ALL)
 }
 \description{
 Compute power for Mutliple Regression with Three Predictors
-Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }

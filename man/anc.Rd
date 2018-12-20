@@ -18,6 +18,14 @@ anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
 
 \item{m2.2}{Cell mean for Second level of Factor A, Second level of Factor B}
 
+\item{m1.3}{Cell mean for First level of Factor A, Third level of Factor B}
+
+\item{m2.3}{Cell mean for Second level of Factor A, Third level of Factor B}
+
+\item{m1.4}{Cell mean for First level of Factor A, Fourth level of Factor B}
+
+\item{m2.4}{Cell mean for Second level of Factor A, Fourth level of Factor B}
+
 \item{s1.1}{Cell standard deviation for First level of Factor A, First level of Factor B}
 
 \item{s2.1}{Cell standard deviation for Second level of Factor A, First level of Factor B}
@@ -26,9 +34,21 @@ anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
 
 \item{s2.2}{Cell standard deviation for Second level of Factor A, Second level of Factor B}
 
+\item{s1.3}{Cell standard deviation for First level of Factor A, Third level of Factor B}
+
+\item{s2.3}{Cell standard deviation for Second level of Factor A, Third level of Factor B}
+
+\item{s1.4}{Cell standard deviation for First level of Factor A, Fourth level of Factor B}
+
+\item{s2.4}{Cell standard deviation for Second level of Factor A, Fourth level of Factor B}
+
 \item{r}{Correlation between covariate and dependent variable.}
 
+\item{s}{Overall standard deviation. Sets all cell sds equal}
+
 \item{alpha}{Type I error (default is .05)}
+
+\item{factors}{Number of factors (1 or 2)}
 
 \item{n}{Sample Size per cell}
 }

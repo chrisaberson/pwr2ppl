@@ -6,8 +6,9 @@
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
 \usage{
 anova2x2_se(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
-  s1.1 = NULL, s1.2 = NULL, s2.1 = NULL, s2.2 = NULL, n1.1 = NULL,
-  n1.2 = NULL, n2.1 = NULL, n2.2 = NULL, alpha = 0.05)
+  s1.1 = NULL, s1.2 = NULL, s2.1 = NULL, s2.2 = NULL,
+  n1.1 = NULL, n1.2 = NULL, n2.1 = NULL, n2.2 = NULL,
+  alpha = 0.05)
 }
 \arguments{
 \item{m1.1}{Cell mean for First level of Factor A, First level of Factor B}

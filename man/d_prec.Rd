@@ -17,6 +17,8 @@ d_prec(d, nlow, nhigh, propn1 = 0.5, ci = 0.95, tails = 2, by = 1)
 
 \item{ci}{Type of Confidence Interval (e.g., .95)}
 
+\item{tails}{number of tails for test (default is 2)}
+
 \item{by}{Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
 }
 \value{

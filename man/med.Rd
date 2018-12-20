@@ -3,11 +3,11 @@
 \name{med}
 \alias{med}
 \title{Compute Power for Mediated (Indirect) Effects
-Requires correlatiosn between all variables as sample size.}
+Requires correlations between all variables as sample size.}
 \usage{
-med(rxm1, rxm2 = 0, rxm3 = 0, rxm4 = 0, rxy, rym1, rym2 = 0, rym3 = 0,
-  rym4 = 0, rm1m2 = 0, rm1m3 = 0, rm1m4 = 0, rm2m3 = 0, rm2m4 = 0,
-  rm3m4 = 0, alpha = 0.05, mvars, n)
+med(rxm1, rxm2 = 0, rxm3 = 0, rxm4 = 0, rxy, rym1, rym2 = 0,
+  rym3 = 0, rym4 = 0, rm1m2 = 0, rm1m3 = 0, rm1m4 = 0,
+  rm2m3 = 0, rm2m4 = 0, rm3m4 = 0, alpha = 0.05, mvars, n)
 }
 \arguments{
 \item{rxm1}{Correlation between predictor (x) and first mediator (m1)}
@@ -28,16 +28,28 @@ med(rxm1, rxm2 = 0, rxm3 = 0, rxm4 = 0, rxy, rym1, rym2 = 0, rym3 = 0,
 
 \item{rym4}{Correlation DV (y) and fourth mediator (m4)}
 
+\item{rm1m2}{Correlation first mediator (m1) and second mediator (m2)}
+
+\item{rm1m3}{Correlation first mediator (m1) and third mediator (m3)}
+
+\item{rm1m4}{Correlation first mediator (m1) and fourth mediator (m4)}
+
+\item{rm2m3}{Correlation second mediator (m2) and third mediator (m3)}
+
+\item{rm2m4}{Correlation second mediator (m2) and fourth mediator (m4)}
+
+\item{rm3m4}{Correlation third mediator (m3) and fourth mediator (m4)}
+
 \item{alpha}{Type I error (default is .05)}
 
-\item{n}{Sample size}
+\item{mvars}{Number of Mediators}
 
-\item{mvar}{Number of Mediators}
+\item{n}{Sample size}
 }
 \value{
 Power for Mediated (Indirect) Effects
 }
 \description{
 Compute Power for Mediated (Indirect) Effects
-Requires correlatiosn between all variables as sample size.
+Requires correlations between all variables as sample size.
 }

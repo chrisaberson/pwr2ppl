@@ -18,6 +18,8 @@ prop1(p1, p0, nlow, nhigh, alpha = 0.05, tails = 2, by = 1)
 
 \item{alpha}{Type I error (default is .05)}
 
+\item{tails}{number of tails for test (default is 2)}
+
 \item{by}{Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
 }
 \value{

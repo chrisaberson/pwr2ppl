@@ -17,7 +17,11 @@ propind(p1, p2, nlow, nhigh, nratio = 0.5, alpha = 0.05, tails = 2,
 
 \item{nhigh}{ending sample size}
 
+\item{nratio}{ratio of sample size of first group to second (default is .5 for equally sized groups)}
+
 \item{alpha}{Type I error (default is .05)}
+
+\item{tails}{number of tails for test (default is 2)}
 
 \item{by}{Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
 }

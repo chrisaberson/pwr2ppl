@@ -3,7 +3,7 @@
 \name{depb}
 \alias{depb}
 \title{Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
-Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
+Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
 depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL,
   alpha = 0.05)
@@ -24,13 +24,11 @@ depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL,
 \item{n}{Sample size}
 
 \item{alpha}{Type I error (default is .05)}
-
-\item{rep}{number of replications (default is 10000)}
 }
 \value{
 Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
 }
 \description{
 Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
-Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }

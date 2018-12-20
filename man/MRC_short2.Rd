@@ -5,11 +5,12 @@
 \title{Compute Mutliple Regression shortcuts with three predictors for Ind Coefficients
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)}
 \usage{
-MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL, r23_1 = NULL,
-  n1, ry1_2, ry2_2, ry3_2 = NULL, r12_2, r13_2 = NULL, r23_2 = NULL, n2,
-  alpha = 0.05, my_1 = 0, m1_1 = 0, m2_1 = 0, m3_1 = 0, s1_1 = 1,
-  s2_1 = 1, s3_1 = 1, sy_1 = 1, my_2 = 0, m1_2 = 0, m2_2 = 0,
-  m3_2 = 0, s1_2 = 1, s2_2 = 1, s3_2 = 1, sy_2 = 1)
+MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL,
+  r23_1 = NULL, n1, ry1_2, ry2_2, ry3_2 = NULL, r12_2, r13_2 = NULL,
+  r23_2 = NULL, n2, alpha = 0.05, my_1 = 0, m1_1 = 0, m2_1 = 0,
+  m3_1 = 0, s1_1 = 1, s2_1 = 1, s3_1 = 1, sy_1 = 1, my_2 = 0,
+  m1_2 = 0, m2_2 = 0, m3_2 = 0, s1_2 = 1, s2_2 = 1, s3_2 = 1,
+  sy_2 = 1)
 }
 \arguments{
 \item{ry1_1}{Correlation between DV (y) and first predictor (1), first group}
@@ -37,6 +38,8 @@ MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL, r23_1 = NULL,
 \item{r13_2}{Correlation between first (1) and third predictor (3), second group}
 
 \item{r23_2}{Correlation between second (2) and third predictor (3), second group}
+
+\item{n2}{Sample size, second group}
 
 \item{alpha}{Type I error (default is .05)}
 
@@ -71,8 +74,6 @@ MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL, r23_1 = NULL,
 \item{s3_2}{Standard deviation of third predictor (default is 1), second group}
 
 \item{sy_2}{Standard deviation of DV (default is 1), second group}
-
-\item{n1}{Sample size, second group}
 }
 \value{
 Mutliple Regression shortcuts with three predictors for Ind Coefficients

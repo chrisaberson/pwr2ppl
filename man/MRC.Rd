@@ -19,11 +19,29 @@ MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
 
 \item{ry3}{Correlation between DV (y) and third predictor (3)}
 
+\item{ry4}{Correlation between DV (y) and fourth predictor (4)}
+
+\item{ry5}{Correlation between DV (y) and fifth predictor (5)}
+
 \item{r12}{Correlation between first (1) and second predictor (2)}
 
 \item{r13}{Correlation between first (1) and third predictor (3)}
 
+\item{r14}{Correlation between first (1) and fourth predictor (4)}
+
+\item{r15}{Correlation between first (1) and fifth predictor (5)}
+
 \item{r23}{Correlation between second (2) and third predictor (3)}
+
+\item{r24}{Correlation between second (2) and fourth predictor (4)}
+
+\item{r25}{Correlation between second (2) and fifth predictor (5)}
+
+\item{r34}{Correlation between third (3) and fourth predictor (4)}
+
+\item{r35}{Correlation between third (3) and fifth predictor (5)}
+
+\item{r45}{Correlation between fourth (4) and fifth predictor (5)}
 
 \item{n}{Sample size}
 
@@ -39,6 +57,10 @@ MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
 
 \item{m3}{Mean of third predictor (default is 0)}
 
+\item{m4}{Mean of fourth predictor (default is 0)}
+
+\item{m5}{Mean of fifth predictor (default is 0)}
+
 \item{sy}{Standard deviation of DV (default is 1)}
 
 \item{s1}{Standard deviation of first predictor (default is 1)}
@@ -46,6 +68,10 @@ MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
 \item{s2}{Standard deviation of second predictor (default is 1)}
 
 \item{s3}{Standard deviation of third predictor (default is 1)}
+
+\item{s4}{Standard deviation of fourth predictor (default is 1)}
+
+\item{s5}{Standard deviation of fifth predictor (default is 1)}
 }
 \value{
 Power for Multiple Regression with Two to Five Predictors

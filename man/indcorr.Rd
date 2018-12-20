@@ -17,6 +17,8 @@ indcorr(r1, r2, nlow, nhigh, propn1 = 0.5, alpha = 0.05, tails = 2,
 
 \item{nhigh}{Ending sample size}
 
+\item{propn1}{Proportion of sample in first group (default is .50 for equally size groups)}
+
 \item{alpha}{Type I error (default is .05)}
 
 \item{tails}{one or two-tailed tests (default is 2)}

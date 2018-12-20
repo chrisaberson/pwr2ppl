@@ -6,8 +6,8 @@
 Takes means, sds, and sample sizes for each group}
 \usage{
 anova1f_4(m1 = NULL, m2 = NULL, m3 = NULL, m4 = NULL, s1 = NULL,
-  s2 = NULL, s3 = NULL, s4 = NULL, n1 = NULL, n2 = NULL, n3 = NULL,
-  n4 = NULL, alpha = 0.05)
+  s2 = NULL, s3 = NULL, s4 = NULL, n1 = NULL, n2 = NULL,
+  n3 = NULL, n4 = NULL, alpha = 0.05)
 }
 \arguments{
 \item{m1}{Mean of first group}
