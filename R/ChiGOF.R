@@ -61,9 +61,9 @@ ChiGOF<-function(groups, po1, po2, po3=NULL, po4=NULL, po5=NULL, po6=NULL, n, al
     sum<-po1+po2+po3+po4+po5+po6
     lambda<-n*((((po1-pe1)^2)/pe1)+(((po2-pe2)^2)/pe2)+(((po3-pe3)^2)/pe3)+(((po4-pe4)^2)/pe4)+(((po5-pe5)^2)/pe5)+(((po6-pe6)^2)/pe6))
   }
-  
-  tabled<-qchisq(1-alpha, df=df)
-  power<-round(1-pchisq(tabled, df=df, lambda),3)
+
+  tabled<-stats::qchisq(1-alpha, df=df)
+  power<-round(1-stats::pchisq(tabled, df=df, lambda),3)
   if(sum!=1.0){stop("Expected proportions must add to 1.0. Check input po values")
   }
   else {print(paste("Power for n of", n, "=", power))}

@@ -1,5 +1,5 @@
 #'Power for Comparing Independent Coefficients in Multiple Regression with Two or Three Predictors
-#'Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+#'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'@param ry1_1 Correlation between DV (y) and first predictor (1), first test
 #'@param ry2_1 Correlation between DV (y) and second predictor (2), first test
 #'@param ry3_1 Correlation between DV (y) and third predictor (3), first test
@@ -40,14 +40,14 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   pop2<-data.frame(pop2)
 
 
-  values1<-lm(X1~X2+X3, pop1)
+  values1<-stats::lm(X1~X2+X3, pop1)
   values1<-summary(values1)
   b1_1<-(values1$coefficients)[2,1] #grabs b from each analysis
   b2_1<-(values1$coefficients)[3,1]
   seb1_1<-(values1$coefficients)[2,2]
   seb2_1<-(values1$coefficients)[3,2]
   sebb1<-((seb1_1^2)+(seb2_1^2))^.5
-  values2<-lm(X1~X2+X3, pop2)
+  values2<-stats::lm(X1~X2+X3, pop2)
   values2<-summary(values2)
   b1_2<-(values2$coefficients)[2,1] #grabs b from each analysis
   b2_2<-(values2$coefficients)[3,1]
@@ -60,9 +60,9 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   lambda1<-t2^2
   df<-n1+n2-pred-pred-2
   minusalpha<-1-alpha
-  Fb<-qf(minusalpha, 1, df)
-  power1<-1-pf(Fb, 1,df,lambda1)
-  power2<-1-pf(Fb, 1,df,lambda2)
+  Fb<-stats::qf(minusalpha, 1, df)
+  power1<-1-stats::pf(Fb, 1,df,lambda1)
+  power2<-1-stats::pf(Fb, 1,df,lambda2)
 
   print(paste(power1, power2))}
 
@@ -81,7 +81,7 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
                                                         ncol=4), empirical=TRUE)
 
     pop1<-data.frame(pop1)
-    values1<-lm(X1~X2+X3+X4, pop1)
+    values1<-stats::lm(X1~X2+X3+X4, pop1)
     values1<-summary(values1)
     b1_1<-(values1$coefficients)[2,1] #grabs b from each analysis
     b2_1<-(values1$coefficients)[3,1]
@@ -90,7 +90,7 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
     seb2_1<-(values1$coefficients)[3,2]
     seb3_1<-(values1$coefficients)[4,2]
     pop2<-data.frame(pop2)
-    values2<-lm(X1~X2+X3+X4, pop2)
+    values2<-stats::lm(X1~X2+X3+X4, pop2)
     values2<-summary(values2)
     b1_2<-(values2$coefficients)[2,1] #grabs b from each analysis
     b2_2<-(values2$coefficients)[3,1]
@@ -109,10 +109,10 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
     lambda3<-t3^2
     df<-n1+n2-pred-pred-2
     minusalpha<-1-alpha
-    Fb<-qf(minusalpha, 1, df)
-    power1<-round(1-pf(Fb, 1,df,lambda1),3)
-    power2<-round(1-pf(Fb, 1,df,lambda2),3)
-    power3<-round(1-pf(Fb, 1,df,lambda3),3)
+    Fb<-stats::qf(minusalpha, 1, df)
+    power1<-round(1-stats::pf(Fb, 1,df,lambda1),3)
+    power2<-round(1-stats::pf(Fb, 1,df,lambda2),3)
+    power3<-round(1-stats::pf(Fb, 1,df,lambda3),3)
     print(paste("Sample size Group 1 = ",n1, "Group 2 = ", n2))
     print(paste("Power Comparing b1 across samples = ", power1))
     print(paste("Power Comparing b2 across samples = ", power2))

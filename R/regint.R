@@ -1,8 +1,12 @@
 #'Compute Power for Regression Interaction (Correlation/Coefficient Approach)
-#'@param Group 1 Estimates (r or b) for Group 1
-#'@param Group 2 Estimates (r or b) for Group 2
+#'@param Group1 Estimates (r or b) for Group 1
+#'@param Group2 Estimates (r or b) for Group 2
 #'@param Prop_n1 Proportion of Sample in First Group (defaults to equal sample sizes)
 #'@param Estimates 1 for Correlations (default), 2 for coefficients
+#'@param sx1 Standard deviation of predictor, group 1 (defaults to 1)
+#'@param sx2 Standard deviation of predictor, group 2 (defaults to 1)
+#'@param sy1 Standard deviation of outcome, group 1 (defaults to 1)
+#'@param sy2 Standard deviation of outcome, group 2 (defaults to 1)
 #'@param nlow starting sample size
 #'@param nhigh ending sample size
 #'@param by incrimental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
@@ -39,8 +43,8 @@ regint<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.
     df2 <- n-4
     lambda <- f2 * df2
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, df1, df2)
-    Power<-round(1-pf(Ft, df1,df2,lambda),4)
+    Ft<-stats::qf(minusalpha, df1, df2)
+    Power<-round(1-stats::pf(Ft, df1,df2,lambda),4)
     R2<-round((f2/(1+f2)),4)
     print(paste("Power with n1 = ", n1, "n2 = ", n2, "= ", Power))}
     print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2))}

@@ -12,24 +12,24 @@
 #'
 #'
 indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
-  x<-rnorm(n1,m1,s1)
+  x<-stats::rnorm(n1,m1,s1)
   X<-x
   MEAN<-m1
   SD<-s1
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A1",n1)
   l1<-data.frame(y, group)
-  x<-rnorm(n2,m2,s2)
+  x<-stats::rnorm(n2,m2,s2)
   X<-x
   MEAN<-m2
   SD<-s2
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A2",n2)
   l2<-data.frame(y, group)
   simdat<-rbind(l1,l2)
-  anova<-aov(y~group, data=simdat)
+  anova<-stats::aov(y~group, data=simdat)
   anova<-car::Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
   SSwin<-anova[3,1]
@@ -41,8 +41,8 @@ indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
   lambda<-f2*dfwin
   d<-round((m1-m2)/(mswin^.5),3)
   minusalpha<-1-alpha
-  Ft<-qf(minusalpha, dfbg, dfwin)
-  Power<-1-pf(Ft, dfbg,dfwin,lambda)
+  Ft<-stats::qf(minusalpha, dfbg, dfwin)
+  Power<-1-stats::pf(Ft, dfbg,dfwin,lambda)
   sx1_un <- s1/(n1^.5)
   sx2_un <- s2/(n2^.5)
   sx1x2_un <- ((sx1_un^2)+(sx2_un^2))^.5
@@ -56,8 +56,8 @@ indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
   df_un <- round(sat_num/sat_denom,3)
   delta_un <-(d_un*((n_harm/2)^.5))
   lambda_un <-delta_un^2
-  Ft_un<-qf(minusalpha, dfbg, df_un)
-  Power_unequal<-1-pf(Ft_un, dfbg,df_un,lambda_un)
+  Ft_un<-stats::qf(minusalpha, dfbg, df_un)
+  Power_unequal<-1-stats::pf(Ft_un, dfbg,df_un,lambda_un)
   pe<-round(Power,3)
   pu<-round(Power_unequal,3)
   {print(paste("Equal Variance Power for n1 =",n1,",", "n2 =",n2, "with d =", d, "=", pe))}

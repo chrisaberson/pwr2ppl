@@ -15,32 +15,32 @@
 
 
 anova1f_3<-function(m1=NULL,m2=NULL,m3=NULL,s1=NULL,s2=NULL,s3=NULL,n1=NULL,n2=NULL,n3=NULL,alpha=.05){
-x<-rnorm(n1,m1,s1)
+x<-stats::rnorm(n1,m1,s1)
 X<-x
 MEAN<-m1
 SD<-s1
-Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
 y<-MEAN + Z
 group<-rep("A1",n1)
 l1<-data.frame(y, group)
-x<-rnorm(n2,m2,s2)
+x<-stats::rnorm(n2,m2,s2)
 X<-x
 MEAN<-m2
 SD<-s2
-Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
 y<-MEAN + Z
 group<-rep("A2",n2)
 l2<-data.frame(y, group)
-x<-rnorm(n3,m3,s3)
+x<-stats::rnorm(n3,m3,s3)
 X<-x
 MEAN<-m3
 SD<-s3
-Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
 y<-MEAN + Z
 group<-rep("A3",n3)
 l3<-data.frame(y, group)
 simdat<-rbind(l1,l2,l3)
-anova<-aov(y~group, data=simdat)
+anova<-stats::aov(y~group, data=simdat)
 anova<-car::Anova(anova, type="III")
 SSA<-anova[2,1] #column, row
 SSwin<-anova[3,1]
@@ -50,6 +50,6 @@ eta2<-SSA/(SSA+SSwin)
 f2<-eta2/(1-eta2)
 lambda<-f2*dfwin
 minusalpha<-1-alpha
-Ft<-qf(minusalpha, dfbg, dfwin)
-power<-1-pf(Ft, dfbg,dfwin,lambda)
+Ft<-stats::qf(minusalpha, dfbg, dfwin)
+power<-1-stats::pf(Ft, dfbg,dfwin,lambda)
 list(Power = power)}

@@ -16,8 +16,8 @@ corr<-function(r,nlow, nhigh, alpha=.05, tails=2, by=1)
   for(n in seq(nlow,nhigh, by)){
     delta<-(d*(n-2)^.5)/2
     alphatails<-alpha/tails
-    tabled<-qt(1-alphatails, df=n-2)
-    t<-1-pt(alphatails, 1, n-2)
-    Power<-round(1-pt(tabled, n-2,delta),4)
+    tabled<-stats::qt(1-alphatails, df=n-2)
+    t<-1-stats::pt(alphatails, 1, n-2)
+    Power<-round(1-stats::pt(tabled, n-2,delta),4)
     print(paste("Power for n of", n, "=", Power))}
 }

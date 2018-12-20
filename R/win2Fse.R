@@ -62,7 +62,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                   r78=NULL, r=NULL, s = NULL, n, alpha=.05)
 
 {
-
+  V1<-V2<-V3<-V4<-V5<-V6<-V7<-V8<-dv<-id<-iv1<-iv2<-NULL
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
@@ -124,8 +124,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ab1<-eta2ab1/(1-eta2ab1)
     lambdaab1<-f2ab1*dfWab1
     minusalpha<-1-alpha
-    Ftab1<-qf(minusalpha, dfab1, dfWab1)
-    powerab1<-round(1-pf(Ftab1, dfab1,dfWab1,lambdaab1),3)
+    Ftab1<-stats::qf(minusalpha, dfab1, dfWab1)
+    powerab1<-round(1-stats::pf(Ftab1, dfab1,dfWab1,lambdaab1),3)
     ggeab1<-round(modelab1$`Sphericity Corrections`$GGe[1],3)
     hfeab1<-round(modelab1$`Sphericity Corrections`$HFe[1],3)
     hfeab1[hfeab1>1]<-1
@@ -135,10 +135,10 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     hfdfWab1<-hfeab1*dfWab1
     lambdaggab1<-f2ab1*ggdfWab1
     lambdahfab1<-f2ab1*hfdfWab1
-    Ftggab1<-qf(minusalpha, ggdfab1, ggdfWab1)
-    Fthfab1<-qf(minusalpha, hfdfab1, hfdfWab1)
-    powerggab1<-round(1-pf(Ftggab1, ggdfab1,ggdfWab1,lambdaggab1),3)
-    powerhfab1<-round(1-pf(Fthfab1, hfdfab1,hfdfWab1,lambdahfab1),3)
+    Ftggab1<-stats::qf(minusalpha, ggdfab1, ggdfWab1)
+    Fthfab1<-stats::qf(minusalpha, hfdfab1, hfdfWab1)
+    powerggab1<-round(1-stats::pf(Ftggab1, ggdfab1,ggdfWab1,lambdaggab1),3)
+    powerhfab1<-round(1-stats::pf(Fthfab1, hfdfab1,hfdfWab1,lambdahfab1),3)
 
     data.ab2<-subset(out, iv2==2)
     modelab2<-ez::ezANOVA(data=data.ab2, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
@@ -150,8 +150,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ab2<-eta2ab2/(1-eta2ab2)
     lambdaab2<-f2ab2*dfWab2
     minusalpha<-1-alpha
-    Ftab2<-qf(minusalpha, dfab2, dfWab2)
-    powerab2<-round(1-pf(Ftab2, dfab2,dfWab2,lambdaab2),3)
+    Ftab2<-stats::qf(minusalpha, dfab2, dfWab2)
+    powerab2<-round(1-stats::pf(Ftab2, dfab2,dfWab2,lambdaab2),3)
     ggeab2<-round(modelab2$`Sphericity Corrections`$GGe[1],3)
     hfeab2<-round(modelab2$`Sphericity Corrections`$HFe[1],3)
     hfeab2[hfeab2>1]<-1
@@ -161,10 +161,10 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     hfdfWab2<-hfeab2*dfWab2
     lambdaggab2<-f2ab2*ggdfWab2
     lambdahfab2<-f2ab2*hfdfWab2
-    Ftggab2<-qf(minusalpha, ggdfab2, ggdfWab2)
-    Fthfab2<-qf(minusalpha, hfdfab2, hfdfWab2)
-    powerggab2<-round(1-pf(Ftggab2, ggdfab2,ggdfWab2,lambdaggab2),3)
-    powerhfab2<-round(1-pf(Fthfab2, hfdfab2,hfdfWab2,lambdahfab2),3)
+    Ftggab2<-stats::qf(minusalpha, ggdfab2, ggdfWab2)
+    Fthfab2<-stats::qf(minusalpha, hfdfab2, hfdfWab2)
+    powerggab2<-round(1-stats::pf(Ftggab2, ggdfab2,ggdfWab2,lambdaggab2),3)
+    powerhfab2<-round(1-stats::pf(Fthfab2, hfdfab2,hfdfWab2,lambdahfab2),3)
 
     data.ba1<-subset(out, iv1==1)
     modelba1<-ez::ezANOVA(data=data.ba1, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
@@ -176,8 +176,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ba1<-eta2ba1/(1-eta2ba1)
     lambdaba1<-f2ba1*dfWba1
     minusalpha<-1-alpha
-    Ftba1<-qf(minusalpha, dfba1, dfWba1)
-    powerba1<-round(1-pf(Ftba1, dfba1,dfWba1,lambdaba1),3)
+    Ftba1<-stats::qf(minusalpha, dfba1, dfWba1)
+    powerba1<-round(1-stats::pf(Ftba1, dfba1,dfWba1,lambdaba1),3)
 
     data.ba2<-subset(out, iv1==2)
     modelba2<-ez::ezANOVA(data=data.ba2, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
@@ -189,8 +189,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ba2<-eta2ba2/(1-eta2ba2)
     lambdaba2<-f2ba2*dfWba2
     minusalpha<-1-alpha
-    Ftba2<-qf(minusalpha, dfba2, dfWba2)
-    powerba2<-round(1-pf(Ftba2, dfba2,dfWba2,lambdaba2),3)
+    Ftba2<-stats::qf(minusalpha, dfba2, dfWba2)
+    powerba2<-round(1-stats::pf(Ftba2, dfba2,dfWba2,lambdaba2),3)
 
     data.ba3<-subset(out, iv1==3)
     modelba3<-ez::ezANOVA(data=data.ba3, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
@@ -202,8 +202,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ba3<-eta2ba3/(1-eta2ba3)
     lambdaba3<-f2ba3*dfWba3
     minusalpha<-1-alpha
-    Ftba3<-qf(minusalpha, dfba3, dfWba3)
-    powerba3<-round(1-pf(Ftba3, dfba3,dfWba3,lambdaba3),3)
+    Ftba3<-stats::qf(minusalpha, dfba3, dfWba3)
+    powerba3<-round(1-stats::pf(Ftba3, dfba3,dfWba3,lambdaba3),3)
 
     data.ba4<-subset(out, iv1==4)
     modelba4<-ez::ezANOVA(data=data.ba4, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
@@ -215,8 +215,8 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     f2ba4<-eta2ba4/(1-eta2ba4)
     lambdaba4<-f2ba4*dfWba4
     minusalpha<-1-alpha
-    Ftba4<-qf(minusalpha, dfba4, dfWba4)
-    powerba4<-round(1-pf(Ftba4, dfba4,dfWba4,lambdaba4),3)
+    Ftba4<-stats::qf(minusalpha, dfba4, dfWba4)
+    powerba4<-round(1-stats::pf(Ftba4, dfba4,dfWba4,lambdaba4),3)
 
 
 

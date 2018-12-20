@@ -1,5 +1,5 @@
 #'Compute power for R2 change in Mutliple Regression (up to three predictors)
-#'Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+#'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'Example code below for three predictors. Expand as needed for four or five
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
@@ -9,7 +9,6 @@
 #'@param r23 Correlation between second (2) and third predictor (3)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param rep number of replications (default is 10000)
 #'@param my Mean of DV (default is 0)
 #'@param m1 Mean of first predictor (default is 0)
 #'@param m2 Mean of second redictor (default is 0)
@@ -34,10 +33,10 @@ R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL
 
 
   pop2 = data.frame(pop)
-  full<-summary(lm(X1~X2+X3+X4, pop2))
-  mod1<-summary(lm(X1~X2, pop2))
-  mod2<-summary(lm(X1~X3, pop2))
-  mod3<-summary(lm(X1~X4, pop2))
+  full<-summary(stats::lm(X1~X2+X3+X4, pop2))
+  mod1<-summary(stats::lm(X1~X2, pop2))
+  mod2<-summary(stats::lm(X1~X3, pop2))
+  mod3<-summary(stats::lm(X1~X4, pop2))
   ch23<-round((full$r.squared-mod1$r.squared),4)
   ch13<-round((full$r.squared-mod2$r.squared),4)
   ch12<-round((full$r.squared-mod3$r.squared),4)
@@ -51,10 +50,10 @@ R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL
   lambda2<-f2ch13*df2
   lambda3<-f2ch12*df2
   minusalpha<-1-alpha
-  Ft<-qf(minusalpha, df1, df2)
-  powerch1<-round(1-pf(Ft, df1,df2,lambda1),4)
-  powerch2<-round(1-pf(Ft, df1,df2,lambda2),4)
-  powerch3<-round(1-pf(Ft, df1,df2,lambda3),4)
+  Ft<-stats::qf(minusalpha, df1, df2)
+  powerch1<-round(1-stats::pf(Ft, df1,df2,lambda1),4)
+  powerch2<-round(1-stats::pf(Ft, df1,df2,lambda2),4)
+  powerch3<-round(1-stats::pf(Ft, df1,df2,lambda3),4)
   print(paste("R2 Model = ", fullR2))
   print(paste("R2 Change Vars2 and 3 over Var1 = ", ch23, ", Power = ", powerch1))
   print(paste("R2 Change Vars1 and 3 over Var2 = ", ch13, ", Power = ", powerch2))

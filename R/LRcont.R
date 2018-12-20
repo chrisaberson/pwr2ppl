@@ -19,8 +19,8 @@ LRcont<-function(OR = NA, r = NA, ER=NULL, alpha=.05, power=NULL, R2=.00)
   tod<-(2*r)/((1-r^2)^.5)
   OR<-exp(((tod)*pi)/(3^.5))}
   lgOR<-log(OR)
-  zalpha<-qnorm(1-alpha/2)
-  zpower<-qnorm(power)
+  zalpha<-stats::qnorm(1-alpha/2)
+  zpower<-stats::qnorm(power)
   num<-zalpha+zpower
   den<-ER*(1-ER)*lgOR^2
   n<-(num^2/den)/(1-R2)

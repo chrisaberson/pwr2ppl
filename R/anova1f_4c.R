@@ -23,40 +23,40 @@
 #'
 anova1f_4c<-function(m1=NULL,m2=NULL,m3=NULL,m4=NULL, s1=NULL,s2=NULL,s3=NULL,s4=NULL,
                           n1=NULL,n2=NULL,n3=NULL,n4=NULL, alpha=.05, c1 =0, c2=0, c3=0, c4=0){
-  x<-rnorm(n1,m1,s1)
+  x<-stats::rnorm(n1,m1,s1)
   X<-x
   MEAN<-m1
   SD<-s1
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A1",n1)
   l1<-data.frame(y, group)
-  x<-rnorm(n2,m2,s2)
+  x<-stats::rnorm(n2,m2,s2)
   X<-x
   MEAN<-m2
   SD<-s2
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A2",n2)
   l2<-data.frame(y, group)
-  x<-rnorm(n3,m3,s3)
+  x<-stats::rnorm(n3,m3,s3)
   X<-x
   MEAN<-m3
   SD<-s3
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A3",n3)
   l3<-data.frame(y, group)
-  x<-rnorm(n4,m4,s4)
+  x<-stats::rnorm(n4,m4,s4)
   X<-x
   MEAN<-m4
   SD<-s4
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   group<-rep("A4",n4)
   l4<-data.frame(y, group)
   simdat<-rbind(l1,l2,l3,l4)
-  anova<-aov(y~group, data=simdat)
+  anova<-stats::aov(y~group, data=simdat)
   anova<-car::Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
   SSwin<-anova[3,1]
@@ -67,12 +67,12 @@ anova1f_4c<-function(m1=NULL,m2=NULL,m3=NULL,m4=NULL, s1=NULL,s2=NULL,s3=NULL,s4
   f2<-eta2/(1-eta2)
   lambda<-f2*dfwin
   minusalpha<-1-alpha
-  Ft<-qf(minusalpha, dfbg, dfwin)
-  power<-1-pf(Ft, dfbg,dfwin,lambda)
+  Ft<-stats::qf(minusalpha, dfbg, dfwin)
+  power<-1-stats::pf(Ft, dfbg,dfwin,lambda)
   delta=((c1*m1)+(c2*m2)+(c3*m3)+(c4*m4))/((mswin*((c1^2/n1)+(c2^2/n2)+(c3^2/n3)+(c4^2/n4))))^.5
   lambda.c=delta^2
-  Ft.c<-qf(minusalpha, 1, dfwin)
-  power.contrast<-round(1-pf(Ft.c, 1,dfwin,lambda.c),3)
+  Ft.c<-stats::qf(minusalpha, 1, dfwin)
+  power.contrast<-round(1-stats::pf(Ft.c, 1,dfwin,lambda.c),3)
   #list(Power.for.Contrast = power.contrast)
   {print(paste("Power for Contrast =", power.contrast))}
 

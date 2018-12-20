@@ -31,8 +31,8 @@ depcorr0<-function(r12,rxy,r1x,r1y,r2x,r2y, nlow, nhigh, alpha=.05, tails=2, by=
     sd<-numer /denom
     z<-(zdiff*((n-3)^.5)) / ((2-(2*sd))^.5)
     alphatails<-alpha/tails
-    tabled<-qnorm(1-alphatails)
+    tabled<-stats::qnorm(1-alphatails)
     zpower<-tabled-z
-    Power<-round((1-pnorm(zpower)),4)
+    Power<-round((1-stats::pnorm(zpower)),4)
     print(paste("Power for n of", n, "=", Power))}
 }

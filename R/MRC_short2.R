@@ -21,7 +21,7 @@
 #'@param r12_2 Correlation between first (1) and second predictor (2), second group
 #'@param r13_2 Correlation between first (1) and third predictor (3), second group
 #'@param r23_2 Correlation between second (2) and third predictor (3), second group
-#'@param n1 Sample size, second group
+#'@param n2 Sample size, second group
 #'@param my_2 Mean of DV (default is 0), second group
 #'@param m1_2 Mean of first predictor (default is 0), second group
 #'@param m2_2 Mean of second redictor (default is 0), second group
@@ -75,13 +75,13 @@ MRC_short2<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
 
   pop1<-data.frame(pop1)
   pop2<-data.frame(pop2)
-  values1<-lm(X1~X2+X3+X4, pop1)
+  values1<-stats::lm(X1~X2+X3+X4, pop1)
   values1<-summary(values1)
-  values1b<-lm(X3~X2+X4, pop1)
+  values1b<-stats::lm(X3~X2+X4, pop1)
   values1b<-summary(values1b)
-  values2<-lm(X1~X2+X3+X4, pop2)
+  values2<-stats::lm(X1~X2+X3+X4, pop2)
   values2<-summary(values2)
-  values2b<-lm(X3~X2+X4,pop2)
+  values2b<-stats::lm(X3~X2+X4,pop2)
   values2b<-summary(values2b)
 
   print(paste("Overall Analyses for R2 Full model and coefficients, First Group"))

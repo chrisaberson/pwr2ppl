@@ -21,8 +21,8 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
       delta<-d*(ncalc^.5)
       lambda<-delta^2
       minusalpha<-1-alpha
-      Ft<-qf(minusalpha, 1, n-2)
-      Power<-round(1-pf(Ft, 1,n-2,lambda),4)
+      Ft<-stats::qf(minusalpha, 1, n-2)
+      Power<-round(1-stats::pf(Ft, 1,n-2,lambda),4)
       print(paste("Power a per group n of (Independent)", n, "=", Power))}
   }
   else if (test=="P")
@@ -31,8 +31,8 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
       delta<-d*(n^.5)
       lambda<-delta^2
       minusalpha<-1-alpha
-      Ft<-qf(minusalpha, 1, n-1)
-      Power<-round(1-pf(Ft, 1,n-2,lambda),3)
+      Ft<-stats::qf(minusalpha, 1, n-1)
+      Power<-round(1-stats::pf(Ft, 1,n-2,lambda),3)
       print(paste("Power for total n of (Paired)", n, "=", Power))}
 }
 

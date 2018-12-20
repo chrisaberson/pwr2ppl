@@ -4,6 +4,7 @@
 #'@param prop Proportion in the Treatment Condition
 #'@param alpha Type I error (default is .05)
 #'@param power Desired Power
+#'@param R2 How Well Predictor of Interest is Explained by Other Predictors (default is 0)
 #'@return Power for Logistic Regression with a Single Categorical Predictor
 #'@export
 #'
@@ -15,8 +16,8 @@ LRcat<-function(p0=NULL, p1=NULL, prop=.50, alpha=.05, power, R2=.00)
 {
     R<-prop
     pbar<-((1-R)*p0)+(R*p1)
-    zalpha<-qnorm(1-alpha/2)
-    zbeta<-qnorm(power)
+    zalpha<-stats::qnorm(1-alpha/2)
+    zbeta<-stats::qnorm(power)
     num1<-zalpha*(((pbar*(1-pbar))/R)^.5)
     num2<-zbeta*(((p0*(1-p0))+((p1*(1-p1)*(1-R)))/R))^.5
     den<-((p0-p1)^2)*(1-R)

@@ -6,6 +6,7 @@
 #'@param nhigh ending sample size
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
+#'@param tails number of tails for test (default is 2)
 #'@return Power for Tests of Single Proportion
 #'@export
 #'
@@ -22,9 +23,9 @@ prop1<-function(p1,p0,nlow, nhigh, alpha=.05, tails=2, by=1)
     for(n in seq(nlow,nhigh, by)){
       zlambda<-h*(n^.5)
       prob<-1-(alpha/tails)
-      tabled<-abs(qnorm(prob))
+      tabled<-abs(stats::qnorm(prob))
       zpower<-tabled-zlambda
-      power<-round(1-pnorm(zpower),4)
+      power<-round(1-stats::pnorm(zpower),4)
       print(paste("Power for n of", n, "=", power))}
   }}
 

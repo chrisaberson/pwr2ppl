@@ -23,6 +23,7 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
                        r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
                        n, alpha=.05)
 {
+  V1<-V2<-V3<-V4<-dv<-iv<-id<-NULL
   levels<-NA
   levels[is.na(m4) & is.na(m3)]<-2
   levels[is.na(m4) & !is.na(m3)]<-3
@@ -56,14 +57,14 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     minusalpha<-1-alpha
     dfh<-lin$`den Df`*(levels-1)
     dfl<-lin$`den Df`
-    FtL<-qf(minusalpha, 1, dfh)
-    FtL2<-qf(minusalpha, 1, dfl)
-    FtQ<-qf(minusalpha, 1, dfh)
-    FtQ2<-qf(minusalpha, 1, dfl)
-    powerL.H<-round(1-pf(FtL, 1,dfh,lambdaL),3)
-    powerL.L<-round(1-pf(FtL2, 1,dfl,lambdaL),3)
-    powerQ.H<-round(1-pf(FtQ, 1,dfh,lambdaQ),3)
-    powerQ.L<-round(1-pf(FtQ2, 1,dfl,lambdaQ),3)
+    FtL<-stats::qf(minusalpha, 1, dfh)
+    FtL2<-stats::qf(minusalpha, 1, dfl)
+    FtQ<-stats::qf(minusalpha, 1, dfh)
+    FtQ2<-stats::qf(minusalpha, 1, dfl)
+    powerL.H<-round(1-stats::pf(FtL, 1,dfh,lambdaL),3)
+    powerL.L<-round(1-stats::pf(FtL2, 1,dfl,lambdaL),3)
+    powerQ.H<-round(1-stats::pf(FtQ, 1,dfh,lambdaQ),3)
+    powerQ.L<-round(1-stats::pf(FtQ2, 1,dfl,lambdaQ),3)
     {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerL.L))}
     {print(paste("Power Linear Trend for n =",n,"df = ",dfh,"=", powerL.H))}
     {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerQ.L))}
@@ -101,18 +102,18 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     minusalpha<-1-alpha
     dfh<-lin$`den Df`*(levels-1)
     dfl<-lin$`den Df`
-    FtL<-qf(minusalpha, 1, dfh)
-    FtL2<-qf(minusalpha, 1, dfl)
-    FtQ<-qf(minusalpha, 1, dfh)
-    FtQ2<-qf(minusalpha, 1, dfl)
-    FtC<-qf(minusalpha, 1, dfh)
-    FtC2<-qf(minusalpha, 1, dfl)
-    powerL.H<-round(1-pf(FtL, 1,dfh,lambdaL),3)
-    powerL.L<-round(1-pf(FtL2, 1,dfl,lambdaL),3)
-    powerQ.H<-round(1-pf(FtQ, 1,dfh,lambdaQ),3)
-    powerQ.L<-round(1-pf(FtQ2, 1,dfl,lambdaQ),3)
-    powerC.H<-round(1-pf(FtC, 1,dfh,lambdaC),3)
-    powerC.L<-round(1-pf(FtC2, 1,dfl,lambdaC),3)
+    FtL<-stats::qf(minusalpha, 1, dfh)
+    FtL2<-stats::qf(minusalpha, 1, dfl)
+    FtQ<-stats::qf(minusalpha, 1, dfh)
+    FtQ2<-stats::qf(minusalpha, 1, dfl)
+    FtC<-stats::qf(minusalpha, 1, dfh)
+    FtC2<-stats::qf(minusalpha, 1, dfl)
+    powerL.H<-round(1-stats::pf(FtL, 1,dfh,lambdaL),3)
+    powerL.L<-round(1-stats::pf(FtL2, 1,dfl,lambdaL),3)
+    powerQ.H<-round(1-stats::pf(FtQ, 1,dfh,lambdaQ),3)
+    powerQ.L<-round(1-stats::pf(FtQ2, 1,dfl,lambdaQ),3)
+    powerC.H<-round(1-stats::pf(FtC, 1,dfh,lambdaC),3)
+    powerC.L<-round(1-stats::pf(FtC2, 1,dfl,lambdaC),3)
     {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerL.L))}
     {print(paste("Power Linear Trend for n =",n,"df = ",dfh,"=", powerL.H))}
     {print(paste("Power Quadratic Trend for n =",n,"df = ",dfl,"=", powerQ.L))}

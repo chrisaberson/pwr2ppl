@@ -4,8 +4,10 @@
 #'@param p2 expected proportion Group 2
 #'@param nlow starting sample size
 #'@param nhigh ending sample size
+#'@param nratio ratio of sample size of first group to second (default is .5 for equally sized groups)
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
+#'@param tails number of tails for test (default is 2)
 #'@return Power for Tests of Two Independent Proportions
 #'@export
 #'
@@ -25,9 +27,9 @@ propind<-function(p1,p2,nlow, nhigh, nratio=0.5, alpha=.05, tails=2, by=1)
       nharm<-(2*n1*n2)/(n1+n2)
       zlambda<-h*((nharm/2)^.5)
       prob<-1-(alpha/tails)
-      tabled<-abs(qnorm(prob))
+      tabled<-abs(stats::qnorm(prob))
       zpower<-tabled-zlambda
-      power<-round(1-pnorm(zpower),4)
+      power<-round(1-stats::pnorm(zpower),4)
       #print(c(p1a,p2a))}
       print(paste("Power for sample sizes of ", n1, n2, "=", power))}
 

@@ -3,9 +3,18 @@
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
 #'@param ry3 Correlation between DV (y) and third predictor (3)
+#'@param ry4 Correlation between DV (y) and fourth predictor (4)
+#'@param ry5 Correlation between DV (y) and fifth predictor (5)
 #'@param r12 Correlation between first (1) and second predictor (2)
 #'@param r13 Correlation between first (1) and third predictor (3)
+#'@param r14 Correlation between first (1) and fourth predictor (4)
+#'@param r15 Correlation between first (1) and fifth predictor (5)
 #'@param r23 Correlation between second (2) and third predictor (3)
+#'@param r24 Correlation between second (2) and fourth predictor (4)
+#'@param r25 Correlation between second (2) and fifth predictor (5)
+#'@param r34 Correlation between third (3) and fourth predictor (4)
+#'@param r35 Correlation between third (3) and fifth predictor (5)
+#'@param r45 Correlation between fourth (4) and fifth predictor (5)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep number of replications (default is 10000)
@@ -13,10 +22,14 @@
 #'@param m1 Mean of first predictor (default is 0)
 #'@param m2 Mean of second redictor (default is 0)
 #'@param m3 Mean of third predictor (default is 0)
+#'@param m4 Mean of fourth predictor (default is 0)
+#'@param m5 Mean of fifth predictor (default is 0)
 #'@param sy Standard deviation of DV (default is 1)
 #'@param s1 Standard deviation of first predictor (default is 1)
 #'@param s2 Standard deviation of second predictor (default is 1)
 #'@param s3 Standard deviation of third predictor (default is 1)
+#'@param s4 Standard deviation of fourth predictor (default is 1)
+#'@param s5 Standard deviation of fifth predictor (default is 1)
 #'@return Power for Multiple Regression with Two to Five Predictors
 #'@export
 #'
@@ -45,7 +58,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
                                                           ncol = 3), empirical = TRUE)
     pop2 = data.frame(pop)
 
-    values<-lm(X1~X2+X3, pop2)
+    values<-stats::lm(X1~X2+X3, pop2)
     values<-summary(values)
 
     int<-(values$coefficients)[1,3]
@@ -59,14 +72,14 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
     f2<-R2/(1-R2)
     lambdaR2<-f2*df2
     minusalpha<-1-alpha
-    FtR2<-qf(minusalpha, df1, df2)
-    powerR2<-round(1-pf(FtR2, df1,df2,lambdaR2),3)
+    FtR2<-stats::qf(minusalpha, df1, df2)
+    powerR2<-round(1-stats::pf(FtR2, df1,df2,lambdaR2),3)
 
     lambdab1<-tb1^2
     lambdab2<-tb2^2
-    Fb<-qf(minusalpha, 1, df2)
-    powerb1<-round(1-pf(Fb, 1,df2,lambdab1),3)
-    powerb2<-round(1-pf(Fb, 1,df2,lambdab2),3)
+    Fb<-stats::qf(minusalpha, 1, df2)
+    powerb1<-round(1-stats::pf(Fb, 1,df2,lambdab1),3)
+    powerb2<-round(1-stats::pf(Fb, 1,df2,lambdab2),3)
 
     {print(paste("Sample size is ",n))}
     {print(paste("Power R2 = ", powerR2))}
@@ -83,7 +96,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
                  ncol = 4), empirical = TRUE)
   pop2 = data.frame(pop)
 
-  values<-lm(X1~X2+X3+X4, pop2)
+  values<-stats::lm(X1~X2+X3+X4, pop2)
   values<-summary(values)
 
   int<-(values$coefficients)[1,3]
@@ -98,16 +111,16 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
   f2<-R2/(1-R2)
   lambdaR2<-f2*df2
   minusalpha<-1-alpha
-  FtR2<-qf(minusalpha, df1, df2)
-  powerR2<-round(1-pf(FtR2, df1,df2,lambdaR2),3)
+  FtR2<-stats::qf(minusalpha, df1, df2)
+  powerR2<-round(1-stats::pf(FtR2, df1,df2,lambdaR2),3)
 
   lambdab1<-tb1^2
   lambdab2<-tb2^2
   lambdab3<-tb3^2
-  Fb<-qf(minusalpha, 1, df2)
-  powerb1<-round(1-pf(Fb, 1,df2,lambdab1),3)
-  powerb2<-round(1-pf(Fb, 1,df2,lambdab2),3)
-  powerb3<-round(1-pf(Fb, 1,df2,lambdab3),3)
+  Fb<-stats::qf(minusalpha, 1, df2)
+  powerb1<-round(1-stats::pf(Fb, 1,df2,lambdab1),3)
+  powerb2<-round(1-stats::pf(Fb, 1,df2,lambdab2),3)
+  powerb3<-round(1-stats::pf(Fb, 1,df2,lambdab3),3)
 
 
   {print(paste("Sample size is ",n))}
@@ -127,7 +140,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
                                                              ncol = 5), empirical = TRUE)
     pop2 = data.frame(pop)
 
-    values<-lm(X1~X2+X3+X4+X5, pop2)
+    values<-stats::lm(X1~X2+X3+X4+X5, pop2)
     values<-summary(values)
 
     int<-(values$coefficients)[1,3]
@@ -143,18 +156,18 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
     f2<-R2/(1-R2)
     lambdaR2<-f2*df2
     minusalpha<-1-alpha
-    FtR2<-qf(minusalpha, df1, df2)
-    powerR2<-round(1-pf(FtR2, df1,df2,lambdaR2),3)
+    FtR2<-stats::qf(minusalpha, df1, df2)
+    powerR2<-round(1-stats::pf(FtR2, df1,df2,lambdaR2),3)
 
     lambdab1<-tb1^2
     lambdab2<-tb2^2
     lambdab3<-tb3^2
     lambdab4<-tb4^2
-    Fb<-qf(minusalpha, 1, df2)
-    powerb1<-round(1-pf(Fb, 1,df2,lambdab1),3)
-    powerb2<-round(1-pf(Fb, 1,df2,lambdab2),3)
-    powerb3<-round(1-pf(Fb, 1,df2,lambdab3),3)
-    powerb4<-round(1-pf(Fb, 1,df2,lambdab4),3)
+    Fb<-stats::qf(minusalpha, 1, df2)
+    powerb1<-round(1-stats::pf(Fb, 1,df2,lambdab1),3)
+    powerb2<-round(1-stats::pf(Fb, 1,df2,lambdab2),3)
+    powerb3<-round(1-stats::pf(Fb, 1,df2,lambdab3),3)
+    powerb4<-round(1-stats::pf(Fb, 1,df2,lambdab4),3)
 
     print(paste("Sample size is ",n))
     print(paste("Power R2 = ", powerR2))
@@ -176,7 +189,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
                                                                   ncol = 6), empirical = TRUE)
       pop2 = data.frame(pop)
 
-      values<-lm(X1~X2+X3+X4+X5+X6, pop2)
+      values<-stats::lm(X1~X2+X3+X4+X5+X6, pop2)
       values<-summary(values)
 
       int<-(values$coefficients)[1,3]
@@ -193,20 +206,20 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2;var4<-s4^2;var5<-s5^2
       f2<-R2/(1-R2)
       lambdaR2<-f2*df2
       minusalpha<-1-alpha
-      FtR2<-qf(minusalpha, df1, df2)
-      powerR2<-round(1-pf(FtR2, df1,df2,lambdaR2),3)
+      FtR2<-stats::qf(minusalpha, df1, df2)
+      powerR2<-round(1-stats::pf(FtR2, df1,df2,lambdaR2),3)
 
       lambdab1<-tb1^2
       lambdab2<-tb2^2
       lambdab3<-tb3^2
       lambdab4<-tb4^2
-      lambdab4<-tb5^2
-      Fb<-qf(minusalpha, 1, df2)
-      powerb1<-round(1-pf(Fb, 1,df2,lambdab1),3)
-      powerb2<-round(1-pf(Fb, 1,df2,lambdab2),3)
-      powerb3<-round(1-pf(Fb, 1,df2,lambdab3),3)
-      powerb4<-round(1-pf(Fb, 1,df2,lambdab4),3)
-      powerb5<-round(1-pf(Fb, 1,df2,lambdab5),3)
+      lambdab5<-tb5^2
+      Fb<-stats::qf(minusalpha, 1, df2)
+      powerb1<-round(1-stats::pf(Fb, 1,df2,lambdab1),3)
+      powerb2<-round(1-stats::pf(Fb, 1,df2,lambdab2),3)
+      powerb3<-round(1-stats::pf(Fb, 1,df2,lambdab3),3)
+      powerb4<-round(1-stats::pf(Fb, 1,df2,lambdab4),3)
+      powerb5<-round(1-stats::pf(Fb, 1,df2,lambdab5),3)
 
       print(paste("Sample size is ",n))
       print(paste("Power R2 = ", powerR2))

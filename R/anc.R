@@ -2,14 +2,24 @@
 #'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 #'@param m1.1 Cell mean for First level of Factor A, First level of Factor B
 #'@param m1.2 Cell mean for First level of Factor A, Second level of Factor B
+#'@param m1.3 Cell mean for First level of Factor A, Third level of Factor B
+#'@param m1.4 Cell mean for First level of Factor A, Fourth level of Factor B
 #'@param m2.1 Cell mean for Second level of Factor A, First level of Factor B
 #'@param m2.2 Cell mean for Second level of Factor A, Second level of Factor B
+#'@param m2.3 Cell mean for Second level of Factor A, Third level of Factor B
+#'@param m2.4 Cell mean for Second level of Factor A, Fourth level of Factor B
 #'@param s1.1 Cell standard deviation for First level of Factor A, First level of Factor B
 #'@param s1.2 Cell standard deviation for First level of Factor A, Second level of Factor B
+#'@param s1.3 Cell standard deviation for First level of Factor A, Third level of Factor B
+#'@param s1.4 Cell standard deviation for First level of Factor A, Fourth level of Factor B
 #'@param s2.1 Cell standard deviation for Second level of Factor A, First level of Factor B
 #'@param s2.2 Cell standard deviation for Second level of Factor A, Second level of Factor B
+#'@param s2.3 Cell standard deviation for Second level of Factor A, Third level of Factor B
+#'@param s2.4 Cell standard deviation for Second level of Factor A, Fourth level of Factor B
+#'@param s Overall standard deviation. Sets all cell sds equal
 #'@param r Correlation between covariate and dependent variable.
 #'@param n Sample Size per cell
+#'@param factors Number of factors (1 or 2)
 #'@param alpha Type I error (default is .05)
 #'@return Power for One or Two Factor ANCOVA with a single covariate
 #'@export
@@ -18,6 +28,7 @@ anc=function(m1.1,m2.1,m1.2,m2.2,m1.3=NULL,m2.3=NULL,m1.4=NULL,m2.4=NULL,
              s1.1,s2.1,s1.2,s2.2,s1.3=NULL,s2.3=NULL,s1.4=NULL,s2.4=NULL,
              r,s=NULL,alpha=.05,factors,n){
 {
+V1<-V2<-ivbg<-iv1<-iv2<-NULL
 if (factors=="1")
 {
 var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2
@@ -46,7 +57,7 @@ out<-dplyr::rename(out, y1 = V1, cov = V2, ivbg = ivbg)
 out$ivbg<-as.factor(out$ivbg)
 options(contrasts=c("contr.helmert", "contr.poly"))
 
-anc<-aov(y1~cov+ivbg, data=out)
+anc<-stats::aov(y1~cov+ivbg, data=out)
 sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
 SSwin<-sum[4,1]
@@ -57,8 +68,8 @@ eta2A<-SSA/(SSA+SSwin)
 f2A<-eta2A/(1-eta2A)
 lambdaA<-f2A*dfwin
 minusalpha<-1-alpha
-FtA<-qf(minusalpha, dfA, dfwin)
-power.A<-round(1-pf(FtA, dfA,dfwin,lambdaA),4)
+FtA<-stats::qf(minusalpha, dfA, dfwin)
+power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
 nall<-n*2
 eta2A<-round((eta2A),3)
 print(paste("Sample size per cell = ",n))
@@ -124,7 +135,7 @@ out$iv1<-as.factor(out$iv1)
 out$iv2<-as.factor(out$iv2)
 options(contrasts=c("contr.helmert", "contr.poly"))
 
-anc<-aov(y1~cov+iv1*iv2, data=out)
+anc<-stats::aov(y1~cov+iv1*iv2, data=out)
 sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
 SSB<-sum[4,1]
@@ -139,18 +150,18 @@ eta2A<-SSA/(SSA+SSwin)
 f2A<-eta2A/(1-eta2A)
 lambdaA<-f2A*dfwin
 minusalpha<-1-alpha
-FtA<-qf(minusalpha, dfA, dfwin)
-power.A<-round(1-pf(FtA, dfA,dfwin,lambdaA),4)
+FtA<-stats::qf(minusalpha, dfA, dfwin)
+power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
 eta2B<-SSB/(SSB+SSwin)
 f2B<-eta2B/(1-eta2B)
 lambdaB<-f2B*dfwin
-FtB<-qf(minusalpha, dfB, dfwin)
-power.B<-round(1-pf(FtB, dfB,dfwin,lambdaB),4)
+FtB<-stats::qf(minusalpha, dfB, dfwin)
+power.B<-round(1-stats::pf(FtB, dfB,dfwin,lambdaB),4)
 eta2AB<-SSAB/(SSAB+SSwin)
 f2AB<-eta2AB/(1-eta2AB)
 lambdaAB<-f2AB*dfwin
-FtAB<-qf(minusalpha,dfAB, dfwin)
-power.AB<-round(1-pf(FtAB,dfAB,dfwin,lambdaAB),4)
+FtAB<-stats::qf(minusalpha,dfAB, dfwin)
+power.AB<-round(1-stats::pf(FtAB,dfAB,dfwin,lambdaAB),4)
 eta2A<-round((eta2A),3)
 eta2B<-round((eta2B),3)
 eta2AB<-round((eta2AB),3)

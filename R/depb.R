@@ -1,5 +1,5 @@
 #'Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
-#'Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+#'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
 #'@param ry3 Correlation between DV (y) and third predictor (3)
@@ -8,7 +8,6 @@
 #'@param r23 Correlation between second (2) and third predictor (3)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param rep number of replications (default is 10000)
 #'@return Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
 #'@export
 #'
@@ -26,7 +25,7 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
                                                     ry2, r12, 1),
                                                   ncol=3), empirical=TRUE)
   pop1<-data.frame(pop)
-  values<-lm(X1~X2+X3, pop1)
+  values<-stats::lm(X1~X2+X3, pop1)
   values<-summary(values)
   b1<-(values$coefficients)[2,1] #grabs b from each analysis
   b2<-(values$coefficients)[3,1]
@@ -46,8 +45,8 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
   lambda<-t^2
   df<-n-3
   minusalpha<-1-alpha
-  Fb<-qf(minusalpha, 1, df)
-  power1<-1-pf(Fb, 1,df,lambda)
+  Fb<-stats::qf(minusalpha, 1, df)
+  power1<-1-stats::pf(Fb, 1,df,lambda)
   print(paste("Sample size is ",n))
   print(paste("Power Comparing b1 and b2<-", power1))
   }
@@ -61,7 +60,7 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
                                                          ncol=4), empirical=TRUE)
 
 pop1<-data.frame(pop)
-values<-lm(X1~X2+X3+X4, pop1)
+values<-stats::lm(X1~X2+X3+X4, pop1)
 values<-summary(values)
 b1<-(values$coefficients)[2,1] #grabs b from each analysis
 b2<-(values$coefficients)[3,1]
@@ -104,10 +103,10 @@ tc<-abs(abs(b2)-abs(b3)) / denc
 lambdac<-tc^2
 
 minusalpha<-1-alpha
-Fb<-qf(minusalpha, 1, df)
-power12<-round(1-pf(Fb, 1,df,lambdaa),3)
-power13<-round(1-pf(Fb, 1,df,lambdab),3)
-power23<-round(1-pf(Fb, 1,df,lambdac), 3)
+Fb<-stats::qf(minusalpha, 1, df)
+power12<-round(1-stats::pf(Fb, 1,df,lambdaa),3)
+power13<-round(1-stats::pf(Fb, 1,df,lambdab),3)
+power23<-round(1-stats::pf(Fb, 1,df,lambdac), 3)
     print(paste("Sample size is ",n))
     print(paste("Power Comparing b1 and b2 = ", power12))
     print(paste("Power Comparing b1 and b3 = ", power13))

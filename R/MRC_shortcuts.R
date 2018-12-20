@@ -8,7 +8,6 @@
 #'@param r23 Correlation between second (2) and third predictor (3)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param rep number of replications (default is 10000)
 #'@param my Mean of DV (default is 0)
 #'@param m1 Mean of first predictor (default is 0)
 #'@param m2 Mean of second redictor (default is 0)
@@ -41,6 +40,6 @@ pred<-NA
 pred[is.null(r23)]<-2
 pred[!is.null(r23)]<-3
 
-full<-summary(lm(X1~X2+X3+X4, pop2))
+full<-summary(stats::lm(X1~X2+X3+X4, pop2))
 print(full)
 }

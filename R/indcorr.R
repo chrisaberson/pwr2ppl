@@ -5,6 +5,7 @@
 #'@param nlow Starting sample size
 #'@param nhigh Ending sample size
 #'@param by Incremental increase in sample size from low ot high
+#'@param propn1 Proportion of sample in first group (default is .50 for equally size groups)
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)
 #'@return Power for Comparing Two Independent Correlations
@@ -22,8 +23,8 @@ indcorr<-function(r1,r2,nlow, nhigh, propn1= .5, alpha=.05, tails=2, by=1)
     sdz<-((1/(n1-3))+(1/(n2-3)))^.5
     z<-zdiff/sdz
     alphatails<-alpha/tails
-    tabled<-qnorm(1-alphatails)
+    tabled<-stats::qnorm(1-alphatails)
     zpower<-tabled-z
-    Power<-round((1-pnorm(zpower)),4)
+    Power<-round((1-stats::pnorm(zpower)),4)
     print(paste("Power for n of", n, "=", Power))}
 }

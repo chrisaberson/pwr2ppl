@@ -44,6 +44,8 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                    r3.4_2=NULL, r=NULL, s = NULL, n, alpha=.05)
 
 {
+  V1<-V2<-ivbg<-V3<-V4<-NULL
+
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
@@ -57,7 +59,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     if (!is.null(r)){r1.2_1<-r;r1.2_2<-r}
     cov12<-r1.2_1*s1.1*s2.1
     cov34<-r1.2_2*s1.2*s2.2;
-    out1 <- mvrnorm(n, mu = c(m1.1,m2.1),
+    out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1),
                     Sigma = matrix(c(var1,cov12,
                                      cov12,var2), ncol = 2),
                     empirical = TRUE)
@@ -65,7 +67,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out1$ivbg<-NA
     out1$ivbg<-1 #identifies group
 
-    out2 <- mvrnorm(n, mu = c(m1.2,m2.2),
+    out2 <- MASS::mvrnorm(n, mu = c(m1.2,m2.2),
                     Sigma = matrix(c(var3,cov34,
                                      cov34,var4), ncol = 2),
                     empirical = TRUE)
@@ -75,12 +77,12 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
 
     out<-rbind(out1,out2)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, ivbg = ivbg)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
     options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2)
 
-    mmodel<-manova(dvs~ivbg, data=out)
+    mmodel<-stats::manova(dvs~ivbg, data=out)
     values<-summary(mmodel, intercept=TRUE)
     pill<-values$stats[2,2]
     f2<-pill/(1-pill)
@@ -88,8 +90,8 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     dfw<-values$stats[2,5]
     lambda<-f2*dfw
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, dfb, dfw)
-    power<-round(1-pf(Ft, dfb,dfw,lambda),4)
+    Ft<-stats::qf(minusalpha, dfb, dfw)
+    power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
     print(paste("Power MANOVA for n =",n,"=", power))
   }
 
@@ -102,12 +104,12 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     r2.3_1<-r;
     r1.2_2<-r;r1.3_2<-r;
     r2.3_2<-r}
-    cov12<-r1.2_1*s1.1*s2.1;cov13<-r13*s1.1*s3.1;
+    cov12<-r1.2_1*s1.1*s2.1;cov13<-r1.3_1*s1.1*s3.1;
     cov23<-r2.3_1*s2.1*s3.1;
     cov45<-r1.2_2*s1.2*s2.2;cov46<-r1.3_2*s1.2*s3.2;
     cov56<-r2.3_2*s2.2*s3.2
 
-    out1 <- mvrnorm(n, mu = c(m1.1,m2.1, m3.1),
+    out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1, m3.1),
                     Sigma = matrix(c(var1,cov12,cov13,
                                      cov12,var2,cov23,
                                      cov13,cov23,var3), ncol = 3),
@@ -116,7 +118,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out1$ivbg<-NA
     out1$ivbg<-1 #identifies group
 
-    out2 <- mvrnorm(n, mu = c(m1.2,m2.2,m3.2),
+    out2 <- MASS::mvrnorm(n, mu = c(m1.2,m2.2,m3.2),
                     Sigma = matrix(c(var4,cov45,cov46,
                                      cov45,var5,cov56,
                                      cov46,cov56,var6), ncol = 3),
@@ -128,13 +130,13 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
 
     out<-rbind(out1,out2)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2,  y3=V3, ivbg = ivbg)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2,  y3=V3, ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
 
     options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2,out$y3)
 
-    mmodel<-manova(dvs~ivbg, data=out)
+    mmodel<-stats::manova(dvs~ivbg, data=out)
     values<-summary(mmodel, intercept=TRUE)
     pill<-values$stats[2,2]
     f2<-pill/(1-pill)
@@ -142,8 +144,8 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     dfw<-values$stats[2,5]
     lambda<-f2*dfw
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, dfb, dfw)
-    power<-round(1-pf(Ft, dfb,dfw,lambda),4)
+    Ft<-stats::qf(minusalpha, dfb, dfw)
+    power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
     print(paste("Power MANOVA for n =",n,"=", power))
   }
 
@@ -165,7 +167,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     cov78<-r3.4_2*s3.2*s4.2
 
 
-    out1 <- mvrnorm(n, mu = c(m1.1,m2.1, m3.1, m4.1),
+    out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1, m3.1, m4.1),
                     Sigma = matrix(c(var1,cov12,cov13,cov14,
                                      cov12,var2,cov23,cov24,
                                      cov13,cov23,var3, cov34,
@@ -175,7 +177,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out1$ivbg<-NA
     out1$ivbg<-1 #identifies group
 
-    out2 <- mvrnorm(n, mu = c(m1.2,m2.2,m3.2,m4.2),
+    out2 <- MASS::mvrnorm(n, mu = c(m1.2,m2.2,m3.2,m4.2),
                     Sigma = matrix(c(var5,cov56,cov57,cov58,
                                      cov56,var6,cov67,cov68,
                                      cov57,cov67,var7,cov78,
@@ -187,12 +189,12 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
 
     out<-rbind(out1,out2)
     out<-as.data.frame(out)
-    out<-rename(out, y1 = V1, y2 = V2, y3=V3, y4=V4,ivbg = ivbg)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3=V3, y4=V4,ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
     options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2,out$y3,out$y4)
 
-    mmodel<-manova(dvs~ivbg, data=out)
+    mmodel<-stats::manova(dvs~ivbg, data=out)
     values<-summary(mmodel, intercept=TRUE)
     pill<-values$stats[2,2]
     f2<-pill/(1-pill)
@@ -200,7 +202,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     dfw<-values$stats[2,5]
     lambda<-f2*dfw
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, dfb, dfw)
-    power<-round(1-pf(Ft, dfb,dfw,lambda),4)
+    Ft<-stats::qf(minusalpha, dfb, dfw)
+    power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
     print(paste("Power MANOVA for n =",n,"=", power))
   }}

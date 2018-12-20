@@ -23,6 +23,7 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
                 r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
                 n, alpha=.05)
 {
+  V1<-V2<-id<-anova<-V3<-V4<-NULL
   levels<-NA
   levels[is.na(m4) & is.na(m3)]<-2
   levels[is.na(m4) & !is.na(m3)]<-3
@@ -46,12 +47,12 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     options(contrasts=c("contr.henlme::lmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
-    lm<-anova(base,model1)
+    lm<-stats::anova(base,model1)
     df1<-lm$df[2]-lm$df[1]
     lambdalm<-lm$L.Ratio[2]
     minusalpha<-1-alpha
-    tabledlm<-qchisq(minusalpha, df1)
-    powerlm<-round(1-pchisq(tabledlm, df1, lambdalm),3)
+    tabledlm<-stats::qchisq(minusalpha, df1)
+    powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
     {print(paste("Power for n =",n,"=", powerlm))}
     {print(paste("Tests use df =", df))}
     {print(paste("This test is useless for two levels"))}
@@ -82,9 +83,9 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     lambdaLMQ<-(row[12])^2
     df<-(row[7])
     minusalpha<-1-alpha
-    tabled<-qf(minusalpha,1,df)
-    powerLM.L<-round(1-pf(tabled, 1, df, lambdaLML),3)
-    powerLM.Q<-round(1-pf(tabled, 1, df, lambdaLMQ),3)
+    tabled<-stats::qf(minusalpha,1,df)
+    powerLM.L<-round(1-stats::pf(tabled, 1, df, lambdaLML),3)
+    powerLM.Q<-round(1-stats::pf(tabled, 1, df, lambdaLMQ),3)
     {print(paste("Power Linear Trend for n =",n,"=", powerLM.L))}
     {print(paste("Power Quadratic Trend for n =",n,"=", powerLM.Q))}
     {print(paste("Tests use df =", df))}
@@ -124,10 +125,10 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     lambdaLMC<-(row[16])^2
     df<-(row[9])
     minusalpha<-1-alpha
-    tabled<-qf(minusalpha,1,df)
-    powerLM.L<-round(1-pf(tabled, 1, df, lambdaLML),3)
-    powerLM.Q<-round(1-pf(tabled, 1, df, lambdaLMQ),3)
-    powerLM.C<-round(1-pf(tabled, 1, df, lambdaLMC),3)
+    tabled<-stats::qf(minusalpha,1,df)
+    powerLM.L<-round(1-stats::pf(tabled, 1, df, lambdaLML),3)
+    powerLM.Q<-round(1-stats::pf(tabled, 1, df, lambdaLMQ),3)
+    powerLM.C<-round(1-stats::pf(tabled, 1, df, lambdaLMC),3)
     {print(paste("Power Linear Trend for n =",n,"=", powerLM.L))}
     {print(paste("Power Quadratic Trend for n =",n,"=", powerLM.Q))}
     {print(paste("Power Cubic Trend for n =",n,"=", powerLM.C))}

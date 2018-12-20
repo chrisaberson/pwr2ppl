@@ -24,6 +24,7 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
                     r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
                     n, alpha=.05)
 {
+  V1<-V2<-V3<-V4<-id<-NULL
   levels<-NA
   levels[is.na(m4) & is.na(m3)]<-2
   levels[is.na(m4) & !is.na(m3)]<-3
@@ -47,11 +48,11 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
-    lm<-anova(base,model1)
+    lm<-stats::anova(base,model1)
     df1<-lm$df[2]-lm$df[1]
     lambdalm<-lm$L.Ratio[2]
-    tabledlm<-qchisq(.95, df1)
-    powerlm<-round(1-pchisq(tabledlm, df1, lambdalm),3)
+    tabledlm<-stats::qchisq(.95, df1)
+    powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
     {print(paste("Power (Unadjusted) for n =",n,"=", powerlm))}}
 
   if(levels==3){
@@ -74,11 +75,11 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
-    lm<-anova(base,model1)
+    lm<-stats::anova(base,model1)
     df1<-lm$df[2]-lm$df[1]
     lambdalm<-lm$L.Ratio[2]
-    tabledlm<-qchisq(.95, df1)
-    powerlm<-round(1-pchisq(tabledlm, df1, lambdalm),3)
+    tabledlm<-stats::qchisq(.95, df1)
+    powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
     {print(paste("Power (Unadjusted) for n =",n,"=", powerlm))}}
 
   if (levels=="4"){
@@ -106,10 +107,10 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
-    lm<-anova(base,model1)
+    lm<-stats::anova(base,model1)
     df1<-lm$df[2]-lm$df[1]
     lambdalm<-lm$L.Ratio[2]
-    tabledlm<-qchisq(.95, df1)
-    powerlm<-round(1-pchisq(tabledlm, df1, lambdalm),3)
+    tabledlm<-stats::qchisq(.95, df1)
+    powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
     {print(paste("Power for n =",n,"=", powerlm))}}
 }

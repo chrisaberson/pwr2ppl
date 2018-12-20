@@ -61,7 +61,7 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                 r67=NULL, r68=NULL,
                 r78=NULL, r=NULL, s = NULL, n, alpha=.05)
 {
-
+  V1<-V2<-V3<-V4<-V5<-V6<-V7<-V8<-iv1<-iv2<-id<-NULL
   levels<-NA
   levels[is.na(m4.1) & is.na(m4.2)]<-2
   levels[!is.na(m3.1) & !is.na(m3.2)]<-3
@@ -103,39 +103,39 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     data.ab1<-subset(out, iv2==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab1,method="ML")
     modelab1<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab1,method="ML") #A at B1
-    lmab1<-anova(base,modelab1)
+    lmab1<-stats::anova(base,modelab1)
     dfab1<-lmab1$df[2]-lmab1$df[1]
     lambdalmab1<-lmab1$L.Ratio[2]
-    tabledlab1<-qchisq(.95, dfab1)
-    powerlab1<-round(1-pchisq(tabledlab1, dfab1, lambdalmab1),3)
+    tabledlab1<-stats::qchisq(.95, dfab1)
+    powerlab1<-round(1-stats::pchisq(tabledlab1, dfab1, lambdalmab1),3)
 
     data.ab2<-subset(out, iv2==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab2,method="ML")
     modelab2<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab2,method="ML") #A at B1
-    lmab2<-anova(base,modelab2)
+    lmab2<-stats::anova(base,modelab2)
     dfab2<-lmab2$df[2]-lmab2$df[1]
     lambdalmab2<-lmab2$L.Ratio[2]
-    tabledlab2<-qchisq(.95, dfab2)
-    powerlab2<-round(1-pchisq(tabledlab2, dfab2, lambdalmab2),3)
+    tabledlab2<-stats::qchisq(.95, dfab2)
+    powerlab2<-round(1-stats::pchisq(tabledlab2, dfab2, lambdalmab2),3)
 
 
     data.ba1<-subset(out, iv1==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba1,method="ML")
     modelba1<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba1,method="ML") #A at B1
-    lmba1<-anova(base,modelba1)
+    lmba1<-stats::anova(base,modelba1)
     dfba1<-lmba1$df[2]-lmba1$df[1]
     lambdalmba1<-lmba1$L.Ratio[2]
-    tabledlba1<-qchisq(.95, dfba1)
-    powerlba1<-round(1-pchisq(tabledlba1, dfba1, lambdalmba1),3)
+    tabledlba1<-stats::qchisq(.95, dfba1)
+    powerlba1<-round(1-stats::pchisq(tabledlba1, dfba1, lambdalmba1),3)
 
     data.ba2<-subset(out, iv1==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba2,method="ML")
     modelba2<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba2,method="ML") #A at B1
-    lmba2<-anova(base,modelba2)
+    lmba2<-stats::anova(base,modelba2)
     dfba2<-lmba2$df[2]-lmba2$df[1]
     lambdalmba2<-lmba2$L.Ratio[2]
-    tabledlba2<-qchisq(.95, dfba2)
-    powerlba2<-round(1-pchisq(tabledlba2, dfba2, lambdalmba2),3)
+    tabledlba2<-stats::qchisq(.95, dfba2)
+    powerlba2<-round(1-stats::pchisq(tabledlba2, dfba2, lambdalmba2),3)
 
     {print(paste("Power A at B1 for n =",n,"=", powerlab1))}
     {print(paste("Power A at B2 for n =",n,"=", powerlab2))}
@@ -189,48 +189,48 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     data.ab1<-subset(out, iv2==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab1,method="ML")
     modelab1<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab1,method="ML") #A at B1
-    lmab1<-anova(base,modelab1)
+    lmab1<-stats::anova(base,modelab1)
     dfab1<-lmab1$df[2]-lmab1$df[1]
     lambdalmab1<-lmab1$L.Ratio[2]
-    tabledlab1<-qchisq(.95, dfab1)
-    powerlab1<-round(1-pchisq(tabledlab1, dfab1, lambdalmab1),3)
+    tabledlab1<-stats::qchisq(.95, dfab1)
+    powerlab1<-round(1-stats::pchisq(tabledlab1, dfab1, lambdalmab1),3)
 
     data.ab2<-subset(out, iv2==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab2,method="ML")
     modelab2<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab2,method="ML") #A at B1
-    lmab2<-anova(base,modelab2)
+    lmab2<-stats::anova(base,modelab2)
     dfab2<-lmab2$df[2]-lmab2$df[1]
     lambdalmab2<-lmab2$L.Ratio[2]
-    tabledlab2<-qchisq(.95, dfab2)
-    powerlab2<-round(1-pchisq(tabledlab2, dfab2, lambdalmab2),3)
+    tabledlab2<-stats::qchisq(.95, dfab2)
+    powerlab2<-round(1-stats::pchisq(tabledlab2, dfab2, lambdalmab2),3)
 
 
     data.ba1<-subset(out, iv1==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba1,method="ML")
     modelba1<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba1,method="ML") #A at B1
-    lmba1<-anova(base,modelba1)
+    lmba1<-stats::anova(base,modelba1)
     dfba1<-lmba1$df[2]-lmba1$df[1]
     lambdalmba1<-lmba1$L.Ratio[2]
-    tabledlba1<-qchisq(.95, dfba1)
-    powerlba1<-round(1-pchisq(tabledlba1, dfba1, lambdalmba1),3)
+    tabledlba1<-stats::qchisq(.95, dfba1)
+    powerlba1<-round(1-stats::pchisq(tabledlba1, dfba1, lambdalmba1),3)
 
     data.ba2<-subset(out, iv1==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba2,method="ML")
     modelba2<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba2,method="ML") #A at B1
-    lmba2<-anova(base,modelba2)
+    lmba2<-stats::anova(base,modelba2)
     dfba2<-lmba2$df[2]-lmba2$df[1]
     lambdalmba2<-lmba2$L.Ratio[2]
-    tabledlba2<-qchisq(.95, dfba2)
-    powerlba2<-round(1-pchisq(tabledlba2, dfba2, lambdalmba2),3)
+    tabledlba2<-stats::qchisq(.95, dfba2)
+    powerlba2<-round(1-stats::pchisq(tabledlba2, dfba2, lambdalmba2),3)
 
     data.ba3<-subset(out, iv1==3)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba3,method="ML")
     modelba3<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba3,method="ML") #A at B1
-    lmba3<-anova(base,modelba3)
+    lmba3<-stats::anova(base,modelba3)
     dfba3<-lmba3$df[2]-lmba3$df[1]
     lambdalmba3<-lmba3$L.Ratio[2]
-    tabledlba3<-qchisq(.95, dfba3)
-    powerlba3<-round(1-pchisq(tabledlba3, dfba3, lambdalmba3),3)
+    tabledlba3<-stats::qchisq(.95, dfba3)
+    powerlba3<-round(1-stats::pchisq(tabledlba3, dfba3, lambdalmba3),3)
 
 
 
@@ -289,57 +289,57 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     data.ab1<-subset(out, iv2==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab1,method="ML")
     modelab1<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab1,method="ML") #A at B1
-    lmab1<-anova(base,modelab1)
+    lmab1<-stats::anova(base,modelab1)
     dfab1<-lmab1$df[2]-lmab1$df[1]
     lambdalmab1<-lmab1$L.Ratio[2]
-    tabledlab1<-qchisq(.95, dfab1)
-    powerlab1<-round(1-pchisq(tabledlab1, dfab1, lambdalmab1),3)
+    tabledlab1<-stats::qchisq(.95, dfab1)
+    powerlab1<-round(1-stats::pchisq(tabledlab1, dfab1, lambdalmab1),3)
 
     data.ab2<-subset(out, iv2==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv1, data=data.ab2,method="ML")
     modelab2<- nlme::lme(dv~iv1, random = ~1|id/iv1, data=data.ab2,method="ML") #A at B1
-    lmab2<-anova(base,modelab2)
+    lmab2<-stats::anova(base,modelab2)
     dfab2<-lmab2$df[2]-lmab2$df[1]
     lambdalmab2<-lmab2$L.Ratio[2]
-    tabledlab2<-qchisq(.95, dfab2)
-    powerlab2<-round(1-pchisq(tabledlab2, dfab2, lambdalmab2),3)
+    tabledlab2<-stats::qchisq(.95, dfab2)
+    powerlab2<-round(1-stats::pchisq(tabledlab2, dfab2, lambdalmab2),3)
 
 
     data.ba1<-subset(out, iv1==1)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba1,method="ML")
     modelba1<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba1,method="ML") #A at B1
-    lmba1<-anova(base,modelba1)
+    lmba1<-stats::anova(base,modelba1)
     dfba1<-lmba1$df[2]-lmba1$df[1]
     lambdalmba1<-lmba1$L.Ratio[2]
-    tabledlba1<-qchisq(.95, dfba1)
-    powerlba1<-round(1-pchisq(tabledlba1, dfba1, lambdalmba1),3)
+    tabledlba1<-stats::qchisq(.95, dfba1)
+    powerlba1<-round(1-stats::pchisq(tabledlba1, dfba1, lambdalmba1),3)
 
     data.ba2<-subset(out, iv1==2)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba2,method="ML")
     modelba2<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba2,method="ML") #A at B1
-    lmba2<-anova(base,modelba2)
+    lmba2<-stats::anova(base,modelba2)
     dfba2<-lmba2$df[2]-lmba2$df[1]
     lambdalmba2<-lmba2$L.Ratio[2]
-    tabledlba2<-qchisq(.95, dfba2)
-    powerlba2<-round(1-pchisq(tabledlba2, dfba2, lambdalmba2),3)
+    tabledlba2<-stats::qchisq(.95, dfba2)
+    powerlba2<-round(1-stats::pchisq(tabledlba2, dfba2, lambdalmba2),3)
 
     data.ba3<-subset(out, iv1==3)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba3,method="ML")
     modelba3<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba3,method="ML") #A at B1
-    lmba3<-anova(base,modelba3)
+    lmba3<-stats::anova(base,modelba3)
     dfba3<-lmba3$df[2]-lmba3$df[1]
     lambdalmba3<-lmba3$L.Ratio[2]
-    tabledlba3<-qchisq(.95, dfba3)
-    powerlba3<-round(1-pchisq(tabledlba3, dfba3, lambdalmba3),3)
+    tabledlba3<-stats::qchisq(.95, dfba3)
+    powerlba3<-round(1-stats::pchisq(tabledlba3, dfba3, lambdalmba3),3)
 
     data.ba4<-subset(out, iv1==4)
     base<- nlme::lme(dv~1, random = ~1|id/iv2, data=data.ba4,method="ML")
     modelba4<- nlme::lme(dv~iv2, random = ~1|id/iv2, data=data.ba4,method="ML") #A at B1
-    lmba4<-anova(base,modelba4)
+    lmba4<-stats::anova(base,modelba4)
     dfba4<-lmba4$df[2]-lmba4$df[1]
     lambdalmba4<-lmba4$L.Ratio[2]
-    tabledlba4<-qchisq(.95, dfba4)
-    powerlba4<-round(1-pchisq(tabledlba4, dfba4, lambdalmba4),3)
+    tabledlba4<-stats::qchisq(.95, dfba4)
+    powerlba4<-round(1-stats::pchisq(tabledlba4, dfba4, lambdalmba4),3)
 
     {print(paste("Power A at B1 for n =",n,"=", powerlab1))}
     {print(paste("Power A at B2 for n =",n,"=", powerlab2))}

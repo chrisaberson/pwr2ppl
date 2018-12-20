@@ -1,5 +1,5 @@
 #'Compute power for Mutliple Regression with Three Predictors
-#'Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+#'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
 #'@param ry3 Correlation between DV (y) and third predictor (3)
@@ -17,7 +17,6 @@
 #'@param s1 Standard deviation of first predictor (default is 1)
 #'@param s2 Standard deviation of second predictor (default is 1)
 #'@param s3 Standard deviation of third predictor (default is 1)
-#'@param all default is OFF, ON returns Power(All)
 #'@return Power for Multiple Regression (ALL)
 #'@export
 #'
@@ -50,11 +49,11 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
     df2 = numeric(nruns)
     for (i in 1:nruns)
     {samp <- pop2[ sample(nrow(pop2), n), ]
-    test <- lm(formula = X1 ~ X2+ X3, data = samp)
+    test <- stats::lm(formula = X1 ~ X2+ X3, data = samp)
     c<-summary(test)
-    int[i] = coef(summary(test))[1,4]
-    b1[i] = coef(summary(test))[2,4] #grabs p from each analysis
-    b2[i] = coef(summary(test))[3,4]
+    int[i] = stats::coef(summary(test))[1,4]
+    b1[i] = stats::coef(summary(test))[2,4] #grabs p from each analysis
+    b2[i] = stats::coef(summary(test))[3,4]
     R2[i] = c$r.squared
     F[i]<-c$fstatistic[1]
     df1[i]<-c$fstatistic[2]
@@ -84,7 +83,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
 
     Power_b1<-mean(Powerall$rejectb1)
     Power_b2<-mean(Powerall$rejectb2)
-    pR2<-1-pf(F,df1, df2)
+    pR2<-1-stats::pf(F,df1, df2)
     Powerall$rejectR2 [pR2 < alpha] <- 1
     Powerall$rejectR2 [pR2 >= alpha] <- 0
     Power_R2<-mean(Powerall$rejectR2)
@@ -122,12 +121,12 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
   df2 = numeric(nruns)
   for (i in 1:nruns)
   {samp <- pop2[ sample(nrow(pop2), n), ]
-  test <- lm(formula = X1 ~ X2+ X3+ X4, data = samp)
+  test <- stats::lm(formula = X1 ~ X2+ X3+ X4, data = samp)
   c<-summary(test)
-  int[i] = coef(summary(test))[1,4]
-  b1[i] = coef(summary(test))[2,4] #grabs p from each analysis
-  b2[i] = coef(summary(test))[3,4]
-  b3[i] = coef(summary(test))[4,4]
+  int[i] = stats::coef(summary(test))[1,4]
+  b1[i] = stats::coef(summary(test))[2,4] #grabs p from each analysis
+  b2[i] = stats::coef(summary(test))[3,4]
+  b3[i] = stats::coef(summary(test))[4,4]
   R2[i] = c$r.squared
   F[i]<-c$fstatistic[1]
   df1[i]<-c$fstatistic[2]
@@ -165,7 +164,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
   Power_b1<-mean(Powerall$rejectb1)
   Power_b2<-mean(Powerall$rejectb2)
   Power_b3<-mean (Powerall$rejectb3)
-  pR2<-1-pf(F,df1, df2)
+  pR2<-1-stats::pf(F,df1, df2)
   Powerall$rejectR2 [pR2 < alpha] <- 1
   Powerall$rejectR2 [pR2 >= alpha] <- 0
   Power_R2<-mean(Powerall$rejectR2)

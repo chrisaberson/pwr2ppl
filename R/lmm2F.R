@@ -62,7 +62,7 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                 r67=NULL, r68=NULL,
                 r78=NULL, r=NULL, s = NULL, n, alpha=.05)
 {
-
+  V1<-V2<-V3<-V4<-V5<-V6<-V7<-V8<-id<-NULL
   levels<-NA
   levels[is.na(m4.1) & is.na(m4.2)]<-2
   levels[!is.na(m3.1) & !is.na(m3.2)]<-3
@@ -105,19 +105,19 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
     model3<-nlme::lme(dv~iv1+iv2+iv1*iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #AxB
-    lm<-anova(base,model1,model2,model3)
+    lm<-stats::anova(base,model1,model2,model3)
     df1<-lm$df[2]-lm$df[1]
     df2<-lm$df[3]-lm$df[2]
     df3<-lm$df[4]-lm$df[3]
     lambdalm1<-lm$L.Ratio[2]
     lambdalm2<-lm$L.Ratio[3]
     lambdalm3<-lm$L.Ratio[4]
-    tabledlm1<-qchisq(.95, df1)
-    tabledlm2<-qchisq(.95, df2)
-    tabledlm3<-qchisq(.95, df3)
-    powerlm1<-round(1-pchisq(tabledlm1, df1, lambdalm1),3)
-    powerlm2<-round(1-pchisq(tabledlm2, df2, lambdalm2),3)
-    powerlm3<-round(1-pchisq(tabledlm3, df3, lambdalm3),3)
+    tabledlm1<-stats::qchisq(.95, df1)
+    tabledlm2<-stats::qchisq(.95, df2)
+    tabledlm3<-stats::qchisq(.95, df3)
+    powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
+    powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
+    powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
     {print(paste("Power Factor A for n =",n,"=", powerlm1))}
     {print(paste("Power Factor B for n =",n,"=", powerlm2))}
     {print(paste("Power AxB for n =",n,"=", powerlm3))}
@@ -168,19 +168,19 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
     model3<-nlme::lme(dv~iv1+iv2+iv1*iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #AxB
-    lm<-anova(base,model1,model2,model3)
+    lm<-stats::anova(base,model1,model2,model3)
     df1<-lm$df[2]-lm$df[1]
     df2<-lm$df[3]-lm$df[2]
     df3<-lm$df[4]-lm$df[3]
     lambdalm1<-lm$L.Ratio[2]
     lambdalm2<-lm$L.Ratio[3]
     lambdalm3<-lm$L.Ratio[4]
-    tabledlm1<-qchisq(.95, df1)
-    tabledlm2<-qchisq(.95, df2)
-    tabledlm3<-qchisq(.95, df3)
-    powerlm1<-round(1-pchisq(tabledlm1, df1, lambdalm1),3)
-    powerlm2<-round(1-pchisq(tabledlm2, df2, lambdalm2),3)
-    powerlm3<-round(1-pchisq(tabledlm3, df3, lambdalm3),3)
+    tabledlm1<-stats::qchisq(.95, df1)
+    tabledlm2<-stats::qchisq(.95, df2)
+    tabledlm3<-stats::qchisq(.95, df3)
+    powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
+    powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
+    powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
     {print(paste("Power Factor A for n =",n,"=", powerlm1))}
     {print(paste("Power Factor B for n =",n,"=", powerlm2))}
     {print(paste("Power AxB for n =",n,"=", powerlm3))}
@@ -233,19 +233,19 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
     model3<-nlme::lme(dv~iv1+iv2+iv1*iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #AxB
-    lm<-anova(base,model1,model2,model3)
+    lm<-stats::anova(base,model1,model2,model3)
     df1<-lm$df[2]-lm$df[1]
     df2<-lm$df[3]-lm$df[2]
     df3<-lm$df[4]-lm$df[3]
     lambdalm1<-lm$L.Ratio[2]
     lambdalm2<-lm$L.Ratio[3]
     lambdalm3<-lm$L.Ratio[4]
-    tabledlm1<-qchisq(.95, df1)
-    tabledlm2<-qchisq(.95, df2)
-    tabledlm3<-qchisq(.95, df3)
-    powerlm1<-round(1-pchisq(tabledlm1, df1, lambdalm1),3)
-    powerlm2<-round(1-pchisq(tabledlm2, df2, lambdalm2),3)
-    powerlm3<-round(1-pchisq(tabledlm3, df3, lambdalm3),3)
+    tabledlm1<-stats::qchisq(.95, df1)
+    tabledlm2<-stats::qchisq(.95, df2)
+    tabledlm3<-stats::qchisq(.95, df3)
+    powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
+    powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
+    powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
     {print(paste("Power Factor A for n =",n,"=", powerlm1))}
     {print(paste("Power Factor B for n =",n,"=", powerlm2))}
     {print(paste("Power AxB for n =",n,"=", powerlm3))}

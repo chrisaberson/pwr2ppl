@@ -18,7 +18,7 @@ ChiES<-function(phi, df, nlow, nhigh, by = 1, alpha=.05)
     else
       for(n in seq(nlow,nhigh, by)){
         lambda<-n*phi^2
-        tabled<-qchisq(1-alpha, df=df)
-        power<-round(1-pchisq(tabled, df=df, lambda),4)
+        tabled<-stats::qchisq(1-alpha, df=df)
+        power<-round(1-stats::pchisq(tabled, df=df, lambda),4)
         print(paste("Power for n of", n, "=", power))}
   }}

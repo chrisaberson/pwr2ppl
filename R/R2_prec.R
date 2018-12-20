@@ -12,7 +12,6 @@
 
 R2_prec<-function(R2,nlow, nhigh, pred, ci=.95, by=1)
 {
-    library(MBESS)
     for(n in seq(nlow,nhigh, by)){
     df1<-pred
     df2<-n-pred-1

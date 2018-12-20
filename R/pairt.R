@@ -17,11 +17,11 @@ pairt<-function(m1=NULL,m2=NULL, s=NULL, n=NULL, r = NULL, alpha=.05)
   data <- MASS::mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(cov,corr,corr,cov), ncol = 2),
                  empirical = TRUE)
   data<-as.data.frame(data)
-  t<-t.test(data$V1,data$V2, paired=TRUE)
+  t<-stats::t.test(data$V1,data$V2, paired=TRUE)
   lambda<-abs(t$statistic)^2
   minusalpha<-1-alpha
-  Ft<-qf(minusalpha, 1, n-1)
-  Power<-round(1-pf(Ft, 1,n-1,lambda),4)
+  Ft<-stats::qf(minusalpha, 1, n-1)
+  Power<-round(1-stats::pf(Ft, 1,n-1,lambda),4)
   values<-list(Power = Power, lambda=lambda)
   print(paste("Power for n = ", n, "is", Power))
   }

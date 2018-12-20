@@ -23,6 +23,7 @@ win1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
                     r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
                     n, alpha=.05)
 {
+V1<-V2<-V3<-V4<-dv<-iv<-id<-NULL
 levels<-NA
 levels[is.na(m4) & is.na(m3)]<-2
 levels[is.na(m4) & !is.na(m3)]<-3
@@ -41,7 +42,7 @@ if(levels=="2"){
     out<-dplyr::rename(out, y1 = V1, y2 = V2)
     out$id <- rep(1:nrow(out))
     out$id<-as.factor(out$id)
-    out<-tidyr::gathergather(out,key="iv",value="dv",-id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
     model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
@@ -53,8 +54,8 @@ if(levels=="2"){
     f2<-eta2/(1-eta2)
     lambda<-f2*df2
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, df1, df2)
-    power<-round(1-pf(Ft, df1,df2,lambda),3)
+    Ft<-stats::qf(minusalpha, df1, df2)
+    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
     gge<-model$`Sphericity Corrections`$GGe
     hfe<-model$`Sphericity Corrections`$HFe
     ggdf1<-gge*df1
@@ -63,10 +64,10 @@ if(levels=="2"){
     hfdf2<-hfe*df2
     lambdagg<-f2*ggdf2
     lambdahf<-f2*hfdf2
-    Ftgg<-qf(minusalpha, ggdf1, ggdf2)
-    Fthf<-qf(minusalpha, hfdf1, hfdf2)
-    powergg<-round(1-pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
-    powerhf<-round(1-pf(Fthf, hfdf1,hfdf2,lambdahf),3)
+    Ftgg<-stats::qf(minusalpha, ggdf1, ggdf2)
+    Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
+    powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
+    powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
     {print(paste("Power (Unadjusted) for n =",n,"=", power))}
     {print(paste("Adjusted Power not relevant with two levels"))}}
 
@@ -97,8 +98,8 @@ if(levels=="2"){
     f2<-eta2/(1-eta2)
     lambda<-f2*df2
     minusalpha<-1-alpha
-    Ft<-qf(minusalpha, df1, df2)
-    power<-round(1-pf(Ft, df1,df2,lambda),3)
+    Ft<-stats::qf(minusalpha, df1, df2)
+    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
     gge<-round(model$`Sphericity Corrections`$GGe,3)
     hfe<-round(model$`Sphericity Corrections`$HFe,3)
     ggdf1<-gge*df1
@@ -107,10 +108,10 @@ if(levels=="2"){
     hfdf2<-hfe*df2
     lambdagg<-f2*ggdf2
     lambdahf<-f2*hfdf2
-    Ftgg<-qf(minusalpha, ggdf1, ggdf2)
-    Fthf<-qf(minusalpha, hfdf1, hfdf2)
-    powergg<-round(1-pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
-    powerhf<-round(1-pf(Fthf, hfdf1,hfdf2,lambdahf),3)
+    Ftgg<-stats::qf(minusalpha, ggdf1, ggdf2)
+    Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
+    powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
+    powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
     {print(paste("Power (Unadjusted) for n =",n,"=", power))}
     {print(paste("Power H-F Adjusted (Epsilon = ",hfe ,") for n =",n, "=", powerhf))}
     {print(paste("Power G-G Adjusted (Epsilon = ", gge,") for n =",n, "=", powergg))}}
@@ -146,8 +147,8 @@ if(levels=="2"){
       f2<-eta2/(1-eta2)
       lambda<-f2*df2
       minusalpha<-1-alpha
-      Ft<-qf(minusalpha, df1, df2)
-      power<-round(1-pf(Ft, df1,df2,lambda),3)
+      Ft<-stats::qf(minusalpha, df1, df2)
+      power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
       gge<-round(model$`Sphericity Corrections`$GGe,3)
       hfe<-round(model$`Sphericity Corrections`$HFe,3)
       ggdf1<-gge*df1
@@ -156,10 +157,10 @@ if(levels=="2"){
       hfdf2<-hfe*df2
       lambdagg<-f2*ggdf2
       lambdahf<-f2*hfdf2
-      Ftgg<-qf(minusalpha, ggdf1, ggdf2)
-      Fthf<-qf(minusalpha, hfdf1, hfdf2)
-      powergg<-round(1-pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
-      powerhf<-round(1-pf(Fthf, hfdf1,hfdf2,lambdahf),3)
+      Ftgg<-stats::qf(minusalpha, ggdf1, ggdf2)
+      Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
+      powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
+      powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
       {print(paste("Power (Unadjusted) for n =",n,"=", power))}
       {print(paste("Power H-F Adjusted (Epsilon = ",hfe ,") for n =",n, "=", powerhf))}
       {print(paste("Power G-G Adjusted (Epsilon = ", gge,") for n =",n, "=", powergg))}}

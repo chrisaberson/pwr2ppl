@@ -62,7 +62,7 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
                 r78=NULL, r=NULL, s = NULL, n, alpha=.05)
 
 {
-
+  V1<-V2<-V3<-V4<-V5<-V6<-V7<-V8<-dv<-id<-iv1<-iv2<-NULL
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
@@ -125,12 +125,12 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     lambdaB<-f2B*dfWB
     lambdaAB<-f2AB*dfWAB
     minusalpha<-1-alpha
-    FtA<-qf(minusalpha, dfA, dfWA)
-    FtB<-qf(minusalpha, dfB, dfWB)
-    FtAB<-qf(minusalpha, dfAB, dfWAB)
-    powerA<-round(1-pf(FtA, dfA,dfWA,lambdaA),3)
-    powerB<-round(1-pf(FtB, dfB,dfWB,lambdaB),3)
-    powerAB<-round(1-pf(FtAB, dfAB,dfWAB,lambdaAB),3)
+    FtA<-stats::qf(minusalpha, dfA, dfWA)
+    FtB<-stats::qf(minusalpha, dfB, dfWB)
+    FtAB<-stats::qf(minusalpha, dfAB, dfWAB)
+    powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
+    powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
+    powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
     {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
     {print(paste("Power Factor B (Unadjusted) for n =",n,"=", powerB))}
     {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
@@ -201,12 +201,12 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       lambdaB<-f2B*dfWB
       lambdaAB<-f2AB*dfWAB
       minusalpha<-1-alpha
-      FtA<-qf(minusalpha, dfA, dfWA)
-      FtB<-qf(minusalpha, dfB, dfWB)
-      FtAB<-qf(minusalpha, dfAB, dfWAB)
-      powerA<-round(1-pf(FtA, dfA,dfWA,lambdaA),3)
-      powerB<-round(1-pf(FtB, dfB,dfWB,lambdaB),3)
-      powerAB<-round(1-pf(FtAB, dfAB,dfWAB,lambdaAB),3)
+      FtA<-stats::qf(minusalpha, dfA, dfWA)
+      FtB<-stats::qf(minusalpha, dfB, dfWB)
+      FtAB<-stats::qf(minusalpha, dfAB, dfWAB)
+      powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
+      powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
+      powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
       ggeA<-round(model$`Sphericity Corrections`$GGe[1],3)
       ggeAB<-round(model$`Sphericity Corrections`$GGe[2],3)
       hfeA<-round(model$`Sphericity Corrections`$HFe[1],3)
@@ -225,14 +225,14 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       lambdaggAB<-f2AB*ggdfWAB
       lambdahfA<-f2A*hfdfWA
       lambdahfAB<-f2AB*hfdfWAB
-      FtggA<-qf(minusalpha, ggdfA, ggdfWA)
-      FtggAB<-qf(minusalpha, ggdfAB, ggdfWAB)
-      FthfA<-qf(minusalpha, hfdfA, hfdfWA)
-      FthfAB<-qf(minusalpha, hfdfAB, hfdfWAB)
-      powerggA<-round(1-pf(FtggA, ggdfA,ggdfWA,lambdaggA),3)
-      powerggAB<-round(1-pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
-      powerhfA<-round(1-pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
-      powerhfAB<-round(1-pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
+      FtggA<-stats::qf(minusalpha, ggdfA, ggdfWA)
+      FtggAB<-stats::qf(minusalpha, ggdfAB, ggdfWAB)
+      FthfA<-stats::qf(minusalpha, hfdfA, hfdfWA)
+      FthfAB<-stats::qf(minusalpha, hfdfAB, hfdfWAB)
+      powerggA<-round(1-stats::pf(FtggA, ggdfA,ggdfWA,lambdaggA),3)
+      powerggAB<-round(1-stats::pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
+      powerhfA<-round(1-stats::pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
+      powerhfAB<-round(1-stats::pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
       {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
       {print(paste("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n =",n, "=", powerhfA))}
       {print(paste("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n =",n, "=", powerggA))}
@@ -310,12 +310,12 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     lambdaB<-f2B*dfWB
     lambdaAB<-f2AB*dfWAB
     minusalpha<-1-alpha
-    FtA<-qf(minusalpha, dfA, dfWA)
-    FtB<-qf(minusalpha, dfB, dfWB)
-    FtAB<-qf(minusalpha, dfAB, dfWAB)
-    powerA<-round(1-pf(FtA, dfA,dfWA,lambdaA),3)
-    powerB<-round(1-pf(FtB, dfB,dfWB,lambdaB),3)
-    powerAB<-round(1-pf(FtAB, dfAB,dfWAB,lambdaAB),3)
+    FtA<-stats::qf(minusalpha, dfA, dfWA)
+    FtB<-stats::qf(minusalpha, dfB, dfWB)
+    FtAB<-stats::qf(minusalpha, dfAB, dfWAB)
+    powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
+    powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
+    powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
     ggeA<-round(model$`Sphericity Corrections`$GGe[1],3)
     ggeAB<-round(model$`Sphericity Corrections`$GGe[2],3)
     hfeA<-round(model$`Sphericity Corrections`$HFe[1],3)
@@ -334,14 +334,14 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     lambdaggAB<-f2AB*ggdfWAB
     lambdahfA<-f2A*hfdfWA
     lambdahfAB<-f2AB*hfdfWAB
-    FtggA<-qf(minusalpha, ggdfA, ggdfWA)
-    FtggAB<-qf(minusalpha, ggdfAB, ggdfWAB)
-    FthfA<-qf(minusalpha, hfdfA, hfdfWA)
-    FthfAB<-qf(minusalpha, hfdfAB, hfdfWAB)
-    powerggA<-round(1-pf(FtggA, ggdfA,ggdfWA,lambdaggA),3)
-    powerggAB<-round(1-pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
-    powerhfA<-round(1-pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
-    powerhfAB<-round(1-pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
+    FtggA<-stats::qf(minusalpha, ggdfA, ggdfWA)
+    FtggAB<-stats::qf(minusalpha, ggdfAB, ggdfWAB)
+    FthfA<-stats::qf(minusalpha, hfdfA, hfdfWA)
+    FthfAB<-stats::qf(minusalpha, hfdfAB, hfdfWAB)
+    powerggA<-round(1-stats::pf(FtggA, ggdfA,ggdfWA,lambdaggA),3)
+    powerggAB<-round(1-stats::pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
+    powerhfA<-round(1-stats::pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
+    powerhfAB<-round(1-stats::pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
     {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
     {print(paste("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n =",n, "=", powerhfA))}
     {print(paste("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n =",n, "=", powerggA))}

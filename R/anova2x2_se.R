@@ -20,38 +20,38 @@
 
 anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,s2.1=NULL,s2.2=NULL,
                           n1.1=NULL,n1.2=NULL,n2.1=NULL,n2.2=NULL, alpha=.05){
-  x<-rnorm(n1.1,m1.1,s1.1)
+  x<-stats::rnorm(n1.1,m1.1,s1.1)
   X<-x
   MEAN<-m1.1
   SD<-s1.1
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   A<-rep("A1",n1.1)
   B<-rep("B1",n1.1)
   l1.1<-data.frame(y, A, B)
-  x<-rnorm(n1.2,m1.2,s1.2)
+  x<-stats::rnorm(n1.2,m1.2,s1.2)
   X<-x
   MEAN<-m1.2
   SD<-s1.2
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   A<-rep("A1",n1.2)
   B<-rep("B2",n1.2)
   l1.2<-data.frame(y, A, B)
-  x<-rnorm(n2.1,m2.1,s2.1)
+  x<-stats::rnorm(n2.1,m2.1,s2.1)
   X<-x
   MEAN<-m2.1
   SD<-s2.1
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   A<-rep("A2",n2.1)
   B<-rep("B1",n2.1)
   l2.1<-data.frame(y, A, B)
-  x<-rnorm(n2.2,m2.2,s2.2)
+  x<-stats::rnorm(n2.2,m2.2,s2.2)
   X<-x
   MEAN<-m2.2
   SD<-s2.2
-  Z <- (((X - mean(X, na.rm = TRUE))/sd(X, na.rm = TRUE))) * SD
+  Z <- (((X - mean(X, na.rm = TRUE))/stats::sd(X, na.rm = TRUE))) * SD
   y<-MEAN + Z
   A<-rep("A2",n2.2)
   B<-rep("B2",n2.2)
@@ -62,7 +62,7 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   dataB1<-subset(simdat, B=="B1")
   dataB2<-subset(simdat, B=="B2")
   options(contrasts=c("contr.sum", "contr.poly"))
-  anova<-aov(y~A*B, data=simdat)
+  anova<-stats::aov(y~A*B, data=simdat)
   anova<-car::Anova(anova, type="III")
   SSwin<-anova[5,1] #row column
   dfwin<-anova[5,2]
@@ -73,17 +73,17 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   MSwin<-SSwin/dfwin
 
   options(contrasts=c("contr.sum", "contr.poly"))
-  anoAatB1<-aov(y~A, data=dataB1)
+  anoAatB1<-stats::aov(y~A, data=dataB1)
   anoAatB1<-car::Anova(anoAatB1, type="III")
   options(contrasts=c("contr.sum", "contr.poly"))
-  anoAatB2<-aov(y~A, data=dataB2)
+  anoAatB2<-stats::aov(y~A, data=dataB2)
   anoAatB2<-car::Anova(anoAatB2, type="III")
 
   options(contrasts=c("contr.sum", "contr.poly"))
-  anoBatA1<-aov(y~B, data=dataA1)
+  anoBatA1<-stats::aov(y~B, data=dataA1)
   anoBatA1<-car::Anova(anoBatA1,type="III")
   options(contrasts=c("contr.sum", "contr.poly"))
-  anoBatA2<-aov(y~B, data=dataA2)
+  anoBatA2<-stats::aov(y~B, data=dataA2)
   anoBatA2<-car::Anova(anoBatA2, type="III")
 
 
@@ -94,16 +94,16 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   f2BatA1<-eta2BatA1/(1-eta2BatA1)
   lambdaBatA1<-f2BatA1*dfwinSE
   minusalpha<-1-alpha
-  FtBatA1<-qf(minusalpha, dfBatA1, dfwinSE)
-  power.BatA1<-round(1-pf(FtBatA1, dfBatA1,dfwinSE,lambdaBatA1),3)
+  FtBatA1<-stats::qf(minusalpha, dfBatA1, dfwinSE)
+  power.BatA1<-round(1-stats::pf(FtBatA1, dfBatA1,dfwinSE,lambdaBatA1),3)
 
   SSBatA2<-anoBatA2[2,1]
   dfBatA2<-anoBatA2[2,2]
   eta2BatA2<-SSBatA2/SST
   f2BatA2<-eta2BatA2/(1-eta2BatA2)
   lambdaBatA2<-f2BatA2*dfwinSE
-  FtBatA2<-qf(minusalpha, dfBatA2, dfwinSE)
-  power.BatA2<-round(1-pf(FtBatA2, dfBatA2,dfwinSE,lambdaBatA2),3)
+  FtBatA2<-stats::qf(minusalpha, dfBatA2, dfwinSE)
+  power.BatA2<-round(1-stats::pf(FtBatA2, dfBatA2,dfwinSE,lambdaBatA2),3)
 
   SSAatB1<-anoAatB1[2,1]
   dfAatB1<-anoAatB1[2,2]
@@ -111,16 +111,16 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   eta2AatB1<-SSAatB1/SST
   f2AatB1<-eta2AatB1/(1-eta2AatB1)
   lambdaAatB1<-f2AatB1*dfwinSE
-  FtAatB1<-qf(minusalpha, dfAatB1, dfwinSE)
-  power.AatB1<-round(1-pf(FtAatB1, dfAatB1,dfwinSE,lambdaAatB1),3)
+  FtAatB1<-stats::qf(minusalpha, dfAatB1, dfwinSE)
+  power.AatB1<-round(1-stats::pf(FtAatB1, dfAatB1,dfwinSE,lambdaAatB1),3)
 
   SSAatB2<-anoAatB2[2,1]
   dfAatB2<-anoAatB2[2,2]
   eta2AatB2<-SSAatB2/SST
   f2AatB2<-eta2AatB2/(1-eta2AatB2)
   lambdaAatB2<-f2AatB2*dfwinSE
-  FtAatB2<-qf(minusalpha, dfAatB2, dfwinSE)
-  power.AatB2<-round(1-pf(FtAatB2, dfAatB2,dfwinSE,lambdaAatB2),3)
+  FtAatB2<-stats::qf(minusalpha, dfAatB2, dfwinSE)
+  power.AatB2<-round(1-stats::pf(FtAatB2, dfAatB2,dfwinSE,lambdaAatB2),3)
   #values<-list(Power.A.at.B1 = power.AatB1, Power.A.at.B2 = power.AatB2,Power.B.at.A1 = power.BatA1, MB1 = m1.1,
               # MB2 = m1.2, Power.B.at.A2 = power.BatA2)
   {print(paste("Simple Effect Comparing M =",m1.1, "and", m2.1,". Power =", power.AatB1))}

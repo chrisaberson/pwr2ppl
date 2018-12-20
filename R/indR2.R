@@ -1,5 +1,5 @@
 #'Power for Comparing Independent R2 in Multiple Regression with Two or Three Predictors
-#'Requires correlatiosn between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+#'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'@param ry1_1 Correlation between DV (y) and first predictor (1), first test
 #'@param ry2_1 Correlation between DV (y) and second predictor (2), first test
 #'@param ry3_1 Correlation between DV (y) and third predictor (3), first test
@@ -15,6 +15,7 @@
 #'@param n1 Sample size first test
 #'@param n2 Sample size second test
 #'@param alpha Type I error (default is .05)
+#'@param tails number of tails for test (default is 2)
 #'@return Power for Comparing R2 Coefficients in Multiple Regression
 #'@export
 #'
@@ -40,10 +41,10 @@ indR2<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   pop2<-data.frame(pop2)
 
 
-values1<-lm(X1~X2+X3, pop1)
+values1<-stats::lm(X1~X2+X3, pop1)
 values1<-summary(values1)
 R2_1<-(values1$r.squared)
-values2<-lm(X1~X2+X3, pop2)
+values2<-stats::lm(X1~X2+X3, pop2)
 values2<-summary(values2)
 R2_2<-(values2$r.squared)
 SER2_1<-((4*R2_1)*(1-R2_1)^2)*((n1-pred-1)^2) / ((n1^2 - 1)* (n1+3))
@@ -53,8 +54,8 @@ diff<-abs(R2_1-R2_2)
 alphatails<-alpha/tails
 df<-n1+n2-pred-pred-1
 delta<-diff/SER2
-tabled<-qt(1-alphatails, df)
-Power<-round(1-pt(tabled,df,delta),3)
+tabled<-stats::qt(1-alphatails, df)
+Power<-round(1-stats::pt(tabled,df,delta),3)
 LL_diff<-round(diff - (tabled*SER2),3)
 UL_diff<-round(diff + (tabled*SER2),3)
 print(paste("Power =", Power, "n1 =", n1,", n2 =", n2), ", LLdiff = ",LL_diff, ", ULdiff = ", UL_diff)}
@@ -75,10 +76,10 @@ if (pred=="3")
                                                         ncol=4), empirical=TRUE)
 pop1<-data.frame(pop1)
 pop2<-data.frame(pop2)
-values1<-lm(X1~X2+X3+X4, pop1)
+values1<-stats::lm(X1~X2+X3+X4, pop1)
 values1<-summary(values1)
 R2_1<-(values1$r.squared)
-values2<-lm(X1~X2+X3+X4, pop2)
+values2<-stats::lm(X1~X2+X3+X4, pop2)
 values2<-summary(values2)
 R2_2<-(values2$r.squared)
 SER2_1<-((4*R2_1)*(1-R2_1)^2)*((n1-pred-1)^2) / ((n1^2 - 1)* (n1+3))
@@ -88,8 +89,8 @@ diff<-abs(R2_1-R2_2)
 alphatails<-alpha/tails
 df<-n1+n2-pred-pred-1
 delta<-diff/SER2
-tabled<-qt(1-alphatails, df)
-Power<-round(1-pt(tabled,df,delta),3)
+tabled<-stats::qt(1-alphatails, df)
+Power<-round(1-stats::pt(tabled,df,delta),3)
 LL_diff<-round(diff - (tabled*SER2),3)
 UL_diff<-round(diff + (tabled*SER2),3)
 

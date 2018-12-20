@@ -27,11 +27,11 @@ Chi2X3<-function(r1c1, r1c2, r1c3, r2c1, r2c2, r2c3, n, alpha=.05)
   pe3<-(r1c1+r1c2+r1c3)*(r1c3+r2c3)
   pe4<-(r2c1+r2c2+r2c3)*(r1c1+r2c1)
   pe5<-(r2c1+r2c2+r2c3)*(r1c2+r2c2)
-  pe6<-(r2c1+r2c2+r2c3)*(r1c3+r2c3)  
+  pe6<-(r2c1+r2c2+r2c3)*(r1c3+r2c3)
   lambda<-n*((((po1-pe1)^2)/pe1)+(((po2-pe2)^2)/pe2)+(((po3-pe3)^2)/pe3)+(((po4-pe4)^2)/pe4)+
                (((po5-pe5)^2)/pe5)+(((po6-pe6)^2)/pe6))
-  tabled<-qchisq(1-alpha, df=df)
-  power<-round(1-pchisq(tabled, df=df, lambda),3)
+  tabled<-stats::qchisq(1-alpha, df=df)
+  power<-round(1-stats::pchisq(tabled, df=df, lambda),3)
   sum<-po1+po2+po3+po4+po5+po6
   if(sum!=1.0){stop("Expected proportions must add to 1.0. Check input po values")
   }
