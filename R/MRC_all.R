@@ -9,32 +9,25 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep number of replications (default is 10000)
-#'@param my Mean of DV (default is 0)
-#'@param m1 Mean of first predictor (default is 0)
-#'@param m2 Mean of second redictor (default is 0)
-#'@param m3 Mean of third predictor (default is 0)
-#'@param sy Standard deviation of DV (default is 1)
-#'@param s1 Standard deviation of first predictor (default is 1)
-#'@param s2 Standard deviation of second predictor (default is 1)
-#'@param s3 Standard deviation of third predictor (default is 1)
 #'@return Power for Multiple Regression (ALL)
 #'@export
 #'
 #'
 
-MRC_all<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL, alpha=.05, rep = 10000,
-                        my=0,m1=0,m2=0,m3=0, sy=1,s1=1,s2=1,s3=1)
+
+MRC_all<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL, alpha=.05, rep = 10000)
   {
 
 pred<-NA
 pred[is.null(r23)]<-2
 pred[!is.null(r23)]<-3
 vary<-NA
-vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
+vary<-1;var1<-1;var2<-1; var3<-1
+
 
   if (pred=="2")
 
-    {pop <- MASS::mvrnorm(100000, mu = c(my, m1, m2), Sigma = matrix(c(vary, ry1, ry2,
+    {pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0), Sigma = matrix(c(vary, ry1, ry2,
                                                                      ry1, var1, r12,
                                                                      ry2, r12, var2),
                                                                    ncol = 3), empirical = TRUE)
@@ -103,7 +96,7 @@ vary<-sy^2;var1<-s1^2;var2<-s2^2; var3<-s3^2
 
   if (pred=="3")
     {
-  pop <- MASS::mvrnorm(100000, mu = c(my, m1, m2, m3),
+  pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0, 0),
                  Sigma = matrix(c(vary, ry1, ry2, ry3,
                                   ry1, var1, r12, r13,
                                   ry2, r12, var2, r23,
