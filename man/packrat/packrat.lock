@@ -1,0 +1,248 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.9.2
+RVersion: 3.5.0
+Repos: CRAN=https://cran.rstudio.com/
+
+Package: BH
+Source: CRAN
+Version: 1.66.0-1
+Hash: 4cc8883584b955ed01f38f68bc03af6d
+
+Package: MASS
+Source: CRAN
+Version: 7.3-50
+Hash: e8001243da35880bd81391d80eb4eeae
+
+Package: Matrix
+Source: CRAN
+Version: 1.2-14
+Hash: 521aa8772a1941dfdb007bf532d19dde
+Requires: lattice
+
+Package: MatrixModels
+Source: CRAN
+Version: 0.4-1
+Hash: 60a5c75e57aae4a0ce76cb7422939aaf
+Requires: Matrix
+
+Package: R6
+Source: CRAN
+Version: 2.2.2
+Hash: b2366cd9d2f3851a5704b4e192b985c2
+
+Package: Rcpp
+Source: CRAN
+Version: 0.12.16
+Hash: 8cc9dc88c11acdcf8a6dec4a0f1500bc
+
+Package: RcppEigen
+Source: CRAN
+Version: 0.3.3.4.0
+Hash: 134344925b2aff5e2522ae707a55b0f8
+Requires: Matrix, Rcpp
+
+Package: SparseM
+Source: CRAN
+Version: 1.77
+Hash: 08f1f60e1038957030bcd9f4a58d22d8
+
+Package: abind
+Source: CRAN
+Version: 1.4-5
+Hash: 1ceb86ef5ebe776ed4753ab6165eb6d7
+
+Package: assertthat
+Source: CRAN
+Version: 0.2.0
+Hash: e8805df54c65ac96d50235c44a82615c
+
+Package: car
+Source: CRAN
+Version: 3.0-0
+Hash: 1a046ad6ed92eeeec63054d990c83a20
+Requires: MASS, abind, carData, lme4, maptools, mgcv, nlme, nnet,
+    pbkrtest, quantreg, rio
+
+Package: carData
+Source: CRAN
+Version: 3.0-1
+Hash: 00cad119fbdf41ce0753711432ac50f5
+
+Package: cellranger
+Source: CRAN
+Version: 1.1.0
+Hash: 4e1ef4d099b0c5fd531a3938cf4624bd
+Requires: rematch, tibble
+
+Package: cli
+Source: CRAN
+Version: 1.0.0
+Hash: f4239f89feb7ddc65821e4514e9734ae
+Requires: assertthat, crayon
+
+Package: crayon
+Source: CRAN
+Version: 1.3.4
+Hash: ff2840dd9b0d563fc80377a5a45510cd
+
+Package: curl
+Source: CRAN
+Version: 3.2
+Hash: e3318ec2d42d15a38485bab047d114ba
+
+Package: data.table
+Source: CRAN
+Version: 1.11.2
+Hash: d314a0c785ee165e967aa43d30119438
+
+Package: forcats
+Source: CRAN
+Version: 0.3.0
+Hash: 770f3834b97a2c429bdecb7a5f27eb25
+Requires: magrittr, rlang, tibble
+
+Package: foreign
+Source: CRAN
+Version: 0.8-70
+Hash: efc6c29bf303d087f6cd9391cbcc2906
+
+Package: haven
+Source: CRAN
+Version: 1.1.1
+Hash: 9b11d96dcd65d5dab200b1979226bac3
+Requires: Rcpp, forcats, hms, readr, tibble
+
+Package: hms
+Source: CRAN
+Version: 0.4.2
+Hash: b4096a4f6a6736138e9a825c2baaacf0
+Requires: pkgconfig, rlang
+
+Package: lattice
+Source: CRAN
+Version: 0.20-35
+Hash: 26b9d7f0d0cb4e1d1bbb97f867c82d89
+
+Package: lme4
+Source: CRAN
+Version: 1.1-17
+Hash: a41aab354a4af353838c78afcbe4cb82
+Requires: MASS, Matrix, Rcpp, RcppEigen, lattice, minqa, nlme, nloptr
+
+Package: magrittr
+Source: CRAN
+Version: 1.5
+Hash: bdc4d48c3135e8f3b399536ddf160df4
+
+Package: maptools
+Source: CRAN
+Version: 0.9-2
+Hash: 2dfbad6ef57f83a91e4e9d4ccc0807cd
+Requires: foreign, lattice, sp
+
+Package: mgcv
+Source: CRAN
+Version: 1.8-23
+Hash: fa59e265e8cb2e97d2043b399a13c2b9
+Requires: Matrix, nlme
+
+Package: minqa
+Source: CRAN
+Version: 1.2.4
+Hash: ccfdf7c20ddf8bff606fe8d4ffccebd6
+Requires: Rcpp
+
+Package: nlme
+Source: CRAN
+Version: 3.1-137
+Hash: 6166071071587a867cbe534e84fc5c0c
+Requires: lattice
+
+Package: nloptr
+Source: CRAN
+Version: 1.0.4
+Hash: 8053df240a4635aeb54fc68c6de67709
+
+Package: nnet
+Source: CRAN
+Version: 7.3-12
+Hash: 42c83a1f063b40fd8bb6ad68ed528aa5
+
+Package: openxlsx
+Source: CRAN
+Version: 4.0.17
+Hash: f3c28cd5e2149befa16c961e6fce6a1a
+Requires: Rcpp
+
+Package: packrat
+Source: CRAN
+Version: 0.4.9-2
+Hash: 47dbd4e04dcd01da02a2021203205cb1
+
+Package: pbkrtest
+Source: CRAN
+Version: 0.4-7
+Hash: f195c3a0f527f69c491569c5cbaaf1db
+Requires: MASS, Matrix, lme4
+
+Package: pillar
+Source: CRAN
+Version: 1.2.2
+Hash: 9c4da206e8c0b21a14667c1baf69ee52
+Requires: cli, crayon, rlang, utf8
+
+Package: pkgconfig
+Source: CRAN
+Version: 2.0.1
+Hash: 0dda4a2654a22b36a715c2b0b6fbacac
+
+Package: quantreg
+Source: CRAN
+Version: 5.35
+Hash: 19eba9095f4e5ead2de5a35211bdbb7b
+Requires: Matrix, MatrixModels, SparseM
+
+Package: readr
+Source: CRAN
+Version: 1.1.1
+Hash: 70f2df9a128697b88134875a72dfd322
+Requires: BH, R6, Rcpp, hms, tibble
+
+Package: readxl
+Source: CRAN
+Version: 1.1.0
+Hash: 662d00d972d242ff41d5166685ecc951
+Requires: Rcpp, cellranger, tibble
+
+Package: rematch
+Source: CRAN
+Version: 1.0.1
+Hash: ad4faf59e7611117ff165817074c50c7
+
+Package: rio
+Source: CRAN
+Version: 0.5.10
+Hash: 98b9636341c1979dd8f0ea93a9922384
+Requires: curl, data.table, foreign, haven, openxlsx, readxl, tibble
+
+Package: rlang
+Source: CRAN
+Version: 0.2.0
+Hash: 647e2e50a72557d1a770dcd6701e562b
+
+Package: sp
+Source: CRAN
+Version: 1.2-7
+Hash: 6faf282e9f36440f7b51a30ed83e7621
+Requires: lattice
+
+Package: tibble
+Source: CRAN
+Version: 1.4.2
+Hash: 83895360ce4f8d2ce92eee00526b5b0b
+Requires: cli, crayon, pillar, rlang
+
+Package: utf8
+Source: CRAN
+Version: 1.1.3
+Hash: a2fe6a996668ee5850b7719f365e831b

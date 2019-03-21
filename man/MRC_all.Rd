@@ -28,22 +28,6 @@ MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
 \item{alpha}{Type I error (default is .05)}
 
 \item{rep}{number of replications (default is 10000)}
-
-\item{my}{Mean of DV (default is 0)}
-
-\item{m1}{Mean of first predictor (default is 0)}
-
-\item{m2}{Mean of second redictor (default is 0)}
-
-\item{m3}{Mean of third predictor (default is 0)}
-
-\item{sy}{Standard deviation of DV (default is 1)}
-
-\item{s1}{Standard deviation of first predictor (default is 1)}
-
-\item{s2}{Standard deviation of second predictor (default is 1)}
-
-\item{s3}{Standard deviation of third predictor (default is 1)}
 }
 \value{
 Power for Multiple Regression (ALL)

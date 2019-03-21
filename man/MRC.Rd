@@ -8,9 +8,7 @@ Example code below for three predictors. Expand as needed for four or five}
 MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
   r12 = NULL, r13 = NULL, r14 = NULL, r15 = NULL, r23 = NULL,
   r24 = NULL, r25 = NULL, r34 = NULL, r35 = NULL, r45 = NULL,
-  n = NULL, alpha = 0.05, rep = 10000, my = 0, m1 = 0, m2 = 0,
-  m3 = 0, m4 = 0, m5 = 0, sy = 1, s1 = 1, s2 = 1, s3 = 1,
-  s4 = 1, s5 = 1)
+  n = NULL, alpha = 0.05, rep = 10000)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}
@@ -48,30 +46,6 @@ MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
 \item{alpha}{Type I error (default is .05)}
 
 \item{rep}{number of replications (default is 10000)}
-
-\item{my}{Mean of DV (default is 0)}
-
-\item{m1}{Mean of first predictor (default is 0)}
-
-\item{m2}{Mean of second redictor (default is 0)}
-
-\item{m3}{Mean of third predictor (default is 0)}
-
-\item{m4}{Mean of fourth predictor (default is 0)}
-
-\item{m5}{Mean of fifth predictor (default is 0)}
-
-\item{sy}{Standard deviation of DV (default is 1)}
-
-\item{s1}{Standard deviation of first predictor (default is 1)}
-
-\item{s2}{Standard deviation of second predictor (default is 1)}
-
-\item{s3}{Standard deviation of third predictor (default is 1)}
-
-\item{s4}{Standard deviation of fourth predictor (default is 1)}
-
-\item{s5}{Standard deviation of fifth predictor (default is 1)}
 }
 \value{
 Power for Multiple Regression with Two to Five Predictors
