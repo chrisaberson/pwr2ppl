@@ -30,3 +30,6 @@ Compute power for a Paired t-test
 Takes means, sd, and sample sizes. Alpha is .05 by default, alterative values may be entered by user.
 correlation (r) defaults to .50.
 }
+\examples{
+pairt(m1=25,m2=20, s = 5, n = 25, r = .5)
+}

@@ -43,3 +43,7 @@ Power for the One Factor Between Subjects ANOVA
 Compute power for a One Factor Between Subjects ANOVA with four levels
 Takes means, sds, and sample sizes for each group
 }
+\examples{
+anova1f_4(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10, s3=10,
+s4=10, n1=60, n2=60, n3=60, n4=60)
+}

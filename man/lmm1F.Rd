@@ -49,3 +49,9 @@ Power for the One Factor Within Subjects Linear Mixed Model
 Compute power for a One Factor Within Subjects Linear Mixed Model with up to four levels.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+lmm1F(m1=-.25,m2=.00,m3=.10,m4=.15,s1=.4,s2=.5,s3=.6,s4=.7,
+r12=.50, r13=.30, r14=.15, r23=.5, r24=.30, r34=.50, n=25)
+lmm1F(m1=-.25,m2=.00,m3=.10,m4=.15,s1=.4,s2=.5,s3=2.5,s4=2.0,
+r12=.50, r13=.30, r14=.10, r23=.5, r24=.30, r34=.40, n=100)
+}

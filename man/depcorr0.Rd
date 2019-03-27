@@ -38,3 +38,6 @@ Power for Comparing Two Dependent Correlations, No Variables in Common
 Compute Power for Comparing Two Dependent Correlations, No Variables in Common
 Takes correlations and range of values. First variable in each pair is termed predictor, second is DV
 }
+\examples{
+depcorr0(r12=.4,rxy=.7,r1x=.3,r1y=.1,r2x=.45,r2y=.35,  nlow=20,nhigh=200,by=10, tails=2)
+}

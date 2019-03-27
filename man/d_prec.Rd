@@ -27,3 +27,6 @@ Precision Analyses for Standardized Mean Differences
 \description{
 Compute Precision Analyses for Standardized Mean Differences
 }
+\examples{
+d_prec(d=.4,nlow=100, nhigh=2000, propn1=.5, ci=.95, by=100)
+}

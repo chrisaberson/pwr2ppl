@@ -27,3 +27,6 @@ Power for Pearson's Correlation
 Compute power for Pearson's Correlation
 Takes correlation and range of values
 }
+\examples{
+corr(r=.30, nlow=60, nhigh=100,by=2)
+}

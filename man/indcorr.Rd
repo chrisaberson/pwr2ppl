@@ -32,3 +32,6 @@ Power for Comparing Two Independent Correlations
 Compute Power for Comparing Two Independent Correlations
 Takes correlations and range of values
 }
+\examples{
+indcorr(r1=.3,r2=.1,nlow=200,nhigh=800,by=50, tails=1)
+}

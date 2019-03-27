@@ -27,3 +27,6 @@ Precision Analyses for R-Squared
 Compute Precision Analyses for R-Squared
 This approach simply loops a function from MBESS
 }
+\examples{
+R2_prec(R2=.467, nlow=24, nhigh=100, pred=3, by=4)
+}

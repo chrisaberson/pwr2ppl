@@ -8,7 +8,7 @@ Example code below for three predictors. Expand as needed for four or five}
 MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
   r12 = NULL, r13 = NULL, r14 = NULL, r15 = NULL, r23 = NULL,
   r24 = NULL, r25 = NULL, r34 = NULL, r35 = NULL, r45 = NULL,
-  n = NULL, alpha = 0.05, rep = 10000)
+  n = NULL, alpha = 0.05)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}
@@ -44,8 +44,6 @@ MRC(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL, ry5 = NULL,
 \item{n}{Sample size}
 
 \item{alpha}{Type I error (default is .05)}
-
-\item{rep}{number of replications (default is 10000)}
 }
 \value{
 Power for Multiple Regression with Two to Five Predictors
@@ -53,4 +51,9 @@ Power for Multiple Regression with Two to Five Predictors
 \description{
 Compute power for Multiple Regression with up to Five Predictors
 Example code below for three predictors. Expand as needed for four or five
+}
+\examples{
+MRC(ry1=.40,ry2=.40, r12=-.15,n=30)
+MRC(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,n=24)
+
 }

@@ -26,3 +26,6 @@ Power for Logistic Regression with Continuous Predictors
 \description{
 Compute Power for Logistic Regression with Continuous Predictors
 }
+\examples{
+LRcont(OR = 4.05, ER = .463,power=.95)
+}

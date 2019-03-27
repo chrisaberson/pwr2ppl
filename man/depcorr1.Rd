@@ -31,3 +31,6 @@ Power for Comparing Dependent Correlations, One Variable in Common
 Compute Power for Comparing Two Dependent Correlations, One Variable in Common
 Takes correlations and range of values
 }
+\examples{
+depcorr1(r1y=.3,r2y=.04,r12 = .2, nlow=100,nhigh=300,by=10, tails=2)
+}

@@ -29,3 +29,7 @@ Power for the t-test from d statistic
 Compute power for a t test using d statistic
 Takes d, sample size range, type of test, and tails.
 }
+\examples{
+tfromd(d=.2,nlow=10,nhigh=200,by=10, test="P")
+tfromd(d=.2,nlow=10,nhigh=200,by=10, test="I")
+}

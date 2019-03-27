@@ -36,3 +36,6 @@ Power for the One Factor ANOVA
 Compute power for a One Factor ANOVA with three levels.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+anova1f_3(m1=80, m2=82, m3=82, s1=10, s2=10, s3=10, n1=60, n2=60, n3=60)
+}

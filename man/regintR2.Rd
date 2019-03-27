@@ -30,3 +30,6 @@ Power for Regression Interaction (R2 Change Approach)
 \description{
 Compute Power for Regression Interaction (R2 Change Approach)
 }
+\examples{
+regintR2(R2Mod=.092,R2Ch=.032,mod_pred=3, ch_pred=1,nlow=100,nhigh=400,by=20)
+}

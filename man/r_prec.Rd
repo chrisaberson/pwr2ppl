@@ -25,3 +25,6 @@ Precision Analyses for Correlations
 Compute Precision Analyses for Correlations
 This approach simply loops a function from MBESS
 }
+\examples{
+r_prec(r=.3, nlow=80, nhigh=400, by=20, ci=.95)
+}

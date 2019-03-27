@@ -49,3 +49,7 @@ Mutliple Regression shortcuts with three predictors
 Compute Mutliple Regression shortcuts with three predictors (will expand to handle two to five)
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)
 }
+\examples{
+MRC_shortcuts(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,
+n=110, my=1,m1=1,m2=1,m3=1,sy=7,s1=1,s2=1,s3=2)
+}

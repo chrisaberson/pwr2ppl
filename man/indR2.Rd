@@ -49,3 +49,8 @@ Power for Comparing R2 Coefficients in Multiple Regression
 Power for Comparing Independent R2 in Multiple Regression with Two or Three Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }
+\examples{
+indR2(ry1_1=.40, ry2_1=.40, ry3_1 =-.40, r12_1=-.15,r13_1=-.60, r23_1=.25,
+ry1_2=.40, ry2_2=.10, ry3_2 =-.40, r12_2=-.15,r13_2=-.60, r23_2=.25,
+n1=115,n2=115, alpha=.05)
+}

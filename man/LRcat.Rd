@@ -26,3 +26,6 @@ Power for Logistic Regression with a Single Categorical Predictor
 \description{
 Compute Power for Logistic Regression with a Single Categorical Predictor
 }
+\examples{
+LRcat(p0=.137,p1=.611,prop =.689,power=.95)
+}

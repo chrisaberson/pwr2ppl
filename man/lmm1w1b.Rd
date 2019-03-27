@@ -85,3 +85,13 @@ Power for the One Factor Within Subjects and One Factor Between LMM
 Compute power for a One Factor Within Subjects and One Factor Between LMM with up to two by four levels (within).
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+lmm1w1b(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
+m1.2=-.25,m2.2=-.25,m3.2=-.25, m4.2=-.25,
+s1.1 = .4, s2.1=.5, s3.1=0.6, s4.1=.7,
+s1.2=.4,s2.2=.5,s3.2=.6, s4.2=.7,n = 50,
+r1.2_1=.5,r1.3_1=.3,r1.4_1=.15,r2.3_1=.5,r2.4_1=.3,r3.4_1=.5,
+r1.2_2=.5,r1.3_2=.3,r1.4_2=.15, r2.3_2=.5,r2.4_2=.3,r3.4_2=.5)
+lmm1w1b(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
+m1.2=-.25,m2.2=-.25,m3.2=-.25, m4.2=-.25, s=.4, r = .5, n=100)
+}

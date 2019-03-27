@@ -32,3 +32,6 @@ Power for Tests of Two Independent Proportions
 Compute power for Tests of Two Independent Proportions
 Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+propind(p1=.62, p2=.55,nlow=200,nhigh=2500, by=100,nratio=.2)
+}

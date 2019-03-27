@@ -6,8 +6,9 @@
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
 \usage{
 anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
-  m2.4 = NULL, s1.1, s2.1, s1.2, s2.2, s1.3 = NULL, s2.3 = NULL,
-  s1.4 = NULL, s2.4 = NULL, r, s = NULL, alpha = 0.05, factors, n)
+  m2.4 = NULL, s1.1 = NULL, s2.1 = NULL, s1.2 = NULL,
+  s2.2 = NULL, s1.3 = NULL, s2.3 = NULL, s1.4 = NULL,
+  s2.4 = NULL, r, s = NULL, alpha = 0.05, factors, n)
 }
 \arguments{
 \item{m1.1}{Cell mean for First level of Factor A, First level of Factor B}
@@ -58,4 +59,11 @@ Power for One or Two Factor ANCOVA with a single covariate
 \description{
 Compute Power for One or Two Factor ANCOVA with a single covariate
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+}
+\examples{
+anc(m1.1=.85,m2.1=2.5, s1.1 = 1.7, s2.1=1,
+m1.2=0.85, m2.2= 2.5, s1.2 = 1.7, s2.2=1,
+m1.3=0.0,m2.3=2.5, s1.3 = 1.7, s2.3=1,
+m1.4=0.6, m2.4 = 2.5, s1.4 = 1.7, s2.4=1, r= 0.4,
+n=251, factors =2)
 }

@@ -38,3 +38,6 @@ Power for Regression Interaction (Correlation/Coefficient Approach)
 \description{
 Compute Power for Regression Interaction (Correlation/Coefficient Approach)
 }
+\examples{
+regint(Group1=-.26,Group2=.25, alpha=.05,Prop_n1=0.5,nlow=110, nhigh=140,by=2,Estimates=1)
+}

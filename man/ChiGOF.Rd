@@ -34,3 +34,6 @@ Power for Chi Square Goodness of Fit
 Compute power for an Chi Square Goodness of Fit
 Takes proportions for up to six group. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)
+}

@@ -27,3 +27,6 @@ Power for Chi Square Based on Effect Size
 Compute power for Chi Square Based on Effect Size
 Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+ChiES(phi=.3,df=1,nlow=10,nhigh=200,by=10, alpha = .01)
+}

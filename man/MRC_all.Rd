@@ -2,13 +2,13 @@
 % Please edit documentation in R/MRC_all.R
 \name{MRC_all}
 \alias{MRC_all}
-\title{Compute power for Mutliple Regression with Three Predictors
+\title{Compute power for Mutliple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
-MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
-  r13 = NULL, r23 = NULL, n = NULL, alpha = 0.05, rep = 10000,
-  my = 0, m1 = 0, m2 = 0, m3 = 0, sy = 1, s1 = 1, s2 = 1,
-  s3 = 1)
+MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL,
+  ry5 = NULL, r12 = NULL, r13 = NULL, r14 = NULL, r15 = NULL,
+  r23 = NULL, r24 = NULL, r25 = NULL, r34 = NULL, r35 = NULL,
+  r45 = NULL, n = NULL, alpha = 0.05, rep = 10000)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}
@@ -17,11 +17,29 @@ MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
 
 \item{ry3}{Correlation between DV (y) and third predictor (3)}
 
+\item{ry4}{Correlation between DV (y) and fourth predictor (4)}
+
+\item{ry5}{Correlation between DV (y) and fifth predictor (5)}
+
 \item{r12}{Correlation between first (1) and second predictor (2)}
 
 \item{r13}{Correlation between first (1) and third predictor (3)}
 
+\item{r14}{Correlation between first (1) and fourth predictor (4)}
+
+\item{r15}{Correlation between first (1) and fifth predictor (5)}
+
 \item{r23}{Correlation between second (2) and third predictor (3)}
+
+\item{r24}{Correlation between second (2) and fourth predictor (4)}
+
+\item{r25}{Correlation between second (2) and fifth predictor (5)}
+
+\item{r34}{Correlation between third (3) and fourth predictor (4)}
+
+\item{r35}{Correlation between third (3) and fifth predictor (5)}
+
+\item{r45}{Correlation between fourth (4) and fifth predictor (5)}
 
 \item{n}{Sample size}
 
@@ -33,6 +51,10 @@ MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
 Power for Multiple Regression (ALL)
 }
 \description{
-Compute power for Mutliple Regression with Three Predictors
+Compute power for Mutliple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
+}
+\examples{
+MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82)
+MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82, rep=1000)
 }

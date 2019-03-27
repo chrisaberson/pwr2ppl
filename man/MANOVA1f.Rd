@@ -85,3 +85,16 @@ Power for the One Factor Within Subjects and One Factor Between ANOVA
 Compute power for a One Factor MANOVA with up to two levels and up to four measures.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+MANOVA1f(n=40,m1.1=0,m2.1=1,m3.1=2.4,m4.1=-0.7,
+m1.2=-0.25,m2.2=-2,m3.2=2,m4.2=-1,
+s1.1=.4,s2.1=5,s3.1=1.6,s4.1=1.2,
+s1.2=.4,s2.2=5,s3.2=1.6,s4.2=1.2,
+r1.2_1=.1,r1.3_1=.1,r1.4_1=.1,
+r2.3_1=.35,r2.4_1=.45,r3.4_1=.40,
+r1.2_2=.1,r1.3_2=.1,r1.4_2=.1,
+r2.3_2=.35,r2.4_2=.45,r3.4_2=.40,alpha=.05)
+MANOVA1f(n=40,m1.1=0,m2.1=1,m3.1=2.4,m4.1=-0.7,
+m1.2=-0.25,m2.2=-2,m3.2=2,m4.2=-1,
+s=.4,r=.5,alpha=.05)
+}

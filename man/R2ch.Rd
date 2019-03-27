@@ -51,3 +51,6 @@ Compute power for R2 change in Mutliple Regression (up to three predictors)
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 Example code below for three predictors. Expand as needed for four or five
 }
+\examples{
+R2ch(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,n=24)
+}

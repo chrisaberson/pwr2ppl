@@ -29,3 +29,6 @@ Power for Tests of Single Proportion
 Compute power for a single sample proportion test
 Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
 }
+\examples{
+prop1(p1=.60, p0=.42,nlow=20,nhigh=100, tails=1, by=10)
+}

@@ -53,3 +53,8 @@ Power for Mediated (Indirect) Effects
 Compute Power for Mediated (Indirect) Effects
 Requires correlations between all variables as sample size.
 }
+\examples{
+med(rxm1=.25, rxy=-.35, rym1=-.5,mvars=1, n=150)
+med(rxm1=.3, rxm2=.3, rxm3=.25, rxy=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
+rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)
+}

@@ -32,3 +32,6 @@ Power for Comparing Dependent Coefficients in Multiple Regression with Two or Th
 Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }
+\examples{
+depb(ry1=.40, ry2=.40, ry3=-.40, r12=-.15, r13=-.60, r23=.25,n=110, alpha=.05)
+}

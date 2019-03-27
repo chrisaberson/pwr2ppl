@@ -2,7 +2,7 @@
 % Please edit documentation in R/anova2x2.R
 \name{anova2x2}
 \alias{anova2x2}
-\title{Compute power for a Two by Two Between Subjects ANOVA with four levels.
+\title{Compute power for a Two by Two Between Subjects ANOVA.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
 \usage{
 anova2x2(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
@@ -43,6 +43,15 @@ anova2x2(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
 Power for the One Factor ANOVA
 }
 \description{
-Compute power for a Two by Two Between Subjects ANOVA with four levels.
+Compute power for a Two by Two Between Subjects ANOVA.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+}
+\examples{
+anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
+n1.1=100, n1.2=100, n2.1=100, n2.2=100, alpha=.05)
+anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
+n1.1=100, n1.2=100, n2.1=100, n2.2=100,
+alpha=.05, all="ON")
 }
