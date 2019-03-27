@@ -9,7 +9,7 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Depends: car,
+Imports: car,
     MASS,
     dplyr,
     tidyr,
@@ -18,4 +18,5 @@ Depends: car,
     phia,
     afex,
     lavaan,
-    MBESS
+    MBESS, 
+    stats
