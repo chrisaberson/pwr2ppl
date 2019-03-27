@@ -16,6 +16,9 @@
 #'@param s1 Standard deviation of first predictor (default is 1)
 #'@param s2 Standard deviation of second predictor (default is 1)
 #'@param s3 Standard deviation of third predictor (default is 1)
+#'@examples
+#'MRC_shortcuts(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,
+#'n=110, my=1,m1=1,m2=1,m3=1,sy=7,s1=1,s2=1,s3=2)
 #'@return Mutliple Regression shortcuts with three predictors
 #'@export
 #'

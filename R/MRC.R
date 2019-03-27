@@ -17,7 +17,10 @@
 #'@param r45 Correlation between fourth (4) and fifth predictor (5)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param rep number of replications (default is 10000)
+#'@examples
+#'MRC(ry1=.40,ry2=.40, r12=-.15,n=30)
+#'MRC(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,n=24)
+#'
 #'@return Power for Multiple Regression with Two to Five Predictors
 #'@export
 #'
@@ -28,7 +31,7 @@ MRC<-function(ry1=NULL, ry2=NULL, ry3=NULL, ry4=NULL, ry5=NULL,
                   r23=NULL, r24=NULL, r25=NULL,
                   r34=NULL, r35=NULL,
                   r45=NULL,
-                  n=NULL, alpha=.05, rep = 10000)
+                  n=NULL, alpha=.05)
   {
 
 pred<-NA

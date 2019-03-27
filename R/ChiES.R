@@ -6,6 +6,8 @@
 #'@param nhigh ending sample size
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'ChiES(phi=.3,df=1,nlow=10,nhigh=200,by=10, alpha = .01)
 #'@return Power for Chi Square Based on Effect Size
 #'@export
 #'

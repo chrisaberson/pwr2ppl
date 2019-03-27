@@ -6,6 +6,8 @@
 #'@param r2c2 Proportion of overall scores in Row 2, Column 2
 #'@param n Total sample size
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'Chi2x2(r1c1=.28,r1c2=.22,r2c1=.38,r2c2=.12,n=100)
 #'@return Power for 2x2 Chi Square
 #'@export
 #'

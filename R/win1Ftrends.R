@@ -16,6 +16,10 @@
 #'@param r34 correlation Time 3 and Time 4
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'win1Ftrends(m1=-.25,m2=-.15,m3=-.05,m4=.05,s1=.4,s2=.5,s3=.6,s4=.7,
+#'r12=.50, r13=.30, r14=.15, r23=.5, r24=.30, r34=.50, n=25)
+#'@import stats
 #'@return Power for the One Factor Within Subjects Trends
 #'@export
 
@@ -28,7 +32,7 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
   levels[is.na(m4) & is.na(m3)]<-2
   levels[is.na(m4) & !is.na(m3)]<-3
   levels[!is.na(m4)]<-4
-
+  options(contrasts=c("contr.helmert", "contr.poly"))
   if(levels<3|levels>4){stop("Function requires 3 to 4 levels")}
   if(levels==3){
     var1<-s1^2
@@ -47,7 +51,6 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly"))
 
     trends<-afex::aov_car(dv~iv+Error(id/iv),out)
     lin<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(3,c(1,2,3))[,1]), idata=trends$data[["idata"]])
@@ -91,7 +94,6 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     trends<-afex::aov_car(dv~iv+Error(id/iv),out)
     lin<-phia::testInteractions(trends$lm, custom = list(iv=contr.poly(4,c(1,2,3,4))[,1]), idata=trends$data[["idata"]])
     lambdaL<-lin$`approx F`

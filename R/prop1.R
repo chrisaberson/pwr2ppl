@@ -7,6 +7,8 @@
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
 #'@param tails number of tails for test (default is 2)
+#'@examples
+#'prop1(p1=.60, p0=.42,nlow=20,nhigh=100, tails=1, by=10)
 #'@return Power for Tests of Single Proportion
 #'@export
 #'

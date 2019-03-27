@@ -21,11 +21,17 @@
 #'@param n Sample Size per cell
 #'@param factors Number of factors (1 or 2)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#' anc(m1.1=.85,m2.1=2.5, s1.1 = 1.7, s2.1=1,
+#' m1.2=0.85, m2.2= 2.5, s1.2 = 1.7, s2.2=1,
+#' m1.3=0.0,m2.3=2.5, s1.3 = 1.7, s2.3=1,
+#' m1.4=0.6, m2.4 = 2.5, s1.4 = 1.7, s2.4=1, r= 0.4,
+#' n=251, factors =2)
 #'@return Power for One or Two Factor ANCOVA with a single covariate
 #'@export
 
 anc=function(m1.1,m2.1,m1.2,m2.2,m1.3=NULL,m2.3=NULL,m1.4=NULL,m2.4=NULL,
-             s1.1,s2.1,s1.2,s2.2,s1.3=NULL,s2.3=NULL,s1.4=NULL,s2.4=NULL,
+             s1.1=NULL,s2.1=NULL,s1.2=NULL,s2.2=NULL,s1.3=NULL,s2.3=NULL,s1.4=NULL,s2.4=NULL,
              r,s=NULL,alpha=.05,factors,n){
 {
 V1<-V2<-ivbg<-iv1<-iv2<-NULL

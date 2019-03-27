@@ -6,6 +6,8 @@
 #'@param by Incremental increase in sample size from low ot high
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'corr(r=.30, nlow=60, nhigh=100,by=2)
 #'@return Power for Pearson's Correlation
 #'@export
 #'

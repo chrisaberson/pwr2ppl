@@ -16,6 +16,11 @@
 #'@param r34 correlation Time 3 and Time 4
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'win1F(m1=-.25,m2=.00,m3=.10,m4=.15,s1=.4,s2=.5,s3=.6,s4=.7,
+#'r12=.50, r13=.30, r14=.15, r23=.5, r24=.30, r34=.50, n=25)
+#'win1F(m1=-.25,m2=.00,m3=.10,m4=.15,s1=.4,s2=.5,s3=2.5,s4=2.0,
+#'r12=.50, r13=.30, r14=.10, r23=.5, r24=.30, r34=.40, n=100)
 #'@return Power for the One Factor Within Subjects ANOVA
 #'@export
 
@@ -45,7 +50,7 @@ if(levels=="2"){
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
     df1<-model$ANOVA$DFn[2]
     df2<-model$ANOVA$DFd[2]
     SSB<-model$ANOVA$SSn[2]
@@ -89,7 +94,7 @@ if(levels=="2"){
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
     df1<-model$ANOVA$DFn[2]
     df2<-model$ANOVA$DFd[2]
     SSB<-model$ANOVA$SSn[2]
@@ -138,7 +143,7 @@ if(levels=="2"){
       out<-tidyr::gather(out,key="iv",value="dv",-id)
       out$iv<-as.ordered(out$iv)
       options(contrasts=c("contr.helmert", "contr.poly"))
-      model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv), type=3, detailed=TRUE)
+      model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
       df1<-model$ANOVA$DFn[2]
       df2<-model$ANOVA$DFd[2]
       SSB<-model$ANOVA$SSn[2]

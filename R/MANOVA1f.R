@@ -32,6 +32,18 @@
 #'@param s sets same standard deviation for factor levels (see comment above)
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'MANOVA1f(n=40,m1.1=0,m2.1=1,m3.1=2.4,m4.1=-0.7,
+#'m1.2=-0.25,m2.2=-2,m3.2=2,m4.2=-1,
+#'s1.1=.4,s2.1=5,s3.1=1.6,s4.1=1.2,
+#'s1.2=.4,s2.2=5,s3.2=1.6,s4.2=1.2,
+#'r1.2_1=.1,r1.3_1=.1,r1.4_1=.1,
+#'r2.3_1=.35,r2.4_1=.45,r3.4_1=.40,
+#'r1.2_2=.1,r1.3_2=.1,r1.4_2=.1,
+#'r2.3_2=.35,r2.4_2=.45,r3.4_2=.40,alpha=.05)
+#'MANOVA1f(n=40,m1.1=0,m2.1=1,m3.1=2.4,m4.1=-0.7,
+#'m1.2=-0.25,m2.2=-2,m3.2=2,m4.2=-1,
+#'s=.4,r=.5,alpha=.05)
 #'@return Power for the One Factor Within Subjects and One Factor Between ANOVA
 #'@export
 MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
@@ -154,7 +166,7 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s3.1<-s;s4.1<-s;s1.2<-s;s2.2<-s;s3.2<-s;s4.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2;var7<-s^2;var8<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s3.1^2;var4<-s4.1^2;var5<-s1.2^2;var6<-s2.2^2;var7<-s3.2^2;var8<-s4.2^2}
-    if (!is.null(r)){r1.2_a<-r;r1.3_1<-r;r1.4_1<-r;r2.3_1<-r;r2.4_1<-r;
+    if (!is.null(r)){r1.2_1<-r;r1.3_1<-r;r1.4_1<-r;r2.3_1<-r;r2.4_1<-r;
     r3.4_1<-r;
     r1.2_2<-r;r1.3_2<-r;r1.4_2<-r
     r2.3_2<-r;r2.4_2<-r;

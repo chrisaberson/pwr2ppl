@@ -5,6 +5,8 @@
 #'@param R2 How Well Predictor of Interest is Explained by Other Predictors (default is 0)
 #'@param alpha Type I error (default is .05)
 #'@param power Desired Power
+#'@examples
+#'LRcont(OR = 4.05, ER = .463,power=.95)
 #'@return Power for Logistic Regression with Continuous Predictors
 #'@export
 #'

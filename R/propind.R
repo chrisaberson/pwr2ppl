@@ -8,6 +8,8 @@
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
 #'@param tails number of tails for test (default is 2)
+#'@examples
+#'propind(p1=.62, p2=.55,nlow=200,nhigh=2500, by=100,nratio=.2)
 #'@return Power for Tests of Two Independent Proportions
 #'@export
 #'

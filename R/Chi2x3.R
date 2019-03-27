@@ -8,6 +8,8 @@
 #'@param r2c3 Proportion of overall scores in Row 2, Column 3
 #'@param n Total sample size
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)
 #'@return Power for 2x3 Chi Square
 #'@export
 #'

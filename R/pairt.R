@@ -7,6 +7,8 @@
 #'@param r Correlation pre-post measures (default is .50)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'pairt(m1=25,m2=20, s = 5, n = 25, r = .5)
 #'@return Power for the Paired t-test
 #'@export
 

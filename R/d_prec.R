@@ -6,6 +6,8 @@
 #'@param propn1 Proportion in First Group
 #'@param ci Type of Confidence Interval (e.g., .95)
 #'@param tails number of tails for test (default is 2)
+#'@examples
+#'d_prec(d=.4,nlow=100, nhigh=2000, propn1=.5, ci=.95, by=100)
 #'@return Precision Analyses for Standardized Mean Differences
 #'@export
 #'

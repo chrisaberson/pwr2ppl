@@ -9,6 +9,8 @@
 #'@param groups Number of groups
 #'@param n Total sample size
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)
 #'@return Power for Chi Square Goodness of Fit
 #'@export
 #'

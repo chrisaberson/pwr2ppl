@@ -18,6 +18,10 @@
 #'@param n Sample size
 #'@param mvars Number of Mediators
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'med(rxm1=.25, rxy=-.35, rym1=-.5,mvars=1, n=150)
+#'med(rxm1=.3, rxm2=.3, rxm3=.25, rxy=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
+#'rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)
 #'@return Power for Mediated (Indirect) Effects
 #'@export
 #'

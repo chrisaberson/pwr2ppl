@@ -5,6 +5,8 @@
 #'@param nhigh ending sample size
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param ci Type of Confidence Interval (e.g., .95)
+#'@examples
+#'r_prec(r=.3, nlow=80, nhigh=400, by=20, ci=.95)
 #'@return Precision Analyses for Correlations
 #'@export
 #'

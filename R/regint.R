@@ -11,6 +11,8 @@
 #'@param nhigh ending sample size
 #'@param by incrimental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'regint(Group1=-.26,Group2=.25, alpha=.05,Prop_n1=0.5,nlow=110, nhigh=140,by=2,Estimates=1)
 #'@return Power for Regression Interaction (Correlation/Coefficient Approach)
 #'@export
 #'

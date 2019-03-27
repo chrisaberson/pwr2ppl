@@ -8,6 +8,8 @@
 #'@param propn1 Proportion of sample in first group (default is .50 for equally size groups)
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'indcorr(r1=.3,r2=.1,nlow=200,nhigh=800,by=50, tails=1)
 #'@return Power for Comparing Two Independent Correlations
 #'@export
 #'

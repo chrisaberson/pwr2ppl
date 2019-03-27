@@ -8,6 +8,9 @@
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param propn1 Proportion in First Group
 #'@param ci Type of Confidence Interval (e.g., .95)
+#'@examples
+#'md_prec(m1=2,m2 =0, s1=5, s2=5,nlow=100, nhigh =1600, propn1=.5, ci=.95, by=100)
+#'md_prec(m1=0,m2 =0, s1=5, s2=5,nlow=100, nhigh =40000, propn1=.5, ci=.95, by=100)
 #'@return Precision Analyses for Mean Differences
 #'@export
 #'

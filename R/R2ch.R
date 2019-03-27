@@ -17,6 +17,8 @@
 #'@param s1 Standard deviation of first predictor (default is 1)
 #'@param s2 Standard deviation of second predictor (default is 1)
 #'@param s3 Standard deviation of third predictor (default is 1)
+#'@examples
+#'R2ch(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,n=24)
 #'@return Power for R2 change in Mutliple Regression (up to three predictors)
 #'@export
 #'

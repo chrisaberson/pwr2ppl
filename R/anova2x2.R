@@ -1,4 +1,4 @@
-#'Compute power for a Two by Two Between Subjects ANOVA with four levels.
+#'Compute power for a Two by Two Between Subjects ANOVA.
 #'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 #'@param m1.1 Cell mean for First level of Factor A, First level of Factor B
 #'@param m1.2 Cell mean for First level of Factor A, Second level of Factor B
@@ -14,6 +14,14 @@
 #'@param n2.2 Cell sample size for Second level of Factor A, Second level of Factor B
 #'@param alpha Type I error (default is .05)
 #'@param all Power(ALL) - Power for detecting all predictors in the model at once (default is "OFF")
+#'@examples
+#'anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+#'s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
+#'n1.1=100, n1.2=100, n2.1=100, n2.2=100, alpha=.05)
+#'anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+#'s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
+#'n1.1=100, n1.2=100, n2.1=100, n2.2=100,
+#'alpha=.05, all="ON")
 #'@return Power for the One Factor ANOVA
 #'@export
 

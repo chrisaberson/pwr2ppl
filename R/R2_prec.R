@@ -6,6 +6,8 @@
 #'@param nhigh ending sample size
 #'@param by Incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)
 #'@param ci Type of Confidence Interval (e.g., .95)
+#'@examples
+#'R2_prec(R2=.467, nlow=24, nhigh=100, pred=3, by=4)
 #'@return Precision Analyses for R-Squared
 #'@export
 #'

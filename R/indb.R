@@ -15,6 +15,10 @@
 #'@param n1 Sample size first test
 #'@param n2 Sample size second test
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'indb(ry1_1=.40, ry2_1=.40, ry3_1 =-.40, r12_1=-.15,r13_1=-.60, r23_1=.25,
+#'ry1_2=.40, ry2_2=.10, ry3_2 =-.40, r12_2=-.15,r13_2=-.60, r23_2=.25,
+#'n1=50,n2=50, alpha=.05)
 #'@return Power for Comparing Independent Coefficients in Multiple Regression
 #'@export
 #'

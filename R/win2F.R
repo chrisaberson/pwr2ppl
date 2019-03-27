@@ -48,6 +48,9 @@
 #'@param s sets same standard deviation for factor levels (see comment above)
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'win2F(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
+#'s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=80)
 #'@return Power for the Two Factor Within Subjects ANOVA
 #'@export
 
@@ -102,7 +105,7 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2<-as.ordered(out$iv2)
     options(contrasts=c("contr.helmert", "contr.poly"))
 
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]
@@ -178,7 +181,7 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       out$iv1<-as.ordered(out$iv1)
       out$iv2<-as.ordered(out$iv2)
       options(contrasts=c("contr.helmert", "contr.poly"))
-      model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+      model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
       dfA<-model$ANOVA$DFn[2]
       dfB<-model$ANOVA$DFn[3]
       dfAB<-model$ANOVA$DFn[4]
@@ -287,7 +290,7 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(iv1,iv2), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]

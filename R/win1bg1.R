@@ -32,6 +32,15 @@
 #'@param s sets same standard deviation for factor levels (see comment above)
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'win1bg1(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
+#'m1.2=-.25,m2.2=-.25,m3.2=-.25, m4.2=-.25,
+#'s1.1 = .4, s2.1=.5, s3.1=0.6, s4.1=.7,
+#'s1.2=.4,s2.2=.5,s3.2=.6, s4.2=.7,n = 50,
+#'r1.2_1=.5,r1.3_1=.3,r1.4_1=.15,r2.3_1=.5,r2.4_1=.3,r3.4_1=.5,
+#'r1.2_2=.5,r1.3_2=.3,r1.4_2=.15, r2.3_2=.5,r2.4_2=.3,r3.4_2=.5)
+#'win1bg1(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
+#'m1.2=-.25,m2.2=-.25,m3.2=-.25, m4.2=-.25, s=.4, r = .5, n = 100)
 #'@return Power for the One Factor Within Subjects and One Factor Between ANOVA
 #'@export
 win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
@@ -45,7 +54,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
 
 {
 
-  V1<-V2<-V3<-V4<-dv<-ivw<-ivbg<-NULL
+  V1<-V2<-V3<-V4<-dv<-ivw<-ivbg<-id<-NULL
   levels<-NA
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
@@ -85,7 +94,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$ivbg<-as.factor(out$ivbg)
     options(contrasts=c("contr.helmert", "contr.poly"))
 
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(ivw), between = .(ivbg),type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg,type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]
@@ -162,7 +171,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(ivw), between = .(ivbg), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]
@@ -232,7 +241,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s3.1<-s;s4.1<-s;s1.2<-s;s2.2<-s;s3.2<-s;s4.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2;var7<-s^2;var8<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s3.1^2;var4<-s4.1^2;var5<-s1.2^2;var6<-s2.2^2;var7<-s3.2^2;var8<-s4.2^2}
-    if (!is.null(r)){r1.2_a<-r;r1.3_1<-r;r1.4_1<-r;r2.3_1<-r;r2.4_1<-r;
+    if (!is.null(r)){r1.2_1<-r;r1.3_1<-r;r1.4_1<-r;r2.3_1<-r;r2.4_1<-r;
     r3.4_1<-r;
     r1.2_2<-r;r1.3_2<-r;r1.4_2<-r
     r2.3_2<-r;r2.4_2<-r;
@@ -274,7 +283,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=.(dv), wid=.(id), within = .(ivw), between = .(ivbg), type=3, detailed=TRUE)
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
     dfAB<-model$ANOVA$DFn[4]

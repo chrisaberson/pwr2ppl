@@ -48,6 +48,9 @@
 #'@param s sets same standard deviation for factor levels (see comment above)
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'lmm2Fse(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
+#'s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=220)
 #'@return Power for Simple Effects in Two Factor Within Subjects LMM
 #'@export
 

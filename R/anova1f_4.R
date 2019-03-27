@@ -13,6 +13,9 @@
 #'@param n3 Sample size for third group
 #'@param n4 Sample size for fourth grou
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'anova1f_4(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10, s3=10,
+#'s4=10, n1=60, n2=60, n3=60, n4=60)
 #'@return Power for the One Factor Between Subjects ANOVA
 #'@export
 

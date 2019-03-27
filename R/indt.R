@@ -7,6 +7,9 @@
 #'@param n1 Sample size for first group
 #'@param n2 Sample size for second group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'indt(m1=22,m2=20,s1=5,s2=5,n1=99,n2=99)
+#'indt(m1=1.3, m2=0, s1=4,s2=1,n1=78,n2=234)
 #'@return Power for Independent Samples t-test
 #'@export
 #'

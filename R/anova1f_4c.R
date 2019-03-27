@@ -17,7 +17,17 @@
 #'@param c2 Weight for Contrast 2 (default is 0)
 #'@param c3 Weight for Contrast 3 (default is 0)
 #'@param c4 Weight for Contrast 4 (default is 0)
-#'@return Power for the One Factor ANOVA
+#'@examples
+#'anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10,
+#'s3=10, s4=10, n1=60, n2=60, n3=60, n4=60,
+#'c1=1, c2=1, c3=-1, c4=-1, alpha=.05)
+#'anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10,
+#'s3=10, s4=10, n1=60, n2=60, n3=60, n4=60,
+#'c1=1, c2=-1, c3=-0, c4=0, alpha=.05)
+#'anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10,
+#'s3=10, s4=10, n1=60, n2=60, n3=60, n4=60,
+#'c1=0, c2=0, c3=1, c4=-1, alpha=.05)
+#'#'@return Power for the One Factor ANOVA
 #'@export
 #'
 #'

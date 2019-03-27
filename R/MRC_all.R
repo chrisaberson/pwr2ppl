@@ -18,6 +18,9 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep number of replications (default is 10000)
+#'@examples
+#'MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82)
+#'MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82, rep=1000)
 #'@return Power for Multiple Regression (ALL)
 #'@export
 #'

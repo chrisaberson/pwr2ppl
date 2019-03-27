@@ -31,6 +31,12 @@
 #'@param s2_2 Standard deviation of second predictor (default is 1), second group
 #'@param s3_2 Standard deviation of third predictor (default is 1), second group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'MRC_short2(ry1_1=.40, ry2_1=.40, ry3_1 =-.40, r12_1=-.15,r13_1=-.60, r23_1=.25,
+#'ry1_2=.40, ry2_2=.10, ry3_2 =-.40, r12_2=-.15,r13_2=-.60, r23_2=.25,
+#'n1=50,n2=50,alpha=.05,my_1=1,m1_1=1,m2_1=1,m3_1=1,
+#'sy_1=7,s1_1=1,s2_1=1,s3_1=2,
+#'my_2=1,m1_2=1,m2_2=1,m3_2=1,sy_2=7,s1_2=1,s2_2=1,s3_2=2)
 #'@return Mutliple Regression shortcuts with three predictors for Ind Coefficients
 #'@export
 #'

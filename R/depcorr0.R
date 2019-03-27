@@ -11,6 +11,8 @@
 #'@param by Incremental increase in sample size from low ot high
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'depcorr0(r12=.4,rxy=.7,r1x=.3,r1y=.1,r2x=.45,r2y=.35,  nlow=20,nhigh=200,by=10, tails=2)
 #'@return Power for Comparing Two Dependent Correlations, No Variables in Common
 #'@export
 #'

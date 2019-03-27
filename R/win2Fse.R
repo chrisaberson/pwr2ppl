@@ -48,6 +48,9 @@
 #'@param s sets same standard deviation for factor levels (see comment above)
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'win2Fse(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
+#'s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=220)
 #'@return Power for Simple Effects for Two Factor Within Subjects ANOVA
 #'@export
 
@@ -115,7 +118,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
 
     #split stuff here...
     data.ab1<-subset(out, iv2==1)
-    modelab1<-ez::ezANOVA(data=data.ab1, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
+    modelab1<-ez::ezANOVA(data=data.ab1, dv=dv, wid=id, within = iv1, type=3, detailed=TRUE)
     dfab1<-modelab1$ANOVA$DFn[2]
     dfWab1<-modelab1$ANOVA$DFd[2]
     SSab1<-modelab1$ANOVA$SSn[2]
@@ -141,7 +144,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerhfab1<-round(1-stats::pf(Fthfab1, hfdfab1,hfdfWab1,lambdahfab1),3)
 
     data.ab2<-subset(out, iv2==2)
-    modelab2<-ez::ezANOVA(data=data.ab2, dv=.(dv), wid=.(id), within = .(iv1), type=3, detailed=TRUE)
+    modelab2<-ez::ezANOVA(data=data.ab2, dv=dv, wid=id, within = iv1, type=3, detailed=TRUE)
     dfab2<-modelab2$ANOVA$DFn[2]
     dfWab2<-modelab2$ANOVA$DFd[2]
     SSab2<-modelab2$ANOVA$SSn[2]
@@ -167,7 +170,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerhfab2<-round(1-stats::pf(Fthfab2, hfdfab2,hfdfWab2,lambdahfab2),3)
 
     data.ba1<-subset(out, iv1==1)
-    modelba1<-ez::ezANOVA(data=data.ba1, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba1<-ez::ezANOVA(data=data.ba1, dv=dv, wid=id, within = iv2, type=3, detailed=TRUE)
     dfba1<-modelba1$ANOVA$DFn[2]
     dfWba1<-modelba1$ANOVA$DFd[2]
     SSba1<-modelba1$ANOVA$SSn[2]
@@ -180,7 +183,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerba1<-round(1-stats::pf(Ftba1, dfba1,dfWba1,lambdaba1),3)
 
     data.ba2<-subset(out, iv1==2)
-    modelba2<-ez::ezANOVA(data=data.ba2, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba2<-ez::ezANOVA(data=data.ba2, dv=dv, wid=id, within = iv2, type=3, detailed=TRUE)
     dfba2<-modelba2$ANOVA$DFn[2]
     dfWba2<-modelba2$ANOVA$DFd[2]
     SSba2<-modelba2$ANOVA$SSn[2]
@@ -193,7 +196,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerba2<-round(1-stats::pf(Ftba2, dfba2,dfWba2,lambdaba2),3)
 
     data.ba3<-subset(out, iv1==3)
-    modelba3<-ez::ezANOVA(data=data.ba3, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba3<-ez::ezANOVA(data=data.ba3, dv=dv, wid=id, within = iv2, type=3, detailed=TRUE)
     dfba3<-modelba3$ANOVA$DFn[2]
     dfWba3<-modelba3$ANOVA$DFd[2]
     SSba3<-modelba3$ANOVA$SSn[2]
@@ -206,7 +209,7 @@ win2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerba3<-round(1-stats::pf(Ftba3, dfba3,dfWba3,lambdaba3),3)
 
     data.ba4<-subset(out, iv1==4)
-    modelba4<-ez::ezANOVA(data=data.ba4, dv=.(dv), wid=.(id), within = .(iv2), type=3, detailed=TRUE)
+    modelba4<-ez::ezANOVA(data=data.ba4, dv=dv, wid=id, within = iv2, type=3, detailed=TRUE)
     dfba4<-modelba4$ANOVA$DFn[2]
     dfWba4<-modelba4$ANOVA$DFd[2]
     SSba4<-modelba4$ANOVA$SSn[2]

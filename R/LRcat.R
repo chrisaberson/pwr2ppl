@@ -5,6 +5,8 @@
 #'@param alpha Type I error (default is .05)
 #'@param power Desired Power
 #'@param R2 How Well Predictor of Interest is Explained by Other Predictors (default is 0)
+#'@examples
+#'LRcat(p0=.137,p1=.611,prop =.689,power=.95)
 #'@return Power for Logistic Regression with a Single Categorical Predictor
 #'@export
 #'

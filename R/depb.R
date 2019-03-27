@@ -8,6 +8,8 @@
 #'@param r23 Correlation between second (2) and third predictor (3)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
+#'@examples
+#'depb(ry1=.40, ry2=.40, ry3=-.40, r12=-.15, r13=-.60, r23=.25,n=110, alpha=.05)
 #'@return Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
 #'@export
 #'
