@@ -51,6 +51,8 @@
 #'@examples
 #'lmm2F(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
 #'s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=337)
+#'lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,
+#'r12=.5,r13=.4,r14=.55,r23=.4,r24=.5,r34=.45,n=200)
 #'@return Power for the Two Factor Within Subjects LMM
 #'@export
 
@@ -76,9 +78,9 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s1.2<-s;s2.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2}
-    r12<-r;r13<-r;r14<-r;
+    if (!is.null(r)){r12<-r;r13<-r;r14<-r;
     r23<-r;r24<-r;
-    r34<-r;
+    r34<-r;}
     cov12<-r12*s1.1*s2.1;cov13<-r13*s1.1*s1.2;cov14<-r14*s1.1*s2.2;
     cov23<-r23*s2.1*s1.2;cov24<-r24*s2.1*s2.2;
     cov34<-r34*s2.1*s2.2;
@@ -132,11 +134,11 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s3.1<-s;s1.2<-s;s2.2<-s;s3.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s3.1^2;var4<-s1.2^2;var5<-s2.2^2; var6<-s3.2^2}
-    r12<-r;r13<-r;r14<-r;r15<-r;r16<-r;
+    if (!is.null(r)){r12<-r;r13<-r;r14<-r;r15<-r;r16<-r;
     r23<-r;r24<-r;r25<-r;r26<-r;
     r34<-r;r35<-r;r36<-r;
     r45<-r;r46<-r;
-    r56<-r
+    r56<-r}
     cov12<-r12*s1.1*s2.1;cov13<-r13*s1.1*s3.1;cov14<-r14*s1.1*s1.2;cov15<-r15*s1.1*s2.2;cov16<-r16*s1.1*s3.2;
     cov23<-r23*s2.1*s3.1;cov24<-r24*s2.1*s1.2;cov25<-r25*s2.1*s2.2;cov26<-r26*s2.1*s3.2;
     cov34<-r34*s3.1*s1.2;cov35<-r35*s3.1*s2.2;cov36<-r36*s3.1*s3.2;
@@ -194,9 +196,9 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s3.1<-s;s4.1<-s;s1.2<-s;s2.2<-s;s3.2<-s;s4.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2;var5<-s^2;var6<-s^2;var7<-s^2;var8<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s3.1^2;var4<-s4.1^2;var5<-s1.2^2;var6<-s2.2^2;var7<-s3.2^2;var8<-s4.2^2}
-    r12<-r;r13<-r;r14<-r;r15<-r;r16<-r;r17<-r;r18<-r;r23<-r;r24<-r;r25<-r;r26<-r;r27<-r;r28<-r
+    if (!is.null(r)){r12<-r;r13<-r;r14<-r;r15<-r;r16<-r;r17<-r;r18<-r;r23<-r;r24<-r;r25<-r;r26<-r;r27<-r;r28<-r
     r34<-r;r35<-r;r36<-r;r37<-r;r38<-r;r45<-r;r46<-r;r47<-r;r48<-r;r56<-r;r57<-r;r58<-r
-    r67<-r;r68<-r;r78<-r
+    r67<-r;r68<-r;r78<-r}
     cov12<-r12*s1.1*s2.1;cov13<-r13*s1.1*s3.1;cov14<-r14*s1.1*s4.1;cov15<-r15*s1.1*s1.2;cov16<-r16*s1.1*s2.2;cov17<-r17*s1.1*s3.2;cov18<-r18*s1.1*s4.2
     cov23<-r23*s2.1*s3.1;cov24<-r24*s2.1*s4.1;cov25<-r25*s2.1*s1.2;cov26<-r26*s2.1*s2.2;cov27<-r27*s2.1*s3.2;cov28<-r28*s2.1*s4.2
     cov34<-r34*s3.1*s4.1;cov35<-r35*s3.1*s1.2;cov36<-r36*s3.1*s2.2;cov37<-r37*s3.1*s3.2;cov38<-r38*s3.1*s4.2
@@ -252,7 +254,7 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power Factor A for n =",n,"=", powerlm1))}
     {print(paste("Power Factor B for n =",n,"=", powerlm2))}
     {print(paste("Power AxB for n =",n,"=", powerlm3))}
-    }
-}
+    }}
+
 
 
