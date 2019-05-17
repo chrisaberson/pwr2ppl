@@ -1,4 +1,4 @@
 language: r
 warnings_are_errors: false
-sudo: false
+sudo apt-get install libgsl-dev
 cache: packages
