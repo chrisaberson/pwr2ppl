@@ -1,20 +1,3 @@
 language: r
-warnings_are_errors: false
-sudo: required
+sudo: false
 cache: packages
-r_binary_packages:
-    - car
-    - MASS
-    - dplyr
-    - tidyr
-    - ez
-    - nlme
-    - phia
-    - afex
-    - lavaan
-    - MBESS
-    - stats
-    - gsl
-
-
-
