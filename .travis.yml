@@ -1,3 +1,5 @@
 language: r
 cache: packages
 sudo: false
+packages:
+   - libgsl0-dev
