@@ -18,7 +18,7 @@ In RStudio choose install - from package archive then direct to where you stored
 
 ### Prerequisites
 
-I built this under R 3.5.0
+I built this under R 3.6.0
 
 Authors
 -------
