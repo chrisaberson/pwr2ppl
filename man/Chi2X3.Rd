@@ -32,5 +32,5 @@ Compute power for an Chi Square 2x3
 Takes proportions for each group. Alpha is .05 by default, alterative values may be entered by user
 }
 \examples{
-ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)
+Chi2X3(r1c1=.25,r1c2=.25,r1c3=.10, r2c1=.10,r2c2=.25,r2c3=.05,n=200)
 }

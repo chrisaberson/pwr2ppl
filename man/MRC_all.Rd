@@ -55,6 +55,5 @@ Compute power for Mutliple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }
 \examples{
-MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82)
-MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82, rep=1000)
+MRC_all(ry1=.50,ry2=.50,ry3=.50, r12=.2, r13=.3,r23=.4,n=82, rep=100)
 }
