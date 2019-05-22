@@ -9,7 +9,7 @@
 #'@param n Total sample size
 #'@param alpha Type I error (default is .05)
 #'@examples
-#'ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)
+#'Chi2X3(r1c1=.25,r1c2=.25,r1c3=.10, r2c1=.10,r2c2=.25,r2c3=.05,n=200)
 #'@return Power for 2x3 Chi Square
 #'@export
 #'

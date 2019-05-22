@@ -52,7 +52,7 @@
 #'lmm2F(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
 #'s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=337)
 #'lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,
-#'r12=.5,r13=.4,r14=.55,r23=.4,r24=.5,r34=.45,n=200)
+#'r=.5,n=200)
 #'@return Power for the Two Factor Within Subjects LMM
 #'@export
 
@@ -255,6 +255,3 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power Factor B for n =",n,"=", powerlm2))}
     {print(paste("Power AxB for n =",n,"=", powerlm3))}
     }}
-
-
-
