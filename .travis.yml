@@ -1,7 +1,7 @@
 language: r
 cache: packages
 os: osx
-r_packages
+r_packages:
   - car
   - openxlsx
   - pillar
