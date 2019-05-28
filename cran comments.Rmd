@@ -1,0 +1,20 @@
+---
+title: "CRAN comments"
+author: "Chris Aberson"
+date: "May 23, 2019"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+## Test Environments
+* local Windows 10, R 3.6.0  
+* ubuntu 14.04 (on travis-ci), R 3.6.0  
+* win-builder (devel)  
+
+## R CMD check results
+
+There were no Errors, Warnings, or Notes locally. 
+
+This is my first submission. 
+
