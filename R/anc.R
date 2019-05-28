@@ -21,6 +21,7 @@
 #'@param n Sample Size per cell
 #'@param factors Number of factors (1 or 2)
 #'@param alpha Type I error (default is .05)
+#'@import car
 #'@examples
 #' anc(m1.1=.85,m2.1=2.5, s1.1 = 1.7, s2.1=1,
 #' m1.2=0.85, m2.2= 2.5, s1.2 = 1.7, s2.2=1,
