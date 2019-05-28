@@ -1,6 +1,8 @@
 language: r
 cache: packages
 os: osx
+r_binary_packages
+  - car
 #sudo: false
 #warnings_are_errors: false
 #dist: trusty
