@@ -120,8 +120,6 @@ Compute power for a Two Factor Within Subjects Using Linear Mixed Models with up
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
 }
 \examples{
-lmm2F(m1.1=-.25,m2.1=0,m3.1=.10,m4.1=.15,m1.2=-.25,m2.2=.10,m3.2=.30,m4.2=.35,
-s1.1=.4,s2.1=.5,s3.1=2.5,s4.1=2.0,s1.2=.4,s2.2=.5,s3.2=2.5,s4.2=2.0,r=.5,n=337)
 lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,
 r=.5,n=200)
 }
