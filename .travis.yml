@@ -1,8 +1,10 @@
 language: r
 cache: packages
 os: osx
-r_binary_packages:
+r_packages
   - car
+  - openxlsx
+  - pillar
 #sudo: false
 #warnings_are_errors: false
 #dist: trusty
