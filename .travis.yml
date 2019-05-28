@@ -1,9 +1,9 @@
 language: r
 cache: packages
 os: osx
-sudo: false
+#sudo: false
 #warnings_are_errors: false
 #dist: trusty
 #before_install:
  # - sudo apt install libgsl-dev
-install.packages("https://vipbg.vcu.edu/vipbg/OpenMx2/software/bin/macosx/travis/OpenMx_latest.tgz")
+#install.packages("https://vipbg.vcu.edu/vipbg/OpenMx2/software/bin/macosx/travis/OpenMx_latest.tgz")
