@@ -1,7 +1,8 @@
 language: r
 cache: packages
-sudo: false
-dist: trusty
-before_install:
-  - sudo apt install libgsl-dev
+os: osx
+#sudo: false
+#dist: trusty
+#before_install:
+#  - sudo apt install libgsl-dev
    
