@@ -8,6 +8,7 @@
 #'@param tails number of tails for test (default is 2)
 #'@examples
 #'d_prec(d=.4,nlow=100, nhigh=2000, propn1=.5, ci=.95, by=100)
+#'@importfrom MBESS ci.cc ci.smd ci.R2
 #'@return Precision Analyses for Standardized Mean Differences
 #'@export
 #'
