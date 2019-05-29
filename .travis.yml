@@ -4,6 +4,7 @@ os: osx
 #sudo: false
 #warnings_are_errors: false
 #dist: trusty
-#before_install:
-# - sudo apt install libgsl-dev
+before_install:
 install.packages("http://mirror.its.dal.ca/gnu/gsl/gsl_latest.tar.gz")
+# - sudo apt install libgsl-dev
+
