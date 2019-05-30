@@ -1,11 +1,13 @@
 language: r
 cache: packages
+#Mac version
 os: osx
 addons:
   homebrew:
     packages:
     - gsl
     update: true
+#Linux Version
 #sudo: false
 #warnings_are_errors: false
 #dist: trusty
