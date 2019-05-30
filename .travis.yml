@@ -1,16 +1,16 @@
 language: r
 cache: packages
 #Mac version
-os: osx
-addons:
-  homebrew:
-    packages:
-    - gsl
-    update: true
+#os: osx
+#addons:
+#  homebrew:
+#    packages:
+#    - gsl
+#    update: true
 #Linux Version
-#sudo: false
+sudo: false
 #warnings_are_errors: false
-#dist: trusty
-#before_install:
-#  install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
-# - sudo apt install libgsl-dev
+dist: trusty
+before_install:
+  install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
+ - sudo apt install libgsl-dev
