@@ -3,5 +3,6 @@
 ^packrat/
 ^\.Rprofile$
 ^testthat/
-^pwr2ppl_0.1.0.tar.gz$
+^pwr2ppl_0.1.0\.tar.gz$
 ^.travis.yml$
+^cran comments.Rmd$
