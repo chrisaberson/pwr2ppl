@@ -12,5 +12,5 @@ sudo: false
 #warnings_are_errors: false
 dist: trusty
 before_install:
-  install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
+  #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
