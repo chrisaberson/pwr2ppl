@@ -15,7 +15,7 @@
 
 d_prec<-function(d,nlow, nhigh, propn1= .5, ci=.95, tails=2, by=1)
 {
-  for(n in seq(nlow,nhigh, by)){
+    for(n in seq(nlow,nhigh, by)){
     n1<-n * propn1
     n2<-n * (1-propn1)
     a<-MBESS::ci.smd(smd=d, n.1=n1,n.2=n2, conf.level = .95)

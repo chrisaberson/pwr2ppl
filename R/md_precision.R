@@ -18,6 +18,7 @@
 md_prec<-function(m1,m2,s1,s2,nlow, nhigh, propn1= .5, ci=.95, by=1)
 
   {
+
   for(n in seq(nlow,nhigh, by)){
     n1<-n * propn1
     n2<-n * (1-propn1)

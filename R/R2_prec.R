@@ -8,13 +8,13 @@
 #'@param ci Type of Confidence Interval (e.g., .95)
 #'@examples
 #'R2_prec(R2=.467, nlow=24, nhigh=100, pred=3, by=4)
+#'@importFrom MBESS ci.R2 ci.smd ci.cc
 #'@return Precision Analyses for R-Squared
 #'@export
 #'
 
 R2_prec<-function(R2,nlow, nhigh, pred, ci=.95, by=1)
-{
-    for(n in seq(nlow,nhigh, by)){
+  { for(n in seq(nlow,nhigh, by)){
     df1<-pred
     df2<-n-pred-1
     a<-MBESS::ci.R2(R2=R2, df.1=df1,df.2=df2, conf.level = .95, Random.Predictors = FALSE)
