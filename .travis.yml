@@ -14,4 +14,4 @@ dist: trusty
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
- - sudo pkg install https://vipbg.vcu.edu/vipbg/OpenMx2/software//travis/OpenMx_latest.tgz
+# - sudo pkg install https://vipbg.vcu.edu/vipbg/OpenMx2/software//travis/OpenMx_latest.tgz
