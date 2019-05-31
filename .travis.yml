@@ -1,5 +1,7 @@
 language: r
 cache: packages
+os: 
+  - linux
 #Mac version
 #os: osx
 #addons:
