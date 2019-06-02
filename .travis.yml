@@ -16,7 +16,6 @@ dist: trusty
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
-install:
-- sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-OpenMx
+ - sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-OpenMx
 # - mkdir $HOME/.R
 # - cp util/gcc7.conf $HOME/.R/Makevars
