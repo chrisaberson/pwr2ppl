@@ -16,5 +16,5 @@ dist: trusty
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
- - mkdir $HOME/.R/Makevars
+ - mkdir $HOME/.R
  - cp util/gcc7.conf $HOME/.R/Makevars
