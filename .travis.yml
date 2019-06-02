@@ -11,7 +11,6 @@ os:
 #    update: true
 #Linux Version
 sudo: false
-#warnings_are_errors: false
 dist: trusty
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
