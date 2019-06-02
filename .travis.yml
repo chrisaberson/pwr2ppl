@@ -16,3 +16,6 @@ dist: trusty
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
+ install
+ - R -e "0" --args --bootstrap-packrat
+ - R -e "packrat::restore(restart=FALSE)"
