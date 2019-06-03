@@ -20,7 +20,7 @@ regintR2(R2Mod, R2Ch, mod_pred, ch_pred, nlow, nhigh, by = 1,
 
 \item{nhigh}{ending sample size}
 
-\item{by}{incrimental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
+\item{by}{incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
 
 \item{alpha}{Type I error (default is .05)}
 }

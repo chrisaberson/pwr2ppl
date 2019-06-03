@@ -3,7 +3,7 @@
 \name{MANOVA1f}
 \alias{MANOVA1f}
 \title{Compute power for a One Factor MANOVA with up to two levels and up to four measures.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 MANOVA1f(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
   m4.2 = NA, s1.1 = NA, s2.1 = NA, s3.1 = NA, s4.1 = NA,
@@ -83,7 +83,7 @@ Power for the One Factor Within Subjects and One Factor Between ANOVA
 }
 \description{
 Compute power for a One Factor MANOVA with up to two levels and up to four measures.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 MANOVA1f(n=40,m1.1=0,m2.1=1,m3.1=2.4,m4.1=-0.7,
