@@ -7,8 +7,8 @@ addons:
     packages:
     - gsl
     update: true
-before_install:
- - install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
+#before_install:
+# - install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
 
 #Linux Version (passed build #107)
 #os: 
