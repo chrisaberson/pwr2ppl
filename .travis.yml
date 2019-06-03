@@ -12,10 +12,6 @@ os:
 #Linux Version
 sudo: false
 dist: trusty
-r:
- - oldrel
- - release
- - devel 
 before_install:
   #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
  - sudo apt install libgsl-dev
