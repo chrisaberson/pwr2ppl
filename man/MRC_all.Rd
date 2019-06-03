@@ -2,7 +2,7 @@
 % Please edit documentation in R/MRC_all.R
 \name{MRC_all}
 \alias{MRC_all}
-\title{Compute power for Mutliple Regression with Up to Five Predictors
+\title{Compute power for Multiple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
 MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL,
@@ -51,7 +51,7 @@ MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL,
 Power for Multiple Regression (ALL)
 }
 \description{
-Compute power for Mutliple Regression with Up to Five Predictors
+Compute power for Multiple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 }
 \examples{

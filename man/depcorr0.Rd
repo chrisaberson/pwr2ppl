@@ -29,7 +29,7 @@ depcorr0(r12, rxy, r1x, r1y, r2x, r2y, nlow, nhigh, alpha = 0.05,
 
 \item{tails}{one or two-tailed tests (default is 2)}
 
-\item{by}{Incremental increase in sample size from low ot high}
+\item{by}{Incremental increase in sample size from low to high}
 }
 \value{
 Power for Comparing Two Dependent Correlations, No Variables in Common

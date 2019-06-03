@@ -32,7 +32,7 @@ anova1f_4(m1 = NULL, m2 = NULL, m3 = NULL, m4 = NULL, s1 = NULL,
 
 \item{n3}{Sample size for third group}
 
-\item{n4}{Sample size for fourth grou}
+\item{n4}{Sample size for fourth group}
 
 \item{alpha}{Type I error (default is .05)}
 }

@@ -3,7 +3,7 @@
 \name{lmm2F}
 \alias{lmm2F}
 \title{Compute power for a Two Factor Within Subjects Using Linear Mixed Models with up to two by four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 lmm2F(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
   m4.2 = NA, s1.1 = NA, s2.1 = NA, s3.1 = NA, s4.1 = NA,
@@ -117,7 +117,7 @@ Power for the Two Factor Within Subjects LMM
 }
 \description{
 Compute power for a Two Factor Within Subjects Using Linear Mixed Models with up to two by four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 \dontrun{lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,r=.5,n=200)}

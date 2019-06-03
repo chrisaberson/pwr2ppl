@@ -1,5 +1,5 @@
 #'Compute power for Simple Effects in a Two by Two Between Subjects ANOVA with two levels for each factor.
-#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param m1.1 Cell mean for First level of Factor A, First level of Factor B
 #'@param m1.2 Cell mean for First level of Factor A, Second level of Factor B
 #'@param m2.1 Cell mean for Second level of Factor A, First level of Factor B

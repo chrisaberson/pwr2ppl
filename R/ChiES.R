@@ -1,5 +1,5 @@
 #'Compute power for Chi Square Based on Effect Size
-#'Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
+#'Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
 #'@param phi phi coefficient (effect size for 2x2)
 #'@param df degrees of freedom
 #'@param nlow starting sample size

@@ -3,7 +3,7 @@
 \name{ChiES}
 \alias{ChiES}
 \title{Compute power for Chi Square Based on Effect Size
-Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user}
+Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 ChiES(phi, df, nlow, nhigh, by = 1, alpha = 0.05)
 }
@@ -25,7 +25,7 @@ Power for Chi Square Based on Effect Size
 }
 \description{
 Compute power for Chi Square Based on Effect Size
-Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
+Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 ChiES(phi=.3,df=1,nlow=10,nhigh=200,by=10, alpha = .01)

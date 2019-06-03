@@ -2,7 +2,7 @@
 % Please edit documentation in R/MRC_shortcuts.R
 \name{MRC_shortcuts}
 \alias{MRC_shortcuts}
-\title{Compute Mutliple Regression shortcuts with three predictors (will expand to handle two to five)
+\title{Compute Multiple Regression shortcuts with three predictors (will expand to handle two to five)
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)}
 \usage{
 MRC_shortcuts(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
@@ -30,7 +30,7 @@ MRC_shortcuts(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
 
 \item{m1}{Mean of first predictor (default is 0)}
 
-\item{m2}{Mean of second redictor (default is 0)}
+\item{m2}{Mean of second predictor (default is 0)}
 
 \item{m3}{Mean of third predictor (default is 0)}
 
@@ -43,10 +43,10 @@ MRC_shortcuts(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
 \item{sy}{Standard deviation of DV (default is 1)}
 }
 \value{
-Mutliple Regression shortcuts with three predictors
+Multiple Regression shortcuts with three predictors
 }
 \description{
-Compute Mutliple Regression shortcuts with three predictors (will expand to handle two to five)
+Compute Multiple Regression shortcuts with three predictors (will expand to handle two to five)
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)
 }
 \examples{

@@ -1,5 +1,5 @@
 #'Compute power for an Chi Square 2x2
-#'Takes proportions for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes proportions for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param r1c1 Proportion of overall scores in Row 1, Column 1
 #'@param r1c2 Proportion of overall scores in Row 1, Column 2
 #'@param r2c1 Proportion of overall scores in Row 2, Column 1

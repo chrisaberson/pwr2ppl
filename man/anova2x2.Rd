@@ -3,7 +3,7 @@
 \name{anova2x2}
 \alias{anova2x2}
 \title{Compute power for a Two by Two Between Subjects ANOVA.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 anova2x2(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
   s1.1 = NULL, s1.2 = NULL, s2.1 = NULL, s2.2 = NULL,
@@ -44,7 +44,7 @@ Power for the One Factor ANOVA
 }
 \description{
 Compute power for a Two by Two Between Subjects ANOVA.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,

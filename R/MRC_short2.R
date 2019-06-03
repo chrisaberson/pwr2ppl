@@ -1,4 +1,4 @@
-#'Compute Mutliple Regression shortcuts with three predictors for Ind Coefficients
+#'Compute Multiple Regression shortcuts with three predictors for Ind Coefficients
 #'Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)
 #'@param ry1_1 Correlation between DV (y) and first predictor (1), first group
 #'@param ry2_1 Correlation between DV (y) and second predictor (2), first group
@@ -9,7 +9,7 @@
 #'@param n1 Sample size, first group
 #'@param my_1 Mean of DV (default is 0), first group
 #'@param m1_1 Mean of first predictor (default is 0), first group
-#'@param m2_1 Mean of second redictor (default is 0), first group
+#'@param m2_1 Mean of second predictor (default is 0), first group
 #'@param m3_1 Mean of third predictor (default is 0), first group
 #'@param sy_1 Standard deviation of DV (default is 1), first group
 #'@param s1_1 Standard deviation of first predictor (default is 1), first group
@@ -24,7 +24,7 @@
 #'@param n2 Sample size, second group
 #'@param my_2 Mean of DV (default is 0), second group
 #'@param m1_2 Mean of first predictor (default is 0), second group
-#'@param m2_2 Mean of second redictor (default is 0), second group
+#'@param m2_2 Mean of second predictor (default is 0), second group
 #'@param m3_2 Mean of third predictor (default is 0), second group
 #'@param sy_2 Standard deviation of DV (default is 1), second group
 #'@param s1_2 Standard deviation of first predictor (default is 1), second group
@@ -37,7 +37,7 @@
 #'n1=50,n2=50,alpha=.05,my_1=1,m1_1=1,m2_1=1,m3_1=1,
 #'sy_1=7,s1_1=1,s2_1=1,s3_1=2,
 #'my_2=1,m1_2=1,m2_2=1,m3_2=1,sy_2=7,s1_2=1,s2_2=1,s3_2=2)
-#'@return Mutliple Regression shortcuts with three predictors for Ind Coefficients
+#'@return Multiple Regression shortcuts with three predictors for Ind Coefficients
 #'@export
 #'
 

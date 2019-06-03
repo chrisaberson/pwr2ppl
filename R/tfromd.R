@@ -3,7 +3,7 @@
 #'@param d standardize mean difference (Cohen's d)
 #'@param nlow Starting sample size
 #'@param nhigh Ending sample size
-#'@param by Incremental increase in sample size from low ot high
+#'@param by Incremental increase in sample size from low to high
 #'@param tails one or two-tailed tests (default is 2)
 #'@param test "I" for independent, "P" for paired
 #'@param alpha Type I error (default is .05)

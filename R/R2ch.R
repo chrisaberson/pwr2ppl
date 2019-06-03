@@ -1,4 +1,4 @@
-#'Compute power for R2 change in Mutliple Regression (up to three predictors)
+#'Compute power for R2 change in Multiple Regression (up to three predictors)
 #'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'Example code below for three predictors. Expand as needed for four or five
 #'@param ry1 Correlation between DV (y) and first predictor (1)
@@ -11,7 +11,7 @@
 #'@param alpha Type I error (default is .05)
 #'@param my Mean of DV (default is 0)
 #'@param m1 Mean of first predictor (default is 0)
-#'@param m2 Mean of second redictor (default is 0)
+#'@param m2 Mean of second predictor (default is 0)
 #'@param m3 Mean of third predictor (default is 0)
 #'@param sy Standard deviation of DV (default is 1)
 #'@param s1 Standard deviation of first predictor (default is 1)
@@ -19,7 +19,7 @@
 #'@param s3 Standard deviation of third predictor (default is 1)
 #'@examples
 #'R2ch(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,n=24)
-#'@return Power for R2 change in Mutliple Regression (up to three predictors)
+#'@return Power for R2 change in Multiple Regression (up to three predictors)
 #'@export
 #'
 #'

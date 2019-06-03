@@ -1,5 +1,5 @@
 #'Compute power for an Chi Square Goodness of Fit
-#'Takes proportions for up to six group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes proportions for up to six group. Alpha is .05 by default, alternative values may be entered by user
 #'@param po1 Proportion observed Group 1
 #'@param po2 Proportion observed Group 2
 #'@param po3 Proportion observed Group 3

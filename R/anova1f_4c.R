@@ -1,5 +1,5 @@
 #'Compute power for a One Factor ANOVA with four levels.
-#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param m1 Mean of first group
 #'@param m2 Mean of second group
 #'@param m3 Mean of third group
@@ -11,7 +11,7 @@
 #'@param n1 Sample size for first group
 #'@param n2 Sample size for second group
 #'@param n3 Sample size for third group
-#'@param n4 Sample size for fourth grou
+#'@param n4 Sample size for fourth group
 #'@param alpha Type I error (default is .05)
 #'@param c1 Weight for Contrast 1 (default is 0)
 #'@param c2 Weight for Contrast 2 (default is 0)

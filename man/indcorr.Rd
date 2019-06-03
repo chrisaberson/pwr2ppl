@@ -23,7 +23,7 @@ indcorr(r1, r2, nlow, nhigh, propn1 = 0.5, alpha = 0.05, tails = 2,
 
 \item{tails}{one or two-tailed tests (default is 2)}
 
-\item{by}{Incremental increase in sample size from low ot high}
+\item{by}{Incremental increase in sample size from low to high}
 }
 \value{
 Power for Comparing Two Independent Correlations

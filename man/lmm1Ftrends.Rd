@@ -3,7 +3,7 @@
 \name{lmm1Ftrends}
 \alias{lmm1Ftrends}
 \title{Compute power for a One Factor Within Subjects LMM Trends with up to four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 lmm1Ftrends(m1, m2, m3 = NA, m4 = NA, s1, s2, s3 = NULL, s4 = NULL,
   r12, r13 = NULL, r14 = NULL, r23 = NULL, r24 = NULL,
@@ -47,7 +47,7 @@ Power for the One Factor Within Subjects LMM Trends
 }
 \description{
 Compute power for a One Factor Within Subjects LMM Trends with up to four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 lmm1Ftrends(m1=-.25,m2=-.15,m3=-.05,m4=.05,s1=.4,s2=.5,s3=.6,s4=.7,

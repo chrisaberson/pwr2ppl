@@ -3,7 +3,7 @@
 \name{lmm1F}
 \alias{lmm1F}
 \title{Compute power for a One Factor Within Subjects Linear Mixed Model with up to four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 lmm1F(m1, m2, m3 = NA, m4 = NA, s1, s2, s3 = NULL, s4 = NULL, r12,
   r13 = NULL, r14 = NULL, r23 = NULL, r24 = NULL, r34 = NULL, n,
@@ -47,7 +47,7 @@ Power for the One Factor Within Subjects Linear Mixed Model
 }
 \description{
 Compute power for a One Factor Within Subjects Linear Mixed Model with up to four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 lmm1F(m1=-.25,m2=.00,m3=.10,m4=.15,s1=.4,s2=.5,s3=.6,s4=.7,

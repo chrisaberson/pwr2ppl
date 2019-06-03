@@ -1,5 +1,5 @@
 #'Compute power for a One Factor MANOVA with up to two levels and up to four measures.
-#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param m1.1 Mean of first DV, 1st level Between Factor
 #'@param m2.1 Mean of second DV, 1st level Between Factor
 #'@param m3.1 Mean of third DV, 1st level Between Factor

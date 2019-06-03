@@ -1,5 +1,5 @@
 #'Compute power for a Paired t-test
-#'Takes means, sd, and sample sizes. Alpha is .05 by default, alterative values may be entered by user.
+#'Takes means, sd, and sample sizes. Alpha is .05 by default, alternative values may be entered by user.
 #'correlation (r) defaults to .50.
 #'@param m1 Mean for Pre Test
 #'@param m2 Mean for Post Test

@@ -3,7 +3,7 @@
 \name{indt}
 \alias{indt}
 \title{Compute power for an Independent Samples t-test
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 indt(m1 = NULL, m2 = NULL, s1 = NULL, s2 = NULL, n1 = NULL,
   n2 = NULL, alpha = 0.05)
@@ -28,7 +28,7 @@ Power for Independent Samples t-test
 }
 \description{
 Compute power for an Independent Samples t-test
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 indt(m1=22,m2=20,s1=5,s2=5,n1=99,n2=99)

@@ -28,7 +28,7 @@ regint(Group1, Group2, sx1 = 1, sx2 = 1, sy1 = 1, sy2 = 1, nlow,
 
 \item{Prop_n1}{Proportion of Sample in First Group (defaults to equal sample sizes)}
 
-\item{by}{incrimental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
+\item{by}{incremental increase in sample (e.g. nlow = 10, nhigh = 24, by = 2, produces estimates of 10, 12, and 14)}
 
 \item{Estimates}{1 for Correlations (default), 2 for coefficients}
 }

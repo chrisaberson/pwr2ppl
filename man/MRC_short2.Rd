@@ -2,7 +2,7 @@
 % Please edit documentation in R/MRC_short2.R
 \name{MRC_short2}
 \alias{MRC_short2}
-\title{Compute Mutliple Regression shortcuts with three predictors for Ind Coefficients
+\title{Compute Multiple Regression shortcuts with three predictors for Ind Coefficients
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)}
 \usage{
 MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL,
@@ -47,7 +47,7 @@ MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL,
 
 \item{m1_1}{Mean of first predictor (default is 0), first group}
 
-\item{m2_1}{Mean of second redictor (default is 0), first group}
+\item{m2_1}{Mean of second predictor (default is 0), first group}
 
 \item{m3_1}{Mean of third predictor (default is 0), first group}
 
@@ -63,7 +63,7 @@ MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL,
 
 \item{m1_2}{Mean of first predictor (default is 0), second group}
 
-\item{m2_2}{Mean of second redictor (default is 0), second group}
+\item{m2_2}{Mean of second predictor (default is 0), second group}
 
 \item{m3_2}{Mean of third predictor (default is 0), second group}
 
@@ -76,10 +76,10 @@ MRC_short2(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL,
 \item{sy_2}{Standard deviation of DV (default is 1), second group}
 }
 \value{
-Mutliple Regression shortcuts with three predictors for Ind Coefficients
+Multiple Regression shortcuts with three predictors for Ind Coefficients
 }
 \description{
-Compute Mutliple Regression shortcuts with three predictors for Ind Coefficients
+Compute Multiple Regression shortcuts with three predictors for Ind Coefficients
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)
 }
 \examples{

@@ -3,7 +3,7 @@
 \name{lmm1w1b}
 \alias{lmm1w1b}
 \title{Compute power for a One Factor Within Subjects and One Factor Between LMM with up to two by four levels (within).
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 lmm1w1b(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
   m4.2 = NA, s1.1 = NA, s2.1 = NA, s3.1 = NA, s4.1 = NA,
@@ -83,7 +83,7 @@ Power for the One Factor Within Subjects and One Factor Between LMM
 }
 \description{
 Compute power for a One Factor Within Subjects and One Factor Between LMM with up to two by four levels (within).
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 lmm1w1b(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,

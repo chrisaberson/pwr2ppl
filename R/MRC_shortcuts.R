@@ -1,4 +1,4 @@
-#'Compute Mutliple Regression shortcuts with three predictors (will expand to handle two to five)
+#'Compute Multiple Regression shortcuts with three predictors (will expand to handle two to five)
 #'Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
@@ -10,7 +10,7 @@
 #'@param alpha Type I error (default is .05)
 #'@param my Mean of DV (default is 0)
 #'@param m1 Mean of first predictor (default is 0)
-#'@param m2 Mean of second redictor (default is 0)
+#'@param m2 Mean of second predictor (default is 0)
 #'@param m3 Mean of third predictor (default is 0)
 #'@param sy Standard deviation of DV (default is 1)
 #'@param s1 Standard deviation of first predictor (default is 1)
@@ -19,7 +19,7 @@
 #'@examples
 #'MRC_shortcuts(ry1=.40,ry2=.40,ry3=-.40, r12=-.15, r13=-.60,r23=.25,
 #'n=110, my=1,m1=1,m2=1,m3=1,sy=7,s1=1,s2=1,s3=2)
-#'@return Mutliple Regression shortcuts with three predictors
+#'@return Multiple Regression shortcuts with three predictors
 #'@export
 #'
 MRC_shortcuts<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=100, alpha=.05,

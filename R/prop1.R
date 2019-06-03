@@ -1,5 +1,5 @@
 #'Compute power for a single sample proportion test
-#'Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
+#'Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
 #'@param p1 expected proportion (a.k.a. alternative proportion)
 #'@param p0 null proportion
 #'@param nlow starting sample size

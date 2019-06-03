@@ -22,7 +22,7 @@ depcorr1(r1y, r2y, r12, nlow, nhigh, alpha = 0.05, tails = 2, by = 1)
 
 \item{tails}{one or two-tailed tests (default is 2)}
 
-\item{by}{Incremental increase in sample size from low ot high}
+\item{by}{Incremental increase in sample size from low to high}
 }
 \value{
 Power for Comparing Dependent Correlations, One Variable in Common

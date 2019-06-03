@@ -2,7 +2,7 @@
 % Please edit documentation in R/R2ch.R
 \name{R2ch}
 \alias{R2ch}
-\title{Compute power for R2 change in Mutliple Regression (up to three predictors)
+\title{Compute power for R2 change in Multiple Regression (up to three predictors)
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 Example code below for three predictors. Expand as needed for four or five}
 \usage{
@@ -31,7 +31,7 @@ R2ch(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL, r13 = NULL,
 
 \item{m1}{Mean of first predictor (default is 0)}
 
-\item{m2}{Mean of second redictor (default is 0)}
+\item{m2}{Mean of second predictor (default is 0)}
 
 \item{m3}{Mean of third predictor (default is 0)}
 
@@ -44,10 +44,10 @@ R2ch(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL, r13 = NULL,
 \item{sy}{Standard deviation of DV (default is 1)}
 }
 \value{
-Power for R2 change in Mutliple Regression (up to three predictors)
+Power for R2 change in Multiple Regression (up to three predictors)
 }
 \description{
-Compute power for R2 change in Mutliple Regression (up to three predictors)
+Compute power for R2 change in Multiple Regression (up to three predictors)
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 Example code below for three predictors. Expand as needed for four or five
 }

@@ -3,7 +3,7 @@
 \name{anova1f_4c}
 \alias{anova1f_4c}
 \title{Compute power for a One Factor ANOVA with four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 anova1f_4c(m1 = NULL, m2 = NULL, m3 = NULL, m4 = NULL, s1 = NULL,
   s2 = NULL, s3 = NULL, s4 = NULL, n1 = NULL, n2 = NULL,
@@ -33,7 +33,7 @@ anova1f_4c(m1 = NULL, m2 = NULL, m3 = NULL, m4 = NULL, s1 = NULL,
 
 \item{n3}{Sample size for third group}
 
-\item{n4}{Sample size for fourth grou}
+\item{n4}{Sample size for fourth group}
 
 \item{alpha}{Type I error (default is .05)}
 
@@ -47,7 +47,7 @@ anova1f_4c(m1 = NULL, m2 = NULL, m3 = NULL, m4 = NULL, s1 = NULL,
 }
 \description{
 Compute power for a One Factor ANOVA with four levels.
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10,

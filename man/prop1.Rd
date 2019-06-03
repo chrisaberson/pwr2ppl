@@ -3,7 +3,7 @@
 \name{prop1}
 \alias{prop1}
 \title{Compute power for a single sample proportion test
-Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user}
+Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 prop1(p1, p0, nlow, nhigh, alpha = 0.05, tails = 2, by = 1)
 }
@@ -27,7 +27,7 @@ Power for Tests of Single Proportion
 }
 \description{
 Compute power for a single sample proportion test
-Takes phi, degrees of freedom, and a range of sameple sizes. Alpha is .05 by default, alterative values may be entered by user
+Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 prop1(p1=.60, p0=.42,nlow=20,nhigh=100, tails=1, by=10)

@@ -1,5 +1,5 @@
 #'Compute power for an Independent Samples t-test
-#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param m1 Mean of first group
 #'@param m2 Mean of second group
 #'@param s1 Standard deviation of first group

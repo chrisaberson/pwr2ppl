@@ -4,7 +4,7 @@
 #'@param r2 Correlation for Group 2
 #'@param nlow Starting sample size
 #'@param nhigh Ending sample size
-#'@param by Incremental increase in sample size from low ot high
+#'@param by Incremental increase in sample size from low to high
 #'@param propn1 Proportion of sample in first group (default is .50 for equally size groups)
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)

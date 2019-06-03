@@ -3,7 +3,7 @@
 \name{ChiGOF}
 \alias{ChiGOF}
 \title{Compute power for an Chi Square Goodness of Fit
-Takes proportions for up to six group. Alpha is .05 by default, alterative values may be entered by user}
+Takes proportions for up to six group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 ChiGOF(groups, po1, po2, po3 = NULL, po4 = NULL, po5 = NULL,
   po6 = NULL, n, alpha = 0.05)
@@ -32,7 +32,7 @@ Power for Chi Square Goodness of Fit
 }
 \description{
 Compute power for an Chi Square Goodness of Fit
-Takes proportions for up to six group. Alpha is .05 by default, alterative values may be entered by user
+Takes proportions for up to six group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 ChiGOF(po1=.25, po2=.20, po3=.20, po4=.35, groups=4,n=100)

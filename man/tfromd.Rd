@@ -20,7 +20,7 @@ tfromd(d, nlow, nhigh, alpha = 0.05, test = "I", tails = 2, by = 1)
 
 \item{tails}{one or two-tailed tests (default is 2)}
 
-\item{by}{Incremental increase in sample size from low ot high}
+\item{by}{Incremental increase in sample size from low to high}
 }
 \value{
 Power for the t-test from d statistic

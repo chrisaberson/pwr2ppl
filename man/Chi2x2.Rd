@@ -3,7 +3,7 @@
 \name{Chi2x2}
 \alias{Chi2x2}
 \title{Compute power for an Chi Square 2x2
-Takes proportions for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes proportions for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 Chi2x2(r1c1, r1c2, r2c1, r2c2, n, alpha = 0.05)
 }
@@ -25,7 +25,7 @@ Power for 2x2 Chi Square
 }
 \description{
 Compute power for an Chi Square 2x2
-Takes proportions for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes proportions for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 Chi2x2(r1c1=.28,r1c2=.22,r2c1=.38,r2c2=.12,n=100)

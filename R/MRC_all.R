@@ -1,4 +1,4 @@
-#'Compute power for Mutliple Regression with Up to Five Predictors
+#'Compute power for Multiple Regression with Up to Five Predictors
 #'Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)

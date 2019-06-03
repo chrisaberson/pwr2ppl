@@ -1,5 +1,5 @@
 #'Compute power for a One Factor Within Subjects ANOVA with up to four levels.
-#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+#'Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 #'@param m1 Mean of first time point
 #'@param m2 Mean of second time point
 #'@param m3 Mean of third time point

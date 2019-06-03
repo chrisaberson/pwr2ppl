@@ -8,7 +8,7 @@
 #'@param r2y Correlation between the DV (first measure) and the dependent variable (second measure)
 #'@param nlow Starting sample size
 #'@param nhigh Ending sample size
-#'@param by Incremental increase in sample size from low ot high
+#'@param by Incremental increase in sample size from low to high
 #'@param tails one or two-tailed tests (default is 2)
 #'@param alpha Type I error (default is .05)
 #'@examples

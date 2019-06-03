@@ -3,7 +3,7 @@
 \name{anc}
 \alias{anc}
 \title{Compute Power for One or Two Factor ANCOVA with a single covariate
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
 anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
   m2.4 = NULL, s1.1 = NULL, s2.1 = NULL, s1.2 = NULL,
@@ -58,7 +58,7 @@ Power for One or Two Factor ANCOVA with a single covariate
 }
 \description{
 Compute Power for One or Two Factor ANCOVA with a single covariate
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alterative values may be entered by user
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
 anc(m1.1=.85,m2.1=2.5, s1.1 = 1.7, s2.1=1,

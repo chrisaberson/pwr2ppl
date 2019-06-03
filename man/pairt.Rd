@@ -3,7 +3,7 @@
 \name{pairt}
 \alias{pairt}
 \title{Compute power for a Paired t-test
-Takes means, sd, and sample sizes. Alpha is .05 by default, alterative values may be entered by user.
+Takes means, sd, and sample sizes. Alpha is .05 by default, alternative values may be entered by user.
 correlation (r) defaults to .50.}
 \usage{
 pairt(m1 = NULL, m2 = NULL, s = NULL, n = NULL, r = NULL,
@@ -27,7 +27,7 @@ Power for the Paired t-test
 }
 \description{
 Compute power for a Paired t-test
-Takes means, sd, and sample sizes. Alpha is .05 by default, alterative values may be entered by user.
+Takes means, sd, and sample sizes. Alpha is .05 by default, alternative values may be entered by user.
 correlation (r) defaults to .50.
 }
 \examples{
