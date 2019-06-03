@@ -1,21 +1,19 @@
 language: r
 cache: packages
-os: 
-  - linux
+#os: 
+#  - linux
 #Mac version
-#os: osx
+os: osx
 #addons:
 #  homebrew:
 #    packages:
 #    - gsl
 #    update: true
-#Linux Version
-sudo: false
-dist: trusty
+#Linux Version (passed build #107)
+#sudo: false
+#dist: trusty
 before_install:
-  #formac install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
- - sudo apt install libgsl-dev
-install: 
- - sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-openmx
-# - mkdir $HOME/.R
-# - cp util/gcc7.conf $HOME/.R/Makevars
+ - install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
+# - sudo apt install libgsl-dev
+#install: 
+# - sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-openmx
