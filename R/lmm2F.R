@@ -49,7 +49,7 @@
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
 #'@examples
-#'\dontrun{lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,r=.5,n=200)}
+#'\donttest{lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,r=.5,n=200)}
 #'@return Power for the Two Factor Within Subjects LMM
 #'@export
 
