@@ -6,7 +6,7 @@ Author: Chris Aberson
 Maintainer: Chris Aberson <cla18@humboldt.edu> 
 Description: Statistical power analysis for designs including t-tests, correlations, 
     multiple regression, ANOVA, mediation, and logistic regression. Functions accompany 
-    Aberson (2019, <doi:10.4324/9781315171500>).
+    Aberson (2019) <doi:10.4324/9781315171500>.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
