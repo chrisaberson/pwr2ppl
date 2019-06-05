@@ -29,4 +29,4 @@ indcorr<-function(r1,r2,nlow, nhigh, propn1= .5, alpha=.05, tails=2, by=1)
     zpower<-tabled-z
     Power<-round((1-stats::pnorm(zpower)),4)
     print(paste("Power for n of", n, "=", Power))}
-}
+    on.exit()}

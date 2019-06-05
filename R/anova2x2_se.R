@@ -131,4 +131,4 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   {print(paste("Simple Effect Comparing M =",m1.2, "and", m2.2,". Power =", power.AatB2))}
   {print(paste("Simple Effect Comparing M =",m1.1, "and", m1.2,". Power =", power.BatA1))}
   {print(paste("Simple Effect Comparing M =",m2.1, "and", m2.2,". Power =", power.BatA2))}
-  }
+  on.exit() }

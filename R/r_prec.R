@@ -19,5 +19,6 @@ r_prec<-function(r,nlow, nhigh, ci=.95, by=1)
   ul<-a[3]
   ll<-round(as.numeric(ll),4)
   ul<-round(as.numeric(ul),4)
-  print(paste("n=",n,"r = ",r,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}}
+  print(paste("n=",n,"r = ",r,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}
+  on.exit()}
 

@@ -31,4 +31,4 @@ Chi2x2<-function(r1c1, r1c2, r2c1, r2c2, n, alpha=.05)
   if(sum!=1.0){stop("Expected proportions must add to 1.0. Check input po values")
   }
   else {print(paste("Power for n of", n, "=", power))}
-}
+  on.exit()}

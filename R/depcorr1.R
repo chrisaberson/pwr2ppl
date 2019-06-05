@@ -30,4 +30,4 @@ depcorr1<-function(r1y,r2y,r12, nlow, nhigh, alpha=.05, tails=2, by=1)
     tabled <- stats::qt(1-alphatails, df)
     Power<-round(1-stats::pt(tabled, df,delta),4)
     print(paste("Power for n of", n, "=", Power))}
-}
+    on.exit()}

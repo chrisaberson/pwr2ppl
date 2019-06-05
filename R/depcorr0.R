@@ -37,4 +37,4 @@ depcorr0<-function(r12,rxy,r1x,r1y,r2x,r2y, nlow, nhigh, alpha=.05, tails=2, by=
     zpower<-tabled-z
     Power<-round((1-stats::pnorm(zpower)),4)
     print(paste("Power for n of", n, "=", Power))}
-}
+    on.exit()}

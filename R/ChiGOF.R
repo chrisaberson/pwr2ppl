@@ -69,4 +69,4 @@ ChiGOF<-function(groups, po1, po2, po3=NULL, po4=NULL, po5=NULL, po6=NULL, n, al
   if(sum!=1.0){stop("Expected proportions must add to 1.0. Check input po values")
   }
   else {print(paste("Power for n of", n, "=", power))}
-}
+  on.exit()}

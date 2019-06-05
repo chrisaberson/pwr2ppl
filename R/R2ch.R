@@ -59,4 +59,5 @@ R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL
   print(paste("R2 Model = ", fullR2))
   print(paste("R2 Change Vars2 and 3 over Var1 = ", ch23, ", Power = ", powerch1))
   print(paste("R2 Change Vars1 and 3 over Var2 = ", ch13, ", Power = ", powerch2))
-  print(paste("R2 Change Vars1 and 2 over Var3 = ", ch12, ", Power = ", powerch3))}
+  print(paste("R2 Change Vars1 and 2 over Var3 = ", ch12, ", Power = ", powerch3))
+  on.exit()}

@@ -352,5 +352,5 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power B at A4 for n =",n,"=", powerlba4))}
 
         }
-}
+    on.exit()}
 

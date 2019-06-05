@@ -98,5 +98,7 @@ Power<-round(1-stats::pt(tabled,df,delta),3)
 LL_diff<-round(diff - (tabled*SER2),3)
 UL_diff<-round(diff + (tabled*SER2),3)
 
-print(paste("Power =", Power, "n1 =", n1,", n2 =", n2, ", LLdiff = ", LL_diff, ", ULdiff = ", UL_diff))}}
+print(paste("Power =", Power, "n1 =", n1,", n2 =", n2, ", LLdiff = ", LL_diff, ", ULdiff = ", UL_diff))}
+
+on.exit()}
 

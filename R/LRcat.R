@@ -26,5 +26,6 @@ LRcat<-function(p0=NULL, p1=NULL, prop=.50, alpha=.05, power, R2=.00)
     n<-((num1+num2)^2/den)/(1-R2)
     nprint<-ceiling(n)
     OR<-round((p1/(1-p1))/(p0/(1-p0)),3)
-    print(paste("Sample Size =", nprint, "for Odds Ratio = ", OR))}
+    print(paste("Sample Size =", nprint, "for Odds Ratio = ", OR))
+    on.exit()}
 

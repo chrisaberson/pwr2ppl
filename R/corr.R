@@ -22,4 +22,4 @@ corr<-function(r,nlow, nhigh, alpha=.05, tails=2, by=1)
     t<-1-stats::pt(alphatails, 1, n-2)
     Power<-round(1-stats::pt(tabled, n-2,delta),4)
     print(paste("Power for n of", n, "=", Power))}
-}
+  on.exit()}

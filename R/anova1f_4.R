@@ -68,4 +68,4 @@ Ft<-stats::qf(minusalpha, dfbg, dfwin)
 power<-round(1-stats::pf(Ft, dfbg,dfwin,lambda),3)
 #list(Power = power)
 {print(paste("Power =", power))}
-}
+on.exit()}

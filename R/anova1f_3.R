@@ -54,4 +54,5 @@ lambda<-f2*dfwin
 minusalpha<-1-alpha
 Ft<-stats::qf(minusalpha, dfbg, dfwin)
 power<-1-stats::pf(Ft, dfbg,dfwin,lambda)
-list(Power = power)}
+list(Power = power)
+on.exit()}

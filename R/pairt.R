@@ -26,5 +26,5 @@ pairt<-function(m1=NULL,m2=NULL, s=NULL, n=NULL, r = NULL, alpha=.05)
   Power<-round(1-stats::pf(Ft, 1,n-1,lambda),4)
   values<-list(Power = Power, lambda=lambda)
   print(paste("Power for n = ", n, "is", Power))
-  }
+  on.exit()}
 

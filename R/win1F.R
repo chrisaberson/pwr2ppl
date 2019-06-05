@@ -169,6 +169,6 @@ if(levels=="2"){
       {print(paste("Power (Unadjusted) for n =",n,"=", power))}
       {print(paste("Power H-F Adjusted (Epsilon = ",hfe ,") for n =",n, "=", powerhf))}
       {print(paste("Power G-G Adjusted (Epsilon = ", gge,") for n =",n, "=", powergg))}}
-}
+      on.exit()}
 
 

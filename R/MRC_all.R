@@ -401,7 +401,8 @@ if (pred=="4")
     {print(paste("Proportion Rejecting Two = ", PowerAll_R2))}
     {print(paste("Proportion Rejecting Three = ", PowerAll_R3))}
     {print(paste("Proportion Rejecting Four = ", PowerAll_R4))}
-    {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R5))}}}
+    {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R5))}}
+    on.exit()}
 
 
 

@@ -35,5 +35,6 @@ propind<-function(p1,p2,nlow, nhigh, nratio=0.5, alpha=.05, tails=2, by=1)
       #print(c(p1a,p2a))}
       print(paste("Power for sample sizes of ", n1, n2, "=", power))}
 
-  }}
+  }
+  on.exit()}
 

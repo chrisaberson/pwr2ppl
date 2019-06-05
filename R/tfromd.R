@@ -37,5 +37,5 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
       Ft<-stats::qf(minusalpha, 1, n-1)
       Power<-round(1-stats::pf(Ft, 1,n-2,lambda),3)
       print(paste("Power for total n of (Paired)", n, "=", Power))}
-}
+  on.exit()}
 

@@ -39,5 +39,5 @@ md_prec<-function(m1,m2,s1,s2,nlow, nhigh, propn1= .5, ci=.95, by=1)
     ll_m<-round((ll_m),4)
     ul_m<-round((ul_m),4)
     print(paste("n1=",n1,",n2 =",n2,",d = ",d,",LL =  ",ll_m,",UL =  ",ul_m,",precision =",ul_m-ll_m ))}
-}
+  on.exit()}
 

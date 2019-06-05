@@ -220,4 +220,4 @@ else if(mvars==3){
     print(paste("Power for n =", n,"mediator 4", "=", powerab4))
     print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
 
-}
+  on.exit()}

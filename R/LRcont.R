@@ -28,4 +28,5 @@ LRcont<-function(OR = NA, r = NA, ER=NULL, alpha=.05, power=NULL, R2=.00)
   n<-(num^2/den)/(1-R2)
   nprint<-ceiling(n)
   OR<-round((OR),4)
-  print(paste("Sample Size =", nprint, ", Odds Ratio = ", OR))}
+  print(paste("Sample Size =", nprint, ", Odds Ratio = ", OR))
+  on.exit()}

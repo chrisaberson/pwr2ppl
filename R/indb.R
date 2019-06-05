@@ -121,4 +121,5 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
     print(paste("Power Comparing b1 across samples = ", power1))
     print(paste("Power Comparing b2 across samples = ", power2))
     print(paste("Power Comparing b3 across samples = ", power3))
-  }}
+  }
+  on.exit()}

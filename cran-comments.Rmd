@@ -7,6 +7,26 @@ output:
     variant: markdown_github
 ---
 
+## Third Resubmission
+
+I addresed this issue by adding on.exit() to each function. I chose this option for the following reasons:
+
+* The desired output is generally one or two sentence that explain the result.  
+* The message option prints in red. Many users interpret red as meaning an error.  
+* Packages with similar forms of output (i.e., not desiged to create objects that require extraction) appear to use either print or cat to carry out these tasks.  
+
+Previous comments: "You write information messages to the console that cannot be easily
+suppressed. It is more R like to generate objects that can be used to
+extract the information a user is interested in, and then print() that
+object. Instead of print()/cat() rather use message()/warning() if you
+really have to write text to the console.
+
+Please make sure that you do not change the user's options. If you
+really have to do so, please ensure that everything is reset at the end
+of evaluation by using on.exit().
+
+Please fix and resubmit."
+
 ## Second Resumbission  
 
 * Restructured doi format as directed.  

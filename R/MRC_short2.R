@@ -98,4 +98,4 @@ MRC_short2<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   print(values2)
   print(paste("Analyses for R2i (how well predictor is explained by other predictors, Second Group"))
   print(values2b)
-}
+  on.exit()}

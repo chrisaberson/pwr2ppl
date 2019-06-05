@@ -137,7 +137,7 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     {print(paste("Power Cubic Trend for n =",n,"=", powerLM.C))}
     {print(paste("Tests use df =", df))}
     }
-}
+  on.exit()}
 
 
 

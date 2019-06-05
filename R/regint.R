@@ -49,5 +49,6 @@ regint<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.
     Power<-round(1-stats::pf(Ft, df1,df2,lambda),4)
     R2<-round((f2/(1+f2)),4)
     print(paste("Power with n1 = ", n1, "n2 = ", n2, "= ", Power))}
-    print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2))}
+    print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2))
+    on.exit()}
 

@@ -25,4 +25,4 @@ minusalpha<-1-alpha
 Ft<-stats::qf(minusalpha, ch_pred, df_denom)
 Power<-round(1-stats::pf(Ft, ch_pred, df_denom,lambda),4)
 print(paste("Power with n = ", n, "= ", Power))}
-}
+  on.exit()}

@@ -86,4 +86,4 @@ anova1f_4c<-function(m1=NULL,m2=NULL,m3=NULL,m4=NULL, s1=NULL,s2=NULL,s3=NULL,s4
   #list(Power.for.Contrast = power.contrast)
   {print(paste("Power for Contrast =", power.contrast))}
 
-  }
+  on.exit() }

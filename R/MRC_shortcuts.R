@@ -45,4 +45,4 @@ pred[!is.null(r23)]<-3
 
 full<-summary(stats::lm(X1~X2+X3+X4, pop2))
 print(full)
-}
+on.exit()}

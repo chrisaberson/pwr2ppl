@@ -102,4 +102,4 @@ anova2x2<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,
   print(paste("Power for Main Effect Factor B = ", power.B))
   print(paste("Power for Interaction AxB = ", power.AB))
   print(paste("Power(All)=", power.All))}
-}
+  on.exit()}

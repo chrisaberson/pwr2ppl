@@ -118,4 +118,4 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     tabledlm<-stats::qchisq(.95, df1)
     powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
     {print(paste("Power for n =",n,"=", powerlm))}}
-}
+    on.exit()}

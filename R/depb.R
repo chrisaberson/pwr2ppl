@@ -113,4 +113,5 @@ power23<-round(1-stats::pf(Fb, 1,df,lambdac), 3)
     print(paste("Power Comparing b1 and b2 = ", power12))
     print(paste("Power Comparing b1 and b3 = ", power13))
     print(paste("Power Comparing b2 and b3 = ", power23))
-}}
+  }
+  on.exit()}

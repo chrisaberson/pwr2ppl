@@ -217,4 +217,5 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     Ft<-stats::qf(minusalpha, dfb, dfw)
     power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
     print(paste("Power MANOVA for n =",n,"=", power))
-  }}
+  }
+  on.exit()}

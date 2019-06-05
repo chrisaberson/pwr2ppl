@@ -24,5 +24,5 @@ d_prec<-function(d,nlow, nhigh, propn1= .5, ci=.95, tails=2, by=1)
     ll<-round(as.numeric(ll),4)
     ul<-round(as.numeric(ul),4)
     print(paste("n1=",n1,",n2 =",n2,"d = ",d,",LL =  ",ll,",UL =  ",ul,",precision =",ul-ll ))}
-}
+    on.exit()}
 

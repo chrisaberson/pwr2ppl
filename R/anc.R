@@ -180,4 +180,4 @@ print(paste("Power IV2 = ", power.B, "for eta-squared = ", eta2B))
 print(paste("Power IV1*IV2 = ", power.AB, "for eta-squared = ", eta2AB))
 }
 }
-}
+on.exit()}

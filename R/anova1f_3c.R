@@ -64,4 +64,5 @@ anova1f_3c<-function(m1=NULL,m2=NULL,m3=NULL,s1=NULL,s2=NULL,s3=NULL,n1=NULL,n2=
   lambda.c=delta^2
   Ft.c<-stats::qf(minusalpha, 1, dfwin)
   power.contrast<-1-stats::pf(Ft.c, 1,dfwin,lambda.c)
-  list(Power.for.Contrast = power.contrast)}
+  list(Power.for.Contrast = power.contrast)
+  on.exit()}

@@ -355,4 +355,5 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
     {print(paste("Power Factor AB H-F Adjusted (Epsilon = ",hfeAB ,") for n =",n, "=", powerhfAB))}
     {print(paste("Power Factor AB G-G Adjusted (Epsilon = ", ggeAB,") for n =",n, "=", powerggAB))}
-  }}
+  }
+  on.exit()}

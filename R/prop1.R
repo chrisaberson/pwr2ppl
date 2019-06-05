@@ -29,5 +29,6 @@ prop1<-function(p1,p0,nlow, nhigh, alpha=.05, tails=2, by=1)
       zpower<-tabled-zlambda
       power<-round(1-stats::pnorm(zpower),4)
       print(paste("Power for n of", n, "=", power))}
-  }}
+  }
+  on.exit()}
 
