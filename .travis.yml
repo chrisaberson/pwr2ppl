@@ -1,21 +1,21 @@
 language: r
 cache: packages
 #Mac Version
-os: osx
-addons:
-  homebrew:
-    packages:
-    - gsl
-    update: true
+#os: osx
+#addons:
+#  homebrew:
+#    packages:
+#    - gsl
+#    update: true
 #before_install:
 # - install.packages("https://ftp.gnu.org/gnu/gsl/gsl-latest.tar.gz")
 
 #Linux Version (passed build #107)
-#os: 
-#  - linux
-#sudo: false
-#dist: trusty
-#before_install:
-# - sudo apt install libgsl-dev
-#install: 
-# - sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-openmx
+os: 
+  - linux
+sudo: false
+dist: trusty
+before_install:
+ - sudo apt install libgsl-dev
+install: 
+ - sudo apt-get install -yq --allow-unauthenticated --no-install-suggests --no-install-recommends r-cran-openmx
