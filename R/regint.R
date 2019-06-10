@@ -20,6 +20,8 @@
 
 
 regint<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.05, Prop_n1=.5, by=2, Estimates=1){
+  result <- data.frame(matrix(ncol = 4))
+  colnames(result) <- c("n1","n2","R2 Change)","Power")
   for(n in seq(nlow,nhigh, by)){
     n1 <- n * Prop_n1
     n2 <- n * (1-Prop_n1)
@@ -48,7 +50,10 @@ regint<-function(Group1,Group2, sx1=1, sx2=1, sy1=1, sy2=1, nlow, nhigh, alpha=.
     Ft<-stats::qf(minusalpha, df1, df2)
     Power<-round(1-stats::pf(Ft, df1,df2,lambda),4)
     R2<-round((f2/(1+f2)),4)
-    print(paste("Power with n1 = ", n1, "n2 = ", n2, "= ", Power))}
-    print(paste("Effect size (R2 Change/Squared Semi Partial) = ", R2))
-    on.exit()}
-
+    result[n, 1]<-n1
+    result[n, 2]<-n2
+    result[n, 3]<-R2
+    result[n, 4]<-Power}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output}

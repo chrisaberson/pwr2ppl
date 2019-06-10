@@ -14,7 +14,7 @@
 #'@param n2.2 Cell sample size for Second level of Factor A, Second level of Factor B
 #'@param alpha Type I error (default is .05)
 #'examples
-#'anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+#'anova2x2_se(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
 #'s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
 #'n1.1=250, n1.2=250, n2.1=250, n2.2=250, alpha=.05)
 #'@return Power for Simple Effects Tests in a Two By Two ANOVA
@@ -24,6 +24,9 @@
 
 anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,s2.1=NULL,s2.2=NULL,
                           n1.1=NULL,n1.2=NULL,n2.1=NULL,n2.2=NULL, alpha=.05){
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
   x<-stats::rnorm(n1.1,m1.1,s1.1)
   X<-x
   MEAN<-m1.1
@@ -125,10 +128,23 @@ anova2x2_se<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NU
   lambdaAatB2<-f2AatB2*dfwinSE
   FtAatB2<-stats::qf(minusalpha, dfAatB2, dfwinSE)
   power.AatB2<-round(1-stats::pf(FtAatB2, dfAatB2,dfwinSE,lambdaAatB2),3)
-  #values<-list(Power.A.at.B1 = power.AatB1, Power.A.at.B2 = power.AatB2,Power.B.at.A1 = power.BatA1, MB1 = m1.1,
-              # MB2 = m1.2, Power.B.at.A2 = power.BatA2)
-  {print(paste("Simple Effect Comparing M =",m1.1, "and", m2.1,". Power =", power.AatB1))}
-  {print(paste("Simple Effect Comparing M =",m1.2, "and", m2.2,". Power =", power.AatB2))}
-  {print(paste("Simple Effect Comparing M =",m1.1, "and", m1.2,". Power =", power.BatA1))}
-  {print(paste("Simple Effect Comparing M =",m2.1, "and", m2.2,". Power =", power.BatA2))}
-  on.exit() }
+
+  message("Simple Effect Comparing M = ",m1.1, " and M = ", m2.1,". Power = ", power.AatB1)
+  message("Simple Effect Comparing M= ",m1.2, " and M = ", m2.2,". Power = ", power.AatB2)
+  message("Simple Effect Comparing M = ",m1.1, " and M = ", m1.2,". Power = ", power.BatA1)
+  message("Simple Effect Comparing M = ",m2.1, " and M = ", m2.2,". Power = ", power.BatA2)
+
+  result <- data.frame(matrix(ncol = 8))
+  colnames(result) <- c("Eta-squared A at B1","Power A at B1","Eta-squared A at B2","Power A at B2","Eta-squared B at A1","Power B at A1","Eta-squared B at A2","Power B at A2")
+  result[, 1]<-eta2AatB1
+  result[, 2]<-power.AatB1
+  result[, 3]<-eta2AatB2
+  result[, 4]<-power.AatB2
+  result[, 5]<-eta2BatA1
+  result[, 6]<-power.BatA1
+  result[, 7]<-eta2BatA2
+  result[, 8]<-power.BatA2
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }

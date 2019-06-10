@@ -61,14 +61,25 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   t1<-(abs(b1_1-b1_2))/sebb1
   t2<-(abs(b2_1-b2_2))/sebb2
   lambda1<-t1^2
-  lambda1<-t2^2
+  lambda2<-t2^2
   df<-n1+n2-pred-pred-2
   minusalpha<-1-alpha
   Fb<-stats::qf(minusalpha, 1, df)
-  power1<-1-stats::pf(Fb, 1,df,lambda1)
-  power2<-1-stats::pf(Fb, 1,df,lambda2)
+  power1<-round(1-stats::pf(Fb, 1,df,lambda1),3)
+  power2<-round(1-stats::pf(Fb, 1,df,lambda2),3)
+  message("Sample size Group 1 = ",n1, ", Group 2 = ", n2)
+  message("Power comparing b1 across samples = ", power1)
+  message("Power comparing b2 across samples = ", power2)
+  result <- data.frame(matrix(ncol = 4))
+  colnames(result) <- c("n1","n2","Power b1","Power b2")
+  result[, 1]<-n1
+  result[, 2]<-n2
+  result[, 3]<-power1
+  result[, 4]<-power2
+  output<-na.omit(result)
+  rownames(output)<- c()
 
-  print(paste(power1, power2))}
+}
 
   if (pred=="3")
   {
@@ -117,9 +128,20 @@ indb<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
     power1<-round(1-stats::pf(Fb, 1,df,lambda1),3)
     power2<-round(1-stats::pf(Fb, 1,df,lambda2),3)
     power3<-round(1-stats::pf(Fb, 1,df,lambda3),3)
-    print(paste("Sample size Group 1 = ",n1, "Group 2 = ", n2))
-    print(paste("Power Comparing b1 across samples = ", power1))
-    print(paste("Power Comparing b2 across samples = ", power2))
-    print(paste("Power Comparing b3 across samples = ", power3))
+    message("Sample size Group 1 = ",n1, ", Group 2 = ", n2)
+    message("Power comparing b1 across samples = ", power1)
+    message("Power comparing b2 across samples = ", power2)
+    message("Power comparing b3 across samples = ", power3)
+    result <- data.frame(matrix(ncol = 5))
+    colnames(result) <- c("n1","n2","Power b1","Power b2","Power b3")
+    result[, 1]<-n1
+    result[, 2]<-n2
+    result[, 3]<-power1
+    result[, 4]<-power2
+    result[, 5]<-power3
+    output<-na.omit(result)
+    rownames(output)<- c()
+
   }
-  on.exit()}
+  invisible(output)
+  }

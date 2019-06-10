@@ -64,8 +64,25 @@ eta2<-SSA/(SSA+SSwin)
 f2<-eta2/(1-eta2)
 lambda<-f2*dfwin
 minusalpha<-1-alpha
+eta2<-round((eta2),2)
 Ft<-stats::qf(minusalpha, dfbg, dfwin)
 power<-round(1-stats::pf(Ft, dfbg,dfwin,lambda),3)
-#list(Power = power)
-{print(paste("Power =", power))}
-on.exit()}
+
+message("Power  = ", power, " for eta-squared = ", eta2)
+
+#Return results silently. Available if written to object
+result <- data.frame(matrix(ncol = 6))
+colnames(result) <- c("n1","n2", "n3", "n4","Eta-squared", "Power")
+result[, 1]<-n1
+result[, 2]<-n2
+result[, 3]<-n3
+result[, 4]<-n4
+result[, 5]<-eta2
+result[, 6]<-power
+output<-na.omit(result)
+rownames(output)<- c()
+invisible(output)
+
+}
+
+

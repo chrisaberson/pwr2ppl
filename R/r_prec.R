@@ -13,12 +13,21 @@
 
 r_prec<-function(r,nlow, nhigh, ci=.95, by=1)
 {
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c("n","r","LL","UL","Precision")
   for(n in seq(nlow,nhigh, by)){
   a<-MBESS::ci.cc(r, n, ci)
   ll<-a[1]
   ul<-a[3]
+  precision<-round((as.numeric(ul)-(as.numeric(ll))),4)
   ll<-round(as.numeric(ll),4)
   ul<-round(as.numeric(ul),4)
-  print(paste("n=",n,"r = ",r,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}
-  on.exit()}
+  result[n, 1]<-n
+  result[n, 2]<-r
+  result[n, 3]<-ll
+  result[n, 4]<-ul
+  result[n, 5]<-precision}
+  output<-na.omit(result)
+  rownames(output)<- c()
+  output}
 

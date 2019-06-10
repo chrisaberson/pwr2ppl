@@ -32,6 +32,10 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
   levels[is.na(m4) & !is.na(m3)]<-3
   levels[!is.na(m4)]<-4
 
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
+
   if(levels<2|levels>4){stop("Function requires 2 to 4 levels")}
   if(levels=="2"){
     var1<-s1^2
@@ -47,7 +51,6 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     lm<-stats::anova(base,model1)
@@ -56,9 +59,14 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     minusalpha<-1-alpha
     tabledlm<-stats::qchisq(minusalpha, df1)
     powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
-    {print(paste("Power for n =",n,"=", powerlm))}
-    {print(paste("Tests use df =", df))}
-    {print(paste("This test is useless for two levels"))}
+    message("Power for n = ",n," is ", powerlm)
+    message("Trend analysis not appropriate for two levels")
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","Power")
+    result[n, 1]<-n
+    result[n, 2]<-powerlm
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
 
   if(levels==3){
@@ -78,7 +86,6 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     trends<-summary(model1)
     row<-trends$tTable[1:17]
@@ -89,11 +96,18 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     tabled<-stats::qf(minusalpha,1,df)
     powerLM.L<-round(1-stats::pf(tabled, 1, df, lambdaLML),3)
     powerLM.Q<-round(1-stats::pf(tabled, 1, df, lambdaLMQ),3)
-    {print(paste("Power Linear Trend for n =",n,"=", powerLM.L))}
-    {print(paste("Power Quadratic Trend for n =",n,"=", powerLM.Q))}
-    {print(paste("Tests use df =", df))}
+    message("Power Linear Trend for n = ",n," is ", powerLM.L)
+    message("Power Quadratic Trend for n = ",n," is ", powerLM.Q)
+    message("Tests use df = ", df)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n","df","Power Linear", "Power Quadratic")
+    result[, 1]<-n
+    result[, 2]<-df
+    result[, 3]<-powerLM.L
+    result[, 4]<-powerLM.Q
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
-
 
 
   if (levels=="4"){
@@ -118,7 +132,6 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.henlme::lmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     trends<-summary(model1)
@@ -132,12 +145,23 @@ lmm1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     powerLM.L<-round(1-stats::pf(tabled, 1, df, lambdaLML),3)
     powerLM.Q<-round(1-stats::pf(tabled, 1, df, lambdaLMQ),3)
     powerLM.C<-round(1-stats::pf(tabled, 1, df, lambdaLMC),3)
-    {print(paste("Power Linear Trend for n =",n,"=", powerLM.L))}
-    {print(paste("Power Quadratic Trend for n =",n,"=", powerLM.Q))}
-    {print(paste("Power Cubic Trend for n =",n,"=", powerLM.C))}
-    {print(paste("Tests use df =", df))}
+    message("Power Linear Trend for n = ", n," is ", powerLM.L)
+    message("Power Quadratic Trend for n = ",n," is ", powerLM.Q)
+    message("Power Cubic Trend for n = ",n," is ", powerLM.C)
+    message("Tests use df =", df)
+    result <- data.frame(matrix(ncol = 5))
+    colnames(result) <- c("n","df","Power Linear", "Power Quadratic", "Power Cubic")
+    result[, 1]<-n
+    result[, 2]<-df
+    result[, 3]<-powerLM.L
+    result[, 4]<-powerLM.Q
+    result[, 5]<-powerLM.C
+    output<-na.omit(result)
+    rownames(output)<- c()
+
     }
-  on.exit()}
+    invisible(output)
+}
 
 
 

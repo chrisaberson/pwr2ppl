@@ -62,6 +62,9 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
   levels[!is.na(m4.1)]<-4
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
 
   if (levels=="2"){
     if (!is.null(s)){
@@ -91,7 +94,6 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-as.data.frame(out)
     out<-dplyr::rename(out, y1 = V1, y2 = V2, ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2)
 
     mmodel<-stats::manova(dvs~ivbg, data=out)
@@ -104,7 +106,13 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ft<-stats::qf(minusalpha, dfb, dfw)
     power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
-    print(paste("Power MANOVA for n =",n,"=", power))
+    message("Power for n = ",n," is ", power)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","power")
+    result[, 1]<-n
+    result[, 2]<-power
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
   if (levels=="3"){
@@ -145,7 +153,6 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-dplyr::rename(out, y1 = V1, y2 = V2,  y3=V3, ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
 
-    options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2,out$y3)
 
     mmodel<-stats::manova(dvs~ivbg, data=out)
@@ -158,7 +165,13 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ft<-stats::qf(minusalpha, dfb, dfw)
     power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
-    print(paste("Power MANOVA for n =",n,"=", power))
+    message("Power for n = ",n," is ", power)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","power")
+    result[, 1]<-n
+    result[, 2]<-power
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
   if (levels=="4"){
@@ -203,7 +216,6 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-as.data.frame(out)
     out<-dplyr::rename(out, y1 = V1, y2 = V2, y3=V3, y4=V4,ivbg = ivbg)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     dvs<-cbind(out$y1,out$y2,out$y3,out$y4)
 
     mmodel<-stats::manova(dvs~ivbg, data=out)
@@ -216,6 +228,13 @@ MANOVA1f<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     minusalpha<-1-alpha
     Ft<-stats::qf(minusalpha, dfb, dfw)
     power<-round(1-stats::pf(Ft, dfb,dfw,lambda),4)
-    print(paste("Power MANOVA for n =",n,"=", power))
+    message("Power for n = ",n," is ", power)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","power")
+    result[, 1]<-n
+    result[, 2]<-power
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
-  on.exit()}
+    invisible(output)
+}

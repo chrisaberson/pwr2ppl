@@ -90,12 +90,10 @@ MRC_short2<-function(ry1_1, ry2_1, ry3_1=NULL, r12_1, r13_1=NULL, r23_1=NULL,n1,
   values2b<-stats::lm(X3~X2+X4,pop2)
   values2b<-summary(values2b)
 
-  print(paste("Overall Analyses for R2 Full model and coefficients, First Group"))
-  print(values1)
-  print(paste("Analyses for R2i (how well predictor is explained by other predictors, First Group"))
-  print(values1b)
-  print(paste("Overall Analyses for R2 Full model and coefficients, Second Group"))
-  print(values2)
-  print(paste("Analyses for R2i (how well predictor is explained by other predictors, Second Group"))
-  print(values2b)
-  on.exit()}
+output<-list(values1, values1b, values2, values2b)
+names(output)<-c("Overall Analyses for R2 Full model and coefficients, First Group",
+                 "Analyses for R2i (how well predictor is explained by other predictors, First Group",
+                 "Overall Analyses for R2 Full model and coefficients, Second Group",
+                 "Analyses for R2i (how well predictor is explained by other predictors, Second Group")
+output
+  }

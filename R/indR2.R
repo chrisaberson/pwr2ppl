@@ -62,8 +62,18 @@ tabled<-stats::qt(1-alphatails, df)
 Power<-round(1-stats::pt(tabled,df,delta),3)
 LL_diff<-round(diff - (tabled*SER2),3)
 UL_diff<-round(diff + (tabled*SER2),3)
-print(paste("Power =", Power, "n1 =", n1,", n2 =", n2), ", LLdiff = ",LL_diff, ", ULdiff = ", UL_diff)}
 
+
+message("Power = ", Power, ", n1 = ", n1,", n2 = ", n2, ", LLdiff = ", LL_diff, ", ULdiff = ", UL_diff)
+result <- data.frame(matrix(ncol = 5))
+colnames(result) <- c("n1", "n2","LLdiff","ULdiff","Power")
+result[, 1]<-n1
+result[, 2]<-n2
+result[, 3]<-LL_diff
+result[, 4]<-UL_diff
+result[, 5]<-Power
+output<-na.omit(result)
+rownames(output)<- c()}
 
 if (pred=="3")
   {
@@ -97,8 +107,16 @@ tabled<-stats::qt(1-alphatails, df)
 Power<-round(1-stats::pt(tabled,df,delta),3)
 LL_diff<-round(diff - (tabled*SER2),3)
 UL_diff<-round(diff + (tabled*SER2),3)
-
-print(paste("Power =", Power, "n1 =", n1,", n2 =", n2, ", LLdiff = ", LL_diff, ", ULdiff = ", UL_diff))}
-
-on.exit()}
+message("Power = ", Power, ", n1 = ", n1,", n2 = ", n2, ", LLdiff = ", LL_diff, ", ULdiff = ", UL_diff)
+result <- data.frame(matrix(ncol = 5))
+colnames(result) <- c("n1", "n2","LLdiff","ULdiff","Power")
+result[, 1]<-n1
+result[, 2]<-n2
+result[, 3]<-LL_diff
+result[, 4]<-UL_diff
+result[, 5]<-Power
+output<-na.omit(result)
+rownames(output)<- c()}
+invisible(output)
+}
 

@@ -18,6 +18,8 @@
 tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
 {
   if (test=="I") {
+    resultI <- data.frame(matrix(ncol = 2))
+    colnames(resultI) <- c("n per group","Power")
     d<-abs(d)
     for(n in seq(nlow,nhigh, by)){
       ncalc<-n/2
@@ -26,9 +28,16 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
       minusalpha<-1-alpha
       Ft<-stats::qf(minusalpha, 1, n-2)
       Power<-round(1-stats::pf(Ft, 1,n-2,lambda),4)
-      print(paste("Power a per group n of (Independent)", n, "=", Power))}
-  }
-  else if (test=="P")
+      resultI[n, 1]<-ncalc
+      resultI[n, 2]<-Power}
+      outputI<-na.omit(resultI)
+      rownames(outputI)<- c()
+      outputI
+      }
+
+  else if (test=="P"){
+    resultP <- data.frame(matrix(ncol = 2))
+    colnames(resultP) <- c("total n","Power")
     for(n in seq(nlow,nhigh, by)){
       d<-abs(d)
       delta<-d*(n^.5)
@@ -36,6 +45,9 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
       minusalpha<-1-alpha
       Ft<-stats::qf(minusalpha, 1, n-1)
       Power<-round(1-stats::pf(Ft, 1,n-2,lambda),3)
-      print(paste("Power for total n of (Paired)", n, "=", Power))}
-  on.exit()}
-
+      resultP[n, 1]<-n
+      resultP[n, 2]<-Power}
+      outputP<-na.omit(resultP)
+      rownames(outputP)<- c()
+      outputP}
+      }

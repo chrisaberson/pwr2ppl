@@ -35,9 +35,10 @@ MRC<-function(ry1=NULL, ry2=NULL, ry3=NULL, ry4=NULL, ry5=NULL,
   {
 
 pred<-NA
-pred[is.null(r23)]<-2
-pred[!is.null(r23)]<-3
+pred[!is.null(ry2)]<-2
+pred[!is.null(ry3)]<-3
 pred[!is.null(ry4)]<-4
+pred[!is.null(ry5)]<-5
 vary<-NA
 vary<-1;var1<-1;var2<-1; var3<-1;var4<-1;var5<-1
 
@@ -71,10 +72,18 @@ vary<-1;var1<-1;var2<-1; var3<-1;var4<-1;var5<-1
     powerb1<-round(1-stats::pf(Fb, 1,df2,lambdab1),3)
     powerb2<-round(1-stats::pf(Fb, 1,df2,lambdab2),3)
 
-    {print(paste("Sample size is ",n))}
-    {print(paste("Power R2 = ", powerR2))}
-    {print(paste("Power b1 = ", powerb1))}
-    {print(paste("Power b2 = ", powerb2))}
+    message("Sample size is ",n)
+    message("Power R2 = ", powerR2)
+    message("Power b1 = ", powerb1)
+    message("Power b2 = ", powerb2)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c( "n","Power R2", "Power b1", "Power b2")
+    result[, 1]<-n
+    result[, 2]<-powerR2
+    result[, 3]<-powerb1
+    result[, 4]<-powerb2
+    output<-na.omit(result)
+    rownames(output)<- c()
      }
 
   if (pred=="3")
@@ -113,11 +122,21 @@ vary<-1;var1<-1;var2<-1; var3<-1;var4<-1;var5<-1
   powerb3<-round(1-stats::pf(Fb, 1,df2,lambdab3),3)
 
 
-  {print(paste("Sample size is ",n))}
-  {print(paste("Power R2 = ", powerR2))}
-  {print(paste("Power b1 = ", powerb1))}
-  {print(paste("Power b2 = ", powerb2))}
-  {print(paste("Power b3 = ", powerb3))}
+  message("Sample size is ",n)
+  message("Power R2 = ", powerR2)
+  message("Power b1 = ", powerb1)
+  message("Power b2 = ", powerb2)
+  message("Power b3 = ", powerb3)
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                         "Power b3")
+  result[, 1]<-n
+  result[, 2]<-powerR2
+  result[, 3]<-powerb1
+  result[, 4]<-powerb2
+  result[, 5]<-powerb3
+  output<-na.omit(result)
+  rownames(output)<- c()
   }
 
   if (pred=="4")
@@ -159,12 +178,23 @@ vary<-1;var1<-1;var2<-1; var3<-1;var4<-1;var5<-1
     powerb3<-round(1-stats::pf(Fb, 1,df2,lambdab3),3)
     powerb4<-round(1-stats::pf(Fb, 1,df2,lambdab4),3)
 
-    print(paste("Sample size is ",n))
-    print(paste("Power R2 = ", powerR2))
-    print(paste("Power b1 = ", powerb1))
-    print(paste("Power b2 = ", powerb2))
-    print(paste("Power b3 = ", powerb3))
-    print(paste("Power b4 = ", powerb4))
+    message("Sample size is ",n)
+    message("Power R2 = ", powerR2)
+    message("Power b1 = ", powerb1)
+    message("Power b2 = ", powerb2)
+    message("Power b3 = ", powerb3)
+    message("Power b4 = ", powerb4)
+    result <- data.frame(matrix(ncol = 6))
+    colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                           "Power b3", "Power b4")
+    result[, 1]<-n
+    result[, 2]<-powerR2
+    result[, 3]<-powerb1
+    result[, 4]<-powerb2
+    result[, 5]<-powerb3
+    result[, 6]<-powerb4
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
 
     if (pred=="5")
@@ -211,12 +241,25 @@ vary<-1;var1<-1;var2<-1; var3<-1;var4<-1;var5<-1
       powerb4<-round(1-stats::pf(Fb, 1,df2,lambdab4),3)
       powerb5<-round(1-stats::pf(Fb, 1,df2,lambdab5),3)
 
-      print(paste("Sample size is ",n))
-      print(paste("Power R2 = ", powerR2))
-      print(paste("Power b1 = ", powerb1))
-      print(paste("Power b2 = ", powerb2))
-      print(paste("Power b3 = ", powerb3))
-      print(paste("Power b4 = ", powerb4))
-      print(paste("Power b5 = ", powerb5))
-    }
-      on.exit()}
+      message("Sample size is ",n)
+      message("Power R2 = ", powerR2)
+      message("Power b1 = ", powerb1)
+      message("Power b2 = ", powerb2)
+      message("Power b3 = ", powerb3)
+      message("Power b4 = ", powerb4)
+      message("Power b5 = ", powerb5)
+      result <- data.frame(matrix(ncol = 7))
+      colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                             "Power b3", "Power b4", "Power b5")
+      result[, 1]<-n
+      result[, 2]<-powerR2
+      result[, 3]<-powerb1
+      result[, 4]<-powerb2
+      result[, 5]<-powerb3
+      result[, 6]<-powerb4
+      result[, 7]<-powerb5
+      output<-na.omit(result)
+      rownames(output)<- c()
+      }
+      invisible(output)
+}

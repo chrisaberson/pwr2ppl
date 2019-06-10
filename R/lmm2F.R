@@ -49,7 +49,7 @@
 #'@param n Sample size for first group
 #'@param alpha Type I error (default is .05)
 #'@examples
-#'\donttest{lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,,s1.2=.4,s2.2=.5,r=.5,n=200)}
+#'\donttest{lmm2F(m1.1=-.25,m2.1=0,m1.2=-.25,m2.2=.10,s1.1=.4,s2.1=.5,s1.2=.4,s2.2=.5,r=.5,n=200)}
 #'@return Power for the Two Factor Within Subjects LMM
 #'@export
 
@@ -69,6 +69,9 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
   levels[is.na(m4.1) & is.na(m4.2)]<-2
   levels[!is.na(m3.1) & !is.na(m3.2)]<-3
   levels[!is.na(m4.1)&!is.na(m4.2)]<-4
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
 
   if (levels=="2"){
     if (!is.null(s)){
@@ -102,7 +105,6 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==3|out$time==4]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv1/iv2, data=out,method="ML")
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
@@ -120,9 +122,17 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A for n =",n,"=", powerlm1))}
-    {print(paste("Power Factor B for n =",n,"=", powerlm2))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A  for n = ",n," is ", powerlm1)
+    message("Power Factor B  for n = ",n," is ", powerlm2)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A", "Power B", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm1
+    result[, 3]<-powerlm2
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
 
@@ -165,7 +175,6 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==4|out$time==5|out$time==6]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv1/iv2, data=out,method="ML")
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
@@ -183,9 +192,17 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A for n =",n,"=", powerlm1))}
-    {print(paste("Power Factor B for n =",n,"=", powerlm2))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A  for n = ",n," is ", powerlm1)
+    message("Power Factor B  for n = ",n," is ", powerlm2)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A", "Power B", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm1
+    result[, 3]<-powerlm2
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
 
   if (levels=="4"){
@@ -230,7 +247,6 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==5|out$time==6|out$time==7|out$time==8]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv1/iv2, data=out,method="ML")
     model1<-nlme::lme(dv~iv1, random = ~1|id/iv1/iv2, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~iv1+iv2, random = ~1|id/iv1/iv2, data=out,method="ML") #factor B
@@ -248,8 +264,17 @@ lmm2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A for n =",n,"=", powerlm1))}
-    {print(paste("Power Factor B for n =",n,"=", powerlm2))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A  for n = ",n," is ", powerlm1)
+    message("Power Factor B  for n = ",n," is ", powerlm2)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A", "Power B", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm1
+    result[, 3]<-powerlm2
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
-  on.exit()}
+  invisible(output)
+  }

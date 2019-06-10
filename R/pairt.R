@@ -24,7 +24,13 @@ pairt<-function(m1=NULL,m2=NULL, s=NULL, n=NULL, r = NULL, alpha=.05)
   minusalpha<-1-alpha
   Ft<-stats::qf(minusalpha, 1, n-1)
   Power<-round(1-stats::pf(Ft, 1,n-1,lambda),4)
-  values<-list(Power = Power, lambda=lambda)
-  print(paste("Power for n = ", n, "is", Power))
-  on.exit()}
+  message("Power for n = ", n, " is ", Power)
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c("n", "Power")
+  result[, 1]<-n
+  result[, 2]<-Power
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }
 

@@ -10,7 +10,7 @@
 #'@param ci Type of Confidence Interval (e.g., .95)
 #'@examples
 #'md_prec(m1=2,m2 =0, s1=5, s2=5,nlow=100, nhigh =1600, propn1=.5, ci=.95, by=100)
-#'md_prec(m1=0,m2 =0, s1=5, s2=5,nlow=100, nhigh =40000, propn1=.5, ci=.95, by=100)
+#'md_prec(m1=0,m2 =0, s1=5, s2=5,nlow=100, nhigh =40000, propn1=.5, ci=.95, by=1000)
 #'@return Precision Analyses for Mean Differences
 #'@export
 #'
@@ -18,7 +18,8 @@
 md_prec<-function(m1,m2,s1,s2,nlow, nhigh, propn1= .5, ci=.95, by=1)
 
   {
-
+  result <- data.frame(matrix(ncol = 6))
+  colnames(result) <- c("n1", "n2","d","LL","UL","Precision")
   for(n in seq(nlow,nhigh, by)){
     n1<-n * propn1
     n2<-n * (1-propn1)
@@ -36,8 +37,17 @@ md_prec<-function(m1,m2,s1,s2,nlow, nhigh, propn1= .5, ci=.95, by=1)
     ul<-as.numeric(ul)
     ll_m<-ll*sp
     ul_m<-ul*sp
+    precision<-round((ul_m-ll_m),4)
     ll_m<-round((ll_m),4)
     ul_m<-round((ul_m),4)
-    print(paste("n1=",n1,",n2 =",n2,",d = ",d,",LL =  ",ll_m,",UL =  ",ul_m,",precision =",ul_m-ll_m ))}
-  on.exit()}
+    result[n, 1]<-n1
+    result[n, 2]<-n2
+    result[n, 3]<-d
+    result[n, 4]<-ll_m
+    result[n, 5]<-ul_m
+    result[n, 6]<-precision}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output}
+
 

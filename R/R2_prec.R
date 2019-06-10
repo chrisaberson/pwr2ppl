@@ -14,13 +14,23 @@
 #'
 
 R2_prec<-function(R2,nlow, nhigh, pred, ci=.95, by=1)
-  { for(n in seq(nlow,nhigh, by)){
+  {
+    result <- data.frame(matrix(ncol = 5))
+    colnames(result) <- c("n","R Squared","LL","UL","Precision")
+    for(n in seq(nlow,nhigh, by)){
     df1<-pred
     df2<-n-pred-1
     a<-MBESS::ci.R2(R2=R2, df.1=df1,df.2=df2, conf.level = .95, Random.Predictors = FALSE)
     ll<-a[1]
     ul<-a[3]
+    precision<-round((as.numeric(ul)-(as.numeric(ll))),4)
     ll<-round(as.numeric(ll),4)
     ul<-round(as.numeric(ul),4)
-    print(paste("n=",n,"R2 = ",R2,",LL = ",ll,",UL = ",ul,",precision = ",ul-ll ))}
-    on.exit()}
+    result[n, 1]<-n
+    result[n, 2]<-R2
+    result[n, 3]<-ll
+    result[n, 4]<-ul
+    result[n, 5]<-precision}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output}

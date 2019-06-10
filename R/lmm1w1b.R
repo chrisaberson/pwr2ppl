@@ -58,6 +58,9 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
   levels[!is.na(m4.1)]<-4
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
 
   if (levels=="2"){
     if (!is.null(s)){
@@ -91,9 +94,6 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-tidyr::gather(out,key="ivw",value="dv",-id, -ivbg)
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
-
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/ivw, data=out,method="ML")
     model1<-nlme::lme(dv~ivw, random = ~1|id/ivw, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~ivw+ivbg, random = ~1|id/ivw, data=out,method="ML") #factor B
@@ -111,9 +111,17 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A (Between) for n =",n,"=", powerlm2))}
-    {print(paste("Power Factor B (Within) for n =",n,"=", powerlm1))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A (Between) for n = ",n," is ", powerlm2)
+    message("Power Factor B (Within) for n = ",n," is ", powerlm1)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A (Between)", "Power B (Within)", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm2
+    result[, 3]<-powerlm1
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
   if (levels=="3"){
@@ -156,7 +164,6 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-tidyr::gather(out,key="ivw",value="dv",-id, -ivbg)
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/ivw, data=out,method="ML")
     model1<-nlme::lme(dv~ivw, random = ~1|id/ivw, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~ivw+ivbg, random = ~1|id/ivw, data=out,method="ML") #factor B
@@ -174,9 +181,17 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A (Between) for n =",n,"=", powerlm2))}
-    {print(paste("Power Factor B (Within) for n =",n,"=", powerlm1))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A (Between) for n = ",n," is ", powerlm2)
+    message("Power Factor B (Within) for n = ",n," is ", powerlm1)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A (Between)", "Power B (Within)", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm2
+    result[, 3]<-powerlm1
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
 
   if (levels=="4"){
@@ -226,7 +241,6 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
 
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/ivw, data=out,method="ML")
     model1<-nlme::lme(dv~ivw, random = ~1|id/ivw, data=out,method="ML") #factor A
     model2<-nlme::lme(dv~ivw+ivbg, random = ~1|id/ivw, data=out,method="ML") #factor B
@@ -244,10 +258,19 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerlm1<-round(1-stats::pchisq(tabledlm1, df1, lambdalm1),3)
     powerlm2<-round(1-stats::pchisq(tabledlm2, df2, lambdalm2),3)
     powerlm3<-round(1-stats::pchisq(tabledlm3, df3, lambdalm3),3)
-    {print(paste("Power Factor A (Between) for n =",n,"=", powerlm2))}
-    {print(paste("Power Factor B (Within) for n =",n,"=", powerlm1))}
-    {print(paste("Power AxB for n =",n,"=", powerlm3))}
+    message("Power Factor A (Between) for n = ",n," is ", powerlm2)
+    message("Power Factor B (Within) for n = ",n," is ", powerlm1)
+    message("Power AxB for n = ",n," is ", powerlm3)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c("n", "Power A (Between)", "Power B (Within)", "Power AxB")
+    result[, 1]<-n
+    result[, 2]<-powerlm2
+    result[, 3]<-powerlm1
+    result[, 4]<-powerlm3
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
-  on.exit()}
+  invisible(output)
+}
 
 

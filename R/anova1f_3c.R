@@ -14,8 +14,8 @@
 #'@param c2 Weight for Contrast 2 (default is 0)
 #'@param c3 Weight for Contrast 3 (default is 0)
 #'@examples
-#'anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10, s3=10, s4=10,
-#'n1=60, n2=60, n3=60, n4=60, c1=-3, c2=-1, c3=1, c4=3, alpha=.05)
+#'anova1f_3c(m1=80, m2=82, m3=82, s1=10, s2=10, s3=10,
+#'n1=60, n2=60, n3=60, c1=2, c2=-1, c3=-1, alpha=.05)
 #'@return Power for the One Factor ANOVA
 #'@export
 #'
@@ -63,6 +63,20 @@ anova1f_3c<-function(m1=NULL,m2=NULL,m3=NULL,s1=NULL,s2=NULL,s3=NULL,n1=NULL,n2=
   delta=((c1*m1)+(c2*m2)+(c3*m3))/((mswin*((c1^2/n1)+(c2^2/n2)+(c3^2/n3))))^.5
   lambda.c=delta^2
   Ft.c<-stats::qf(minusalpha, 1, dfwin)
-  power.contrast<-1-stats::pf(Ft.c, 1,dfwin,lambda.c)
-  list(Power.for.Contrast = power.contrast)
-  on.exit()}
+  eta2<-round((eta2),4)
+  power.contrast<-round(1-stats::pf(Ft.c, 1,dfwin,lambda.c),4)
+
+  message("Power for contrast = ", power.contrast)
+
+  #Return results silently. Available if written to object
+  result <- data.frame(matrix(ncol = 4))
+  colnames(result) <- c("n1","n2", "n3", "Power")
+  result[, 1]<-n1
+  result[, 2]<-n2
+  result[, 3]<-n3
+  result[, 4]<-power.contrast
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+
+ }

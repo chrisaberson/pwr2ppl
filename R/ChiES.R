@@ -15,13 +15,19 @@
 
 ChiES<-function(phi, df, nlow, nhigh, by = 1, alpha=.05)
 {
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c( "n","Power")
   {if(phi<0|phi>1.0){stop("Invalid effect size, phi must be between 0 and 1.0")
   }
-    else
+   else
       for(n in seq(nlow,nhigh, by)){
-        lambda<-n*phi^2
-        tabled<-stats::qchisq(1-alpha, df=df)
-        power<-round(1-stats::pchisq(tabled, df=df, lambda),4)
-        print(paste("Power for n of", n, "=", power))}
-  }
-  on.exit()}
+    lambda<-n*phi^2
+    tabled<-stats::qchisq(1-alpha, df=df)
+    power<-round(1-stats::pchisq(tabled, df=df, lambda),4)
+    result[n, 1]<-n
+    result[n, 2]<-power}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output
+  }}
+

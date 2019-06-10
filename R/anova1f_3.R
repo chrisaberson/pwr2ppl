@@ -53,6 +53,24 @@ f2<-eta2/(1-eta2)
 lambda<-f2*dfwin
 minusalpha<-1-alpha
 Ft<-stats::qf(minusalpha, dfbg, dfwin)
-power<-1-stats::pf(Ft, dfbg,dfwin,lambda)
-list(Power = power)
-on.exit()}
+eta2<-round((eta2),4)
+power<-round(1-stats::pf(Ft, dfbg,dfwin,lambda),4)
+n<-n1+n2+n3
+message("Sample size overall = ",n)
+message("Power  = ", power, " for eta-squared = ", eta2)
+
+
+#Return results silently. Available if written to object
+result <- data.frame(matrix(ncol = 6))
+colnames(result) <- c("n", "n1","n2", "n3", "Eta-squared", "Power")
+result[n, 1]<-n
+result[n, 2]<-n1
+result[n, 3]<-n2
+result[n, 4]<-n3
+result[n, 5]<-eta2
+result[n, 6]<-power
+output<-na.omit(result)
+rownames(output)<- c()
+invisible(output)
+
+}

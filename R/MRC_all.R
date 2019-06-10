@@ -34,10 +34,10 @@ MRC_all<-function(ry1=NULL, ry2=NULL, ry3=NULL, ry4=NULL, ry5=NULL,
   {
 
 pred<-NA
-pred[is.null(r23)]<-2
-pred[!is.null(r23)]<-3
-pred[!is.null(r24)]<-4
-pred[!is.null(r25)]<-5
+pred[!is.null(ry2)]<-2
+pred[!is.null(ry3)]<-3
+pred[!is.null(ry4)]<-4
+pred[!is.null(ry5)]<-5
 
 vary<-NA
 vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
@@ -103,13 +103,28 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
     PowerAll_R2<-mean(Reject.All)
 
 
-    {print(paste("Sample size is ",n))}
-    {print(paste("Power R2 = ", Power_R2))}
-    {print(paste("Power b1 = ", Power_b1))}
-    {print(paste("Power b2 = ", Power_b2))}
-    {print(paste("Proportion Rejecting None = ", PowerAll_R0))}
-    {print(paste("Proportion Rejecting One = ", PowerAll_R1))}
-    {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R2))}
+   message("Sample size is ",n)
+   message("Power R2 = ", Power_R2)
+   message("Power b1 = ", Power_b1)
+   message("Power b2 = ", Power_b2)
+   message("Proportion Rejecting None = ", PowerAll_R0)
+   message("Proportion Rejecting One = ", PowerAll_R1)
+   message("Power ALL (Proportion Rejecting All) = ", PowerAll_R2)
+   result <- data.frame(matrix(ncol = 7))
+   colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                          "Power Reject None",
+                          "Power Reject One","Power Reject All")
+   result[, 1]<-n
+   result[, 2]<-Power_R2
+   result[, 3]<-Power_b1
+   result[, 4]<-Power_b2
+   result[, 5]<-PowerAll_R0
+   result[, 6]<-PowerAll_R1
+   result[, 7]<-PowerAll_R2
+
+
+   output<-na.omit(result)
+   rownames(output)<- c()
      }
 
   if (pred=="3")
@@ -185,15 +200,31 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
   PowerAll_R3<-mean(Reject.All)
 
 
-  {print(paste("Sample size is ",n))}
-  {print(paste("Power R2 = ", Power_R2))}
-  {print(paste("Power b1 = ", Power_b1))}
-  {print(paste("Power b2 = ", Power_b2))}
-  {print(paste("Power b3 = ", Power_b3))}
-  {print(paste("Proportion Rejecting None = ", PowerAll_R0))}
-  {print(paste("Proportion Rejecting One = ", PowerAll_R1))}
-  {print(paste("Proportion Rejecting Two = ", PowerAll_R2))}
-  {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R3))}
+ message("Sample size is ",n)
+ message("Power R2 = ", Power_R2)
+ message("Power b1 = ", Power_b1)
+ message("Power b2 = ", Power_b2)
+ message("Power b3 = ", Power_b3)
+ message("Proportion Rejecting None = ", PowerAll_R0)
+ message("Proportion Rejecting One = ", PowerAll_R1)
+ message("Proportion Rejecting Two = ", PowerAll_R2)
+ message("Power ALL (Proportion Rejecting All) = ", PowerAll_R3)
+ result <- data.frame(matrix(ncol = 9))
+ colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                        "Power b3", "Power Reject None",
+                        "Power Reject One","Power Reject Two","Power Reject All")
+ result[, 1]<-n
+ result[, 2]<-Power_R2
+ result[, 3]<-Power_b1
+ result[, 4]<-Power_b2
+ result[, 5]<-Power_b3
+ result[, 6]<-PowerAll_R0
+ result[, 7]<-PowerAll_R1
+ result[, 8]<-PowerAll_R2
+ result[, 9]<-PowerAll_R3
+
+ output<-na.omit(result)
+ rownames(output)<- c()
   }
 
 if (pred=="4")
@@ -280,17 +311,36 @@ if (pred=="4")
   PowerAll_R4<-mean(Reject.All)
 
 
-  {print(paste("Sample size is ",n))}
-  {print(paste("Power R2 = ", Power_R2))}
-  {print(paste("Power b1 = ", Power_b1))}
-  {print(paste("Power b2 = ", Power_b2))}
-  {print(paste("Power b3 = ", Power_b3))}
-  {print(paste("Power b4 = ", Power_b4))}
-  {print(paste("Proportion Rejecting None = ", PowerAll_R0))}
-  {print(paste("Proportion Rejecting One = ", PowerAll_R1))}
-  {print(paste("Proportion Rejecting Two = ", PowerAll_R2))}
-  {print(paste("Proportion Rejecting Three = ", PowerAll_R3))}
-  {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R4))}}
+ message("Sample size is ",n)
+ message("Power R2 = ", Power_R2)
+ message("Power b1 = ", Power_b1)
+ message("Power b2 = ", Power_b2)
+ message("Power b3 = ", Power_b3)
+ message("Power b4 = ", Power_b4)
+ message("Proportion Rejecting None = ", PowerAll_R0)
+ message("Proportion Rejecting One = ", PowerAll_R1)
+ message("Proportion Rejecting Two = ", PowerAll_R2)
+ message("Proportion Rejecting Three = ", PowerAll_R3)
+ message("Power ALL (Proportion Rejecting All) = ", PowerAll_R4)
+ result <- data.frame(matrix(ncol = 11))
+ colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                        "Power b3", "Power b4", "Power Reject None",
+                        "Power Reject One","Power Reject Two","Power Reject Three",
+                        "Power Reject All")
+ result[, 1]<-n
+ result[, 2]<-Power_R2
+ result[, 3]<-Power_b1
+ result[, 4]<-Power_b2
+ result[, 5]<-Power_b3
+ result[, 6]<-Power_b4
+ result[, 7]<-PowerAll_R0
+ result[, 8]<-PowerAll_R1
+ result[, 9]<-PowerAll_R2
+ result[, 10]<-PowerAll_R3
+ result[, 11]<-PowerAll_R4
+ output<-na.omit(result)
+ rownames(output)<- c()
+}
 
   if (pred=="5")
   {
@@ -389,20 +439,44 @@ if (pred=="4")
     PowerAll_R5<-mean(Reject.All)
 
 
-    {print(paste("Sample size is ",n))}
-    {print(paste("Power R2 = ", Power_R2))}
-    {print(paste("Power b1 = ", Power_b1))}
-    {print(paste("Power b2 = ", Power_b2))}
-    {print(paste("Power b3 = ", Power_b3))}
-    {print(paste("Power b4 = ", Power_b4))}
-    {print(paste("Power b5 = ", Power_b5))}
-    {print(paste("Proportion Rejecting None = ", PowerAll_R0))}
-    {print(paste("Proportion Rejecting One = ", PowerAll_R1))}
-    {print(paste("Proportion Rejecting Two = ", PowerAll_R2))}
-    {print(paste("Proportion Rejecting Three = ", PowerAll_R3))}
-    {print(paste("Proportion Rejecting Four = ", PowerAll_R4))}
-    {print(paste("Power ALL (Proportion Rejecting All) = ", PowerAll_R5))}}
-    on.exit()}
+   message("Sample size is ",n)
+   message("Power R2 = ", Power_R2)
+   message("Power b1 = ", Power_b1)
+   message("Power b2 = ", Power_b2)
+   message("Power b3 = ", Power_b3)
+   message("Power b4 = ", Power_b4)
+   message("Power b5 = ", Power_b5)
+   message("Proportion Rejecting None = ", PowerAll_R0)
+   message("Proportion Rejecting One = ", PowerAll_R1)
+   message("Proportion Rejecting Two = ", PowerAll_R2)
+   message("Proportion Rejecting Three = ", PowerAll_R3)
+   message("Proportion Rejecting Four = ", PowerAll_R4)
+   message("Power ALL (Proportion Rejecting All) = ", PowerAll_R5)
+   result <- data.frame(matrix(ncol = 13))
+   colnames(result) <- c( "n","Power R2", "Power b1", "Power b2",
+                          "Power b3", "Power b4", "Power b5", "Power Reject None",
+                          "Power Reject One","Power Reject Two","Power Reject Three",
+                          "Power Reject Four","Power Reject All")
+   result[, 1]<-n
+   result[, 2]<-Power_R2
+   result[, 3]<-Power_b1
+   result[, 4]<-Power_b2
+   result[, 5]<-Power_b3
+   result[, 6]<-Power_b4
+   result[, 7]<-Power_b5
+   result[, 8]<-PowerAll_R0
+   result[, 9]<-PowerAll_R1
+   result[, 10]<-PowerAll_R2
+   result[, 11]<-PowerAll_R3
+   result[, 12]<-PowerAll_R4
+   result[, 13]<-PowerAll_R5
+   output<-na.omit(result)
+   rownames(output)<- c()
+
+   }
+   invisible(output)
+    }
+
 
 
 

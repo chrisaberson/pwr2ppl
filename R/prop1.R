@@ -16,10 +16,12 @@
 
 prop1<-function(p1,p0,nlow, nhigh, alpha=.05, tails=2, by=1)
 {
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c("n","Power")
   {if(p1<0|p1>1.0|p0<0|p0>1.0){stop("Invalid proportions, must be between 0 and 1.0")
   }
     else
-      p1a<-2*asin(p1^.5)
+    p1a<-2*asin(p1^.5)
     p0a<-2*asin(p0^.5)
     h = abs(p1a-p0a)
     for(n in seq(nlow,nhigh, by)){
@@ -28,7 +30,11 @@ prop1<-function(p1,p0,nlow, nhigh, alpha=.05, tails=2, by=1)
       tabled<-abs(stats::qnorm(prob))
       zpower<-tabled-zlambda
       power<-round(1-stats::pnorm(zpower),4)
-      print(paste("Power for n of", n, "=", power))}
-  }
-  on.exit()}
+      result[n, 1]<-n
+      result[n, 2]<-power}
+      output<-na.omit(result)
+      rownames(output)<- c()
+      output
+  }}
+
 

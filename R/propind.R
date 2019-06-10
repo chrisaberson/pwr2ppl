@@ -17,10 +17,12 @@
 
 propind<-function(p1,p2,nlow, nhigh, nratio=0.5, alpha=.05, tails=2, by=1)
 {
+  result <- data.frame(matrix(ncol = 3))
+  colnames(result) <- c("n1","n2","Power")
   {if(p1<0|p1>1.0|p2<0|p2>1.0){stop("Invalid proportions, must be between 0 and 1.0")
   }
     else
-      p1a<-2*asin(p1^.5)
+    p1a<-2*asin(p1^.5)
     p2a<-2*asin(p2^.5)
     h<- abs(p1a-p2a)
     for(n in seq(nlow,nhigh, by)){
@@ -32,9 +34,12 @@ propind<-function(p1,p2,nlow, nhigh, nratio=0.5, alpha=.05, tails=2, by=1)
       tabled<-abs(stats::qnorm(prob))
       zpower<-tabled-zlambda
       power<-round(1-stats::pnorm(zpower),4)
-      #print(c(p1a,p2a))}
-      print(paste("Power for sample sizes of ", n1, n2, "=", power))}
+      result[n, 1]<-n1
+      result[n, 2]<-n2
+      result[n, 3]<-power}
+      output<-na.omit(result)
+      rownames(output)<- c()
+      output
 
-  }
-  on.exit()}
+  }}
 

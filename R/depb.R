@@ -21,6 +21,7 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
   pred[is.null(r23)]<-2
   pred[!is.null(r23)]<-3
 
+
   if (pred=="2")
   {pop <- MASS::mvrnorm(n, mu<-c(0,0,0), Sigma<-matrix(c(1, ry1, ry2,
                                                     ry1, 1, r12,
@@ -48,10 +49,16 @@ depb<-function(ry1, ry2, ry3=NULL, r12, r13=NULL, r23=NULL,n=NULL, alpha=.05)
   df<-n-3
   minusalpha<-1-alpha
   Fb<-stats::qf(minusalpha, 1, df)
-  power1<-1-stats::pf(Fb, 1,df,lambda)
-  print(paste("Sample size is ",n))
-  print(paste("Power Comparing b1 and b2<-", power1))
-  }
+  power1<-round(1-stats::pf(Fb, 1,df,lambda),3)
+  message("Sample size is ",n)
+  message("Power Comparing b1 and b2 = ", power1)
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c( "n","Power")
+  result[, 1]<-n
+  result[, 2]<-power1
+  output<-na.omit(result)
+  rownames(output)<- c()
+    }
 
   if (pred=="3")
   {
@@ -109,9 +116,18 @@ Fb<-stats::qf(minusalpha, 1, df)
 power12<-round(1-stats::pf(Fb, 1,df,lambdaa),3)
 power13<-round(1-stats::pf(Fb, 1,df,lambdab),3)
 power23<-round(1-stats::pf(Fb, 1,df,lambdac), 3)
-    print(paste("Sample size is ",n))
-    print(paste("Power Comparing b1 and b2 = ", power12))
-    print(paste("Power Comparing b1 and b3 = ", power13))
-    print(paste("Power Comparing b2 and b3 = ", power23))
+    message("Sample size is ",n)
+    message("Power Comparing b1 and b2 = ", power12)
+    message("Power Comparing b1 and b3 = ", power13)
+    message("Power Comparing b2 and b3 = ", power23)
+    result <- data.frame(matrix(ncol = 4))
+    colnames(result) <- c( "n","Power b1-b2","Power b1-b3","Power b2-b3")
+    result[, 1]<-n
+    result[, 2]<-power12
+    result[, 3]<-power13
+    result[, 4]<-power23
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
-  on.exit()}
+  invisible(output)
+  }

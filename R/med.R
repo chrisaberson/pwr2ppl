@@ -56,9 +56,15 @@ fitm <- lavaan::sem(model, data = out)
 est<-lavaan::parameterestimates(fitm)
 zab1<-abs(est$z[7])
 tabled<-abs(stats::qnorm(alpha/2))
-zpowerab1<-tabled-zab1
+zpowerab1<-tabled-abs(zab1)
 powerab1<-round(1-stats::pnorm(zpowerab1),4)
-print(paste("Power for n =", n,"mediator 1", "=", powerab1))
+message("Power for n =", n,", mediator 1", " is ", powerab1)
+result <- data.frame(matrix(ncol = 2))
+colnames(result) <- c( "n","Power Mediator 1")
+result[, 1]<-n
+result[, 2]<-powerab1
+output<-na.omit(result)
+rownames(output)<- c()
 }
 if(mvars==2){
   out <- MASS::mvrnorm(n, mu = c(0,0,0,0),
@@ -93,15 +99,25 @@ zab1<-abs(est$z[11])
 zab2<-abs(est$z[12])
 zall<-abs(est$z[13])
 tabled<-abs(stats::qnorm(alpha/2))
-zpowerab1<-tabled-zab1
-zpowerab2<-tabled-zab2
-zpowerall<-tabled-zall
+zpowerab1<-tabled-abs(zab1)
+zpowerab2<-tabled-abs(zab2)
+zpowerall<-tabled-abs(zall)
 powerab1<-round(1-stats::pnorm(zpowerab1),4)
 powerab2<-round(1-stats::pnorm(zpowerab2),4)
 powerall<-round(1-stats::pnorm(zpowerall),4)
-print(paste("Power for n =", n,"mediator 1", "=", powerab1))
-print(paste("Power for n =", n,"mediator 2", "=", powerab2))
-print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
+message("Power for n = ", n,", mediator 1", " is ", powerab1)
+message("Power for n = ", n,", mediator 2", " is ", powerab2)
+message("Power for n = ",n,", Total Mediation", " is ", powerall)
+result <- data.frame(matrix(ncol = 4))
+colnames(result) <- c( "n","Power Mediator 1", "Power Mediator 2", "Power Total")
+result[, 1]<-n
+result[, 2]<-powerab1
+result[, 3]<-powerab2
+result[, 4]<-powerall
+
+output<-na.omit(result)
+rownames(output)<- c()
+}
 
 else if(mvars==3){
   out <- MASS::mvrnorm(n, mu = c(0,0,0,0,0),
@@ -143,18 +159,29 @@ else if(mvars==3){
   zab3<-abs(est$z[18])
   zall<-abs(est$z[19])
   tabled<-abs(stats::qnorm(alpha/2))
-  zpowerab1<-tabled-zab1
-  zpowerab2<-tabled-zab2
-  zpowerab3<-tabled-zab3
-  zpowerall<-tabled-zall
+  zpowerab1<-tabled-abs(zab1)
+  zpowerab2<-tabled-abs(zab2)
+  zpowerab3<-tabled-abs(zab3)
+  zpowerall<-tabled-abs(zall)
   powerab1<-round(1-stats::pnorm(zpowerab1),4)
   powerab2<-round(1-stats::pnorm(zpowerab2),4)
   powerab3<-round(1-stats::pnorm(zpowerab3),4)
   powerall<-round(1-stats::pnorm(zpowerall),4)
-  print(paste("Power for n =", n,"mediator 1", "=", powerab1))
-  print(paste("Power for n =", n,"mediator 2", "=", powerab2))
-  print(paste("Power for n =", n,"mediator 3", "=", powerab3))
-  print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
+  message("Power for n = ", n,", mediator 1", " is ", powerab1)
+  message("Power for n = ", n,", mediator 2", " is ", powerab2)
+  message("Power for n =", n,", mediator 3", " is ", powerab3)
+  message("Power for n = ",n,", Total Mediation", " is ", powerall)
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c( "n","Power Mediator 1", "Power Mediator 2", "Power Mediator 3", "Power Total")
+  result[, 1]<-n
+  result[, 2]<-powerab1
+  result[, 3]<-powerab2
+  result[, 4]<-powerab3
+  result[, 5]<-powerall
+  output<-na.omit(result)
+  rownames(output)<- c()
+  est
+}
 
   else if(mvars==4){
     out <- MASS::mvrnorm(n, mu = c(0,0,0,0,0,0),
@@ -196,7 +223,7 @@ else if(mvars==3){
     m2~~m4
     m3~~m4
     '
-    fitm <- lavaan::sem(model, data = out, se="bootstrap")
+    fitm <- lavaan::sem(model, data = out)
     est<-lavaan::parameterestimates(fitm)
     zab1<-est$z[22]
     zab2<-est$z[23]
@@ -204,20 +231,32 @@ else if(mvars==3){
     zab4<-est$z[25]
     zall<-est$z[26]
     tabled<-abs(stats::qnorm(alpha/2))
-    zpowerab1<-tabled-zab1
-    zpowerab2<-tabled-zab2
-    zpowerab3<-tabled-zab3
-    zpowerab4<-tabled-zab4
-    zpowerall<-tabled-zall
+    zpowerab1<-tabled-abs(zab1)
+    zpowerab2<-tabled-abs(zab2)
+    zpowerab3<-tabled-abs(zab3)
+    zpowerab4<-tabled-abs(zab4)
+    zpowerall<-tabled-abs(zall)
     powerab1<-round(1-stats::pnorm(zpowerab1),4)
     powerab2<-round(1-stats::pnorm(zpowerab2),4)
     powerab3<-round(1-stats::pnorm(zpowerab3),4)
     powerab4<-round(1-stats::pnorm(zpowerab4),4)
     powerall<-round(1-stats::pnorm(zpowerall),4)
-    print(paste("Power for n =", n,"mediator 1", "=", powerab1))
-    print(paste("Power for n =", n,"mediator 2", "=", powerab2))
-    print(paste("Power for n =", n,"mediator 3", "=", powerab3))
-    print(paste("Power for n =", n,"mediator 4", "=", powerab4))
-    print(paste("Power for n = ",n,"Total Mediation", "=", powerall))}
+    message("Power for n = ", n,", mediator 1", " is ", powerab1)
+    message("Power for n = ", n,", mediator 2", " is ", powerab2)
+    message("Power for n = ", n,", mediator 3", " is ", powerab3)
+    message("Power for n = ", n,", mediator 4", " is ", powerab4)
+    message("Power for n = ",n,", Total Mediation", " is ", powerall)
+    result <- data.frame(matrix(ncol = 6))
+    colnames(result) <- c( "n","Power Mediator 1", "Power Mediator 2", "Power Mediator 3","Power Mediator 4", "Power Total")
+    result[, 1]<-n
+    result[, 2]<-powerab1
+    result[, 3]<-powerab2
+    result[, 4]<-powerab3
+    result[, 5]<-powerab4
+    result[, 6]<-powerall
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
+invisible(output)
 
-  on.exit()}
+}

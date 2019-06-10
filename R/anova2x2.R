@@ -27,6 +27,10 @@
 
 anova2x2<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,s2.1=NULL,s2.2=NULL,
                          n1.1=NULL,n1.2=NULL,n2.1=NULL,n2.2=NULL, alpha=.05, all="OFF"){
+
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
   x<-stats::rnorm(n1.1,m1.1,s1.1)
   X<-x
   MEAN<-m1.1
@@ -64,7 +68,6 @@ anova2x2<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,
   B<-rep("B2",n2.2)
   l2.2<-data.frame(y, A, B)
   simdat<-rbind(l1.1,l1.2,l2.1,l2.2)
-  options(contrasts=c("contr.sum", "contr.poly"))
   anova<-stats::aov(y~A*B, data=simdat)
   anova<-car::Anova(anova, type="III")
   SSA<-anova[2,1] #column, row
@@ -93,13 +96,45 @@ anova2x2<-function(m1.1=NULL,m1.2=NULL,m2.1=NULL,m2.2=NULL, s1.1=NULL,s1.2=NULL,
   FtAB<-stats::qf(minusalpha,dfAB, dfwin)
   power.AB<-round(1-stats::pf(FtAB,dfAB,dfwin,lambdaAB),3)
   power.All<-round((power.A*power.B*power.AB),3)
+  nall<-n1.1+n1.2+n2.1+n2.2
+  eta2A<-round((eta2A),4)
+  eta2B<-round((eta2B),4)
+  eta2AB<-round((eta2AB),4)
+
+
   if (all=="OFF")
-  {print(paste("Power for Main Effect Factor A = ", power.A))
-  print(paste("Power for Main Effect Factor B = ", power.B))
-  print(paste("Power for Interaction AxB = ", power.AB))}
-  else
-  {print(paste("Power for Main Effect Factor A = ", power.A))
-  print(paste("Power for Main Effect Factor B = ", power.B))
-  print(paste("Power for Interaction AxB = ", power.AB))
-  print(paste("Power(All)=", power.All))}
-  on.exit()}
+  {message("Power for Main Effect Factor A = ", power.A)
+   message("Power for Main Effect Factor B = ", power.B)
+   message("Power for Interaction AxB = ", power.AB)
+   result <- data.frame(matrix(ncol = 7))
+   colnames(result) <- c( "nall","Eta-squared A","Power A", "Eta-squared B", "Power B","Eta-squared AxB", "Power AxB")
+   result[, 1]<-nall
+   result[, 2]<-eta2A
+   result[, 3]<-power.A
+   result[, 4]<-eta2B
+   result[, 5]<-power.B
+   result[, 6]<-eta2AB
+   result[, 7]<-power.AB
+   output<-na.omit(result)
+   rownames(output)<- c()
+}
+  if (all=="ON")
+  {message("Power for Main Effect Factor A = ", power.A)
+    message("Power for Main Effect Factor B = ", power.B)
+    message("Power for Interaction AxB = ", power.AB)
+    message("Power(All)=", power.All)
+    result <- data.frame(matrix(ncol = 8))
+    colnames(result) <- c( "nall","Eta-squared A","Power A", "Eta-squared B", "Power B","Eta-squared AxB", "Power AxB","Power All")
+    result[, 1]<-nall
+    result[, 2]<-eta2A
+    result[, 3]<-power.A
+    result[, 4]<-eta2B
+    result[, 5]<-power.B
+    result[, 6]<-eta2AB
+    result[, 7]<-power.AB
+    result[, 8]<-power.All
+    output<-na.omit(result)
+    rownames(output)<- c()
+  }
+invisible(output)
+  }

@@ -25,24 +25,24 @@
 #'@export
 
 win1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
-                    r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
-                    n, alpha=.05)
+                r12, r13=NULL, r14=NULL, r23=NULL, r24=NULL, r34=NULL,
+                n, alpha=.05)
 {
-V1<-V2<-V3<-V4<-dv<-iv<-id<-NULL
-levels<-NA
-levels[is.na(m4) & is.na(m3)]<-2
-levels[is.na(m4) & !is.na(m3)]<-3
-levels[!is.na(m4)]<-4
+  V1<-V2<-V3<-V4<-dv<-iv<-id<-NULL
+  levels<-NA
+  levels[is.na(m4) & is.na(m3)]<-2
+  levels[is.na(m4) & !is.na(m3)]<-3
+  levels[!is.na(m4)]<-4
 
-if(levels<2|levels>4){stop("Function requires 2 to 4 levels")}
-if(levels=="2"){
-  var1<-s1^2
-  var2<-s2^2
-  cov12<-r12*s1*s2
-  out <- MASS::mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
-                                                      cov12,var2)
-                                                    , ncol = 2),
-                   empirical = TRUE)
+  if(levels<2|levels>4){stop("Function requires 2 to 4 levels")}
+  if(levels=="2"){
+    var1<-s1^2
+    var2<-s2^2
+    cov12<-r12*s1*s2
+    out <- MASS::mvrnorm(n, mu = c(m1,m2), Sigma = matrix(c(var1,cov12,
+                                                            cov12,var2)
+                                                          , ncol = 2),
+                         empirical = TRUE)
     out<-as.data.frame(out)
     out<-dplyr::rename(out, y1 = V1, y2 = V2)
     out$id <- rep(1:nrow(out))
@@ -73,10 +73,20 @@ if(levels=="2"){
     Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
     powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
     powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
-    {print(paste("Power (Unadjusted) for n =",n,"=", power))}
-    {print(paste("Adjusted Power not relevant with two levels"))}}
+    eta2<-round((eta2),3)
+    message("partial eta-squared = ", eta2)
+    message("Power (Unadjusted) for n = ",n," is ", power)
+    message("Adjusted Power not relevant with two levels")
+    result <- data.frame(matrix(ncol = 3))
+    colnames(result) <- c("n", "eta2","Power")
+    result[, 1]<-n
+    result[, 2]<-eta2
+    result[, 3]<-power
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
 
-    if(levels==3){
+  if(levels==3){
     var1<-s1^2
     var2<-s2^2
     var3<-s3^2
@@ -84,9 +94,9 @@ if(levels=="2"){
     cov13<-r13*s1*s3
     cov23<-r23*s2*s3
     out <- MASS::mvrnorm(n, mu = c(m1,m2,m3), Sigma = matrix(c(var1,cov12,cov13,
-                                                         cov12,var2,cov23,
-                                                         cov13, cov23,var3), ncol = 3),
-                                                         empirical = TRUE)
+                                                               cov12,var2,cov23,
+                                                               cov13, cov23,var3), ncol = 3),
+                         empirical = TRUE)
     out<-as.data.frame(out)
     out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3)
     out$id <- rep(1:nrow(out))
@@ -117,58 +127,87 @@ if(levels=="2"){
     Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
     powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
     powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
-    {print(paste("Power (Unadjusted) for n =",n,"=", power))}
-    {print(paste("Power H-F Adjusted (Epsilon = ",hfe ,") for n =",n, "=", powerhf))}
-    {print(paste("Power G-G Adjusted (Epsilon = ", gge,") for n =",n, "=", powergg))}}
-    if (levels=="4"){
-      var1<-s1^2
-      var2<-s2^2
-      var3<-s3^2
-      var4<-s4^2
-      cov12<-r12*s1*s2
-      cov13<-r13*s1*s3
-      cov14<-r14*s1*s4
-      cov23<-r23*s2*s3
-      cov24<-r24*s2*s4
-      cov34<-r34*s3*s4
-      out <- MASS::mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
-                                                              cov12,var2,cov23, cov24,
-                                                              cov13, cov23,var3, cov34,
-                                                              cov14, cov24, cov34, var4), ncol = 4),
-                     empirical = TRUE)
-      out<-as.data.frame(out)
-      out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
-      out$id <- rep(1:nrow(out))
-      out$id<-as.factor(out$id)
-      out<-tidyr::gather(out,key="iv",value="dv",-id)
-      out$iv<-as.ordered(out$iv)
-      options(contrasts=c("contr.helmert", "contr.poly"))
-      model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
-      df1<-model$ANOVA$DFn[2]
-      df2<-model$ANOVA$DFd[2]
-      SSB<-model$ANOVA$SSn[2]
-      SSW<-model$ANOVA$SSd[2]
-      eta2<-SSB/(SSB+SSW)
-      f2<-eta2/(1-eta2)
-      lambda<-f2*df2
-      minusalpha<-1-alpha
-      Ft<-stats::qf(minusalpha, df1, df2)
-      power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
-      gge<-round(model$`Sphericity Corrections`$GGe,3)
-      hfe<-round(model$`Sphericity Corrections`$HFe,3)
-      ggdf1<-gge*df1
-      ggdf2<-gge*df2
-      hfdf1<-hfe*df1
-      hfdf2<-hfe*df2
-      lambdagg<-f2*ggdf2
-      lambdahf<-f2*hfdf2
-      Ftgg<-stats::qf(minusalpha, ggdf1, ggdf2)
-      Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
-      powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
-      powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
-      {print(paste("Power (Unadjusted) for n =",n,"=", power))}
-      {print(paste("Power H-F Adjusted (Epsilon = ",hfe ,") for n =",n, "=", powerhf))}
-      {print(paste("Power G-G Adjusted (Epsilon = ", gge,") for n =",n, "=", powergg))}}
-      on.exit()}
-
-
+    eta2<-round((eta2),3)
+    message("partial eta-squared = ", eta2)
+    message("Power (Unadjusted) for n = ",n," is ", power)
+    message("Power H-F Adjusted (Epsilon = ",hfe ,") for n = ",n, " is ", powerhf)
+    message("Power G-G Adjusted (Epsilon = ", gge,") for n = ",n, " is ", powergg)
+    result <- data.frame(matrix(ncol = 7))
+    colnames(result) <- c("n", "eta2","Power (Unadjusted) ","H-F epsilon",
+                          "Power (H-F)","GG Epsilon","Power (G-G)")
+    result[, 1]<-n
+    result[, 2]<-eta2
+    result[, 3]<-power
+    result[, 4]<-hfe
+    result[, 5]<-powerhf
+    result[, 6]<-gge
+    result[, 7]<-powergg
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
+  if (levels==4){
+    var1<-s1^2
+    var2<-s2^2
+    var3<-s3^2
+    var4<-s4^2
+    cov12<-r12*s1*s2
+    cov13<-r13*s1*s3
+    cov14<-r14*s1*s4
+    cov23<-r23*s2*s3
+    cov24<-r24*s2*s4
+    cov34<-r34*s3*s4
+    out <- MASS::mvrnorm(n, mu = c(m1,m2,m3,m4), Sigma = matrix(c(var1,cov12,cov13, cov14,
+                                                                  cov12,var2,cov23, cov24,
+                                                                  cov13, cov23,var3, cov34,
+                                                                  cov14, cov24, cov34, var4), ncol = 4),
+                         empirical = TRUE)
+    out<-as.data.frame(out)
+    out<-dplyr::rename(out, y1 = V1, y2 = V2, y3 = V3, y4 = V4)
+    out$id <- rep(1:nrow(out))
+    out$id<-as.factor(out$id)
+    out<-tidyr::gather(out,key="iv",value="dv",-id)
+    out$iv<-as.ordered(out$iv)
+    options(contrasts=c("contr.helmert", "contr.poly"))
+    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
+    df1<-model$ANOVA$DFn[2]
+    df2<-model$ANOVA$DFd[2]
+    SSB<-model$ANOVA$SSn[2]
+    SSW<-model$ANOVA$SSd[2]
+    eta2<-SSB/(SSB+SSW)
+    f2<-eta2/(1-eta2)
+    lambda<-f2*df2
+    minusalpha<-1-alpha
+    Ft<-stats::qf(minusalpha, df1, df2)
+    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
+    gge<-round(model$`Sphericity Corrections`$GGe,3)
+    hfe<-round(model$`Sphericity Corrections`$HFe,3)
+    ggdf1<-gge*df1
+    ggdf2<-gge*df2
+    hfdf1<-hfe*df1
+    hfdf2<-hfe*df2
+    lambdagg<-f2*ggdf2
+    lambdahf<-f2*hfdf2
+    Ftgg<-stats::qf(minusalpha, ggdf1, ggdf2)
+    Fthf<-stats::qf(minusalpha, hfdf1, hfdf2)
+    powergg<-round(1-stats::pf(Ftgg, ggdf1,ggdf2,lambdagg),3)
+    powerhf<-round(1-stats::pf(Fthf, hfdf1,hfdf2,lambdahf),3)
+    eta2<-round((eta2),3)
+    message("partial eta-squared = ", eta2)
+    message("Power (Unadjusted) for n = ",n," is ", power)
+    message("Power H-F Adjusted (Epsilon = ",hfe ,") for n = ",n, " is ", powerhf)
+    message("Power G-G Adjusted (Epsilon = ", gge,") for n = ",n, " is ", powergg)
+    result <- data.frame(matrix(ncol = 7))
+    colnames(result) <- c("n", "eta2","Power (Unadjusted) ","H-F epsilon",
+                          "Power (H-F)","GG Epsilon","Power (G-G)")
+    result[, 1]<-n
+    result[, 2]<-eta2
+    result[, 3]<-power
+    result[, 4]<-hfe
+    result[, 5]<-powerhf
+    result[, 6]<-gge
+    result[, 7]<-powergg
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
+ invisible(output)
+  }

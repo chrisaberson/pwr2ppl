@@ -56,8 +56,21 @@ R2ch<-function(ry1=NULL, ry2=NULL, ry3=NULL, r12=NULL, r13=NULL, r23=NULL,n=NULL
   powerch1<-round(1-stats::pf(Ft, df1,df2,lambda1),4)
   powerch2<-round(1-stats::pf(Ft, df1,df2,lambda2),4)
   powerch3<-round(1-stats::pf(Ft, df1,df2,lambda3),4)
-  print(paste("R2 Model = ", fullR2))
-  print(paste("R2 Change Vars2 and 3 over Var1 = ", ch23, ", Power = ", powerch1))
-  print(paste("R2 Change Vars1 and 3 over Var2 = ", ch13, ", Power = ", powerch2))
-  print(paste("R2 Change Vars1 and 2 over Var3 = ", ch12, ", Power = ", powerch3))
-  on.exit()}
+  message("R2 Model = ", fullR2)
+  message("R2 Change Vars2 and 3 over Var1 = ", ch23, ", Power = ", powerch1)
+  message("R2 Change Vars1 and 3 over Var2 = ", ch13, ", Power = ", powerch2)
+  message("R2 Change Vars1 and 2 over Var3 = ", ch12, ", Power = ", powerch3)
+  result <- data.frame(matrix(ncol = 8))
+  colnames(result) <- c("n", "full R2","R2 Ch V2&3","Power Ch V2&3","R2 Ch V1&3","Power Ch V1&3","R2 Ch V1&2","Power Ch V1&2")
+  result[, 1]<-n
+  result[, 2]<-fullR2
+  result[, 3]<-ch23
+  result[, 4]<-powerch1
+  result[, 5]<-ch13
+  result[, 6]<-powerch2
+  result[, 7]<-ch12
+  result[, 8]<-powerch3
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }

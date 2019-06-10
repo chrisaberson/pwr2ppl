@@ -36,6 +36,10 @@ anc=function(m1.1,m2.1,m1.2,m2.2,m1.3=NULL,m2.3=NULL,m1.4=NULL,m2.4=NULL,
              r,s=NULL,alpha=.05,factors,n){
 {
 V1<-V2<-ivbg<-iv1<-iv2<-NULL
+oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+oldoption
+on.exit(options(oldoption))
+
 if (factors=="1")
 {
 var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2
@@ -62,7 +66,6 @@ out<-rbind(out1,out2)
 out<-as.data.frame(out)
 out<-dplyr::rename(out, y1 = V1, cov = V2, ivbg = ivbg)
 out$ivbg<-as.factor(out$ivbg)
-options(contrasts=c("contr.helmert", "contr.poly"))
 
 anc<-stats::aov(y1~cov+ivbg, data=out)
 sum<-car::Anova(anc, type="III")
@@ -79,9 +82,18 @@ FtA<-stats::qf(minusalpha, dfA, dfwin)
 power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
 nall<-n*2
 eta2A<-round((eta2A),3)
-print(paste("Sample size per cell = ",n))
-print(paste("Sample size overall = ",nall))
-print(paste("Power IV1 = ", power.A, "for eta-squared = ", eta2A))
+message("Sample size per cell = ",n)
+message("Sample size overall = ",nall)
+message("Power IV1 = ", power.A, " for eta-squared = ", eta2A)
+result <- data.frame(matrix(ncol = 3))
+colnames(result) <- c("n", "Eta-squared IV1","Power IV1")
+result[n, 1]<-nall
+result[n, 2]<-eta2A
+result[n, 3]<-power.A
+output<-na.omit(result)
+rownames(output)<- c()
+
+
 }
 
 if (factors==2)
@@ -140,8 +152,6 @@ out<-as.data.frame(out)
 out<-dplyr::rename(out, y1 = V1, cov = V2, iv1 = iv1, iv2=iv2)
 out$iv1<-as.factor(out$iv1)
 out$iv2<-as.factor(out$iv2)
-options(contrasts=c("contr.helmert", "contr.poly"))
-
 anc<-stats::aov(y1~cov+iv1*iv2, data=out)
 sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
@@ -173,11 +183,28 @@ eta2A<-round((eta2A),3)
 eta2B<-round((eta2B),3)
 eta2AB<-round((eta2AB),3)
 nall<-n*4
-print(paste("Sample size per cell = ",n))
-print(paste("Sample size overall = ",nall))
-print(paste("Power IV1 = ", power.A, "for eta-squared = ", eta2A))
-print(paste("Power IV2 = ", power.B, "for eta-squared = ", eta2B))
-print(paste("Power IV1*IV2 = ", power.AB, "for eta-squared = ", eta2AB))
+
+message("Sample size per cell = ",n)
+message("Sample size overall = ",nall)
+message("Power IV1 = ", power.A, " for eta-squared = ", eta2A)
+message("Power IV2 = ", power.B, " for eta-squared = ", eta2B)
+message("Power IV1*IV2 = ", power.AB, " for eta-squared = ", eta2AB)
+
+
+#Return results silently. Available if written to object
+result <- data.frame(matrix(ncol = 7))
+colnames(result) <- c("n", "Eta-squared IV1","Power IV1", "Eta-squared IV2", "Power IV2","Eta-squared IV1*IV2", "Power IV1*IV2")
+result[n, 1]<-nall
+result[n, 2]<-eta2A
+result[n, 3]<-power.A
+result[n, 4]<-eta2B
+result[n, 5]<-power.B
+result[n, 6]<-eta2AB
+result[n, 7]<-power.AB
+output<-na.omit(result)
+rownames(output)<- c()
+#invisible(output2)
+
 }
-}
-on.exit()}
+invisible(output)
+}}

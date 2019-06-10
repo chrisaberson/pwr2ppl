@@ -68,10 +68,24 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     powerL.L<-round(1-stats::pf(FtL2, 1,dfl,lambdaL),3)
     powerQ.H<-round(1-stats::pf(FtQ, 1,dfh,lambdaQ),3)
     powerQ.L<-round(1-stats::pf(FtQ2, 1,dfl,lambdaQ),3)
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerL.L))}
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfh,"=", powerL.H))}
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerQ.L))}
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfh,"=", powerQ.H))}}
+    message("Power Linear Trend for n = ",n,", df = ",dfl," is ", powerL.L)
+    message("Power Linear Trend for n = ",n,", df = ",dfh," is ", powerL.H)
+    message("Power Linear Trend for n = ",n,", df = ",dfl," is ", powerQ.L)
+    message("Power Linear Trend for n = ",n,", df = ",dfh," is ", powerQ.H)
+    result <- data.frame(matrix(ncol = 7))
+    colnames(result) <- c("n", "dfl","dfh","Power linear dflow",
+                          "Power linear df high","Power quadratic dflow",
+                          "Power quadratic df high")
+    result[, 1]<-n
+    result[, 2]<-dfl
+    result[, 3]<-dfh
+    result[, 4]<-powerL.L
+    result[, 5]<-powerL.H
+    result[, 6]<-powerQ.L
+    result[, 7]<-powerQ.H
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
   if (levels=="4"){
     var1<-s1^2
     var2<-s2^2
@@ -116,13 +130,31 @@ win1Ftrends<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     powerQ.L<-round(1-stats::pf(FtQ2, 1,dfl,lambdaQ),3)
     powerC.H<-round(1-stats::pf(FtC, 1,dfh,lambdaC),3)
     powerC.L<-round(1-stats::pf(FtC2, 1,dfl,lambdaC),3)
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfl,"=", powerL.L))}
-    {print(paste("Power Linear Trend for n =",n,"df = ",dfh,"=", powerL.H))}
-    {print(paste("Power Quadratic Trend for n =",n,"df = ",dfl,"=", powerQ.L))}
-    {print(paste("Power Quadratic Trend for n =",n,"df = ",dfh,"=", powerQ.H))}
-    {print(paste("Power Cubic Trend for n =",n,"df = ",dfl,"=", powerC.L))}
-    {print(paste("Power Cubic Trend for n =",n,"df = ",dfh,"=", powerC.H))}}
-    on.exit()}
+    message("Power Linear Trend for n = ",n,", df = ",dfl," is ", powerL.L)
+    message("Power Linear Trend for n = ",n,", df = ",dfh," is ", powerL.H)
+    message("Power Quadratic Trend for n = ",n,", df = ",dfl," is ", powerQ.L)
+    message("Power Quadratic Trend for n = ",n,", df = ",dfh," is ", powerQ.H)
+    message("Power Cubic Trend for n = ",n,", df = ",dfl," is ", powerC.L)
+    message("Power Cubic Trend for n = ",n,", df = ",dfh," is ", powerC.H)
+    result <- data.frame(matrix(ncol = 9))
+    colnames(result) <- c("n", "dfl","dfh","Power linear dflow",
+                          "Power linear df high","Power quadratic dflow",
+                          "Power quadratic df high","Power cubic dflow",
+                          "Power cubic df high")
+    result[, 1]<-n
+    result[, 2]<-dfl
+    result[, 3]<-dfh
+    result[, 4]<-powerL.L
+    result[, 5]<-powerL.H
+    result[, 6]<-powerQ.L
+    result[, 7]<-powerQ.H
+    result[, 8]<-powerC.L
+    result[, 9]<-powerC.H
+    output<-na.omit(result)
+    rownames(output)<- c()
+  }
+  invisible(output)
+    }
 
 
 

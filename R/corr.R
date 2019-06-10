@@ -14,6 +14,8 @@
 #'
 corr<-function(r,nlow, nhigh, alpha=.05, tails=2, by=1)
 {
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c( "n","Power")
   d<-abs(2*abs(r))/(1-r^2)^.5
   for(n in seq(nlow,nhigh, by)){
     delta<-(d*(n-2)^.5)/2
@@ -21,5 +23,10 @@ corr<-function(r,nlow, nhigh, alpha=.05, tails=2, by=1)
     tabled<-stats::qt(1-alphatails, df=n-2)
     t<-1-stats::pt(alphatails, 1, n-2)
     Power<-round(1-stats::pt(tabled, n-2,delta),4)
-    print(paste("Power for n of", n, "=", Power))}
-  on.exit()}
+    message("Power for n of ", n, " = ", Power)
+    result[n, 1]<-n
+    result[n, 2]<-Power}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output
+  }

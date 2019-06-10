@@ -83,7 +83,18 @@ anova1f_4c<-function(m1=NULL,m2=NULL,m3=NULL,m4=NULL, s1=NULL,s2=NULL,s3=NULL,s4
   lambda.c=delta^2
   Ft.c<-stats::qf(minusalpha, 1, dfwin)
   power.contrast<-round(1-stats::pf(Ft.c, 1,dfwin,lambda.c),3)
-  #list(Power.for.Contrast = power.contrast)
-  {print(paste("Power for Contrast =", power.contrast))}
 
-  on.exit() }
+  message("Power for contrast = ", power.contrast)
+
+  #Return results silently. Available if written to object
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c("n1","n2", "n3", "n4","Power")
+  result[, 1]<-n1
+  result[, 2]<-n2
+  result[, 3]<-n3
+  result[, 4]<-n4
+  result[, 5]<-power.contrast
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }

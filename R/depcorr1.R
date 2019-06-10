@@ -16,6 +16,8 @@
 #'
 depcorr1<-function(r1y,r2y,r12, nlow, nhigh, alpha=.05, tails=2, by=1)
 {
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c("n", "Power")
   for(n in seq(nlow,nhigh, by)){
     df<-n-3
     rdiff<-abs(r1y-r2y)
@@ -29,5 +31,10 @@ depcorr1<-function(r1y,r2y,r12, nlow, nhigh, alpha=.05, tails=2, by=1)
     alphatails<-alpha/tails
     tabled <- stats::qt(1-alphatails, df)
     Power<-round(1-stats::pt(tabled, df,delta),4)
-    print(paste("Power for n of", n, "=", Power))}
-    on.exit()}
+    result[n, 1]<-n
+    result[n, 2]<-Power}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output
+    }
+

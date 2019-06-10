@@ -30,5 +30,12 @@ Chi2x2<-function(r1c1, r1c2, r2c1, r2c2, n, alpha=.05)
   power<-round(1-stats::pchisq(tabled, df=df, lambda),3)
   if(sum!=1.0){stop("Expected proportions must add to 1.0. Check input po values")
   }
-  else {print(paste("Power for n of", n, "=", power))}
-  on.exit()}
+  else message("Power for n of ", n, " = ", power)
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c( "n","Power")
+  result[, 1]<-n
+  result[, 2]<-power
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }

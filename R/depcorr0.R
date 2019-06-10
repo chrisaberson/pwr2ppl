@@ -19,6 +19,8 @@
 #'
 depcorr0<-function(r12,rxy,r1x,r1y,r2x,r2y, nlow, nhigh, alpha=.05, tails=2, by=1)
 {
+  result <- data.frame(matrix(ncol = 2))
+  colnames(result) <- c("n", "Power")
   for(n in seq(nlow,nhigh, by)){
     zr12<-0.5*(log((1+r12)/(1-r12)))
     zrxy<-0.5*(log((1+rxy)/(1-rxy)))
@@ -36,5 +38,9 @@ depcorr0<-function(r12,rxy,r1x,r1y,r2x,r2y, nlow, nhigh, alpha=.05, tails=2, by=
     tabled<-stats::qnorm(1-alphatails)
     zpower<-tabled-z
     Power<-round((1-stats::pnorm(zpower)),4)
-    print(paste("Power for n of", n, "=", Power))}
-    on.exit()}
+    result[n, 1]<-n
+    result[n, 2]<-Power}
+    output<-na.omit(result)
+    rownames(output)<- c()
+    output
+    }

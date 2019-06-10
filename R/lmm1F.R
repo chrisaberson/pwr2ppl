@@ -35,6 +35,10 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
   levels[is.na(m4) & !is.na(m3)]<-3
   levels[!is.na(m4)]<-4
 
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
+
   if(levels<2|levels>4){stop("Function requires 2 to 4 levels")}
   if(levels=="2"){
     var1<-s1^2
@@ -50,7 +54,6 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     lm<-stats::anova(base,model1)
@@ -58,7 +61,14 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     lambdalm<-lm$L.Ratio[2]
     tabledlm<-stats::qchisq(.95, df1)
     powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
-    {print(paste("Power (Unadjusted) for n =",n,"=", powerlm))}}
+    message("Power for n = ",n," is ", powerlm)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","Power")
+    result[, 1]<-n
+    result[, 2]<-powerlm
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
 
   if(levels==3){
     var1<-s1^2
@@ -77,7 +87,6 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     lm<-stats::anova(base,model1)
@@ -85,7 +94,13 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     lambdalm<-lm$L.Ratio[2]
     tabledlm<-stats::qchisq(.95, df1)
     powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
-    {print(paste("Power (Unadjusted) for n =",n,"=", powerlm))}}
+    message("Power for n = ",n," is ", powerlm)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","Power")
+    result[, 1]<-n
+    result[, 2]<-powerlm
+    output<-na.omit(result)
+    rownames(output)<- c()}
 
   if (levels=="4"){
     var1<-s1^2
@@ -109,7 +124,6 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out$id<-as.factor(out$id)
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     base<-nlme::lme(dv~1, random = ~1|id/iv, data=out,method="ML")
     model1<-nlme::lme(dv~iv, random = ~1|id/iv, data=out,method="ML")
     lm<-stats::anova(base,model1)
@@ -117,5 +131,12 @@ lmm1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     lambdalm<-lm$L.Ratio[2]
     tabledlm<-stats::qchisq(.95, df1)
     powerlm<-round(1-stats::pchisq(tabledlm, df1, lambdalm),3)
-    {print(paste("Power for n =",n,"=", powerlm))}}
-    on.exit()}
+    message("Power for n = ",n," is ", powerlm)
+    result <- data.frame(matrix(ncol = 2))
+    colnames(result) <- c("n","Power")
+    result[, 1]<-n
+    result[, 2]<-powerlm
+    output<-na.omit(result)
+    rownames(output)<- c()}
+    invisible(output)
+}

@@ -136,11 +136,28 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
     powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
     powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
-    {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
-    {print(paste("Power Factor B (Unadjusted) for n =",n,"=", powerB))}
-    {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
-    {print(paste("Both Factors Have 2 levels - There is no adjustment when levels = 2"))}
-
+    eta2A<-round((eta2A),3)
+    eta2B<-round((eta2B),3)
+    eta2AB<-round((eta2AB),3)
+    message("Partial eta-squared Factor A = ", eta2A)
+    message("Power Factor A (Unadjusted) for n = ",n," is ", powerA)
+    message("Partial eta-squared Factor B = ", eta2B)
+    message("Power Factor B (Unadjusted) for n = ",n," is ", powerB)
+    message("Partial eta-squared AxB = ", eta2AB)
+    message("Power AxB (Unadjusted) for n = ",n," is ", powerAB)
+    message("Both Factors Have 2 levels - There is no adjustment when levels = 2")
+    result <- data.frame(matrix(ncol = 7))
+    colnames(result) <- c("n", "eta2 A","Power A", "eta2 B",
+                          "Power B", "eta2 AxB","Power AxB")
+    result[, 1]<-n
+    result[, 2]<-eta2A
+    result[, 3]<-powerA
+    result[, 4]<-eta2B
+    result[, 5]<-powerB
+    result[, 6]<-eta2AB
+    result[, 7]<-powerAB
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
   if (levels=="3"){
@@ -238,15 +255,44 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerggAB<-round(1-stats::pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
     powerhfA<-round(1-stats::pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
     powerhfAB<-round(1-stats::pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
-    {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
-    {print(paste("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n =",n, "=", powerhfA))}
-    {print(paste("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n =",n, "=", powerggA))}
-    {print(paste("Power Factor B (Unadjusted) for n =",n,"=", powerB))}
-    {print(paste("Power Factor B Adjusted - There is no adjustment when levels = 2"))}
-    {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
-    {print(paste("Power Factor AB H-F Adjusted (Epsilon = ",hfeAB ,") for n =",n, "=", powerhfAB))}
-    {print(paste("Power Factor AB G-G Adjusted (Epsilon = ", ggeAB,") for n =",n, "=", powerggAB))}
-  }
+    eta2A<-round((eta2A),3)
+    eta2B<-round((eta2B),3)
+    eta2AB<-round((eta2AB),3)
+    message("Partial eta-squared Factor A = ", eta2A)
+    message("Power Factor A (Unadjusted) for n = ",n," is ", powerA)
+    message("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n = ",n, " is ", powerhfA)
+    message("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n = ",n, " is ", powerggA)
+    message("Partial eta-squared Factor B = ", eta2B)
+    message("Power Factor B (Unadjusted) for n = ",n," is ", powerB)
+    message("Power Factor B Adjusted - There is no adjustment when levels = 2")
+    message("Partial eta-squared AxB = ", eta2AB)
+    message("Power AxB (Unadjusted) for n = ",n," is ", powerAB)
+    message("Power AxB H-F Adjusted (Epsilon = ",hfeAB ,") for n = ",n, " is ", powerhfAB)
+    message("Power AxB G-G Adjusted (Epsilon = ", ggeAB,") for n = ",n, " is ", powerggAB)
+
+    result <- data.frame(matrix(ncol = 15))
+    colnames(result) <- c("n", "eta2 A","Power A (Unadujsted)", "HF epsilon A",
+                          "Power A (HF)","GG Epsilon A","Power A (GG)","eta2 B",
+                          "Power B", "eta2 AxB","Power AxB(Unadjusted)","HF epsilon AxB",
+                          "Power AxB(HF)","GG Epsilon AB","Power AxB(GG)")
+    result[, 1]<-n
+    result[, 2]<-eta2A
+    result[, 3]<-powerA
+    result[, 4]<-hfeA
+    result[, 5]<-powerhfA
+    result[, 6]<-ggeA
+    result[, 7]<-powerggA
+    result[, 8]<-eta2B
+    result[, 9]<-powerB
+    result[, 10]<-eta2AB
+    result[, 11]<-powerAB
+    result[, 12]<-hfeAB
+    result[, 13]<-powerhfAB
+    result[, 14]<-ggeAB
+    result[, 15]<-powerggAB
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
 
   if (levels=="4"){
     if (!is.null(s)){
@@ -347,13 +393,42 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerggAB<-round(1-stats::pf(FtggAB, ggdfAB,ggdfWAB,lambdaggAB),3)
     powerhfA<-round(1-stats::pf(FthfA, hfdfA,hfdfWA,lambdahfA),3)
     powerhfAB<-round(1-stats::pf(FthfAB, hfdfAB,hfdfWAB,lambdahfAB),3)
-    {print(paste("Power Factor A (Unadjusted) for n =",n,"=", powerA))}
-    {print(paste("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n =",n, "=", powerhfA))}
-    {print(paste("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n =",n, "=", powerggA))}
-    {print(paste("Power Factor B (Unadjusted) for n =",n,"=", powerB))}
-    {print(paste("Power Factor B Adjusted - There is no adjustment when levels = 2"))}
-    {print(paste("Power Factor AB (Unadjusted) for n =",n,"=", powerAB))}
-    {print(paste("Power Factor AB H-F Adjusted (Epsilon = ",hfeAB ,") for n =",n, "=", powerhfAB))}
-    {print(paste("Power Factor AB G-G Adjusted (Epsilon = ", ggeAB,") for n =",n, "=", powerggAB))}
+    eta2A<-round((eta2A),3)
+    eta2B<-round((eta2B),3)
+    eta2AB<-round((eta2AB),3)
+    message("Partial eta-squared Factor A = ", eta2A)
+    message("Power Factor A (Unadjusted) for n = ",n," is ", powerA)
+    message("Power Factor A H-F Adjusted (Epsilon = ",hfeA ,") for n = ",n, " is ", powerhfA)
+    message("Power Factor A G-G Adjusted (Epsilon = ", ggeA,") for n = ",n, " is ", powerggA)
+    message("Partial eta-squared Factor B = ", eta2B)
+    message("Power Factor B (Unadjusted) for n = ",n," is ", powerB)
+    message("Power Factor B Adjusted - There is no adjustment when levels = 2")
+    message("Partial eta-squared AxB = ", eta2AB)
+    message("Power AxB (Unadjusted) for n = ",n," is ", powerAB)
+    message("Power AxB H-F Adjusted (Epsilon = ",hfeAB ,") for n = ",n, " is ", powerhfAB)
+    message("Power AxB G-G Adjusted (Epsilon = ", ggeAB,") for n = ",n, " is ", powerggAB)
+
+    result <- data.frame(matrix(ncol = 15))
+    colnames(result) <- c("n", "eta2 A","Power A (Unadujsted)", "HF epsilon A",
+                          "Power A (HF)","GG Epsilon A","Power A (GG)","eta2 B",
+                          "Power B", "eta2 AxB","Power AxB(Unadjusted)","HF epsilon AxB",
+                          "Power AxB(HF)","GG Epsilon AB","Power AxB(GG)")
+    result[, 1]<-n
+    result[, 2]<-eta2A
+    result[, 3]<-powerA
+    result[, 4]<-hfeA
+    result[, 5]<-powerhfA
+    result[, 6]<-ggeA
+    result[, 7]<-powerggA
+    result[, 8]<-eta2B
+    result[, 9]<-powerB
+    result[, 10]<-eta2AB
+    result[, 11]<-powerAB
+    result[, 12]<-hfeAB
+    result[, 13]<-powerhfAB
+    result[, 14]<-ggeAB
+    result[, 15]<-powerggAB
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
-  on.exit()}
+  invisible(output)}

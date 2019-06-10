@@ -7,15 +7,66 @@ output:
     variant: markdown_github
 ---
 
+
+## Fourth Resubmission
+
+This is a resubmission. In this version I have addresed the comments (reproduced below) in the following manners.
+
+* All instances where code modifies user options, now return to the old options on exit. This behavior is found in the files anova2x2, anova2x2se, lmm1F, lmm1Ftrends, lmm2F, lmm2fse (check win) . The modification to options is necessary as the default contrasts in R do not match the type of contrast typically used in behavioral science analyses. 
+
+* *print* converted to *message*. The text is likely the way that the vast majority of users will use the package as this approach is demonstrated in the book that the package accompanies. 
+
+* For code that returns a series of values, I now return the series of values rather than relying on *print* (or *message*).
+
+* For code that returns a very small number of values, I rely on *message* to provide text. For these functions (the majority), I now return the values using *invisible*. This allows output that matches the book the package accompanies while allowing users to work with the object if they choose. These values are made invisible as they are redundant with what *message* outputs and would likely cause confusion among users. 
+
+* I return many objects as a data.frame as the instances where these are returned provide a clear and organized view for readers (e.g., d_prec). In instances where an entire analysis is output, I use list (E.g., MRC_shortcuts).  
+
+
+Previous comments: 
+
+"It's supposed to be the solution to the changed options problem.
+F.i. in lmm2Fse() it could be used something like this:
+
+oldoption <- options(contrasts=c("contr.helmert", "contr.poly"))
+on.exit(options(oldoption))
+
+It's to be done in every function where the options are changed, so user
+options aren't changed permanently.
+(so please delete the empty on.exit() at the end of every function as it
+does not have any use)
+
+I can see that additional text can be helpful. But the functions should
+really give back the calculated values.
+If you then change print() to message() users can suppress the printed
+messages if they don't need it."
+
+and, 
+
+"I think there has been some misunderstanding.
+
+on.exit() is supposed to be used directly after changes to options are
+made, like in the examples:
+
+...
+opar <- par(mai = c(1,1,1,1))
+on.exit(par(opar))
+...
+
+so when the function malfunctions the users still have their original
+options."
+
 ## Third Resubmission
 
-I addresed this issue by adding on.exit() to each function. I chose this option for the following reasons:
+This is a resubmission. In this version I have addresed the comments (reproduced below) by adding on.exit() to each function. I chose this option for the following reasons:
 
-* The desired output is generally one or two sentence that explain the result.  
-* The message option prints in red. Many users interpret red as meaning an error.  
+* The desired output is generally one or two sentences that explain the result.  
+* The message option prints in red. Many users interpret red as meaning an error.    
 * Packages with similar forms of output (i.e., not desiged to create objects that require extraction) appear to use either print or cat to carry out these tasks.  
 
-Previous comments: "You write information messages to the console that cannot be easily
+Previous comments: 
+
+"You write information messages to the console that cannot be easily
 suppressed. It is more R like to generate objects that can be used to
 extract the information a user is interested in, and then print() that
 object. Instead of print()/cat() rather use message()/warning() if you

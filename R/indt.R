@@ -63,6 +63,16 @@ indt<-function(m1=NULL,m2=NULL, s1=NULL,s2=NULL, n1=NULL,n2=NULL, alpha=.05){
   Power_unequal<-1-stats::pf(Ft_un, dfbg,df_un,lambda_un)
   pe<-round(Power,3)
   pu<-round(Power_unequal,3)
-  {print(paste("Equal Variance Power for n1 =",n1,",", "n2 =",n2, "with d =", d, "=", pe))}
-  {print(paste("Unequal Variance Power for n1 =",n1,",", "n2 =",n2, "with d =", d_un, "=", pu))}
-  on.exit()}
+  message("Equal Variance Power for n1 = ",n1," ,n2 = ",n2, " with d = ", d, " = ", pe)
+  message("Unequal Variance Power for n1 = ",n1,"," ," n2 = ",n2, ", with d = ", d_un, " = ", pu)
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c("n1", "n2","d","Power Equal Vars","Power Unequal Vars")
+  result[, 1]<-n1
+  result[, 2]<-n1
+  result[, 3]<-d
+  result[, 4]<-pe
+  result[, 5]<-pu
+  output<-na.omit(result)
+  rownames(output)<- c()
+  invisible(output)
+  }

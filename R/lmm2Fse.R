@@ -69,6 +69,9 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
   levels[is.na(m4.1) & is.na(m4.2)]<-2
   levels[!is.na(m3.1) & !is.na(m3.2)]<-3
   levels[!is.na(m4.1)&!is.na(m4.2)]<-4
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
 
   if (levels=="2"){
     if (!is.null(s)){
@@ -140,11 +143,19 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     tabledlba2<-stats::qchisq(.95, dfba2)
     powerlba2<-round(1-stats::pchisq(tabledlba2, dfba2, lambdalmba2),3)
 
-    {print(paste("Power A at B1 for n =",n,"=", powerlab1))}
-    {print(paste("Power A at B2 for n =",n,"=", powerlab2))}
-    {print(paste("Power B at A1 for n =",n,"=", powerlba1))}
-    {print(paste("Power B at A2 for n =",n,"=", powerlba2))}
-
+    message("Power A at B1 for n = ",n," is ", powerlab1)
+    message("Power A at B2 for n = ",n," is ", powerlab2)
+    message("Power B at A1 for n = ",n," is ", powerlba1)
+    message("Power B at A2 for n = ",n," is ", powerlba2)
+    result <- data.frame(matrix(ncol = 5))
+    colnames(result) <- c("n", "Power A at B1", "Power A at B2", "Power B at A1", "Power B at A2")
+    result[, 1]<-n
+    result[, 2]<-powerlab1
+    result[, 3]<-powerlab2
+    result[, 4]<-powerlba1
+    result[, 5]<-powerlba2
+    output<-na.omit(result)
+    rownames(output)<- c()
   }
 
 
@@ -235,14 +246,21 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     tabledlba3<-stats::qchisq(.95, dfba3)
     powerlba3<-round(1-stats::pchisq(tabledlba3, dfba3, lambdalmba3),3)
 
-
-
-    {print(paste("Power A at B1 for n =",n,"=", powerlab1))}
-    {print(paste("Power A at B2 for n =",n,"=", powerlab2))}
-    {print(paste("Power B at A1 for n =",n,"=", powerlba1))}
-    {print(paste("Power B at A2 for n =",n,"=", powerlba2))}
-    {print(paste("Power B at A3 for n =",n,"=", powerlba3))}
-
+    message("Power A at B1 for n = ",n," is ", powerlab1)
+    message("Power A at B2 for n = ",n," is ", powerlab2)
+    message("Power B at A1 for n = ",n," is ", powerlba1)
+    message("Power B at A2 for n = ",n," is ", powerlba2)
+    message("Power B at A3 for n = ",n," is ", powerlba3)
+    result <- data.frame(matrix(ncol = 6))
+    colnames(result) <- c("n", "Power A at B1", "Power A at B2", "Power B at A1", "Power B at A2", "Power B at A3")
+    result[, 1]<-n
+    result[, 2]<-powerlab1
+    result[, 3]<-powerlab2
+    result[, 4]<-powerlba1
+    result[, 5]<-powerlba2
+    result[, 6]<-powerlba3
+    output<-na.omit(result)
+    rownames(output)<- c()
     }
 
   if (levels=="4"){
@@ -344,13 +362,24 @@ lmm2Fse<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     tabledlba4<-stats::qchisq(.95, dfba4)
     powerlba4<-round(1-stats::pchisq(tabledlba4, dfba4, lambdalmba4),3)
 
-    {print(paste("Power A at B1 for n =",n,"=", powerlab1))}
-    {print(paste("Power A at B2 for n =",n,"=", powerlab2))}
-    {print(paste("Power B at A1 for n =",n,"=", powerlba1))}
-    {print(paste("Power B at A2 for n =",n,"=", powerlba2))}
-    {print(paste("Power B at A3 for n =",n,"=", powerlba3))}
-    {print(paste("Power B at A4 for n =",n,"=", powerlba4))}
-
-        }
-    on.exit()}
+    message("Power A at B1 for n = ",n," is ", powerlab1)
+    message("Power A at B2 for n = ",n," is ", powerlab2)
+    message("Power B at A1 for n = ",n," is ", powerlba1)
+    message("Power B at A2 for n = ",n," is ", powerlba2)
+    message("Power B at A3 for n = ",n," is ", powerlba3)
+    message("Power B at A4 for n = ",n," is ", powerlba4)
+    result <- data.frame(matrix(ncol = 7))
+    colnames(result) <- c("n", "Power A at B1", "Power A at B2", "Power B at A1", "Power B at A2", "Power B at A3", "Power B at A4")
+    result[, 1]<-n
+    result[, 2]<-powerlab1
+    result[, 3]<-powerlab2
+    result[, 4]<-powerlba1
+    result[, 5]<-powerlba2
+    result[, 6]<-powerlba3
+    result[, 7]<-powerlba4
+    output<-na.omit(result)
+    rownames(output)<- c()
+    }
+    invisible(output)
+    }
 
