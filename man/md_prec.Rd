@@ -33,5 +33,5 @@ Compute Precision Analyses for Mean Differences
 }
 \examples{
 md_prec(m1=2,m2 =0, s1=5, s2=5,nlow=100, nhigh =1600, propn1=.5, ci=.95, by=100)
-md_prec(m1=0,m2 =0, s1=5, s2=5,nlow=100, nhigh =40000, propn1=.5, ci=.95, by=100)
+md_prec(m1=0,m2 =0, s1=5, s2=5,nlow=100, nhigh =40000, propn1=.5, ci=.95, by=1000)
 }

@@ -37,7 +37,7 @@ anova2x2_se(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
 
 \item{alpha}{Type I error (default is .05)
 examples
-anova2x2(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
+anova2x2_se(m1.1=0.85, m1.2=0.85, m2.1=0.00, m2.2=0.60,
 s1.1=1.7, s1.2=1.7, s2.1=1.7, s2.2=1.7,
 n1.1=250, n1.2=250, n2.1=250, n2.2=250, alpha=.05)}
 }

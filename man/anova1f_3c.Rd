@@ -44,6 +44,6 @@ Compute power for a One Factor ANOVA with three levels and contrasts.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
 }
 \examples{
-anova1f_4c(m1=80, m2=82, m3=82, m4=86, s1=10, s2=10, s3=10, s4=10,
-n1=60, n2=60, n3=60, n4=60, c1=-3, c2=-1, c3=1, c4=3, alpha=.05)
+anova1f_3c(m1=80, m2=82, m3=82, s1=10, s2=10, s3=10,
+n1=60, n2=60, n3=60, c1=2, c2=-1, c3=-1, alpha=.05)
 }
