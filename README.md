@@ -10,7 +10,7 @@ pwr2ppl contains protocols for running a wide range of power analyses. Analyses 
 
 These protocols accompany the book *Applied Power Analysis for the Behavioral Sciences (2nd ed.)*. https://www.routledge.com/Applied-Power-Analysis-for-the-Behavioral-Sciences-2nd-Edition-2nd-Edition/Aberson/p/book/9781138044593 
 
-The book gives lots of illustritive examples of using the code but is not necessary for using the package.
+The book gives lots of illustrative examples of using the code but is not necessary for using the package.
 
 Getting Started
 ---------------
