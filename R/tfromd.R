@@ -1,8 +1,8 @@
 #'Compute power for a t test using d statistic
 #'Takes d, sample size range, type of test, and tails.
 #'@param d standardize mean difference (Cohen's d)
-#'@param nlow Starting sample size, per group for Independent
-#'@param nhigh Ending sample size, per group for Independent
+#'@param nlow Starting total sample size
+#'@param nhigh Ending total sample size
 #'@param by Incremental increase in sample size from low to high
 #'@param tails one or two-tailed tests (default is 2)
 #'@param test "I" for independent, "P" for paired
@@ -15,20 +15,20 @@
 #'
 #'
 
-tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=1)
+tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=2)
 {
   if (test=="I") {
     resultI <- data.frame(matrix(ncol = 2))
-    colnames(resultI) <- c("n per group","Power")
+    colnames(resultI) <- c("n total","Power")
     d<-abs(d)
     for(n in seq(nlow,nhigh, by)){
-      ncalc<-n/2
-      delta<-d*(ncalc^.5)
+      ncalc<-n
+      delta<-d*((ncalc/2)^.5)
       lambda<-delta^2
       minusalpha<-1-alpha
       Ft<-stats::qf(minusalpha, 1, n-2)
       Power<-round(1-stats::pf(Ft, 1,n-2,lambda),4)
-      resultI[n, 1]<-n
+      resultI[n, 1]<-n*2
       resultI[n, 2]<-Power}
       outputI<-na.omit(resultI)
       rownames(outputI)<- c()
