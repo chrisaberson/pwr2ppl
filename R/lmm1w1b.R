@@ -30,7 +30,7 @@
 #'@param r3.4_2 correlation Within Factor Level 1 and Within Factor, Level 4, 2nd level Between
 #'@param r sets same correlations between DVs on all factor levels (seriously, just use this)
 #'@param s sets same standard deviation for factor levels (see comment above)
-#'@param n Sample size for first group
+#'@param n n for each between group level
 #'@param alpha Type I error (default is .05)
 #'@examples
 #'lmm1w1b(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
@@ -67,7 +67,7 @@ lmm1w1b<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
       s1.1<-s; s2.1<-s;s1.2<-s;s2.2<-s
       var1<-s^2; var2<-s^2;var3<-s^2;var4<-s^2}
     if (is.null(s)){var1<-s1.1^2; var2<-s2.1^2;var3<-s1.2^2;var4<-s2.2^2}
-    if (!is.null(r)){r1.2_1<-r;r1.2_2}
+    if (!is.null(r)){r1.2_1<-r;r1.2_2<-r}
     cov12<-r1.2_1*s1.1*s2.1
     cov34<-r1.2_2*s1.2*s2.2;
     out1 <- MASS::mvrnorm(n, mu = c(m1.1,m2.1),

@@ -30,7 +30,7 @@
 #'@param r3.4_2 correlation Within Factor Level 1 and Within Factor, Level 4, 2nd level Between
 #'@param r sets same correlations between DVs on all factor levels (seriously, just use this)
 #'@param s sets same standard deviation for factor levels (see comment above)
-#'@param n Sample size for first group
+#'@param n for each between group level
 #'@param alpha Type I error (default is .05)
 #'@examples
 #'win1bg1(m1.1 = -.25, m2.1=0, m3.1=0.10, m4.1=.15,
@@ -59,6 +59,9 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
   levels[is.na(m4.1) & is.na(m3.1)]<-2
   levels[is.na(m4.1) & !is.na(m3.1)]<-3
   levels[!is.na(m4.1)]<-4
+  oldoption<-options(contrasts=c("contr.helmert", "contr.poly"))
+  oldoption
+  on.exit(options(oldoption))
 
   if (levels=="2"){
     if (!is.null(s)){
@@ -92,7 +95,7 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-tidyr::gather(out,key="ivw",value="dv",-id, -ivbg)
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
+
 
     model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg,type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
@@ -187,7 +190,6 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-tidyr::gather(out,key="ivw",value="dv",-id, -ivbg)
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
@@ -325,7 +327,6 @@ win1bg1<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out<-tidyr::gather(out,key="ivw",value="dv",-id, -ivbg)
     out$ivw<-as.factor(out$ivw)
     out$ivbg<-as.factor(out$ivbg)
-    options(contrasts=c("contr.helmert", "contr.poly"))
     model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = ivw, between = ivbg, type=3, detailed=TRUE)
     dfA<-model$ANOVA$DFn[2]
     dfB<-model$ANOVA$DFn[3]
