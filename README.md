@@ -20,7 +20,7 @@ not necessary for using the package.
 
 ### Prerequisites
 
-I built this under R 3.6.0
+I built this under R 4.0.2
 
 ## Authors
 
@@ -29,8 +29,7 @@ I built this under R 3.6.0
 ## License
 
 This project is licensed under the MIT License - see the
-[LICENSE.md](LICENSE.md) file for
-details
+[LICENSE.md](LICENSE.md) file for details
 
 [![](https://cranlogs.r-pkg.org/badges/pwr2ppl)](https://cran.r-project.org/package=pwr2ppl)
 
