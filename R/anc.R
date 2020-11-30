@@ -96,12 +96,15 @@ result[n, 2]<-eta2A
 result[n, 3]<-power.A
 output<-na.omit(result)
 rownames(output)<- c()
+
+
 }
 
 if (factors=="1" & levelsA=="3")
 {
   cov1<-r*s1.1
   cov2<-r*s2.1
+  cov3<-r*s3.1
   mcov<-0
   var1<-s1.1^2; var2<-s2.1^2;var3<-s3.1^2;varcov<-1
 
@@ -258,9 +261,9 @@ out1$iv2<-NA
 out1$iv1<-1
 out1$iv2<-1 #identifies group
 
-out2 <- MASS::mvrnorm(n, mu = c(m1.2,mcov),
+out2 <- MASS::mvrnorm(n, mu = c(m2.1,mcov),
                       Sigma = matrix(c(var2,cov2,
-                                       cov2,varcov), ncol = 2),
+                                       cov2,var2), ncol = 2),
                       empirical = TRUE)
 out2<-as.data.frame(out2)
 out2$iv1<-NA
@@ -268,9 +271,9 @@ out2$iv2<-NA
 out2$iv1<-2
 out2$iv2<-1
 
-out3 <- MASS::mvrnorm(n, mu = c(m2.1,mcov),
+out3 <- MASS::mvrnorm(n, mu = c(m1.2,mcov),
                       Sigma = matrix(c(var3,cov3,
-                                       cov3,varcov), ncol = 2),
+                                       cov3,var3), ncol = 2),
                       empirical = TRUE)
 out3<-as.data.frame(out3)
 out3$iv1<-NA
@@ -280,7 +283,7 @@ out3$iv2<-2
 
 out4 <- MASS::mvrnorm(n, mu = c(m2.2,mcov),
                       Sigma = matrix(c(var4,cov4,
-                                       cov4,varcov), ncol = 2),
+                                       cov4,var4), ncol = 2),
                       empirical = TRUE)
 out4<-as.data.frame(out4)
 out4$iv1<-NA
@@ -293,49 +296,38 @@ out<-as.data.frame(out)
 out<-dplyr::rename(out, y1 = V1, cov = V2, iv1 = iv1,iv2=iv2)
 out$iv1<-as.factor(out$iv1)
 out$iv2<-as.factor(out$iv2)
-anc<-stats::aov(y1~cov+iv1*iv2, data=out)
+anc<-stats::aov(y1~cov+iv1+iv2, data=out)
 sum<-car::Anova(anc, type="III")
 SSA<-sum[3,1] #column, row
 SSB<-sum[4,1]
-SSAB<-sum[5,1]
-SSwin<-sum[6,1]
+SSwin<-sum[5,1]
 dfA<-sum[3,2]
 dfB<-sum[4,2]
-dfAB<-sum[5,2]
-dfwin<-sum[6,2]
+dfwin<-sum[5,2]
 MSwin<-SSwin/dfwin
 eta2A<-SSA/(SSA+SSwin)
 eta2B<-SSB/(SSB+SSwin)
-eta2AB<-SSAB/(SSAB+SSwin)
 f2A<-eta2A/(1-eta2A)
 f2B<-eta2B/(1-eta2B)
-f2AB<-eta2AB/(1-eta2AB)
 lambdaA<-f2A*dfwin
 lambdaB<-f2B*dfwin
-lambdaAB<-f2AB*dfwin
 minusalpha<-1-alpha
 FtA<-stats::qf(minusalpha, dfA, dfwin)
 FtB<-stats::qf(minusalpha, dfB, dfwin)
-FtAB<-stats::qf(minusalpha, dfAB, dfwin)
 power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
 power.B<-round(1-stats::pf(FtB, dfB,dfwin,lambdaB),4)
-power.AB<-round(1-stats::pf(FtAB, dfAB,dfwin,lambdaAB),4)
 eta2A<-round((eta2A),3)
 eta2B<-round((eta2B),3)
-eta2AB<-round((eta2AB),3)
 message("Sample size per cell = ",n)
 message("Power Factor A = ", power.A, " for partial eta-squared = ", eta2A)
 message("Power Factor B = ", power.B, " for partial eta-squared = ", eta2B)
-message("Power Factor AxB = ", power.AB, " for partial eta-squared = ", eta2AB)
-result <- data.frame(matrix(ncol = 7))
-colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2","Power Interaction","Eta-squared Interaction")
+result <- data.frame(matrix(ncol = 5))
+colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2")
 result[n, 1]<-n
 result[n, 2]<-eta2A
 result[n, 3]<-power.A
 result[n, 4]<-eta2B
 result[n, 5]<-power.B
-result[n, 6]<-eta2AB
-result[n, 7]<-power.AB
 
 output<-na.omit(result)
 rownames(output)<- c()
@@ -368,7 +360,7 @@ if (factors==2 & levelsA==3)
 
   out2 <- MASS::mvrnorm(n, mu = c(m2.1,mcov),
                         Sigma = matrix(c(var2,cov2,
-                                         cov2,varcov), ncol = 2),
+                                         cov2,var2), ncol = 2),
                         empirical = TRUE)
   out2<-as.data.frame(out2)
   out2$iv1<-NA
@@ -378,7 +370,7 @@ if (factors==2 & levelsA==3)
 
   out3 <- MASS::mvrnorm(n, mu = c(m1.2,mcov),
                         Sigma = matrix(c(var3,cov3,
-                                         cov3,varcov), ncol = 2),
+                                         cov3,var3), ncol = 2),
                         empirical = TRUE)
   out3<-as.data.frame(out3)
   out3$iv1<-NA
@@ -388,7 +380,7 @@ if (factors==2 & levelsA==3)
 
   out4 <- MASS::mvrnorm(n, mu = c(m2.2,mcov),
                         Sigma = matrix(c(var4,cov4,
-                                         cov4,varcov), ncol = 2),
+                                         cov4,var4), ncol = 2),
                         empirical = TRUE)
   out4<-as.data.frame(out4)
   out4$iv1<-NA
@@ -398,7 +390,7 @@ if (factors==2 & levelsA==3)
 
   out5 <- MASS::mvrnorm(n, mu = c(m3.1,mcov),
                         Sigma = matrix(c(var5,cov5,
-                                         cov5,varcov), ncol = 2),
+                                         cov5,var5), ncol = 2),
                         empirical = TRUE)
   out5<-as.data.frame(out5)
   out5$iv1<-NA
@@ -408,7 +400,7 @@ if (factors==2 & levelsA==3)
 
   out6 <- MASS::mvrnorm(n, mu = c(m3.2,mcov),
                         Sigma = matrix(c(var6,cov6,
-                                         cov6,varcov), ncol = 2),
+                                         cov6,var6), ncol = 2),
                         empirical = TRUE)
   out6<-as.data.frame(out6)
   out6$iv1<-NA
@@ -422,49 +414,38 @@ if (factors==2 & levelsA==3)
   out<-dplyr::rename(out, y1 = V1, cov = V2, iv1 = iv1,iv2=iv2)
   out$iv1<-as.factor(out$iv1)
   out$iv2<-as.factor(out$iv2)
-  anc<-stats::aov(y1~cov+iv1*iv2, data=out)
+  anc<-stats::aov(y1~cov+iv1+iv2, data=out)
   sum<-car::Anova(anc, type="III")
   SSA<-sum[3,1] #column, row
   SSB<-sum[4,1]
-  SSAB<-sum[5,1]
-  SSwin<-sum[6,1]
+  SSwin<-sum[5,1]
   dfA<-sum[3,2]
   dfB<-sum[4,2]
-  dfAB<-sum[5,2]
-  dfwin<-sum[6,2]
+  dfwin<-sum[5,2]
   MSwin<-SSwin/dfwin
   eta2A<-SSA/(SSA+SSwin)
   eta2B<-SSB/(SSB+SSwin)
-  eta2AB<-SSAB/(SSAB+SSwin)
   f2A<-eta2A/(1-eta2A)
   f2B<-eta2B/(1-eta2B)
-  f2AB<-eta2AB/(1-eta2AB)
   lambdaA<-f2A*dfwin
   lambdaB<-f2B*dfwin
-  lambdaAB<-f2AB*dfwin
   minusalpha<-1-alpha
   FtA<-stats::qf(minusalpha, dfA, dfwin)
   FtB<-stats::qf(minusalpha, dfB, dfwin)
-  FtAB<-stats::qf(minusalpha, dfAB, dfwin)
   power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
   power.B<-round(1-stats::pf(FtB, dfB,dfwin,lambdaB),4)
-  power.AB<-round(1-stats::pf(FtAB, dfAB,dfwin,lambdaAB),4)
   eta2A<-round((eta2A),3)
   eta2B<-round((eta2B),3)
-  eta2AB<-round((eta2AB),3)
   message("Sample size per cell = ",n)
   message("Power Factor A = ", power.A, " for partial eta-squared = ", eta2A)
   message("Power Factor B = ", power.B, " for partial eta-squared = ", eta2B)
-  message("Power Factor AxB = ", power.AB, " for partial eta-squared = ", eta2AB)
-  result <- data.frame(matrix(ncol = 7))
-  colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2","Power Interaction","Eta-squared Interaction")
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2")
   result[n, 1]<-n
   result[n, 2]<-eta2A
   result[n, 3]<-power.A
   result[n, 4]<-eta2B
   result[n, 5]<-power.B
-  result[n, 6]<-eta2AB
-  result[n, 7]<-power.AB
 
   output<-na.omit(result)
   rownames(output)<- c()
@@ -500,7 +481,7 @@ if (factors==2 & levelsA==4)
 
   out2 <- MASS::mvrnorm(n, mu = c(m2.1,mcov),
                         Sigma = matrix(c(var2,cov2,
-                                         cov2,varcov), ncol = 2),
+                                         cov2,var2), ncol = 2),
                         empirical = TRUE)
   out2<-as.data.frame(out2)
   out2$iv1<-NA
@@ -510,7 +491,7 @@ if (factors==2 & levelsA==4)
 
   out3 <- MASS::mvrnorm(n, mu = c(m1.2,mcov),
                         Sigma = matrix(c(var3,cov3,
-                                         cov3,varcov), ncol = 2),
+                                         cov3,var3), ncol = 2),
                         empirical = TRUE)
   out3<-as.data.frame(out3)
   out3$iv1<-NA
@@ -520,7 +501,7 @@ if (factors==2 & levelsA==4)
 
   out4 <- MASS::mvrnorm(n, mu = c(m2.2,mcov),
                         Sigma = matrix(c(var4,cov4,
-                                         cov4,varcov), ncol = 2),
+                                         cov4,var4), ncol = 2),
                         empirical = TRUE)
   out4<-as.data.frame(out4)
   out4$iv1<-NA
@@ -530,7 +511,7 @@ if (factors==2 & levelsA==4)
 
   out5 <- MASS::mvrnorm(n, mu = c(m3.1,mcov),
                         Sigma = matrix(c(var5,cov5,
-                                         cov5,varcov), ncol = 2),
+                                         cov5,var5), ncol = 2),
                         empirical = TRUE)
   out5<-as.data.frame(out5)
   out5$iv1<-NA
@@ -540,7 +521,7 @@ if (factors==2 & levelsA==4)
 
   out6 <- MASS::mvrnorm(n, mu = c(m3.2,mcov),
                         Sigma = matrix(c(var6,cov6,
-                                         cov6,varcov), ncol = 2),
+                                         cov6,var6), ncol = 2),
                         empirical = TRUE)
   out6<-as.data.frame(out6)
   out6$iv1<-NA
@@ -551,7 +532,7 @@ if (factors==2 & levelsA==4)
 
   out7 <- MASS::mvrnorm(n, mu = c(m4.1,mcov),
                         Sigma = matrix(c(var7,cov7,
-                                         cov7,varcov), ncol = 2),
+                                         cov7,var7), ncol = 2),
                         empirical = TRUE)
   out7<-as.data.frame(out7)
   out7$iv1<-NA
@@ -561,7 +542,7 @@ if (factors==2 & levelsA==4)
 
   out8 <- MASS::mvrnorm(n, mu = c(m4.2,mcov),
                         Sigma = matrix(c(var8,cov8,
-                                         cov8,varcov), ncol = 2),
+                                         cov8,var8), ncol = 2),
                         empirical = TRUE)
   out8<-as.data.frame(out8)
   out8$iv1<-NA
@@ -574,49 +555,38 @@ if (factors==2 & levelsA==4)
   out<-dplyr::rename(out, y1 = V1, cov = V2, iv1 = iv1,iv2=iv2)
   out$iv1<-as.factor(out$iv1)
   out$iv2<-as.factor(out$iv2)
-  anc<-stats::aov(y1~cov+iv1*iv2, data=out)
+  anc<-stats::aov(y1~cov+iv1+iv2, data=out)
   sum<-car::Anova(anc, type="III")
   SSA<-sum[3,1] #column, row
   SSB<-sum[4,1]
-  SSAB<-sum[5,1]
-  SSwin<-sum[6,1]
+  SSwin<-sum[5,1]
   dfA<-sum[3,2]
   dfB<-sum[4,2]
-  dfAB<-sum[5,2]
-  dfwin<-sum[6,2]
+  dfwin<-sum[5,2]
   MSwin<-SSwin/dfwin
   eta2A<-SSA/(SSA+SSwin)
   eta2B<-SSB/(SSB+SSwin)
-  eta2AB<-SSAB/(SSAB+SSwin)
   f2A<-eta2A/(1-eta2A)
   f2B<-eta2B/(1-eta2B)
-  f2AB<-eta2AB/(1-eta2AB)
   lambdaA<-f2A*dfwin
   lambdaB<-f2B*dfwin
-  lambdaAB<-f2AB*dfwin
   minusalpha<-1-alpha
   FtA<-stats::qf(minusalpha, dfA, dfwin)
   FtB<-stats::qf(minusalpha, dfB, dfwin)
-  FtAB<-stats::qf(minusalpha, dfAB, dfwin)
   power.A<-round(1-stats::pf(FtA, dfA,dfwin,lambdaA),4)
   power.B<-round(1-stats::pf(FtB, dfB,dfwin,lambdaB),4)
-  power.AB<-round(1-stats::pf(FtAB, dfAB,dfwin,lambdaAB),4)
   eta2A<-round((eta2A),3)
   eta2B<-round((eta2B),3)
-  eta2AB<-round((eta2AB),3)
   message("Sample size per cell = ",n)
   message("Power Factor A = ", power.A, " for partial eta-squared = ", eta2A)
   message("Power Factor B = ", power.B, " for partial eta-squared = ", eta2B)
-  message("Power Factor AxB = ", power.AB, " for partial eta-squared = ", eta2AB)
-  result <- data.frame(matrix(ncol = 7))
-  colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2","Power Interaction","Eta-squared Interaction")
+  result <- data.frame(matrix(ncol = 5))
+  colnames(result) <- c("n", "Eta-squared IV1","Power IV1","Eta-squared IV2","Power IV2")
   result[n, 1]<-n
   result[n, 2]<-eta2A
   result[n, 3]<-power.A
   result[n, 4]<-eta2B
   result[n, 5]<-power.B
-  result[n, 6]<-eta2AB
-  result[n, 7]<-power.AB
 
   output<-na.omit(result)
   rownames(output)<- c()
