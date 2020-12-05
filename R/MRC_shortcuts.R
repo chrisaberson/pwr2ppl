@@ -45,4 +45,6 @@ pred[!is.null(r23)]<-3
 
 full<-summary(stats::lm(X1~X2+X3+X4, pop2))
 full
+reduced<-summary(stats::lm(X1~X2+X3, pop2))
+reduced
 }

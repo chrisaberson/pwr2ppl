@@ -9,11 +9,11 @@
 #'@param rym2 Correlation between DV (y) and second mediator (m2)
 #'@param rm1m2 Correlation first mediator (m1) and second mediator (m2)
 #'@param n Sample size
+#'@param mvars Number of Mediators
 #'@param alpha Type I error (default is .05)
-#'@param reps Number of samples (default is 1000)
 #'@examples
-#'\donttest{medserial(rxm1=.3, rxm2=.3, rxy=-.35, rym1=-.5,rym2=-.5,
-#'rm1m2=.7,n=150)}
+#'medserial(rxm1=.3, rxm2=.3, rxy=-.35,
+#'rym1=-.5,rym2=-.5, rm1m2=.7,n=150)
 #'@return Power for Serial Mediated (Indirect) Effects
 #'@export
 #'
@@ -21,7 +21,6 @@
 
 medserial<-function(rxm1,rxm2,rxy,rm1m2,rym1,rym2,n,alpha=.05, reps=1000)
 {
-  V1<-V2<-V3<-V4<-NA
   pop <- MASS::mvrnorm(100000, mu = c(0,0,0,0),
                        Sigma = matrix(c(1.0,rxm1,rxm2, rxy,
                                         rxm1,1.0,rm1m2, rym1,
