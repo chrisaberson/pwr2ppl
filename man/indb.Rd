@@ -5,9 +5,23 @@
 \title{Power for Comparing Independent Coefficients in Multiple Regression with Two or Three Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
-indb(ry1_1, ry2_1, ry3_1 = NULL, r12_1, r13_1 = NULL, r23_1 = NULL,
-  n1, ry1_2, ry2_2, ry3_2 = NULL, r12_2, r13_2 = NULL, r23_2 = NULL,
-  n2, alpha = 0.05)
+indb(
+  ry1_1,
+  ry2_1,
+  ry3_1 = NULL,
+  r12_1,
+  r13_1 = NULL,
+  r23_1 = NULL,
+  n1,
+  ry1_2,
+  ry2_2,
+  ry3_2 = NULL,
+  r12_2,
+  r13_2 = NULL,
+  r23_2 = NULL,
+  n2,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{ry1_1}{Correlation between DV (y) and first predictor (1), first test}

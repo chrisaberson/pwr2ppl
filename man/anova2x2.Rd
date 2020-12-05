@@ -5,10 +5,22 @@
 \title{Compute power for a Two by Two Between Subjects ANOVA.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-anova2x2(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
-  s1.1 = NULL, s1.2 = NULL, s2.1 = NULL, s2.2 = NULL,
-  n1.1 = NULL, n1.2 = NULL, n2.1 = NULL, n2.2 = NULL,
-  alpha = 0.05, all = "OFF")
+anova2x2(
+  m1.1 = NULL,
+  m1.2 = NULL,
+  m2.1 = NULL,
+  m2.2 = NULL,
+  s1.1 = NULL,
+  s1.2 = NULL,
+  s2.1 = NULL,
+  s2.2 = NULL,
+  n1.1 = NULL,
+  n1.2 = NULL,
+  n2.1 = NULL,
+  n2.2 = NULL,
+  alpha = 0.05,
+  all = "OFF"
+)
 }
 \arguments{
 \item{m1.1}{Cell mean for First level of Factor A, First level of Factor B}
@@ -40,7 +52,7 @@ anova2x2(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
 \item{all}{Power(ALL) - Power for detecting all predictors in the model at once (default is "OFF")}
 }
 \value{
-Power for the One Factor ANOVA
+Power for the Two Factor ANOVA
 }
 \description{
 Compute power for a Two by Two Between Subjects ANOVA.

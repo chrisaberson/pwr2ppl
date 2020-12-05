@@ -5,13 +5,40 @@
 \title{Compute power for a One Factor MANOVA with up to two levels and up to four measures.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-MANOVA1f(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
-  m4.2 = NA, s1.1 = NA, s2.1 = NA, s3.1 = NA, s4.1 = NA,
-  s1.2 = NA, s2.2 = NA, s3.2 = NA, s4.2 = NA, r1.2_1 = NULL,
-  r1.3_1 = NULL, r1.4_1 = NULL, r2.3_1 = NULL, r2.4_1 = NULL,
-  r3.4_1 = NULL, r1.2_2 = NULL, r1.3_2 = NULL, r1.4_2 = NULL,
-  r2.3_2 = NULL, r2.4_2 = NULL, r3.4_2 = NULL, r = NULL,
-  s = NULL, n, alpha = 0.05)
+MANOVA1f(
+  m1.1,
+  m2.1,
+  m3.1 = NA,
+  m4.1 = NA,
+  m1.2,
+  m2.2,
+  m3.2 = NA,
+  m4.2 = NA,
+  s1.1 = NA,
+  s2.1 = NA,
+  s3.1 = NA,
+  s4.1 = NA,
+  s1.2 = NA,
+  s2.2 = NA,
+  s3.2 = NA,
+  s4.2 = NA,
+  r1.2_1 = NULL,
+  r1.3_1 = NULL,
+  r1.4_1 = NULL,
+  r2.3_1 = NULL,
+  r2.4_1 = NULL,
+  r3.4_1 = NULL,
+  r1.2_2 = NULL,
+  r1.3_2 = NULL,
+  r1.4_2 = NULL,
+  r2.3_2 = NULL,
+  r2.4_2 = NULL,
+  r3.4_2 = NULL,
+  r = NULL,
+  s = NULL,
+  n,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1.1}{Mean of first DV, 1st level Between Factor}

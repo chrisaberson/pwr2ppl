@@ -4,8 +4,7 @@
 \alias{regintR2}
 \title{Compute Power for Regression Interaction (R2 Change Approach)}
 \usage{
-regintR2(R2Mod, R2Ch, mod_pred, ch_pred, nlow, nhigh, by = 1,
-  alpha = 0.05)
+regintR2(R2Mod, R2Ch, mod_pred, ch_pred, nlow, nhigh, by = 1, alpha = 0.05)
 }
 \arguments{
 \item{R2Mod}{Full Model R2}

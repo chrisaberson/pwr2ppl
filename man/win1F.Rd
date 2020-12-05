@@ -5,9 +5,24 @@
 \title{Compute power for a One Factor Within Subjects ANOVA with up to four levels.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-win1F(m1, m2, m3 = NA, m4 = NA, s1, s2, s3 = NULL, s4 = NULL, r12,
-  r13 = NULL, r14 = NULL, r23 = NULL, r24 = NULL, r34 = NULL, n,
-  alpha = 0.05)
+win1F(
+  m1,
+  m2,
+  m3 = NA,
+  m4 = NA,
+  s1,
+  s2,
+  s3 = NULL,
+  s4 = NULL,
+  r12,
+  r13 = NULL,
+  r14 = NULL,
+  r23 = NULL,
+  r24 = NULL,
+  r34 = NULL,
+  n,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1}{Mean of first time point}
@@ -38,7 +53,7 @@ win1F(m1, m2, m3 = NA, m4 = NA, s1, s2, s3 = NULL, s4 = NULL, r12,
 
 \item{r34}{correlation Time 3 and Time 4}
 
-\item{n}{Sample size for first group}
+\item{n}{Total sample size}
 
 \item{alpha}{Type I error (default is .05)}
 }

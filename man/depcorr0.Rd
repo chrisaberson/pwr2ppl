@@ -5,8 +5,19 @@
 \title{Compute Power for Comparing Two Dependent Correlations, No Variables in Common
 Takes correlations and range of values. First variable in each pair is termed predictor, second is DV}
 \usage{
-depcorr0(r12, rxy, r1x, r1y, r2x, r2y, nlow, nhigh, alpha = 0.05,
-  tails = 2, by = 1)
+depcorr0(
+  r12,
+  rxy,
+  r1x,
+  r1y,
+  r2x,
+  r2y,
+  nlow,
+  nhigh,
+  alpha = 0.05,
+  tails = 2,
+  by = 1
+)
 }
 \arguments{
 \item{r12}{Correlation between the predictor and DV (first set of measures)}
@@ -39,5 +50,5 @@ Compute Power for Comparing Two Dependent Correlations, No Variables in Common
 Takes correlations and range of values. First variable in each pair is termed predictor, second is DV
 }
 \examples{
-depcorr0(r12=.4,rxy=.7,r1x=.3,r1y=.1,r2x=.45,r2y=.35,  nlow=20,nhigh=200,by=10, tails=2)
+depcorr0(r12=.4,rxy=.7,r1x=.3,r1y=.1,r2x=.45,r2y=.35,nlow=20,nhigh=200,by=10, tails=2)
 }

@@ -3,12 +3,33 @@
 \name{anc}
 \alias{anc}
 \title{Compute Power for One or Two Factor ANCOVA with a single covariate
-Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
+Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
+Factor A can have up to four levels, Factor B, if used, can only be two}
 \usage{
-anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
-  m2.4 = NULL, s1.1 = NULL, s2.1 = NULL, s1.2 = NULL,
-  s2.2 = NULL, s1.3 = NULL, s2.3 = NULL, s1.4 = NULL,
-  s2.4 = NULL, r, s = NULL, alpha = 0.05, factors, n)
+anc(
+  m1.1,
+  m2.1,
+  m1.2,
+  m2.2,
+  m3.1 = NULL,
+  m3.2 = NULL,
+  m4.1 = NULL,
+  m4.2 = NULL,
+  s1.1 = NULL,
+  s2.1 = NULL,
+  s1.2 = NULL,
+  s2.2 = NULL,
+  s3.1 = NULL,
+  s3.2 = NULL,
+  s4.1 = NULL,
+  s4.2 = NULL,
+  r,
+  s = NULL,
+  alpha = 0.05,
+  factors,
+  levelsA = NULL,
+  n
+)
 }
 \arguments{
 \item{m1.1}{Cell mean for First level of Factor A, First level of Factor B}
@@ -19,13 +40,13 @@ anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
 
 \item{m2.2}{Cell mean for Second level of Factor A, Second level of Factor B}
 
-\item{m1.3}{Cell mean for First level of Factor A, Third level of Factor B}
+\item{m3.1}{Cell mean for Third level of Factor A, First level of Factor B}
 
-\item{m2.3}{Cell mean for Second level of Factor A, Third level of Factor B}
+\item{m3.2}{Cell mean for Third level of Factor A, Second level of Factor B}
 
-\item{m1.4}{Cell mean for First level of Factor A, Fourth level of Factor B}
+\item{m4.1}{Cell mean for Fourth level of Factor A, First level of Factor B}
 
-\item{m2.4}{Cell mean for Second level of Factor A, Fourth level of Factor B}
+\item{m4.2}{Cell mean for Fourth level of Factor A, Second level of Factor B}
 
 \item{s1.1}{Cell standard deviation for First level of Factor A, First level of Factor B}
 
@@ -35,13 +56,13 @@ anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
 
 \item{s2.2}{Cell standard deviation for Second level of Factor A, Second level of Factor B}
 
-\item{s1.3}{Cell standard deviation for First level of Factor A, Third level of Factor B}
+\item{s3.1}{Cell standard deviation for Third level of Factor A, First level of Factor B}
 
-\item{s2.3}{Cell standard deviation for Second level of Factor A, Third level of Factor B}
+\item{s3.2}{Cell standard deviation for Third level of Factor A, Second level of Factor B}
 
-\item{s1.4}{Cell standard deviation for First level of Factor A, Fourth level of Factor B}
+\item{s4.1}{Cell standard deviation for Fourth level of Factor A, First level of Factor B}
 
-\item{s2.4}{Cell standard deviation for Second level of Factor A, Fourth level of Factor B}
+\item{s4.2}{Cell standard deviation for Fourth level of Factor A, Second level of Factor B}
 
 \item{r}{Correlation between covariate and dependent variable.}
 
@@ -51,6 +72,8 @@ anc(m1.1, m2.1, m1.2, m2.2, m1.3 = NULL, m2.3 = NULL, m1.4 = NULL,
 
 \item{factors}{Number of factors (1 or 2)}
 
+\item{levelsA}{levels for factor A (up to four)}
+
 \item{n}{Sample Size per cell}
 }
 \value{
@@ -59,11 +82,12 @@ Power for One or Two Factor ANCOVA with a single covariate
 \description{
 Compute Power for One or Two Factor ANCOVA with a single covariate
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user
+Factor A can have up to four levels, Factor B, if used, can only be two
 }
 \examples{
 anc(m1.1=.85,m2.1=2.5, s1.1 = 1.7, s2.1=1,
 m1.2=0.85, m2.2= 2.5, s1.2 = 1.7, s2.2=1,
-m1.3=0.0,m2.3=2.5, s1.3 = 1.7, s2.3=1,
-m1.4=0.6, m2.4 = 2.5, s1.4 = 1.7, s2.4=1, r= 0.4,
-n=251, factors =2)
+m3.1=0.0,m3.2=2.5, s3.1 = 1.7, s3.2=1,
+m4.1=0.6, m4.2 = 2.5, s4.1 = 1.7, s4.2=1, r= 0.4,
+n=251, factors =2,levelsA = 4)
 }

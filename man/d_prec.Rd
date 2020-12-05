@@ -9,9 +9,9 @@ d_prec(d, nlow, nhigh, propn1 = 0.5, ci = 0.95, tails = 2, by = 1)
 \arguments{
 \item{d}{Standardized means difference between groups}
 
-\item{nlow}{starting sample size}
+\item{nlow}{starting total sample size}
 
-\item{nhigh}{ending sample size}
+\item{nhigh}{ending total sample size}
 
 \item{propn1}{Proportion in First Group}
 

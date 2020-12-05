@@ -5,10 +5,21 @@
 \title{Compute power for Simple Effects in a Two by Two Between Subjects ANOVA with two levels for each factor.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-anova2x2_se(m1.1 = NULL, m1.2 = NULL, m2.1 = NULL, m2.2 = NULL,
-  s1.1 = NULL, s1.2 = NULL, s2.1 = NULL, s2.2 = NULL,
-  n1.1 = NULL, n1.2 = NULL, n2.1 = NULL, n2.2 = NULL,
-  alpha = 0.05)
+anova2x2_se(
+  m1.1 = NULL,
+  m1.2 = NULL,
+  m2.1 = NULL,
+  m2.2 = NULL,
+  s1.1 = NULL,
+  s1.2 = NULL,
+  s2.1 = NULL,
+  s2.2 = NULL,
+  n1.1 = NULL,
+  n1.2 = NULL,
+  n2.1 = NULL,
+  n2.2 = NULL,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1.1}{Cell mean for First level of Factor A, First level of Factor B}

@@ -4,8 +4,7 @@
 \alias{LRcat}
 \title{Compute Power for Logistic Regression with a Single Categorical Predictor}
 \usage{
-LRcat(p0 = NULL, p1 = NULL, prop = 0.5, alpha = 0.05, power,
-  R2 = 0)
+LRcat(p0 = NULL, p1 = NULL, prop = 0.5, alpha = 0.05, power, R2 = 0)
 }
 \arguments{
 \item{p0}{Probability of a Desirable Outcome in the Control Condition}

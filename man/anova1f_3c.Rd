@@ -5,9 +5,21 @@
 \title{Compute power for a One Factor ANOVA with three levels and contrasts.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-anova1f_3c(m1 = NULL, m2 = NULL, m3 = NULL, s1 = NULL, s2 = NULL,
-  s3 = NULL, n1 = NULL, n2 = NULL, n3 = NULL, alpha = 0.05,
-  c1 = 0, c2 = 0, c3 = 0)
+anova1f_3c(
+  m1 = NULL,
+  m2 = NULL,
+  m3 = NULL,
+  s1 = NULL,
+  s2 = NULL,
+  s3 = NULL,
+  n1 = NULL,
+  n2 = NULL,
+  n3 = NULL,
+  alpha = 0.05,
+  c1 = 0,
+  c2 = 0,
+  c3 = 0
+)
 }
 \arguments{
 \item{m1}{Mean of first group}

@@ -5,8 +5,15 @@
 \title{Compute power for an Independent Samples t-test
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-indt(m1 = NULL, m2 = NULL, s1 = NULL, s2 = NULL, n1 = NULL,
-  n2 = NULL, alpha = 0.05)
+indt(
+  m1 = NULL,
+  m2 = NULL,
+  s1 = NULL,
+  s2 = NULL,
+  n1 = NULL,
+  n2 = NULL,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1}{Mean of first group}

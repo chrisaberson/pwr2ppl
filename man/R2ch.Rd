@@ -6,9 +6,24 @@
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)
 Example code below for three predictors. Expand as needed for four or five}
 \usage{
-R2ch(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL, r13 = NULL,
-  r23 = NULL, n = NULL, alpha = 0.05, my = 0, m1 = 0, m2 = 0,
-  m3 = 0, s1 = 1, s2 = 1, s3 = 1, sy = 1)
+R2ch(
+  ry1 = NULL,
+  ry2 = NULL,
+  ry3 = NULL,
+  r12 = NULL,
+  r13 = NULL,
+  r23 = NULL,
+  n = NULL,
+  alpha = 0.05,
+  my = 0,
+  m1 = 0,
+  m2 = 0,
+  m3 = 0,
+  s1 = 1,
+  s2 = 1,
+  s3 = 1,
+  sy = 1
+)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}

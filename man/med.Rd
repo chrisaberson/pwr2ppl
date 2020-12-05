@@ -3,11 +3,30 @@
 \name{med}
 \alias{med}
 \title{Compute Power for Mediated (Indirect) Effects
-Requires correlations between all variables as sample size.}
+Requires correlations between all variables as sample size.
+This approach calculates power for the Sobel test.
+The medjs function calculates power based on joint significance (recommended)}
 \usage{
-med(rxm1, rxm2 = 0, rxm3 = 0, rxm4 = 0, rxy, rym1, rym2 = 0,
-  rym3 = 0, rym4 = 0, rm1m2 = 0, rm1m3 = 0, rm1m4 = 0,
-  rm2m3 = 0, rm2m4 = 0, rm3m4 = 0, alpha = 0.05, mvars, n)
+med(
+  rxm1,
+  rxm2 = 0,
+  rxm3 = 0,
+  rxm4 = 0,
+  rxy,
+  rym1,
+  rym2 = 0,
+  rym3 = 0,
+  rym4 = 0,
+  rm1m2 = 0,
+  rm1m3 = 0,
+  rm1m4 = 0,
+  rm2m3 = 0,
+  rm2m4 = 0,
+  rm3m4 = 0,
+  alpha = 0.05,
+  mvars,
+  n
+)
 }
 \arguments{
 \item{rxm1}{Correlation between predictor (x) and first mediator (m1)}
@@ -52,6 +71,8 @@ Power for Mediated (Indirect) Effects
 \description{
 Compute Power for Mediated (Indirect) Effects
 Requires correlations between all variables as sample size.
+This approach calculates power for the Sobel test.
+The medjs function calculates power based on joint significance (recommended)
 }
 \examples{
 med(rxm1=.25, rxy=-.35, rym1=-.5,mvars=1, n=150)

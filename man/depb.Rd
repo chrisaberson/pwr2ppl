@@ -5,8 +5,7 @@
 \title{Power for Comparing Dependent Coefficients in Multiple Regression with Two or Three Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
-depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL,
-  alpha = 0.05)
+depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL, alpha = 0.05)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}
@@ -21,7 +20,7 @@ depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL,
 
 \item{r23}{Correlation between second (2) and third predictor (3)}
 
-\item{n}{Sample size}
+\item{n}{Total Sample size}
 
 \item{alpha}{Type I error (default is .05)}
 }

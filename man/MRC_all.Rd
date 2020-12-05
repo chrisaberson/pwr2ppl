@@ -5,10 +5,26 @@
 \title{Compute power for Multiple Regression with Up to Five Predictors
 Requires correlations between all variables as sample size. Means, sds, and alpha are option. Also computes Power(All)}
 \usage{
-MRC_all(ry1 = NULL, ry2 = NULL, ry3 = NULL, ry4 = NULL,
-  ry5 = NULL, r12 = NULL, r13 = NULL, r14 = NULL, r15 = NULL,
-  r23 = NULL, r24 = NULL, r25 = NULL, r34 = NULL, r35 = NULL,
-  r45 = NULL, n = NULL, alpha = 0.05, rep = 10000)
+MRC_all(
+  ry1 = NULL,
+  ry2 = NULL,
+  ry3 = NULL,
+  ry4 = NULL,
+  ry5 = NULL,
+  r12 = NULL,
+  r13 = NULL,
+  r14 = NULL,
+  r15 = NULL,
+  r23 = NULL,
+  r24 = NULL,
+  r25 = NULL,
+  r34 = NULL,
+  r35 = NULL,
+  r45 = NULL,
+  n = NULL,
+  alpha = 0.05,
+  rep = 10000
+)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}

@@ -5,9 +5,24 @@
 \title{Compute power for a One Factor Within Subjects LMM Trends with up to four levels.
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-lmm1Ftrends(m1, m2, m3 = NA, m4 = NA, s1, s2, s3 = NULL, s4 = NULL,
-  r12, r13 = NULL, r14 = NULL, r23 = NULL, r24 = NULL,
-  r34 = NULL, n, alpha = 0.05)
+lmm1Ftrends(
+  m1,
+  m2,
+  m3 = NA,
+  m4 = NA,
+  s1,
+  s2,
+  s3 = NULL,
+  s4 = NULL,
+  r12,
+  r13 = NULL,
+  r14 = NULL,
+  r23 = NULL,
+  r24 = NULL,
+  r34 = NULL,
+  n,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1}{Mean of first time point}

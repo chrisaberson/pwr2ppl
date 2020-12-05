@@ -5,8 +5,17 @@
 \title{Compute power for an Chi Square Goodness of Fit
 Takes proportions for up to six group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-ChiGOF(groups, po1, po2, po3 = NULL, po4 = NULL, po5 = NULL,
-  po6 = NULL, n, alpha = 0.05)
+ChiGOF(
+  groups,
+  po1,
+  po2,
+  po3 = NULL,
+  po4 = NULL,
+  po5 = NULL,
+  po6 = NULL,
+  n,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{groups}{Number of groups}

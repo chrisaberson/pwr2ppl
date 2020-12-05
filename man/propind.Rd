@@ -3,10 +3,10 @@
 \name{propind}
 \alias{propind}
 \title{Compute power for Tests of Two Independent Proportions
-Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user}
+Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
+This test uses what is sometimes called the chi-square test for comparing proportions}
 \usage{
-propind(p1, p2, nlow, nhigh, nratio = 0.5, alpha = 0.05, tails = 2,
-  by = 1)
+propind(p1, p2, nlow, nhigh, nratio = 0.5, alpha = 0.05, tails = 2, by = 1)
 }
 \arguments{
 \item{p1}{expected proportion Group 1}
@@ -31,6 +31,7 @@ Power for Tests of Two Independent Proportions
 \description{
 Compute power for Tests of Two Independent Proportions
 Takes phi, degrees of freedom, and a range of sample sizes. Alpha is .05 by default, alternative values may be entered by user
+This test uses what is sometimes called the chi-square test for comparing proportions
 }
 \examples{
 propind(p1=.62, p2=.55,nlow=200,nhigh=2500, by=100,nratio=.2)

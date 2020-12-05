@@ -5,9 +5,24 @@
 \title{Compute Multiple Regression shortcuts with three predictors (will expand to handle two to five)
 Requires correlations between all variables as sample size. Means and sds are option. Also computes Power(All)}
 \usage{
-MRC_shortcuts(ry1 = NULL, ry2 = NULL, ry3 = NULL, r12 = NULL,
-  r13 = NULL, r23 = NULL, n = 100, alpha = 0.05, my = 0,
-  m1 = 0, m2 = 0, m3 = 0, s1 = 1, s2 = 1, s3 = 1, sy = 1)
+MRC_shortcuts(
+  ry1 = NULL,
+  ry2 = NULL,
+  ry3 = NULL,
+  r12 = NULL,
+  r13 = NULL,
+  r23 = NULL,
+  n = 100,
+  alpha = 0.05,
+  my = 0,
+  m1 = 0,
+  m2 = 0,
+  m3 = 0,
+  s1 = 1,
+  s2 = 1,
+  s3 = 1,
+  sy = 1
+)
 }
 \arguments{
 \item{ry1}{Correlation between DV (y) and first predictor (1)}

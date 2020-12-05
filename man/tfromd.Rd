@@ -5,14 +5,14 @@
 \title{Compute power for a t test using d statistic
 Takes d, sample size range, type of test, and tails.}
 \usage{
-tfromd(d, nlow, nhigh, alpha = 0.05, test = "I", tails = 2, by = 1)
+tfromd(d, nlow, nhigh, alpha = 0.05, test = "I", tails = 2, by = 2)
 }
 \arguments{
 \item{d}{standardize mean difference (Cohen's d)}
 
-\item{nlow}{Starting sample size}
+\item{nlow}{Starting total sample size}
 
-\item{nhigh}{Ending sample size}
+\item{nhigh}{Ending total sample size}
 
 \item{alpha}{Type I error (default is .05)}
 

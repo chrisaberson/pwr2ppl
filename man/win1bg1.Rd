@@ -5,13 +5,40 @@
 \title{Compute power for a One Factor Within Subjects and One Factor Between ANOVA with up to two by four levels (within).
 Takes means, sds, and sample sizes for each group. Alpha is .05 by default, alternative values may be entered by user}
 \usage{
-win1bg1(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
-  m4.2 = NA, s1.1 = NA, s2.1 = NA, s3.1 = NA, s4.1 = NA,
-  s1.2 = NA, s2.2 = NA, s3.2 = NA, s4.2 = NA, r1.2_1 = NULL,
-  r1.3_1 = NULL, r1.4_1 = NULL, r2.3_1 = NULL, r2.4_1 = NULL,
-  r3.4_1 = NULL, r1.2_2 = NULL, r1.3_2 = NULL, r1.4_2 = NULL,
-  r2.3_2 = NULL, r2.4_2 = NULL, r3.4_2 = NULL, r = NULL,
-  s = NULL, n, alpha = 0.05)
+win1bg1(
+  m1.1,
+  m2.1,
+  m3.1 = NA,
+  m4.1 = NA,
+  m1.2,
+  m2.2,
+  m3.2 = NA,
+  m4.2 = NA,
+  s1.1 = NA,
+  s2.1 = NA,
+  s3.1 = NA,
+  s4.1 = NA,
+  s1.2 = NA,
+  s2.2 = NA,
+  s3.2 = NA,
+  s4.2 = NA,
+  r1.2_1 = NULL,
+  r1.3_1 = NULL,
+  r1.4_1 = NULL,
+  r2.3_1 = NULL,
+  r2.4_1 = NULL,
+  r3.4_1 = NULL,
+  r1.2_2 = NULL,
+  r1.3_2 = NULL,
+  r1.4_2 = NULL,
+  r2.3_2 = NULL,
+  r2.4_2 = NULL,
+  r3.4_2 = NULL,
+  r = NULL,
+  s = NULL,
+  n,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{m1.1}{Mean of first level Within Factor, 1st level Between Factor}
@@ -74,7 +101,7 @@ win1bg1(m1.1, m2.1, m3.1 = NA, m4.1 = NA, m1.2, m2.2, m3.2 = NA,
 
 \item{s}{sets same standard deviation for factor levels (see comment above)}
 
-\item{n}{Sample size for first group}
+\item{n}{for each between group level}
 
 \item{alpha}{Type I error (default is .05)}
 }

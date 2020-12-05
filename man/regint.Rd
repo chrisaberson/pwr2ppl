@@ -4,8 +4,20 @@
 \alias{regint}
 \title{Compute Power for Regression Interaction (Correlation/Coefficient Approach)}
 \usage{
-regint(Group1, Group2, sx1 = 1, sx2 = 1, sy1 = 1, sy2 = 1, nlow,
-  nhigh, alpha = 0.05, Prop_n1 = 0.5, by = 2, Estimates = 1)
+regint(
+  Group1,
+  Group2,
+  sx1 = 1,
+  sx2 = 1,
+  sy1 = 1,
+  sy2 = 1,
+  nlow,
+  nhigh,
+  alpha = 0.05,
+  Prop_n1 = 0.5,
+  by = 2,
+  Estimates = 1
+)
 }
 \arguments{
 \item{Group1}{Estimates (r or b) for Group 1}

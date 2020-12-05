@@ -4,8 +4,7 @@
 \alias{LRcont}
 \title{Compute Power for Logistic Regression with Continuous Predictors}
 \usage{
-LRcont(OR = NA, r = NA, ER = NULL, alpha = 0.05, power = NULL,
-  R2 = 0)
+LRcont(OR = NA, r = NA, ER = NULL, alpha = 0.05, power = NULL, R2 = 0)
 }
 \arguments{
 \item{OR}{Odds Ratio for Predictor of Interest}

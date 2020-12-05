@@ -5,8 +5,7 @@
 \title{Compute Power for Comparing Two Independent Correlations
 Takes correlations and range of values}
 \usage{
-indcorr(r1, r2, nlow, nhigh, propn1 = 0.5, alpha = 0.05, tails = 2,
-  by = 1)
+indcorr(r1, r2, nlow, nhigh, propn1 = 0.5, alpha = 0.05, tails = 2, by = 1)
 }
 \arguments{
 \item{r1}{Correlation for Group 1}

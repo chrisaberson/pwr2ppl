@@ -6,8 +6,7 @@
 Takes means, sd, and sample sizes. Alpha is .05 by default, alternative values may be entered by user.
 correlation (r) defaults to .50.}
 \usage{
-pairt(m1 = NULL, m2 = NULL, s = NULL, n = NULL, r = NULL,
-  alpha = 0.05)
+pairt(m1 = NULL, m2 = NULL, s = NULL, n = NULL, r = NULL, alpha = 0.05)
 }
 \arguments{
 \item{m1}{Mean for Pre Test}
