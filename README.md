@@ -1,7 +1,7 @@
 prw2ppl Readme
 ================
 Chris Aberson
-August 11,2020
+December 8,2020
 
 # pwr2ppl
 
@@ -25,6 +25,16 @@ I built this under R 4.0.2
 ## Authors
 
   - **Chris Aberson** [chrisaberson](https://github.com/chrisaberson)
+  
+## To install
+You will need the devtools package. 
+
+devtools::install_github("chrisaberson/pwr2ppl") 
+
+In some cases, users experience an error message reading as follows:
+ERROR: dependencies 'car', 'ez', 'phia', 'afex', 'MBESS', 'lavaan' are not available for package 'pwr2ppl'
+
+Installing car, ez, phia, afex, MBESS, and lavaan manually will rectify this error. 
 
 ## License
 
