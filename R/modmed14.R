@@ -1,4 +1,4 @@
-#'Compute Power for Conditional Process Model 14 Joxw Significance
+#'Compute Power for Conditional Process Model 14 Joint Significance
 #'Requires correlations between all variables as sample size.
 #'This is the recommended approach for determining power
 #'@param rxy Correlation between DV (y) and predictor (x)
