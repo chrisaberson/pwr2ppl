@@ -2,7 +2,7 @@
 % Please edit documentation in R/modmed14.R
 \name{modmed14}
 \alias{modmed14}
-\title{Compute Power for Conditional Process Model 14 Joxw Significance
+\title{Compute Power for Conditional Process Model 14 Joint Significance
 Requires correlations between all variables as sample size.
 This is the recommended approach for determining power}
 \usage{
@@ -51,7 +51,7 @@ modmed14(
 Power for Model 7 Conditional Processes
 }
 \description{
-Compute Power for Conditional Process Model 14 Joxw Significance
+Compute Power for Conditional Process Model 14 Joint Significance
 Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
