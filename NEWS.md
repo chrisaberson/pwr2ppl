@@ -24,7 +24,9 @@ developmental versions of functions I’m working on. My current target
 for development are some of the more common conditional process
 analyses.
 
-Added 12/5/2020
+\#pwr2ppl 0.2.0
+Submitted 3/23/2021
+
 Functions for moderated mediation (conditional process) models 7, 8, 14, and 15. medmod7, medmod8, medmod14, medmod15. 
 
 cleaned up a few errors in various functions. 
