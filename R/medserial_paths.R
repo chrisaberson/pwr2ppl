@@ -1,7 +1,7 @@
 #'Compute Power for Serial Mediation Effects
 #'Requires correlations between all variables as sample size.
 #'This approach calculates power for the serial mediation using
-#'joint significance (recommended)
+#'joint significance (recommended) and path coefficients
 #'@param a1 path between predictor and first mediator
 #'@param a2 path between predictor and first mediator
 #'@param b1 Path between first mediator and dependent variable
@@ -10,6 +10,7 @@
 #'@param d Path first mediator (m1) and second mediator (m2)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
+#'@param rep number of repetitions (1000 is default)
 #'@examples
 #'medserial_paths(a1=.3, a2=.3, b1=.35,
 #'b2=.3,d=.2,cprime=.1,n=150)

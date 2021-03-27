@@ -5,19 +5,19 @@
 #'@param rxm Correlation between predictor (x) and mediator (m)
 #'@param rxw Correlation between predictor (x) and moderator (w)
 #'@param rxxw Correlation between predictor (x) and xweraction term (xw) - defaults to 0
-#'@param rym Correlation between DV (y) and mediator (m)
-#'@param ryw Correlation between DV (y) and moderator (w)
+#'@param rmy Correlation between DV (y) and mediator (m)
+#'@param rwy Correlation between DV (y) and moderator (w)
 #'@param rwm Correlation between moderator (w) and mediator (m)
 #'@param rxwy Correlation between DV (y) and xweraction (xw) - defaults to 0
 #'@param rxww Correlation between moderator (w) and xweraction (xw) - defaults to 0
 #'@param rxwm Correlation between mediator (m) and xweraction (xw) - Key value
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param alpha rep Number of samples drawn (defaults to 5000)
-#'@examples modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.3,rwm=.4,
-#'rxww=0.5,rwy<-.35, rxwm<-.4, rxwy=.5,
-#'rmy=.3, n=200, rep=1000,alpha=.05)
-#'@return Power for Model 7 Conditional Processes
+#'@param rep Number of samples drawn (defaults to 5000)
+#'@examples modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
+#'rxww=0.5,rwy<-.35, rxwm<-.41, rxwy=.51,
+#'rmy=.32, n=200, rep=1000,alpha=.05)
+#'@return Power for Model 14 Conditional Processes
 #'@export
 #'
 #'
@@ -32,7 +32,7 @@ out <- MASS::mvrnorm(100000, mu = c(0,0,0,0,0),
                      Sigma = matrix(c(1.0,rxw,rxm,rxxw,rxy,
                                       rxw,1.0,rwm,rxww,rwy,
                                       rxm,rwm,1.0,rxwm,rmy,
-                                      rxxw,rxwm,rxww,1.0,rxwy,
+                                      rxxw,rxww,rxwm,1.0,rxwy,
                                       rxy,rwy,rmy,rxwy,1.0),
                                     ncol = 5),
                      empirical = TRUE)
@@ -66,7 +66,9 @@ for (i in 1:nruns)
   power$jsb3[pb3 >= alpha] <- 0
   power$joxw<-power$jsa1*power$jsb3
   JSa<-mean(power$joxw)
-  }
+}
+
+
 message("Sample size is ",n)
 message("Power for Conditional Indirect Effect (Joint Significance - Recommended) ", JSa)
 }

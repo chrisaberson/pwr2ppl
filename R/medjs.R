@@ -24,13 +24,13 @@
 #'@param rm3m4 Correlation third mediator (m3) and fourth mediator (m4)
 #'@param n Sample size
 #'@param mvars Number of Mediators
-#'@param pred Number of Predictors
 #'@param alpha Type I error (default is .05)
-#'@param reps Number of samples (default is 1000)
+#'@param rep number of repetitions (1000 is default)
+#'@param pred number of predictors (default is one)
 #'@examples
-#'\donttest{medjs(rx1m1=.25, rx1y=-.35, rym1=-.5,mvars=1, n=150)}
-#'\donttest{medjs(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5,
-#'rym3 = -.5,rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)}
+#'medjs(rx1m1=.25, rx1y=-.35, rym1=-.5,mvars=1, n=150)
+#'medjs(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
+#'rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)
 #'@return Power for Mediated (Indirect) Effects
 #'@export
 #'
@@ -40,7 +40,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
                               rx2m1=NULL, rx2m2=NULL, rx2m3=NULL, rx2m4=NULL,rx2y,
                               rym1, rym2=NULL,rym3=NULL, rym4=NULL, rm1m2=NULL,rm1m3=NULL,
                               rm1m4=NULL, rm2m3=NULL, rm2m4=NULL, rm3m4=NULL,n,
-                              alpha=.05,mvars,pred=1,reps=1000)
+                              alpha=.05,mvars,rep=1000, pred=1)
 {
   V1<-V2<-V3<-V4<-V5<-V6<-V7<-NA
   if(mvars==1 & pred==1)  {
@@ -53,7 +53,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x = V1, m1 = V2, y = V3)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa<-NA
@@ -90,7 +90,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x = V1, m1 = V2, m2=V3,y = V4)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1<-NA
@@ -143,7 +143,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x = V1, m1 = V2, m2=V3,m3= V4,y = V5)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1<-NA
@@ -214,7 +214,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x = V1, m1 = V2, m2=V3,m3= V4,m4=V5,y = V6)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1<-NA
@@ -301,7 +301,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x1 = V1, x2 = V2,m1 = V3, y = V4,)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1<-NA
@@ -348,7 +348,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x1 = V1, x2 = V2, m1 = V3, m2=V4,y = V5)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1m1<-NA
@@ -419,7 +419,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x1 = V1, x2 = V2, m1 = V3, m2=V4,m3=V5,y = V6)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1m1<-NA
@@ -515,7 +515,7 @@ medjs<-function(rx1x2=NULL, rx1m1, rx1m2=NULL, rx1m3=NULL, rx1m4=NULL,rx1y,
     pop<-as.data.frame(out)
     pop<-dplyr::rename(pop, x1 = V1, x2 = V2, m1 = V3, m2=V4,m3=V5,m4=V6,y = V7)
     set.seed(1234)
-    nruns = reps
+    nruns = rep
     a = numeric(nruns)
     b = numeric(nruns)
     pa1m1<-NA

@@ -8,9 +8,9 @@
 #'@param rym1 Correlation between DV (y) and first mediator (m1)
 #'@param rym2 Correlation between DV (y) and second mediator (m2)
 #'@param rm1m2 Correlation first mediator (m1) and second mediator (m2)
-#'@param n Sample size
-#'@param mvars Number of Mediators
 #'@param alpha Type I error (default is .05)
+#'@param rep number of repetitions (1000 is default)
+#'@param n sample size
 #'@examples
 #'medserial(rxm1=.3, rxm2=.3, rxy=-.35,
 #'rym1=-.5,rym2=-.5, rm1m2=.7,n=150)
@@ -19,7 +19,7 @@
 #'
 #'
 
-medserial<-function(rxm1,rxm2,rxy,rm1m2,rym1,rym2,n,alpha=.05, reps=1000)
+medserial<-function(rxm1,rxm2,rxy,rm1m2,rym1,rym2,n,alpha=.05, rep=1000)
 {
   pop <- MASS::mvrnorm(100000, mu = c(0,0,0,0),
                        Sigma = matrix(c(1.0,rxm1,rxm2, rxy,
@@ -30,7 +30,7 @@ medserial<-function(rxm1,rxm2,rxy,rm1m2,rym1,rym2,n,alpha=.05, reps=1000)
   pop<-as.data.frame(pop)
   pop<-dplyr::rename(pop, x = V1, m1 = V2, m2 = V3, y = V4)
   set.seed(1234)
-  nruns = reps
+  nruns = rep
   a = numeric(nruns)
   b = numeric(nruns)
   pa1<-NA
