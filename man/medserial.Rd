@@ -7,7 +7,7 @@ Requires correlations between all variables as sample size.
 This approach calculates power for the serial mediation using
 joint significance (recommended)}
 \usage{
-medserial(rxm1, rxm2, rxy, rm1m2, rym1, rym2, n, alpha = 0.05, reps = 1000)
+medserial(rxm1, rxm2, rxy, rm1m2, rym1, rym2, n, alpha = 0.05, rep = 1000)
 }
 \arguments{
 \item{rxm1}{Correlation between predictor (x) and first mediator (m1)}
@@ -22,11 +22,11 @@ medserial(rxm1, rxm2, rxy, rm1m2, rym1, rym2, n, alpha = 0.05, reps = 1000)
 
 \item{rym2}{Correlation between DV (y) and second mediator (m2)}
 
-\item{n}{Sample size}
+\item{n}{sample size}
 
 \item{alpha}{Type I error (default is .05)}
 
-\item{mvars}{Number of Mediators}
+\item{rep}{number of repetitions (1000 is default)}
 }
 \value{
 Power for Serial Mediated (Indirect) Effects
@@ -38,6 +38,6 @@ This approach calculates power for the serial mediation using
 joint significance (recommended)
 }
 \examples{
-medserial(rxm1=.3, rxm2=.3, rxy=-.35,
-rym1=-.5,rym2=-.5, rm1m2=.7,n=150)
+\donttest{medserial(rxm1=.3, rxm2=.3, rxy=-.35,
+rym1=-.5,rym2=-.5, rm1m2=.7,n=150)}
 }

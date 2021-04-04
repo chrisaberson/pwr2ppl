@@ -12,7 +12,6 @@ modmed8(
   rxxw,
   rxy,
   rwm = 0,
-  rxww,
   rwy,
   rxwm,
   rxwy,
@@ -34,22 +33,24 @@ modmed8(
 
 \item{rwm}{Correlation between moderator (w) and mediator (m)}
 
-\item{rxww}{Correlation between moderator (w) and interaction (xw) - defaults to 0}
+\item{rwy}{Correlation between DV (y) and moderator (w)}
 
 \item{rxwm}{Correlation between mediator (m) and interaction (xw) - Key value}
 
 \item{rxwy}{Correlation between DV (y) and interaction (xw) - defaults to 0}
 
+\item{rwxw}{Correlation between moderator (w) and interaction (xw) - defaults to 0}
+
+\item{rmy}{Correlation between DV (y) and mediator (m)}
+
 \item{n}{Sample size}
 
-\item{alpha}{rep Number of samples drawn (defaults to 5000)}
+\item{alpha}{Type I error (default is .05)}
 
-\item{rym}{Correlation between DV (y) and mediator (m)}
-
-\item{ryw}{Correlation between DV (y) and moderator (w)}
+\item{rep}{Number of samples drawn (defaults to 5000)}
 }
 \value{
-Power for Model 7 Conditional Processes
+Power for Model 8 Conditional Processes
 }
 \description{
 Compute Power for Power for Model 8 Conditional Processes Using Joint Significance
@@ -57,6 +58,6 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-modmed8(rxw<-.2, rxm<-.3, rxxw=0, rxy=.3,rwm=.4,
-rxww=0,rwy<-.35, rxwm<-.4, rxwy=0, rmy=.3, n=100, rep=2000,alpha=.05)
+\donttest{modmed8(rxw<-.21, rxm<-.31, rxxw=0, rxy=.32,rwm=.40,
+rmy=.19,rwy=.22,rwxw=.23,rxwm=.24,rxwy=.18,alpha=.05,rep=1000,n=400)}
 }

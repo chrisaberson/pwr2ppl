@@ -31,8 +31,8 @@ medjs(
   n,
   alpha = 0.05,
   mvars,
-  pred = 1,
-  rep = 1000
+  rep = 1000,
+  pred = 1
 )
 }
 \arguments{
@@ -83,6 +83,10 @@ medjs(
 \item{alpha}{Type I error (default is .05)}
 
 \item{mvars}{Number of Mediators}
+
+\item{rep}{number of repetitions (1000 is default)}
+
+\item{pred}{number of predictors (default is one)}
 }
 \value{
 Power for Mediated (Indirect) Effects
@@ -93,7 +97,6 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-med(rx1m1=.25, rx1y=-.35, rym1=-.5,mvars=1, n=150)
-med(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
-rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)
+\donttest{medjs(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
+rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)}
 }

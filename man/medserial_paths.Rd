@@ -5,7 +5,7 @@
 \title{Compute Power for Serial Mediation Effects
 Requires correlations between all variables as sample size.
 This approach calculates power for the serial mediation using
-joint significance (recommended)}
+joint significance (recommended) and path coefficients}
 \usage{
 medserial_paths(a1, a2, b1, b2, d, cprime, n, alpha = 0.05, reps = 1000)
 }
@@ -25,6 +25,8 @@ medserial_paths(a1, a2, b1, b2, d, cprime, n, alpha = 0.05, reps = 1000)
 \item{n}{Sample size}
 
 \item{alpha}{Type I error (default is .05)}
+
+\item{reps}{number of repetitions (1000 is default)}
 }
 \value{
 Power for Serial Mediated (Indirect) Effects
@@ -33,9 +35,9 @@ Power for Serial Mediated (Indirect) Effects
 Compute Power for Serial Mediation Effects
 Requires correlations between all variables as sample size.
 This approach calculates power for the serial mediation using
-joint significance (recommended)
+joint significance (recommended) and path coefficients
 }
 \examples{
-medserial_paths(a1=.3, a2=.3, b1=.35,
-b2=.3,d=.2,cprime=.1,n=150)
+\donttest{medserial_paths(a1=.3, a2=.3, b1=.35,
+b2=.3,d=.2,cprime=.1,n=150)}
 }

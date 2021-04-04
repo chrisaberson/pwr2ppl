@@ -35,20 +35,22 @@ modmed14(
 
 \item{rxww}{Correlation between moderator (w) and xweraction (xw) - defaults to 0}
 
+\item{rwy}{Correlation between DV (y) and moderator (w)}
+
 \item{rxwm}{Correlation between mediator (m) and xweraction (xw) - Key value}
 
 \item{rxwy}{Correlation between DV (y) and xweraction (xw) - defaults to 0}
 
+\item{rmy}{Correlation between DV (y) and mediator (m)}
+
 \item{n}{Sample size}
 
-\item{alpha}{rep Number of samples drawn (defaults to 5000)}
+\item{alpha}{Type I error (default is .05)}
 
-\item{rym}{Correlation between DV (y) and mediator (m)}
-
-\item{ryw}{Correlation between DV (y) and moderator (w)}
+\item{rep}{Number of samples drawn (defaults to 5000)}
 }
 \value{
-Power for Model 7 Conditional Processes
+Power for Model 14 Conditional Processes
 }
 \description{
 Compute Power for Conditional Process Model 14 Joint Significance
@@ -56,7 +58,7 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.3,rwm=.4,
-rxww=0.5,rwy<-.35, rxwm<-.4, rxwy=.5,
-rmy=.3, n=200, rep=1000,alpha=.05)
+\donttest{modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
+rxww=0.5,rwy<-.35, rxwm<-.41, rxwy=.51,
+rmy=.32, n=200, rep=1000,alpha=.05)}
 }

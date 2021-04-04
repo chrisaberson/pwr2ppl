@@ -37,6 +37,8 @@ medjs_paths(
 \item{alpha}{Type I error (default is .05)}
 
 \item{mvars}{Number of Mediators}
+
+\item{rep}{number of repetitions (1000 is default)}
 }
 \value{
 Power for Mediated (Indirect) Effects using Paths Coefficients
@@ -47,6 +49,6 @@ Requires paths for all effects (and if 2 mediators, correlation)
 Standard deviations/variances set to 1.0 so paths are technically standardized
 }
 \examples{
-medjs_paths(a1=.25, b1=-.5,cprime=.2,mvars=1, n=150)
-medjs_paths(a1=.25, a2=.1, b1=-.5,b2=-.2,cprime=.2,mvars=1, n=150)
+\donttest{medjs_paths(a1=.25, b1=-.5,cprime=.2,mvars=1, n=150)}
+\donttest{medjs_paths(a1=.25, a2=.1, b1=-.5,b2=-.2,cprime=.2,mvars=1, n=150)}
 }

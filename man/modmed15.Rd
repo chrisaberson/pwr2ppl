@@ -9,22 +9,20 @@ This is the recommended approach for determining power}
 modmed15(
   rxw,
   rxm,
-  rxwm,
+  rxmw,
   rxy,
   rwm = 0,
-  rwwm,
+  rmww,
   rwxw,
-  rxwwx,
   rwy,
   rmwm = 0,
-  rmwx,
+  rmxw,
   rmwy,
-  rwxy,
-  rwmwx,
+  rxwy,
+  rxwmw,
   rmy,
   rxwx,
-  rxwy,
-  rmwwx,
+  rmwxw,
   n,
   alpha = 0.05,
   rep = 5000
@@ -35,28 +33,42 @@ modmed15(
 
 \item{rxm}{Correlation between predictor (x) and mediator (m)}
 
-\item{rxwm}{Correlation between predictor (x) and interaction term (xw) - defaults to 0}
+\item{rxmw}{Correlation between predictor (x) and interaction (mw) - Key value}
 
 \item{rxy}{Correlation between DV (y) and predictor (x)}
 
 \item{rwm}{Correlation between moderator (w) and mediator (m)}
 
-\item{rmwm}{Correlation between mediator (m) and interaction (xw) - Key value}
+\item{rmww}{Correlation between mediator (m) and interaction (mw) - defaults to 0}
 
-\item{rmwy}{Correlation between DV (y) and interaction (xw) - defaults to 0}
+\item{rwxw}{Correlation between moderator (w) and interaction (xw) - Key value}
+
+\item{rwy}{Correlation between DV (y) and moderator (w)}
+
+\item{rmwm}{Correlation between mediator (m) and interaction (xmw) - Key value}
+
+\item{rmxw}{Correlation between mediator (m) and interaction (xw) - defaults to 0}
+
+\item{rmwy}{Correlation between dv (y) and interaction (mw) - Key value}
+
+\item{rxwy}{Correlation between DV (y) and interaction (xw) - defaults to 0}
+
+\item{rxwmw}{Correlation between interaction (mw) and interaction (mw) - Key value}
+
+\item{rmy}{Correlation between DV (y) and mediator (m)}
+
+\item{rxwx}{Correlation between moderator (w) and interaction (xw) - defaults to 0}
+
+\item{rmwxw}{Correlation between inteaction (xw) and interaction (mw) - Key value}
 
 \item{n}{Sample size}
 
-\item{alpha}{rep Number of samples drawn (defaults to 5000)}
+\item{alpha}{Type I error (default is .05)}
 
-\item{rym}{Correlation between DV (y) and mediator (m)}
-
-\item{ryw}{Correlation between DV (y) and moderator (w)}
-
-\item{rmww}{Correlation between moderator (w) and interaction (xw) - defaults to 0}
+\item{rep}{Number of samples drawn (defaults to 5000)}
 }
 \value{
-Power for Model 7 Conditional Processes
+Power for Model 15 Conditional Processes
 }
 \description{
 Compute Power for Conditional Process Model 15 Joint Significance
@@ -64,6 +76,6 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-modmed15(rxw=.40, rxm=.4, rxwm=.0, rxy=.5, rwm=.45, rmww=.0, rwy=.2,
-rmwm=.45,rmy=.30,rmwy=.0,rep=5000, alpha=.05, n=400)
+\donttest{modmed15(rxw=.40, rxm=.42, rxy=.5, rwm=.45, rmxw=.0,rmww=.01, rwy=.2,
+rmwm=.46,rwxw=.21,rxwy=.31,rmy=.30,rxwx=.1, rmwy=.02,rxmw=.21,rmwxw=.22,rep=5000, alpha=.05, n=400)}
 }

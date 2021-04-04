@@ -35,17 +35,19 @@ modmed7(
 
 \item{rwxw}{Correlation between moderator (w) and interaction (xw) - defaults to 0}
 
+\item{rwy}{Correlation between DV (y) and moderator (w)}
+
 \item{rmxw}{Correlation between mediator (m) and interaction (xw) - Key value}
+
+\item{rmy}{Correlation between DV (y) and mediator (m)}
 
 \item{rxwy}{Correlation between DV (y) and interaction (xw) - defaults to 0}
 
-\item{alpha}{rep Number of samples drawn (defaults to 5000)}
+\item{alpha}{Type I error (default is .05)}
+
+\item{rep}{Number of samples drawn (defaults to 5000)}
 
 \item{n}{Sample size}
-
-\item{rym}{Correlation between DV (y) and mediator (m)}
-
-\item{ryw}{Correlation between DV (y) and moderator (w)}
 }
 \value{
 Power for Model 7 Conditional Processes
@@ -56,6 +58,6 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-medmod7(rxm=.4, rxw=.4, rxxw=.0, rxy=.50,rxwm=.45, rmy=.3, rxwy=0,rwm=.45,
-rxww=0,rwy=.2,alpha=.05,rep=1000,n=400)
+\donttest{modmed7(rxm=.4, rxw=.3, rxxw=.01, rxy=.50, rmy=.31, rxwy=.02,rwm=.45,
+rwy=.2,rmxw = .24, rwxw=.21, alpha=.05,rep=1000,n=400)}
 }
