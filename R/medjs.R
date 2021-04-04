@@ -27,10 +27,8 @@
 #'@param alpha Type I error (default is .05)
 #'@param rep number of repetitions (1000 is default)
 #'@param pred number of predictors (default is one)
-#'@examples
-#'medjs(rx1m1=.25, rx1y=-.35, rym1=-.5,mvars=1, n=150)
-#'medjs(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
-#'rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)
+#'@examples \donttest{medjs(rx1m1=.3, rx1m2=.3, rx1m3=.25, rx1y=-.35, rym1=-.5,rym2=-.5, rym3 = -.5,
+#'rm1m2=.7, rm1m3=.4,rm2m3=.4, mvars=3, n=150)}
 #'@return Power for Mediated (Indirect) Effects
 #'@export
 #'

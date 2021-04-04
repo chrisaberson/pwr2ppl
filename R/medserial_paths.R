@@ -10,10 +10,10 @@
 #'@param d Path first mediator (m1) and second mediator (m2)
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
-#'@param rep number of repetitions (1000 is default)
+#'@param reps number of repetitions (1000 is default)
 #'@examples
-#'medserial_paths(a1=.3, a2=.3, b1=.35,
-#'b2=.3,d=.2,cprime=.1,n=150)
+#'\donttest{medserial_paths(a1=.3, a2=.3, b1=.35,
+#'b2=.3,d=.2,cprime=.1,n=150)}
 #'@return Power for Serial Mediated (Indirect) Effects
 #'@export
 #'
@@ -21,6 +21,7 @@
 
 medserial_paths<-function(a1,a2,b1,b2,d,cprime,n,alpha=.05, reps=1000)
 {
+  V1<-NA;V2<-NA;V3<-NA;V4<-NA
   rxm1 <- a1 #x to M1
   rxm2 <- a2 + d*a1 #x to m2
   rm1m2 <- d + a1*a2 #m1 -> m2

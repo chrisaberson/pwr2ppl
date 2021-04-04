@@ -12,8 +12,8 @@
 #'@param rep number of repetitions (1000 is default)
 #'@param n sample size
 #'@examples
-#'medserial(rxm1=.3, rxm2=.3, rxy=-.35,
-#'rym1=-.5,rym2=-.5, rm1m2=.7,n=150)
+#'\donttest{medserial(rxm1=.3, rxm2=.3, rxy=-.35,
+#'rym1=-.5,rym2=-.5, rm1m2=.7,n=150)}
 #'@return Power for Serial Mediated (Indirect) Effects
 #'@export
 #'
@@ -21,6 +21,7 @@
 
 medserial<-function(rxm1,rxm2,rxy,rm1m2,rym1,rym2,n,alpha=.05, rep=1000)
 {
+  V1<-NA;V2<-NA;V3<-NA;V4<-NA
   pop <- MASS::mvrnorm(100000, mu = c(0,0,0,0),
                        Sigma = matrix(c(1.0,rxm1,rxm2, rxy,
                                         rxm1,1.0,rm1m2, rym1,

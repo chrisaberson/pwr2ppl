@@ -10,9 +10,10 @@
 #'@param n Sample size
 #'@param mvars Number of Mediators
 #'@param alpha Type I error (default is .05)
+#'@param rep number of repetitions (1000 is default)
 #'@examples
-#'medjs_paths(a1=.25, b1=-.5,cprime=.2,mvars=1, n=150)
-#'medjs_paths(a1=.25, a2=.1, b1=-.5,b2=-.2,cprime=.2,mvars=1, n=150)
+#'\donttest{medjs_paths(a1=.25, b1=-.5,cprime=.2,mvars=1, n=150)}
+#'\donttest{medjs_paths(a1=.25, a2=.1, b1=-.5,b2=-.2,cprime=.2,mvars=1, n=150)}
 #'@return Power for Mediated (Indirect) Effects using Paths Coefficients
 #'@export
 #'

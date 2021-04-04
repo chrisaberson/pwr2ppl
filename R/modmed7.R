@@ -14,8 +14,8 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples modmed7(rxm=.4, rxw=.41, rxxw=.0, rxy=.50, rmy=.31, rxwy=0.1,rwm=.45,
-#'rwy=.22,rwxw=.22,rmxw=.32,alpha=.05,rep=1000,n=400)
+#'@examples \donttest{modmed7(rxm=.4, rxw=.3, rxxw=.01, rxy=.50, rmy=.31, rxwy=.02,rwm=.45,
+#'rwy=.2,rmxw = .24, rwxw=.21, alpha=.05,rep=1000,n=400)}
 #'@return Power for Model 7 Conditional Processes
 #'@export
 #'
@@ -24,13 +24,14 @@ modmed7<-function(rxm, rxw, rxxw, rxy,
                 rwm, rwxw, rwy=0,
                 rmxw, rmy, rxwy=0,
                 alpha=.05,rep=1000,n=NULL){
+V1<-NA;V2<-NA;V3<-NA;V4<-NA;V5<-NA
 
 set.seed(1235)
 out <- MASS::mvrnorm(100000, mu = c(0,0,0,0,0),
                      Sigma = matrix(c(1.0,rxw,rxm,rxxw,rxy,
                                       rxw,1.0,rwm,rwxw,rwy,
                                       rxm,rwm,1.0,rmxw,rmy,
-                                      rxxw,rwxw,rmxw,1.0,rxwy,
+                                      rxxw,rmxw,rwxw,1.0,rxwy,
                                       rxy,rwy,rmy,rxwy,1.0),
                                     ncol = 5),
                      empirical = TRUE)
@@ -68,7 +69,6 @@ for (i in 1:nruns)
   JSa<-mean(power$joint)
 
 }
-
 message("Sample size is ",n)
 message("Power for Conditional Indirect Effect (Joint Significance) ", JSa)
 }

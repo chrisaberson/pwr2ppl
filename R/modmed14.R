@@ -14,9 +14,9 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
+#'@examples \donttest{modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
 #'rxww=0.5,rwy<-.35, rxwm<-.41, rxwy=.51,
-#'rmy=.32, n=200, rep=1000,alpha=.05)
+#'rmy=.32, n=200, rep=1000,alpha=.05)}
 #'@return Power for Model 14 Conditional Processes
 #'@export
 #'
@@ -27,6 +27,7 @@ modmed14<-function(rxw, rxm, rxxw, rxy,
                   rxwm=0, rxwy,
                   rmy, n,alpha=.05,rep=5000)
 {
+V1<-NA;V2<-NA;V3<-NA;V4<-NA;V5<-NA;V6<-NA
 set.seed(1235)
 out <- MASS::mvrnorm(100000, mu = c(0,0,0,0,0),
                      Sigma = matrix(c(1.0,rxw,rxm,rxxw,rxy,

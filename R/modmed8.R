@@ -11,12 +11,11 @@
 #'@param rxwy Correlation between DV (y) and interaction (xw) - defaults to 0
 #'@param rwxw Correlation between moderator (w) and interaction (xw) - defaults to 0
 #'@param rxwm Correlation between mediator (m) and interaction (xw) - Key value
-#'@param rxww Correlation between interaction (xw) and moderator (w) - defaults to 0
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples modmed8(rxw<-.21, rxm<-.31, rxxw=0, rxy=.32,rwm=.40,
-#'rmy=.19,rwy=.22,rwxw=.23,rxwm=.24,rxwy=.18,alpha=.05,rep=1000,n=400)
+#'@examples \donttest{modmed8(rxw<-.21, rxm<-.31, rxxw=0, rxy=.32,rwm=.40,
+#'rmy=.19,rwy=.22,rwxw=.23,rxwm=.24,rxwy=.18,alpha=.05,rep=1000,n=400)}
 #'@return Power for Model 8 Conditional Processes
 #'@export
 
@@ -25,7 +24,7 @@ modmed8<-function(rxw, rxm, rxxw, rxy,
                    rxwm, rxwy,rwxw,
                    rmy, n,alpha=.05,rep=5000)
 {
-
+V1<-NA;V2<-NA;V3<-NA;V4<-NA;V5<-NA
 set.seed(1235)
 out <- MASS::mvrnorm(100000, mu = c(0,0,0,0,0),
                      Sigma = matrix(c(1.0,rxw,rxm,rxxw,rxy,

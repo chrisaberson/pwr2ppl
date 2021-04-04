@@ -13,16 +13,15 @@
 #'@param rxwx Correlation between moderator (w) and interaction (xw) - defaults to 0
 #'@param rmwxw Correlation between inteaction (xw) and interaction (mw) - Key value
 #'@param rxmw Correlation between predictor (x) and interaction (mw) - Key value
-#'@param rxww Correlation between moderator (w) and interaction (xw) - Key value
 #'@param rmwm Correlation between mediator (m) and interaction (xmw) - Key value
-#'@param rxww Correlation between moderator (w) and interaction (xw) - Key value
 #'@param rmwy Correlation between dv (y) and interaction (mw) - Key value
-
+#'@param rwxw Correlation between moderator (w) and interaction (xw) - Key value
+#'@param rxwmw Correlation between interaction (mw) and interaction (mw) - Key value
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples modmed15(rxw=.40, rxm=.42, rxy=.5, rwm=.45, rmxw=.0,rmww=.01, rwy=.2,
-#'rmwm=.46,rwxw=.21,rxwy=.31,rmy=.30,rxwx=.1, rmwy=.02,rxmw=.21,rmwxw=.22,rep=5000, alpha=.05, n=400)
+#'@examples \donttest{modmed15(rxw=.40, rxm=.42, rxy=.5, rwm=.45, rmxw=.0,rmww=.01, rwy=.2,
+#'rmwm=.46,rwxw=.21,rxwy=.31,rmy=.30,rxwx=.1, rmwy=.02,rxmw=.21,rmwxw=.22,rep=5000, alpha=.05, n=400)}
 #'@return Power for Model 15 Conditional Processes
 #'@export
 #'
@@ -34,6 +33,9 @@ modmed15<-function(rxw, rxm, rxmw, rxy,
                   rmy,rxwx, rmwxw,
                   n,alpha=.05,rep=5000)
 {
+
+  V1<-NA;V2<-NA;V3<-NA;V4<-NA;V5<-NA;V6<-NA
+
 set.seed(1235)
 out <- MASS::mvrnorm(100000, mu = c(0,0,0,0,0,0),
                      Sigma = matrix(c(1.0,rxw,rxm,rxmw,rxwx,rxy,
