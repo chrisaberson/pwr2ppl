@@ -1,7 +1,7 @@
 prw2ppl Readme
 ================
 Chris Aberson
-December 8,2020
+April 3, 2021
 
 # pwr2ppl
 
@@ -9,7 +9,7 @@ pwr2ppl contains protocols for running a wide range of power analyses.
 Analyses range from simple approaches such as t-test and correlations to
 multifactor ANOVA (between and within subjects, linear mixed model
 approaches) and regression-based approaches (basic multiple regression,
-moderated regression, mediation, and logistic regression).
+moderated regression, mediation, and logistic regression). Recent additional focus on improving mediation approaches through addition of joint signficance tests and conditional process models. 
 
 These protocols accompany the book [*Applied Power Analysis for the
 Behavioral Sciences (2nd
