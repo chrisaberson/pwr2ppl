@@ -349,7 +349,7 @@ if (pred=="4")
                                                                           ry2, r12, var2, r23, r24,r25,
                                                                           ry3, r13, r23, var3, r34,r35,
                                                                           ry4, r14, r24, r34, var4,r45,
-                                                                          ry5,r15,r25,r34,r45,var5),
+                                                                          ry5,r15,r25,r35,r45,var5),
                                                                         ncol = 6), empirical = TRUE)
     pop2 = data.frame(pop)
 
