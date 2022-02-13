@@ -30,3 +30,8 @@ Submitted 3/23/2021
 Functions for moderated mediation (conditional process) models 7, 8, 14, and 15. medmod7, medmod8, medmod14, medmod15. 
 
 cleaned up a few errors in various functions. 
+
+\#pwr2ppl 0.3.0
+Submitted 2/13/2022
+
+Fixed a minor error in MRC_all. Added a beta function called Assumptions to address power under conditions of violated assumptions. 
