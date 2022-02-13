@@ -1,7 +1,7 @@
 prw2ppl Readme
 ================
 Chris Aberson
-April 3, 2021
+February 13, 2023
 
 # pwr2ppl
 
@@ -20,7 +20,7 @@ not necessary for using the package.
 
 ### Prerequisites
 
-I built this under R 4.0.2
+I built this under R 4.1.1
 
 ## Authors
 
@@ -43,5 +43,3 @@ This project is licensed under the MIT License - see the
 
 [![](https://cranlogs.r-pkg.org/badges/pwr2ppl)](https://cran.r-project.org/package=pwr2ppl)
 
-[![Build
-Status](https://travis-ci.com/chrisaberson/pwr2ppl.svg?branch=master)](https://travis-ci.com/chrisaberson/pwr2ppl)
