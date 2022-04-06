@@ -1,7 +1,7 @@
 Package: pwr2ppl
 Type: Package
 Title: Power Analyses for Common Designs (Power to the People)
-Version: 0.3.0
+Version: 0.4.0
 Author: Chris Aberson
 Maintainer: Chris Aberson <cla18@humboldt.edu> 
 Description: Statistical power analysis for designs including t-tests, correlations, 
@@ -13,4 +13,5 @@ RoxygenNote: 7.1.2
 Imports: car (>= 3.0-0), MASS (>= 7.3-51), dplyr (>= 0.8.0), tidyr (>= 0.8.0), 
           ez (>= 0.4.3), nlme (>= 3.1-139), phia (>= 0.2-0), afex (>= 0.22-1), 
           MBESS (>= 4.5.0), lavaan (>= 0.6-2), stats (>= 3.5.0), semTools (>= 0.5),
-          quantreg (>= 5.50), broom (>= 0.7.00), lmtest (>= 0.9-30)
+          quantreg (>= 5.50), broom (>= 0.7.00), lmtest (>= 0.9-30), lmPerm,
+          pls
