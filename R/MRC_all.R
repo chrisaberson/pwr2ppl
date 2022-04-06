@@ -42,14 +42,15 @@ pred[!is.null(ry5)]<-5
 vary<-NA
 vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
 
+samp = data.frame(MASS::mvrnorm(n, mu = c(0, 0, 0),
+                                Sigma = matrix(c(vary, ry1, ry2,
+                                                 ry1, var1, r12,
+                                                 ry2, r12, var2),
+                                               ncol = 3), empirical = FALSE))
 
   if (pred=="2")
 
-    {pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0), Sigma = matrix(c(vary, ry1, ry2,
-                                                                     ry1, var1, r12,
-                                                                     ry2, r12, var2),
-                                                                   ncol = 3), empirical = TRUE)
-    pop2 = data.frame(pop)
+    {
     nruns = rep
     int = numeric(nruns)
     b1 = numeric(nruns)
@@ -59,7 +60,10 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
     df1 = numeric(nruns)
     df2 = numeric(nruns)
     for (i in 1:nruns)
-    {samp <- pop2[ sample(nrow(pop2), n), ]
+    {samp <- data.frame(MASS::mvrnorm(n, mu = c(0, 0, 0), Sigma = matrix(c(vary, ry1, ry2,
+                                             ry1, var1, r12,
+                                             ry2, r12, var2),
+                                             ncol = 3), empirical = FALSE))
     test <- stats::lm(formula = X1 ~ X2+ X3, data = samp)
     c<-summary(test)
     int[i] = stats::coef(summary(test))[1,4]
@@ -129,13 +133,6 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
 
   if (pred=="3")
     {
-  pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0, 0),
-                 Sigma = matrix(c(vary, ry1, ry2, ry3,
-                                  ry1, var1, r12, r13,
-                                  ry2, r12, var2, r23,
-                                  ry3, r13, r23, var3),
-                 ncol = 4), empirical = TRUE)
-  pop2 = data.frame(pop)
   nruns = rep
   int = numeric(nruns)
   b1 = numeric(nruns)
@@ -146,7 +143,13 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
   df1 = numeric(nruns)
   df2 = numeric(nruns)
   for (i in 1:nruns)
-  {samp <- pop2[ sample(nrow(pop2), n), ]
+  {samp <- data.frame(MASS::mvrnorm(n, mu = c(0, 0, 0, 0),
+                                        Sigma = matrix(c(vary, ry1, ry2, ry3,
+                                                         ry1, var1, r12, r13,
+                                                         ry2, r12, var2, r23,
+                                                         ry3, r13, r23, var3),
+                                                       ncol = 4), empirical = FALSE))
+
   test <- stats::lm(formula = X1 ~ X2+ X3+ X4, data = samp)
   c<-summary(test)
   int[i] = stats::coef(summary(test))[1,4]
@@ -229,13 +232,6 @@ vary<-1;var1<-1;var2<-1; var3<-1; var4<-1; var5<-1
 
 if (pred=="4")
 {
-  pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0, 0,0), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4,
-                                                                 ry1, var1, r12, r13, r14,
-                                                                 ry2, r12, var2, r23, r24,
-                                                                 ry3, r13, r23, var3, r34,
-                                                                 ry4, r14, r24, r34, var4),
-                                                               ncol = 5), empirical = TRUE)
-  pop2 = data.frame(pop)
   nruns = rep
   int = numeric(nruns)
   b1 = numeric(nruns)
@@ -247,7 +243,12 @@ if (pred=="4")
   df1 = numeric(nruns)
   df2 = numeric(nruns)
   for (i in 1:nruns)
-  {samp <- pop2[ sample(nrow(pop2), n), ]
+  { samp <- data.frame(MASS::mvrnorm(n, mu = c(0, 0, 0, 0,0), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4,
+                                              ry1, var1, r12, r13, r14,
+                                              ry2, r12, var2, r23, r24,
+                                              ry3, r13, r23, var3, r34,
+                                              ry4, r14, r24, r34, var4),
+                                            ncol = 5), empirical = FALSE))
   test <- stats::lm(formula = X1 ~ X2+ X3+ X4 + X5, data = samp)
   c<-summary(test)
   int[i] = stats::coef(summary(test))[1,4]
@@ -344,15 +345,6 @@ if (pred=="4")
 
   if (pred=="5")
   {
-    pop <- MASS::mvrnorm(100000, mu = c(0, 0, 0, 0,0,0), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4, ry5,
-                                                                          ry1, var1, r12, r13, r14,r15,
-                                                                          ry2, r12, var2, r23, r24,r25,
-                                                                          ry3, r13, r23, var3, r34,r35,
-                                                                          ry4, r14, r24, r34, var4,r45,
-                                                                          ry5,r15,r25,r35,r45,var5),
-                                                                        ncol = 6), empirical = TRUE)
-    pop2 = data.frame(pop)
-
     nruns = rep
     int = numeric(nruns)
     b1 = numeric(nruns)
@@ -365,7 +357,14 @@ if (pred=="4")
     df1 = numeric(nruns)
     df2 = numeric(nruns)
     for (i in 1:nruns)
-    {samp <- pop2[ sample(nrow(pop2), n), ]
+    {samp <- data.frame(MASS::mvrnorm(n, mu = c(0, 0, 0, 0,0,0), Sigma = matrix(c(vary, ry1, ry2, ry3, ry4, ry5,
+                                             ry1, var1, r12, r13, r14,r15,
+                                             ry2, r12, var2, r23, r24,r25,
+                                             ry3, r13, r23, var3, r34,r35,
+                                             ry4, r14, r24, r34, var4,r45,
+                                             ry5,r15,r25,r35,r45,var5),
+                                             ncol = 6), empirical = FALSE))
+
     test <- stats::lm(formula = X1 ~ X2+ X3+ X4 + X5+ X6, data = samp)
     c<-summary(test)
     int[i] = stats::coef(summary(test))[1,4]

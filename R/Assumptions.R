@@ -29,15 +29,15 @@
 #'@param k4 Kurtosis of fourth predictor
 #'@param k5 Kurtosis of fifth predictor
 #'@param test type of test (none, sqrt, log, inv, robust, boot, quantile, hc0, hc1, hc2, hc3)
-#'@param nruns number of tuns, default is 5000
+#'@param nruns number of runs, default is 500
 #'
-#'#'@examples
+#'@examples
 #'Assumptions(ry1=.0, ry2=.3, ry3=.3, ry4=.1, r12 = .0,
 #'r13=.0, r14=.0, r23=.0, r24=.0,r34=0,
 #'sy=1,s1=2,s2=2, s3=1,s4=1, ky=1,k1=1,k2=1,
-#'k3=1,k4=1, n=100, nruns = 100, test="sqrt")
+#'k3=1,k4=1, n=100, nruns = 100, test="boot")
 #'
-#'@return Power for Multiple Regression with Non Normal Variables
+#'@return Power for Resampled Multiple Regression with Non Normal Variables
 #'@export
 #'
 #'
@@ -48,7 +48,7 @@ Assumptions<-function(ry1=NULL, ry2=NULL, ry3=NULL, ry4=NULL, ry5=NULL,
                   r34=NULL, r35=NULL,
                   r45=NULL, sy=NULL, s1=NULL, s2=NULL, s3=NULL, s4=NULL,s5=NULL,
                   ky=NULL,k1=NULL,k2=NULL,k3=NULL,k4=NULL,k5=NULL,
-                  n=NULL, alpha=.05, test=NULL, nruns=5000)
+                  n=NULL, alpha=.05, test=NULL, nruns=500)
   {
 set.seed(8675309)
 
@@ -90,7 +90,7 @@ rejectb5<-NA
 
 #For boots
 
-reps = 50
+reps = 200
 runs = reps*nruns
 bb1 = numeric(runs)
 bb2 = numeric(runs)
