@@ -1,7 +1,7 @@
 prw2ppl Readme
 ================
 Chris Aberson
-February 13, 2022
+April 7, 2022
 
 # pwr2ppl
 
@@ -20,7 +20,7 @@ not necessary for using the package.
 
 ### Prerequisites
 
-I built this under R 4.1.1
+I built this under R 4.1.3
 
 ## Authors
 
