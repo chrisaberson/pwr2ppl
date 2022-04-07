@@ -108,6 +108,6 @@ Power for Resampled Multiple Regression with Non Normal Variables
 Compute power for Multiple Regression with Violated assumptions (Beta)
 }
 \examples{
-\donttest{Assumptions(ry1=.0,ry2=.3,rr12=.3,sy=1,s1=2,s2=2,ky=1,k1=1,k2=1,n=100,nruns=20,test="sqrt")}
+\donttest{Assumptions(ry1=.0,ry2=.3,r12=.3,sy=1,s1=2,s2=2,ky=1,k1=1,k2=1,n=100,nruns=20,test="sqrt")}
 
 }
