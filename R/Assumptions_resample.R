@@ -1,4 +1,4 @@
-#'Compute power for Multiple Regression with Violated assumptions (Beta)
+#'Compute power for Multiple Regression with Violated assumptions using Resamples
 #'@param ry1 Correlation between DV (y) and first predictor (1)
 #'@param ry2 Correlation between DV (y) and second predictor (2)
 #'@param ry3 Correlation between DV (y) and third predictor (3)
@@ -28,14 +28,14 @@
 #'@param k3 Kurtosis of third predictor
 #'@param k4 Kurtosis of fourth predictor
 #'@param k5 Kurtosis of fifth predictor
-#'@param test type of test (boot,jack,perm)
+#'@param test type of test ("boot","jack","perm")
 #'@param nruns number of runs, default is 5000
 #'
 #'@examples
 #'Assumptions_resample(ry1=.0, ry2=.3, ry3=.3, ry4=.1, r12 = .0,
 #'r13=.0, r14=.0, r23=.0, r24=.0,r34=0,
 #'sy=1,s1=2,s2=2, s3=1,s4=1, ky=1,k1=1,k2=1,
-#'k3=1,k4=1, n=100, test="sqrt")
+#'k3=1,k4=1, n=100, test="boot", nruns=100)
 #'
 #'@return Power for Multiple Regression with Non Normal Variables
 #'@export
