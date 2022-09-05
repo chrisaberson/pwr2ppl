@@ -26,8 +26,8 @@ tfromd<-function(d,nlow, nhigh, alpha=.05, test="I", tails=2, by=2)
       delta<-d*((ncalc/2)^.5)
       lambda<-delta^2
       minusalpha<-1-alpha
-      Ft<-stats::qf(minusalpha, 1, n-2)
-      Power<-round(1-stats::pf(Ft, 1,n-2,lambda),4)
+      Ft<-stats::qf(minusalpha, 1, (n*2)-2)
+      Power<-round(1-stats::pf(Ft, 1,(n*2)-2,lambda),3)
       resultI[n, 1]<-n*2
       resultI[n, 2]<-Power}
       outputI<-na.omit(resultI)

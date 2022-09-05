@@ -1,5 +1,6 @@
 #'Compute Power for Model 7 Conditional Processes Using Joint Significance
-#'Requires correlations between all variables as sample size.
+#'Requires correlations between all variables as sample size
+#'Several values default to zero if no value provided
 #'This is the recommended approach for determining power
 #'@param rxy Correlation between DV (y) and predictor (x)
 #'@param rxm Correlation between predictor (x) and mediator (m)
@@ -14,14 +15,13 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples \donttest{modmed7(rxm=.4, rxw=.3, rxxw=.01, rxy=.50, rmy=.31, rxwy=.02,rwm=.45,
-#'rwy=.2,rmxw = .24, rwxw=.21, alpha=.05,rep=1000,n=400)}
+#'@examples \donttest{modmed7(rxm=.4, rxw=.2, rxy=.3, rwm=.2, rmxw=.1, rmy=.3,n=200)}
 #'@return Power for Model 7 Conditional Processes
 #'@export
 #'
 #'
-modmed7<-function(rxm, rxw, rxxw, rxy,
-                rwm, rwxw, rwy=0,
+modmed7<-function(rxm, rxw, rxxw=0, rxy,
+                rwm, rwxw=0, rwy=0,
                 rmxw, rmy, rxwy=0,
                 alpha=.05,rep=1000,n=NULL){
 V1<-NA;V2<-NA;V3<-NA;V4<-NA;V5<-NA
@@ -70,7 +70,7 @@ for (i in 1:nruns)
 
 }
 message("Sample size is ",n)
-message("Power for Conditional Indirect Effect (Joint Significance) ", JSa)
+message("Power for Index of Moderated Mediation ", JSa)
 }
 
 

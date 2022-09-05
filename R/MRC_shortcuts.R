@@ -39,12 +39,9 @@ pop <- MASS::mvrnorm(n, mu = c(my, m1, m2, m3), Sigma = matrix(c(vary, covy1, co
 
 
 pop2 = data.frame(pop)
-pred<-NA
-pred[is.null(r23)]<-2
-pred[!is.null(r23)]<-3
 
 full<-summary(stats::lm(X1~X2+X3+X4, pop2))
-full
+print(full)
 reduced<-summary(stats::lm(X1~X2+X3, pop2))
-reduced
+print(reduced)
 }

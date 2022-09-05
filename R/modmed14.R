@@ -14,16 +14,15 @@
 #'@param n Sample size
 #'@param alpha Type I error (default is .05)
 #'@param rep Number of samples drawn (defaults to 5000)
-#'@examples \donttest{modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
-#'rxww=0.5,rwy<-.35, rxwm<-.41, rxwy=.51,
+#'@examples \donttest{modmed14(rxw=.2, rxm=.2, rxy=.31,rwy=.35, rxwy=.2,
 #'rmy=.32, n=200, rep=1000,alpha=.05)}
 #'@return Power for Model 14 Conditional Processes
 #'@export
 #'
 #'
 
-modmed14<-function(rxw, rxm, rxxw, rxy,
-                  rwm=0, rxww, rwy,
+modmed14<-function(rxw, rxm, rxxw=0, rxy,
+                  rwm=0, rxww=0, rwy,
                   rxwm=0, rxwy,
                   rmy, n,alpha=.05,rep=5000)
 {
@@ -55,8 +54,8 @@ for (i in 1:nruns)
   test_b <- stats::lm(y ~ x + m + w + xw, data = samp)
   apath<-summary(test_a)
   bpath<-summary(test_b)
-  pa1[i]<-apath$coefficients[2,4]
-  pb3[i]<-bpath$coefficients[5,4]
+  pa1[i]<-apath$coefficients[2,4] # x to m
+  pb3[i]<-bpath$coefficients[5,4] #xw to y
   power = data.frame(pa1=pa1,pb3=pb3)
 
   power$jsa1["JoxwSiga1"]<-NA
@@ -71,7 +70,7 @@ for (i in 1:nruns)
 
 
 message("Sample size is ",n)
-message("Power for Conditional Indirect Effect (Joint Significance - Recommended) ", JSa)
+message("Power for Index of Moderated Mediation ", JSa)
 }
 
 
