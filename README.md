@@ -20,7 +20,7 @@ not necessary for using the package.
 
 ### Prerequisites
 
-I built this under R 4.1.3
+I built this under R 4.2.0
 
 ## Authors
 
