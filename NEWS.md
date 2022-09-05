@@ -35,3 +35,12 @@ cleaned up a few errors in various functions.
 Submitted 2/13/2022
 
 Fixed a minor error in MRC_all. Added a beta function called Assumptions to address power under conditions of violated assumptions. 
+
+\pwr2ppl 0.4.0
+Submitted 4/22/22
+Fixed error in assumptions
+
+
+\pwr2ppl 0.5.0
+Submitted 9/5/2022
+Removed modmed8 and modmed15 - need to clarify calculation of indirect effects. Corrected modmed7 and modmed14. 
