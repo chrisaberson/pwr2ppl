@@ -1,9 +1,9 @@
 Package: pwr2ppl
 Type: Package
 Title: Power Analyses for Common Designs (Power to the People)
-Version: 0.4.0
+Version: 0.5.0
 Author: Chris Aberson
-Maintainer: Chris Aberson <cla18@humboldt.edu> 
+Maintainer: Chris Aberson <chris.aberson@gmail.com> 
 Description: Statistical power analysis for designs including t-tests, correlations, 
     multiple regression, ANOVA, mediation, and logistic regression. Functions accompany 
     Aberson (2019) <doi:10.4324/9781315171500>.
