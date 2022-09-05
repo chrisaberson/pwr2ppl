@@ -3,16 +3,17 @@
 \name{modmed7}
 \alias{modmed7}
 \title{Compute Power for Model 7 Conditional Processes Using Joint Significance
-Requires correlations between all variables as sample size.
+Requires correlations between all variables as sample size
+Several values default to zero if no value provided
 This is the recommended approach for determining power}
 \usage{
 modmed7(
   rxm,
   rxw,
-  rxxw,
+  rxxw = 0,
   rxy,
   rwm,
-  rwxw,
+  rwxw = 0,
   rwy = 0,
   rmxw,
   rmy,
@@ -54,10 +55,10 @@ Power for Model 7 Conditional Processes
 }
 \description{
 Compute Power for Model 7 Conditional Processes Using Joint Significance
-Requires correlations between all variables as sample size.
+Requires correlations between all variables as sample size
+Several values default to zero if no value provided
 This is the recommended approach for determining power
 }
 \examples{
-\donttest{modmed7(rxm=.4, rxw=.3, rxxw=.01, rxy=.50, rmy=.31, rxwy=.02,rwm=.45,
-rwy=.2,rmxw = .24, rwxw=.21, alpha=.05,rep=1000,n=400)}
+\donttest{modmed7(rxm=.4, rxw=.2, rxy=.3, rwm=.2, rmxw=.1, rmy=.3,n=200)}
 }

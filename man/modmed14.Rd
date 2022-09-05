@@ -9,10 +9,10 @@ This is the recommended approach for determining power}
 modmed14(
   rxw,
   rxm,
-  rxxw,
+  rxxw = 0,
   rxy,
   rwm = 0,
-  rxww,
+  rxww = 0,
   rwy,
   rxwm = 0,
   rxwy,
@@ -58,7 +58,6 @@ Requires correlations between all variables as sample size.
 This is the recommended approach for determining power
 }
 \examples{
-\donttest{modmed14(rxw<-.2, rxm<-.3, rxxw=0, rxy=.31,rwm=.4,
-rxww=0.5,rwy<-.35, rxwm<-.41, rxwy=.51,
+\donttest{modmed14(rxw=.2, rxm=.2, rxy=.31,rwy=.35, rxwy=.2,
 rmy=.32, n=200, rep=1000,alpha=.05)}
 }
