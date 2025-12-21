@@ -50,19 +50,20 @@ win1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
-    df1<-model$ANOVA$DFn[2]
-    df2<-model$ANOVA$DFd[2]
-    SSB<-model$ANOVA$SSn[2]
-    SSW<-model$ANOVA$SSd[2]
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    df1<-xx$univariate.tests[2,2]
+    df2<-xx$univariate.tests[2,4]
+    SSB<-xx$univariate.tests[2,1]
+    SSW<-xx$univariate.tests[2,3]
     eta2<-SSB/(SSB+SSW)
     f2<-eta2/(1-eta2)
     lambda<-f2*df2
     minusalpha<-1-alpha
-    Ft<-stats::qf(minusalpha, df1, df2)
-    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
-    gge<-model$`Sphericity Corrections`$GGe
-    hfe<-model$`Sphericity Corrections`$HFe
+    Ft<-qf(minusalpha, df1, df2)
+    power<-round(1-pf(Ft, df1,df2,lambda),3)
+    gge<-1
+    hfe<-1
     ggdf1<-gge*df1
     ggdf2<-gge*df2
     hfdf1<-hfe*df1
@@ -104,19 +105,20 @@ win1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
-    df1<-model$ANOVA$DFn[2]
-    df2<-model$ANOVA$DFd[2]
-    SSB<-model$ANOVA$SSn[2]
-    SSW<-model$ANOVA$SSd[2]
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    df1<-xx$univariate.tests[2,2]
+    df2<-xx$univariate.tests[2,4]
+    SSB<-xx$univariate.tests[2,1]
+    SSW<-xx$univariate.tests[2,3]
     eta2<-SSB/(SSB+SSW)
     f2<-eta2/(1-eta2)
     lambda<-f2*df2
     minusalpha<-1-alpha
-    Ft<-stats::qf(minusalpha, df1, df2)
-    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
-    gge<-round(model$`Sphericity Corrections`$GGe,3)
-    hfe<-round(model$`Sphericity Corrections`$HFe,3)
+    Ft<-qf(minusalpha, df1, df2)
+    power<-round(1-pf(Ft, df1,df2,lambda),3)
+    gge<-round(xx$pval.adjustments[1],3)
+    hfe<-round(xx$pval.adjustments[3],3)
     ggdf1<-gge*df1
     ggdf2<-gge*df2
     hfdf1<-hfe*df1
@@ -168,19 +170,20 @@ win1F<-function(m1,m2,m3=NA,m4=NA, s1, s2, s3=NULL,s4=NULL,
     out<-tidyr::gather(out,key="iv",value="dv",-id)
     out$iv<-as.ordered(out$iv)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv, type=3, detailed=TRUE)
-    df1<-model$ANOVA$DFn[2]
-    df2<-model$ANOVA$DFd[2]
-    SSB<-model$ANOVA$SSn[2]
-    SSW<-model$ANOVA$SSd[2]
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    df1<-xx$univariate.tests[2,2]
+    df2<-xx$univariate.tests[2,4]
+    SSB<-xx$univariate.tests[2,1]
+    SSW<-xx$univariate.tests[2,3]
     eta2<-SSB/(SSB+SSW)
     f2<-eta2/(1-eta2)
     lambda<-f2*df2
     minusalpha<-1-alpha
-    Ft<-stats::qf(minusalpha, df1, df2)
-    power<-round(1-stats::pf(Ft, df1,df2,lambda),3)
-    gge<-round(model$`Sphericity Corrections`$GGe,3)
-    hfe<-round(model$`Sphericity Corrections`$HFe,3)
+    Ft<-qf(minusalpha, df1, df2)
+    power<-round(1-pf(Ft, df1,df2,lambda),3)
+    gge<-round(xx$pval.adjustments[1],3)
+    hfe<-round(xx$pval.adjustments[3],3)
     ggdf1<-gge*df1
     ggdf2<-gge*df2
     hfdf1<-hfe*df1

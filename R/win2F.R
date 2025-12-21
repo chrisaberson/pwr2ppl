@@ -105,21 +105,22 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv2[out$time==3|out$time==4]<-2
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
-    options(contrasts=c("contr.helmert", "contr.poly"))
-
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
-    dfA<-model$ANOVA$DFn[2]
-    dfB<-model$ANOVA$DFn[3]
-    dfAB<-model$ANOVA$DFn[4]
-    dfWA<-model$ANOVA$DFd[2]
-    dfWB<-model$ANOVA$DFd[3]
-    dfWAB<-model$ANOVA$DFd[4]
-    SSA<-model$ANOVA$SSn[2]
-    SSB<-model$ANOVA$SSn[3]
-    SSAB<-model$ANOVA$SSn[4]
-    SSWA<-model$ANOVA$SSd[2]
-    SSWB<-model$ANOVA$SSd[3]
-    SSWAB<-model$ANOVA$SSd[4]
+  
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv1","iv2"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    
+    dfA<-xx$univariate.tests[2,2]
+    dfB<-xx$univariate.tests[3,2]
+    dfAB<-xx$univariate.tests[4,2]
+    dfWA<-xx$univariate.tests[2,4]
+    dfWB<-xx$univariate.tests[3,4]
+    dfWAB<-xx$univariate.tests[4,4]
+    SSA<-xx$univariate.tests[2,1]
+    SSB<-xx$univariate.tests[3,1]
+    SSAB<-xx$univariate.tests[4,1]
+    SSWA<-xx$univariate.tests[2,3]
+    SSWB<-xx$univariate.tests[3,3]
+    SSWAB<-xx$univariate.tests[4,3]
     eta2A<-SSA/(SSA+SSWA)
     eta2B<-SSB/(SSB+SSWB)
     eta2AB<-SSAB/(SSAB+SSWAB)
@@ -200,19 +201,20 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
-    dfA<-model$ANOVA$DFn[2]
-    dfB<-model$ANOVA$DFn[3]
-    dfAB<-model$ANOVA$DFn[4]
-    dfWA<-model$ANOVA$DFd[2]
-    dfWB<-model$ANOVA$DFd[3]
-    dfWAB<-model$ANOVA$DFd[4]
-    SSA<-model$ANOVA$SSn[2]
-    SSB<-model$ANOVA$SSn[3]
-    SSAB<-model$ANOVA$SSn[4]
-    SSWA<-model$ANOVA$SSd[2]
-    SSWB<-model$ANOVA$SSd[3]
-    SSWAB<-model$ANOVA$SSd[4]
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv1","iv2"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    dfA<-xx$univariate.tests[2,2]
+    dfB<-xx$univariate.tests[3,2]
+    dfAB<-xx$univariate.tests[4,2]
+    dfWA<-xx$univariate.tests[2,4]
+    dfWB<-xx$univariate.tests[3,4]
+    dfWAB<-xx$univariate.tests[4,4]
+    SSA<-xx$univariate.tests[2,1]
+    SSB<-xx$univariate.tests[3,1]
+    SSAB<-xx$univariate.tests[4,1]
+    SSWA<-xx$univariate.tests[2,3]
+    SSWB<-xx$univariate.tests[3,3]
+    SSWAB<-xx$univariate.tests[4,3]
     eta2A<-SSA/(SSA+SSWA)
     eta2B<-SSB/(SSB+SSWB)
     eta2AB<-SSAB/(SSAB+SSWAB)
@@ -229,10 +231,15 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
     powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
     powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
-    ggeA<-round(model$`Sphericity Corrections`$GGe[1],3)
-    ggeAB<-round(model$`Sphericity Corrections`$GGe[2],3)
-    hfeA<-round(model$`Sphericity Corrections`$HFe[1],3)
-    hfeAB<-round(model$`Sphericity Corrections`$HFe[2],3)
+    owerA<-round(1-pf(FtA, dfA,dfWA,lambdaA),3)
+    powerB<-round(1-pf(FtB, dfB,dfWB,lambdaB),3)
+    powerAB<-round(1-pf(FtAB, dfAB,dfWAB,lambdaAB),3)
+    ggeA<-round(xx$pval.adjustments[1,1],3)
+    ggeB<-1
+    ggeAB<-round(xx$pval.adjustments[2,1],3)
+    hfeA<-round(xx$pval.adjustments[1,3],3)
+    hfeB<-1
+    hfeAB<-round(xx$pval.adjustments[2,3],3)
     hfeA[hfeA>1]<-1
     hfeAB[hfeAB>1]<-1
     ggdfA<-ggeA*dfA
@@ -338,19 +345,20 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     out$iv1<-as.ordered(out$iv1)
     out$iv2<-as.ordered(out$iv2)
     options(contrasts=c("contr.helmert", "contr.poly"))
-    model<-ez::ezANOVA(data=out, dv=dv, wid=id, within = iv1+iv2, type=3, detailed=TRUE)
-    dfA<-model$ANOVA$DFn[2]
-    dfB<-model$ANOVA$DFn[3]
-    dfAB<-model$ANOVA$DFn[4]
-    dfWA<-model$ANOVA$DFd[2]
-    dfWB<-model$ANOVA$DFd[3]
-    dfWAB<-model$ANOVA$DFd[4]
-    SSA<-model$ANOVA$SSn[2]
-    SSB<-model$ANOVA$SSn[3]
-    SSAB<-model$ANOVA$SSn[4]
-    SSWA<-model$ANOVA$SSd[2]
-    SSWB<-model$ANOVA$SSd[3]
-    SSWAB<-model$ANOVA$SSd[4]
+    model<-afex::aov_ez("id", "dv" , out, within = c("iv1","iv2"), type=3, detailed=TRUE)
+    xx<-summary(model)
+    dfA<-xx$univariate.tests[2,2]
+    dfB<-xx$univariate.tests[3,2]
+    dfAB<-xx$univariate.tests[4,2]
+    dfWA<-xx$univariate.tests[2,4]
+    dfWB<-xx$univariate.tests[3,4]
+    dfWAB<-xx$univariate.tests[4,4]
+    SSA<-xx$univariate.tests[2,1]
+    SSB<-xx$univariate.tests[3,1]
+    SSAB<-xx$univariate.tests[4,1]
+    SSWA<-xx$univariate.tests[2,3]
+    SSWB<-xx$univariate.tests[3,3]
+    SSWAB<-xx$univariate.tests[4,3]
     eta2A<-SSA/(SSA+SSWA)
     eta2B<-SSB/(SSB+SSWB)
     eta2AB<-SSAB/(SSAB+SSWAB)
@@ -367,10 +375,12 @@ win2F<-function(m1.1,m2.1,m3.1=NA,m4.1=NA,m1.2,m2.2,m3.2=NA,m4.2=NA,
     powerA<-round(1-stats::pf(FtA, dfA,dfWA,lambdaA),3)
     powerB<-round(1-stats::pf(FtB, dfB,dfWB,lambdaB),3)
     powerAB<-round(1-stats::pf(FtAB, dfAB,dfWAB,lambdaAB),3)
-    ggeA<-round(model$`Sphericity Corrections`$GGe[1],3)
-    ggeAB<-round(model$`Sphericity Corrections`$GGe[2],3)
-    hfeA<-round(model$`Sphericity Corrections`$HFe[1],3)
-    hfeAB<-round(model$`Sphericity Corrections`$HFe[2],3)
+    ggeA<-round(xx$pval.adjustments[1,1],3)
+    ggeB<-1
+    ggeAB<-round(xx$pval.adjustments[2,1],3)
+    hfeA<-round(xx$pval.adjustments[1,3],3)
+    hfeB<-1
+    hfeAB<-round(xx$pval.adjustments[2,3],3)
     hfeA[hfeA>1]<-1
     hfeAB[hfeAB>1]<-1
     ggdfA<-ggeA*dfA
