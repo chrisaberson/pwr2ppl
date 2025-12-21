@@ -20,7 +20,7 @@ depb(ry1, ry2, ry3 = NULL, r12, r13 = NULL, r23 = NULL, n = NULL, alpha = 0.05)
 
 \item{r23}{Correlation between second (2) and third predictor (3)}
 
-\item{n}{Total Sample size}
+\item{n}{Sample size}
 
 \item{alpha}{Type I error (default is .05)}
 }

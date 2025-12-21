@@ -52,7 +52,7 @@ anova2x2(
 \item{all}{Power(ALL) - Power for detecting all predictors in the model at once (default is "OFF")}
 }
 \value{
-Power for the Two Factor ANOVA
+Power for the One Factor ANOVA
 }
 \description{
 Compute power for a Two by Two Between Subjects ANOVA.

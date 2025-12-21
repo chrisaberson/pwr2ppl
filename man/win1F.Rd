@@ -53,7 +53,7 @@ win1F(
 
 \item{r34}{correlation Time 3 and Time 4}
 
-\item{n}{Total sample size}
+\item{n}{Sample size for first group}
 
 \item{alpha}{Type I error (default is .05)}
 }

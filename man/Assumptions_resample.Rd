@@ -34,7 +34,7 @@ Assumptions_resample(
   k5 = NULL,
   n = NULL,
   alpha = 0.05,
-  test = "boot",
+  test = NULL,
   reps = 200,
   boots = 500
 )
@@ -100,16 +100,20 @@ Assumptions_resample(
 
 \item{test}{type of test ("boot","jack","perm")}
 
-\item{reps}{number of replications, default is 200 - use larger for final analyses}
+\item{reps}{number of runs, default is 200}
 
-\item{boots}{number of bootstrap samples. Default is 500. Use larger for final.}
+\item{boots}{number of runs, default is 500}
 }
 \value{
-Power for Multiple Regression with Non Normal Variables via resample
+Power for Multiple Regression with Non Normal Variables
 }
 \description{
 Compute power for Multiple Regression with Violated assumptions using Resamples
 }
 \examples{
-\donttest{Assumptions_resample(ry1=.0,ry2=.3,r12=.3,sy=1,s1=2,s2=2,ky=1,k1=1,k2=1,n=100)}
+Assumptions_resample(ry1=.0, ry2=.3, ry3=.3, ry4=.1, r12 = .0,
+r13=.0, r14=.0, r23=.0, r24=.0,r34=0,
+sy=1,s1=2,s2=2, s3=1,s4=1, ky=1,k1=1,k2=1,
+k3=1,k4=1, n=100, test="boot")
+
 }
