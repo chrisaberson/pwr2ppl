@@ -20,7 +20,7 @@ not necessary for using the package.
 
 ### Prerequisites
 
-I built this under R 4.2.0
+I built this under R 4.5.2
 
 ## Authors
 
@@ -34,7 +34,7 @@ devtools::install_github("chrisaberson/pwr2ppl")
 In some cases, users experience an error message reading as follows:
 ERROR: dependencies 'car', 'ez', 'phia', 'afex', 'MBESS', 'lavaan' are not available for package 'pwr2ppl'
 
-Installing car, ez, phia, afex, MBESS, and lavaan manually will rectify this error. 
+Installing car, phia, afex, MBESS, and lavaan manually will rectify this error. 
 
 ## License
 

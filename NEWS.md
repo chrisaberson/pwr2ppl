@@ -44,3 +44,7 @@ Fixed error in assumptions
 \pwr2ppl 0.5.0
 Submitted 9/5/2022
 Removed modmed8 and modmed15 - need to clarify calculation of indirect effects. Corrected modmed7 and modmed14. 
+
+\pwr2ppl 0.6.0
+Submitted 12/22/2025
+Rewrote within subjects ANOVA stuff because the people who maintained ez ghosted CRAN. Removed anc command -- that isn't working right and no one uses it. 
